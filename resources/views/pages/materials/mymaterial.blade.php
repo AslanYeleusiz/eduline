@@ -3,12 +3,15 @@
 @section('content')
 <style>
     .menuactive5 {
-        background: #3E6CED!important;
-        color: #fff!important;
+        background: #3E6CED !important;
+        color: #fff !important;
     }
-    .menuactive5 .img-svg path, .img-svg polygon {
+
+    .menuactive5 .img-svg path,
+    .img-svg polygon {
         stroke: #fff;
     }
+
 </style>
 <div class="m_href">
     <div class="cst_pd">
@@ -74,25 +77,22 @@
                         Түркістан облысы Бәйдібек ауданының адами әлеуетті дамыту бөліміне қарасты "С.Ерубаев атындағы жалпы орта мектебі" коммуналдық мемлекеттік мекемесінің тәлімгері
                     </div>
                     <div class="my_admin_btns">
-                        <button class="btn my_btn c1">
-                            Сертификатты жүктеу
-                        </button>
-                        <button class="btn my_btn c2">
-                            Алғыс хатты жүктеу
-                        </button>
-                        <button class="btn my_btn c3">
-                            Құрмет грамотасын жүктеу
-                        </button>
-                        <button class="btn my_btn c4">
-                            Жинаққа жіберу
-                        </button>
+                        <a href="#"><button class="btn my_btn c1">
+                                Сертификатты жүктеу
+                            </button></a>
+                        <a href="#"><button class="btn my_btn c2">
+                                Алғыс хатты жүктеу
+                            </button></a>
+                        <a href="#"><button class="btn my_btn c3">
+                                Құрмет грамотасын жүктеу
+                            </button></a>
+                        <a href="#"><button class="btn my_btn c4">
+                                Жинаққа жіберу
+                            </button></a>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-
 </section>
 @endsection

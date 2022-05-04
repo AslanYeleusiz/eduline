@@ -68,22 +68,7 @@ $(document).ready(function () {
     });
 });
 
-(function () {
-    'use strict'
-    var forms = document.querySelectorAll('.needs-validation')
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                form.classList.add('was-validated');
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                } else {
-                    //Свой код вставить сюда при условии что обе input заполнены(input`s in kenes.blade.php)
-                }
-            }, false)
-        })
-})();
+
 
 
 //PHOME MASK JQUERY

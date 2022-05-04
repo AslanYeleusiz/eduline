@@ -1,5 +1,5 @@
-@import url(/public/fonts/Gilroy/fonts.css);
-@import url(/public/fonts/Exo2/fonts.css);
+@import url(/fonts/Gilroy/fonts.css);
+@import url(/fonts/Exo2/fonts.css);
 /*
 font-family:
 font-weight:
@@ -894,6 +894,7 @@ line-height: 22px;
 }
 .materials{
     padding-top: 40px;
+    padding-bottom: 150px;
     max-width: 1630px;
 }
 .m_head{
@@ -1081,6 +1082,9 @@ line-height: 45px;
     line-height: 17px;
 
 }
+.c1, .c2, .c3, .c4{
+    height: 100%;
+}
 .c1{
     grid-area: q;
 }
@@ -1119,7 +1123,6 @@ line-height: 45px;
     font-size: 14px;
     color: #3E6CED;
 }
-
 .mp_back img{
     width: 24px;
     margin-right: 5px;
@@ -1127,8 +1130,19 @@ line-height: 45px;
 .mp_href span{
     color: #3E6CED;
 }
+.mp_footer span{
+    color: #292929;
+}
 .mp_block{
     padding: 30px;
+    max-width: 840px;
+}
+.mp_blockhref a{
+    color: #3E6CED;
+    text-decoration: none;
+}
+.mp_blockhref a:hover{
+    text-decoration:underline;
 }
 .mp_head{
     font-family: "Gilroy-Bold";
@@ -1141,31 +1155,38 @@ line-height: 45px;
     margin-top: 10px;
 }
 .mp_sert{
-    width: 100%;
+    margin-top: 20px;
+    display: grid;
+    grid-template-areas: "q w w w w"
+                         "q e e e e";
     background: #F9F9F9;
     border-radius: 10px;
     padding: 30px;
 }
 .mp_sert img{
-    position: absolute;
+    grid-area: q;
 }
-.mp_sert p{
-    margin: 0;
-    padding-left: 160px;
+.mp_sert .p{
+    grid-area: w;
     font-size: 14px;
     line-height: 17px;
 }
 .mp_btn_group{
-    margin-left: 160px;
-    margin-top: 15px;
+    grid-area: e;
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
 }
 .mp_btn{
-    padding: 10px;
+    width: 100%;
+    padding: 0 10px;
     color: #3E6CED;
     border-radius: 6px;
     border: 1px solid #3E6CED;
+    height: 40px;
+}
+.mp_btn:hover{
+    color: #3E6CED;
 }
 .mp_success{
     width: 96%;
@@ -1176,10 +1197,11 @@ line-height: 45px;
     border: 1px solid #03B113;
     display: flex;
     align-items: center;
-    padding-left: 25px;
+    padding: 0 20px 0 25px;
     font-family: "Gilroy-Medium";
     font-size: 16px;
     line-height: 19px;
+    margin-top: 30px;
 }
 .mp_success img{
     margin-right: 5px;
@@ -1199,7 +1221,6 @@ line-height: 45px;
     min-height: 50px;
     font-family: "Gilroy-Medium";
     font-size: 16px;
-
 }
 .mp_button img, .mp_seti img{
     margin-right: 10px;
@@ -1212,13 +1233,20 @@ line-height: 45px;
 .mp_like{
     text-align: center;
 }
+.mp_like span{
+font-size: 14px;
+line-height: 17px;
+}
 .mp_socseti{
     display: grid;
     grid-template-areas: "q w e r";
     flex-direction: row;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
     border-radius: 6px;
-    height: 50px;
+    margin-top: 10px;
+}
+.mp_socseti a{
+    text-decoration: none;
 }
 .mp_seti{
     display: flex;
@@ -1226,21 +1254,26 @@ line-height: 45px;
     font-family: "Gilroy-Semibold";
     font-size: 14px;
     line-height: 14px;
+    min-height: 50px;
+    padding: 0 20px;
+    text-align: left;
 }
-.s1{
-
+.mp_cross{
+    border-right: 1px solid #CBCBCB;
 }
-.s2{
-
+.mp_seti.w{color: #03B113}
+.mp_seti.t{color: #039BE5}
+.mp_seti.f{color: #1976D2}
+.mp_seti.s{color: #1C77FD}
+.mp_foot_sert{
+    margin-top: 40px;
+    display: flex;
+    font-size: 14px;
+    line-height: 17px;
 }
-.s3{
-
+.mp_foot_sert img{
+    padding-right: 20px;
 }
-.s4{
-
-}
-
-
 
 @media (min-width: 1920px) {
     section {
@@ -1264,25 +1297,23 @@ line-height: 45px;
         padding-left: 350px;
         padding-right: 250px;
     }
-
     .free_cns {
         padding-left: 150px;
     }
-
     .heading {
         font-size: 45px;
     }
-
     .com_info {
         font-size: 34px;
     }
-
     .t_head {
         font-size: 32px;
     }
-
     .t_cns_val {
         font-size: 45px;
+    }
+    .mp_btn{
+        height: auto;
     }
 }
 @media (max-width: 1299px) {
@@ -1351,23 +1382,21 @@ line-height: 45px;
     .com_info {
         font-size: 32px;
     }
-
     .cst_pd {
         padding-left: 350px;
         padding-right: 87px;
     }
-
     .owl-nav,
     .owl-dots {
         padding-left: 70px;
         padding-right: 87px;
     }
-
     .dl_block {
         width: 429px;
     }
-
-
+    .mp_sert img{
+        width: 130px;
+    }
 }
 @media (max-width: 1155px) {
     .heading {
@@ -1516,106 +1545,102 @@ line-height: 45px;
     .t_cns_val {
         font-size: 34px;
     }
+    .mp_socseti{
+        grid-template-areas: "q w"
+                             "e r";
+    }
+    .mp_btn_group{
+        flex-direction: column;
+    }
+    .mp_btn{
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+    .mp_seti.w{
+        border-bottom: 1px solid #CBCBCB;
+    }
+    .mp_seti.t{
+        border: none;
+        border-bottom: 1px solid #CBCBCB;
+    }
 }
 @media (max-width: 991px) {
     .heading {
         font-size: 34px;
         line-height: 43px;
     }
-
     .asl_img {
         width: 426px;
     }
-
     .dl_block {
         width: 265px;
     }
-
     .stores img {
         width: 118px;
     }
-
     .store_button {
         width: 251px;
         font-size: 16px;
     }
-
     .dl_info {
         font-size: 14px;
         line-height: 16px;
     }
-
     .add_info {
         font-size: 14px;
         line-height: 16px;
     }
-
     .com_info {
         font-size: 28px;
         line-height: 40.2px;
     }
-
     .cns_val {
         font-size: 36px;
     }
-
     .cst_pd {
         padding-left: 311px;
         padding-right: 38px;
     }
-
     .cns_free_block {
         width: 524px;
         padding: 39px 34px;
     }
-
     .cns_free_block p {
         font-size: 13px;
         line-height: 20px;
     }
-
     .cns_bg_block {
         width: 480px;
     }
-
     .num {
         font-size: 16px;
     }
-
     .t_head {
         font-size: 24px;
         line-height: 40px;
     }
-
     .t_dl_block {
         width: 100%;
     }
-
     .t_dl_info {
         font-size: 17px;
         line-height: 20px;
     }
-
     .t_add_info {
         font-size: 16px;
     }
-
     .t_store_info {
         font-size: 17px;
     }
-
     .t_dl_block {
         width: 337px;
     }
-
     .t_stores img {
         width: 142px;
     }
-
     .t_store_button {
         width: 304px;
     }
-
     .t_img {
         transform: translate(-65px, -77px);
         width: 543px;
@@ -1626,9 +1651,11 @@ line-height: 45px;
         width: 494px;
         transform: translate(-76px, -77px);
     }
-
     .t_cns_val {
         font-size: 32px;
+    }
+    .mp_sert img{
+        width: 110px;
     }
 }
 @media (max-width: 916px) {
@@ -1671,6 +1698,13 @@ line-height: 45px;
     }
     .my_edit img{
         display: inline;
+    }
+    .mp_back{
+        border: none;
+        padding: 0;
+    }
+    .mp_back span{
+        display: none;
     }
 }
 @media (max-width: 870px) {
@@ -1923,6 +1957,26 @@ line-height: 45px;
     .m_head{
         font-size: 34px;
     }
+    .mp_sert{
+        grid-template-areas: "q w w w w"
+                             "e e e e e";
+    }
+    .mp_head{
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .mp_sert .p{
+        font-size: 12px;
+        line-height: 15.8px;
+    }
+    .mp_foot_sert{
+        flex-direction: column;
+        align-items: center;
+    }
+    .mp_foot_sert img{
+        width: 80px;
+        margin-bottom: 10px;
+    }
 }
 @media (max-width: 741px) {
     .heading {
@@ -1971,6 +2025,24 @@ line-height: 45px;
     .my_materials span{
         font-size: 14px;
     }
+    .mp_head{
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .mp_info{
+        font-size: 12px;
+        line-height: 17.4px;
+    }
+    .mp_sert img{
+        width: 86px;
+    }
+    .mp_sert .p{
+        font-size: 12px;
+        line-height: 16px;
+    }
+    .mp_seti{
+        font-size: 12px;
+    }
 }
 @media (max-width: 582px) {
 
@@ -2002,6 +2074,21 @@ line-height: 45px;
     }
     .m_info{
         font-size: 14px;
+    }
+    .mp_sert img{
+        width: 60px;
+    }
+    .mp_foot_body{
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .mp_head{
+        font-size: 22px;
+        line-height: 25px;
+    }
+    .mp_success{
+        font-size: 14px;
+        line-height: 17px;
     }
 }
 @media (max-width: 482px) {
@@ -2048,6 +2135,7 @@ line-height: 45px;
         font-size: 12px;
         line-height: 17.4px;
     }
+
 }
 @media (max-width: 429px) {
     .heading {
@@ -2124,6 +2212,11 @@ line-height: 45px;
     .deleteBtn{
         margin-left: 20px;
     }
+    .mp_head {
+        font-size: 20px;
+        line-height: 23px;
+    }
+
 
 }
 @media (max-width: 417px) {
@@ -2185,5 +2278,9 @@ line-height: 45px;
     }
     .my_m_info .m_item{
         margin: 0;
+    }
+    .mp_sert .p{
+        font-size: 10px;
+        line-height: 12px;
     }
 }
