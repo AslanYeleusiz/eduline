@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,5 @@ Route::get('/consultation', function () {
 Route::get('/consultation/main','mailController@index');
 
 Route::post('/consultation/send','mailController@send');
+
+Route::get('/set_locale/{locale}',[PageController::class,'set_locale'])->name('set_locale');

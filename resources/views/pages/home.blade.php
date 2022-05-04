@@ -3,7 +3,7 @@
 @section('content')
     <section class="welcome">
         <div class="container">
-            Басты бет
+            {{__('site.Продукты')}}
         </div>
     </section>
     <style>
@@ -13,6 +13,9 @@
     }
     .menuactive1 .img-svg path, .img-svg polygon {
         stroke: #fff;
+    }
+    .content {
+        margin: 0 auto;
     }
 </style>
 @endsection

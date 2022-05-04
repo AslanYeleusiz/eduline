@@ -6,12 +6,9 @@
         background: #3E6CED !important;
         color: #fff !important;
     }
-
-    .menuactive5 .img-svg path,
-    .img-svg polygon {
+    .menuactive5 .img-svg path, .img-svg polygon {
         stroke: #fff;
     }
-
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">

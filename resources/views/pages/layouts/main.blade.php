@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.png')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/main.css')}}">
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('js/jquery.mask.min.js')}}"></script>
@@ -25,19 +25,19 @@
         <div class="mb_menubar">
             <a href="/" class="mb_block">
                 <img src="{{asset('images/home-2.svg')}}">
-                Жаңалықтар
+                {{__('site.Жаңалықтар')}}
             </a>
             <a href="/attestation" class="mb_block">
                 <img src="{{asset('images/note-2.svg')}}">
-                Аттестация
+                {{__('site.Аттестация')}}
             </a>
             <a href="/calculator" class="mb_block menuactive">
                 <img src="{{asset('images/calculator.svg')}}">
-                Калькулятор
+                {{__('site.Калькулятор')}}
             </a>
             <a class="mb_block">
                 <img src="{{asset('images/menubar.png')}}">
-                Меню
+                {{__('site.Мәзір')}}
             </a>
         </div>
     </div>
@@ -48,38 +48,39 @@
                 <img class="logoimg" src="{{asset('images/logo.png')}}">
             </a>
             <div class="aregistration menuBar">
-                <img class="img-svg" src="{{asset('images/user.svg')}}">Кіру / Тіркелу
+                <img class="img-svg" src="{{asset('images/user.svg')}}">
+                {{__('site.Кіру')}} / {{__('site.Тіркелу')}}
             </div>
             <div class="menulinia"></div>
             <ul class="menu-ul">
                 <li class="menu-li">
                     <a class="menubutton menuBar menuactive1" href="/" class="menu-a">
                         <img class="img-svg" src="{{asset('images/home.svg')}}">
-                        Жаңалықтар
+                        {{__('site.Жаңалықтар')}}
                     </a>
                 </li>
                 <li class="menu-li">
                     <a class="menubutton menuBar menuactive2" href="/attestation" class="menu-a">
                         <img class="img-svg" src="{{asset('images/note.svg')}}">
-                        Аттестация
+                        {{__('site.Аттестация')}}
                     </a>
                 </li>
                 <li class="menu-li">
                     <a class="menubutton menuBar menuactive3" href="/calculator" class="menu-a">
                         <img class="img-svg" src="{{asset('images/calculator.svg')}}">
-                        Калькулятор
+                        {{__('site.Калькулятор')}}
                     </a>
                 </li>
                 <li class="menu-li">
                     <a class="menubutton menuBar menuactive4" href="/consultation" class="menu-a">
                         <img class="img-svg" src="{{asset('images/question.svg')}}">
-                        Жеке кеңес
+                        {{__('site.Жеке кеңес')}}
                     </a>
                 </li>
                 <li class="menu-li">
                     <a class="menubutton menuBar menuactive5" href="/materials" class="menu-a">
                         <img class="img-svg" src="{{asset('images/folder.svg')}}">
-                        Материалдар
+                        {{__('site.Материалдар')}}
                     </a>
                 </li>
             </ul>
@@ -87,10 +88,16 @@
                 <img class="img-svg" src="{{asset('images/phone.svg')}}">
                 +7 (705) 745 56 78
             </a>
-            <select class="menu-til">
-                <option value="kz" selected><img src="{{asset('images/kz.svg')}}"> ҚАЗ</option>
-                <!-- <option value="ru"><img src="/images/ru.svg"> РУС</option> -->
-            </select>
+            <div class="language_wrap desktop dropdown show">
+                <div class="dropdown-menu show" aria-labelledby="dropdownMenu" x-placement="bottom-start">
+                    <a href="{{route('set_locale','kk')}}">
+                        <button class="bb">ҚАЗ</button>
+                    </a>
+                    <a href="{{route('set_locale','ru')}}">
+                        <button class="bb">РУС</button>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="content">
             @yield('content')
