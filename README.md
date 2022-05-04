@@ -9,10 +9,15 @@
 
 ## Eduline
 php artisan key:generate
+<br>
 php artisan migrate --seed
+<br>
 php artisan passport:install
+<br>
 php artisan storage:link
+<br>
 npm install
+<br>
 npm run prod
 
 ### Қолданылған пакеттер 
