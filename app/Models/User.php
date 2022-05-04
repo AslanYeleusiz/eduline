@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -17,12 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
+     public $guarded = [];
+
+      const IMAGE_PATH = 'images/avatars/';
+      const DEFAULT_LANGUAGE = 'kk';
+      const LANGUAGES =  ['kk', 'ru'];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -33,6 +33,22 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin($query)
+    {
+        return $query->where('role_id', Role::ADMIN_ROLE);
+        # code...
+    }
+
+    public function materials()
+    {
+        return $this->hasMany(Material::class);
+    }
+
     /**
      * The attributes that should be cast.
      *
@@ -40,5 +56,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_email_verified' => 'boolean'
     ];
 }

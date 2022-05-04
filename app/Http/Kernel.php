@@ -3,6 +3,10 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\HandleInertiaRequests;
+use App\Http\Middleware\WebAdminMiddleware;
+use App\Http\Middleware\ApiLocalizationMiddleware;
+
 use App\Http\Middleware\Localization;
 
 class Kernel extends HttpKernel
@@ -22,8 +26,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \Illuminate\Session\Middleware\StartSession::class,
-        Localization::class,
     ];
 
     /**
@@ -39,6 +41,9 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            HandleInertiaRequests::class,
+        Localization::class,
+
         ],
 
         'api' => [
@@ -66,5 +71,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'web_admin' => WebAdminMiddleware::class,
+        'api_localization' => ApiLocalizationMiddleware::class
     ];
 }
