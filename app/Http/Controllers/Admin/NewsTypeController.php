@@ -13,7 +13,7 @@ class NewsTypeController extends Controller
     public function index(Request $request)
     {
         $name = $request->name;
-        $newsTypes = NewsType::when($name, fn ($query) => $query->where('name', 'like', "%$name%"))
+        $newsTypes = NewsType::when($name, fn ($query) => $query->where('name->kk', 'like', "%$name%"))
             ->orderBy('name')
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));

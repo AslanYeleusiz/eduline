@@ -28,8 +28,8 @@ class NewsController extends Controller
         $shortDescription = $request->short_description;
         $view = $request->view;
         $newsTypeId = $request->news_type_id;
-        $news = News::when($title, fn ($query) => $query->where('title', 'like', "%$title%"))
-            ->when($shortDescription, fn ($query) => $query->where('short_description', 'like', "%$shortDescription%"))
+        $news = News::when($title, fn ($query) => $query->where("title->kk",'like', "%$title%"))
+            ->when($shortDescription, fn ($query) => $query->where('short_description->kk', 'like', "%$shortDescription%"))
             ->when($view, fn ($query) => $query->where('view', '<=', $view))
             ->when($newsTypeId, fn ($query) => $query->where('news_type_id', $newsTypeId))
             ->with('newsType')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\MaterialCommentSaveRequest;
 use App\Http\Resources\V1\Material\MaterialResource;
 use App\Http\Resources\V1\Material\MaterialsResource;
 use App\Http\Resources\V1\MessageResource;
@@ -43,4 +44,18 @@ class MaterialController extends Controller
         $materialJournal->save();
         return new MessageResource('Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң сізге хабарласады');
     } 
+
+
+    public function materialCommentSave($id, MaterialCommentSaveRequest $request)
+    {
+        $material = Material::findOrFail($id);
+        $user = auth()->guard('api')->user();
+        $material->comments()->create([
+            'user_id' => $user->id,
+            'text' => $request->text,
+            'comment_id' => $request->comment_id,
+        ]);
+        return new MessageResource(__('message.success.saved'));
+
+    }
 }

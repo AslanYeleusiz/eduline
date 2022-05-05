@@ -9,6 +9,8 @@ class NewsComment extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

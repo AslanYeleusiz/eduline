@@ -78,7 +78,7 @@
                                                 @change.prevent="search"
                                             >
                                                 <option :value="null">
-                                                    Все
+                                                    Барлығы
                                                 </option>
                                                 <option
                                                     :value="materialSubject.id"
@@ -100,7 +100,7 @@
                                                 @change.prevent="search"
                                             >
                                                 <option :value="null">
-                                                    Все
+                                                    Барлығы
                                                 </option>
                                                 <option
                                                     :value="
@@ -124,7 +124,7 @@
                                                 @change.prevent="search"
                                             >
                                                 <option :value="null">
-                                                    Все
+                                                    Барлығы
                                                 </option>
                                                 <option
                                                     :value="materialClass.id"
@@ -195,7 +195,7 @@
                                                         deleteData(material.id)
                                                     "
                                                     class="btn btn-danger"
-                                                    title="Удалить"
+                                                    title="Жою"
                                                 >
                                                     <i
                                                         class="fas fa-times red"

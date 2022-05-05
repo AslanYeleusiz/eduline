@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\NewsCommentSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\News\NewsItemResource;
 use App\Http\Resources\V1\News\NewsItemsResource;
@@ -92,5 +93,19 @@ class NewsController extends Controller
         }
         $msg = $news->thisUserSaved()->exists() ? __('message.success.saved') : __('message.success.deleted');
         return new MessageResource($msg);
+    }
+
+    public function newsCommentSave($id, NewsCommentSaveRequest $request)
+    {
+
+        $news = News::findOrFail($id);
+        $user = auth()->guard('api')->user();
+        $news->comments()->create([
+            'user_id' =>  $user->id,
+            'text' => $request->text,
+            'parent_id' => $request->comment_id
+        ]);
+        return new MessageResource(__('message.success.saved'));
+
     }
 }

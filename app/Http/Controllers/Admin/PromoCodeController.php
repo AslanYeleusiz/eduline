@@ -22,7 +22,7 @@ class PromoCodeController extends Controller
 
         $promoCodes = PromoCode::when($code, fn ($query) => $query->where('code', 'like', "%$code%"))
             ->when($fromDate, fn ($query) => $query->whereDate('from_date', '<=', $fromDate))
-            ->when($toDate, fn ($query) => $query->where('to_date', '>=', $toDate))
+            ->when($toDate, fn ($query) => $query->whereDate('to_date', '>=', $toDate))
             ->when($discountPercentage, fn ($query) => $query->where('discount_percentage', $discountPercentage))
             ->when($usedCounts, fn ($query) => $query->where('used_counts', $usedCounts))
             ->when($isActive, fn ($query) => $query->where('is_active', ($isActive == 'true') ? 1 : 0))

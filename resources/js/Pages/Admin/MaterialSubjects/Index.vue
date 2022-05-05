@@ -93,7 +93,7 @@
                                                 <button
                                                 @click.prevent="deleteData(materialSubject.id)"
                                                     class="btn btn-danger"
-                                                    title="Удалить"
+                                                    title="Жою"
                                                 >
                                                     <i
                                                         class="fas fa-times red"

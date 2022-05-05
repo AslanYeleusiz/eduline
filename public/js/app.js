@@ -19498,7 +19498,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      this.$inertia.post(route('logout'));
+      this.$inertia.post(route("logout"));
     }
   },
   data: function data() {
@@ -19519,20 +19519,10 @@ __webpack_require__.r(__webpack_exports__);
         route_name: "admin.subscriptions.index",
         menu_active: ["admin.subscriptions"]
       }, {
-        name: "Жеке кеңес тапсырыстар",
-        font: "fa-comment-medical",
-        route_name: "admin.personalAdviceOrders.index",
-        menu_active: ["admin.personalAdviceOrders"]
-      }, {
         name: "Промо код",
         font: "fa-barcode",
         route_name: "admin.promoCodes.index",
         menu_active: ["admin.promoCodes"]
-      }, {
-        name: "Жеке кеңес",
-        font: "fa-comment-medical",
-        route_name: "admin.personalAdvice.index",
-        menu_active: ["admin.personalAdvice"]
       }, {
         name: "Жинақ материалдар",
         font: "fa-book",
@@ -19584,6 +19574,22 @@ __webpack_require__.r(__webpack_exports__);
           font: "fa-newspaper",
           route_name: "admin.newsTypes.index",
           menu_active: ["admin.newsTypes"]
+        }]
+      }, {
+        name: "Жеке кеңес",
+        font: "fa-comment-medical",
+        menu_active: ["admin.personalAdvice", "admin.personalAdviceOrders"],
+        route_name: "",
+        childs_items: [{
+          name: "Жеке кеңес",
+          font: "fa-comment-medical",
+          route_name: "admin.personalAdvice.index",
+          menu_active: ["admin.personalAdvice"]
+        }, {
+          name: "Жеке кеңес тапсырыстар",
+          font: "fa-comment-medical",
+          route_name: "admin.personalAdviceOrders.index",
+          menu_active: ["admin.personalAdviceOrders"]
         }]
       }]
     };
@@ -23739,7 +23745,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(material.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_48, 8
         /* PROPS */
         , _hoisted_46)])])]);
@@ -23858,7 +23864,7 @@ var _hoisted_22 = {
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -23903,7 +23909,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -24007,7 +24013,7 @@ var _hoisted_23 = {
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -24056,7 +24062,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -24283,7 +24289,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(materialClass.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_31, 8
         /* PROPS */
         , _hoisted_29)])])]);
@@ -24402,7 +24408,7 @@ var _hoisted_22 = {
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -24447,7 +24453,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -24551,7 +24557,7 @@ var _hoisted_23 = {
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -24600,7 +24606,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -24827,7 +24833,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(materialDirection.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_31, 8
         /* PROPS */
         , _hoisted_29)])])]);
@@ -25648,7 +25654,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(materialJournal.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_47, 8
         /* PROPS */
         , _hoisted_45)])])]);
@@ -25767,7 +25773,7 @@ var _hoisted_22 = {
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -25812,7 +25818,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -25916,7 +25922,7 @@ var _hoisted_23 = {
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -25965,7 +25971,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -26192,7 +26198,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(materialSubject.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_31, 8
         /* PROPS */
         , _hoisted_29)])])]);
@@ -26363,7 +26369,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(comment.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_19, 8
         /* PROPS */
         , _hoisted_17)])])]);
@@ -26605,7 +26611,7 @@ var _hoisted_54 = {
 var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -26816,7 +26822,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -26934,7 +26940,7 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: null
-}, " Все ", -1
+}, " Барлығы ", -1
 /* HOISTED */
 );
 
@@ -26942,7 +26948,7 @@ var _hoisted_25 = ["value"];
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: null
-}, " Все ", -1
+}, " Барлығы ", -1
 /* HOISTED */
 );
 
@@ -26950,7 +26956,7 @@ var _hoisted_27 = ["value"];
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: null
-}, " Все ", -1
+}, " Барлығы ", -1
 /* HOISTED */
 );
 
@@ -27147,7 +27153,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(material.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_36, 8
         /* PROPS */
         , _hoisted_34)])])]);
@@ -27280,7 +27286,7 @@ var _hoisted_25 = {
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -27336,7 +27342,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -27477,7 +27483,7 @@ var _hoisted_31 = {
 var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -27555,7 +27561,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -27788,7 +27794,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(newsType.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_32, 8
         /* PROPS */
         , _hoisted_30)])])]);
@@ -28013,7 +28019,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(comment.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_34, 8
         /* PROPS */
         , _hoisted_32)])])]);
@@ -28333,7 +28339,7 @@ var _hoisted_67 = {
 var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -28550,7 +28556,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -28855,7 +28861,7 @@ var _hoisted_68 = {
 var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -29076,7 +29082,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -29372,7 +29378,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(newsItem.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_35, 8
         /* PROPS */
         , _hoisted_33)])])]);
@@ -29510,7 +29516,7 @@ var _hoisted_29 = {
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -29589,7 +29595,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -29861,7 +29867,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(personalAdviceOrder.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_32, 8
         /* PROPS */
         , _hoisted_30)])])]);
@@ -30044,7 +30050,7 @@ var _hoisted_37 = {
 var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -30159,7 +30165,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -30327,7 +30333,7 @@ var _hoisted_38 = {
 var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -30446,7 +30452,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -30766,7 +30772,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(personalAdvice.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_40, 8
         /* PROPS */
         , _hoisted_38)])])]);
@@ -30918,7 +30924,7 @@ var _hoisted_30 = {
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -31016,7 +31022,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -31163,7 +31169,7 @@ var _hoisted_33 = {
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -31278,7 +31284,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -31605,7 +31611,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(promoCode.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_37, 8
         /* PROPS */
         , _hoisted_35)])])]);
@@ -31738,7 +31744,7 @@ var _hoisted_25 = {
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -31794,7 +31800,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -31912,7 +31918,7 @@ var _hoisted_26 = {
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -31972,7 +31978,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -32232,7 +32238,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteRole(role.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_35, 8
         /* PROPS */
         , _hoisted_33)])])]);
@@ -32402,7 +32408,7 @@ var _hoisted_34 = {
 var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -32513,7 +32519,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -32668,7 +32674,7 @@ var _hoisted_35 = {
 var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -32783,7 +32789,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -33113,7 +33119,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(subscription.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_39, 8
         /* PROPS */
         , _hoisted_37)])])]);
@@ -33345,7 +33351,7 @@ var _hoisted_45 = {
 var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -33491,7 +33497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -33708,7 +33714,7 @@ var _hoisted_46 = {
 var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
-}, " Сохранить ", -1
+}, " Сақтау ", -1
 /* HOISTED */
 );
 
@@ -33858,7 +33864,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
-      }, " Назад ")])], 32
+      }, " Артқа ")])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -33984,19 +33990,19 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: null
-}, " Все ", -1
+}, " Барлығы ", -1
 /* HOISTED */
 );
 
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "1"
-}, " Мужской ", -1
+}, " Ер ", -1
 /* HOISTED */
 );
 
 var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "2"
-}, " Женский ", -1
+}, " Әйел ", -1
 /* HOISTED */
 );
 
@@ -34134,7 +34140,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.phone), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.sex ? user.sex == 1 ? "Мужской" : "Женский" : "Не задано"), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.sex ? user.sex == 1 ? "Ер" : "Әйел" : "Толтырылмаған"), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.role.name), 1
         /* TEXT */
@@ -34169,7 +34175,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(user.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_37, 8
         /* PROPS */
         , _hoisted_35)])])]);
@@ -34524,7 +34530,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             return $options.deleteData(userSubscription.id);
           }, ["prevent"]),
           "class": "btn btn-danger",
-          title: "Удалить"
+          title: "Жою"
         }, _hoisted_42, 8
         /* PROPS */
         , _hoisted_40)])])]);

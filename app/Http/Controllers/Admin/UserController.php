@@ -27,7 +27,7 @@ class UserController extends Controller
         $phone = $request->phone;
         $sex = $request->sex;
         $users = User::with('role')
-            ->when($fullName, fn ($query) => $query->where('full_name', 'like', "%$full_name%"))
+            ->when($fullName, fn ($query) => $query->where('full_name', 'like', "%$fullName%"))
             ->when($email, fn ($query) => $query->where('email', 'like', "%$email%"))
             ->when($phone, fn ($query) => $query->where('phone', 'like', "%$phone%"))
             ->when($sex, fn ($query) => $query->where('sex', 'like', "%$sex%"))
@@ -90,34 +90,35 @@ class UserController extends Controller
         $createdAt = $request->created_at;
         $isActive = $request->is_active;
         $userSubscriptions = UserSubscription::with('subscription')
-        ->when($name, function($query) use ($name) {
-            return $query->whereHas('subscription', fn($query) => $query->where('name', 'like', "%$name%"));
-        })
-        ->when($fromDate, fn ($query) => $query->whereDate('from_date', '<=', $fromDate))
-        ->when($toDate, fn ($query) => $query->where('to_date', '>=', $toDate))
-        ->when($createdAt, fn ($query) => $query->where('created_at', '>=', $createdAt))
+            ->when($name, function ($query) use ($name) {
+                return $query->whereHas('subscription', fn ($query) => $query->where('name', 'like', "%$name%"));
+            })
+            ->when($fromDate, fn ($query) => $query->whereDate('from_date', '<=', $fromDate))
+            ->when($toDate, fn ($query) => $query->whereDate('to_date', '>=', $toDate))
+            ->when($createdAt, fn ($query) => $query->whereDate('created_at', '>=', $createdAt))
 
-        ->addSelect('*', DB::raw(' (CASE WHEN CURDATE() BETWEEN from_date AND to_date THEN 1 ELSE 0 END ) as is_active'))
-        ->when($isActive, function($query) use ($isActive) {
-            if($isActive == 'true') {
+            ->addSelect('*', DB::raw(' (CASE WHEN CURDATE() BETWEEN from_date AND to_date THEN 1 ELSE 0 END ) as is_active'))
+            ->when($isActive, function ($query) use ($isActive) {
+                if ($isActive == 'true') {
 
-                return $query->whereDate('from_date','<=', now())
-                ->whereDate('to_date','>=', now());
-            } else {
-                return $query->whereDate('to_date','<=', now());
-            }
-        })
-
-        ->paginate($request->input('per_page', 20))
+                    return $query->whereDate('from_date', '<=', now())
+                        ->whereDate('to_date', '>=', now());
+                } else {
+                    return $query->whereDate('to_date', '<=', now());
+                }
+            })
+            ->orderByDesc('id')
+            ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
-            $subscriptions = Subscription::isActive()->get();
+        $subscriptions = Subscription::isActive()->get();
+
         return Inertia::render(
             'Admin/Users/UserSubscriptions',
             compact('user', 'userSubscriptions', 'subscriptions')
         );
     }
-    
-    public function userSubscriptionStore($userId,$subscriptionId)
+
+    public function userSubscriptionStore($userId, $subscriptionId)
     {
         $user = User::findOrFail($userId);
         $subscription = Subscription::isActive()->findOrFail($subscriptionId);
@@ -125,7 +126,7 @@ class UserController extends Controller
         UserSubscription::create([
             'user_id' => $user->id,
             'subscription_id' => $subscription->id,
-            'from_date' => $currentDate->format('Y.m.d'), 
+            'from_date' => $currentDate->format('Y.m.d'),
             'to_date' => $currentDate->addMonths($subscription->duration)->format('Y.m.d')
         ]);
 
