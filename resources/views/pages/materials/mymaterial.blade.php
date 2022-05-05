@@ -72,7 +72,7 @@
         <div class="m_info">
             Бұл бетте сіз жариялаған барлық материалдар сайттан өшпей сақталып қалады. Өзіңіздің барлық материалдарыңызды осында тегін жариялап архив ретінде сақтауға болады
         </div>
-        <button class="btn btn-primary m_btn my_m_btn">Материал жариялау</button>
+        <a href="/materials/my-materials/publication"><button class="btn btn-primary m_btn my_m_btn">Материал жариялау</button></a>
         <div class="m_val">
             Барлығы: <span id="value">{value}</span> материал
         </div>

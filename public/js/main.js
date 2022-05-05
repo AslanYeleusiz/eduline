@@ -77,7 +77,7 @@ $(".t_input").mask("+7 (999) 999-99-99");
 
 
 
-var $speed_pp = 300;
+var $speed_pp = 400;
 // POPUP script
 var $pupupBlock = $('.mail_send_pupup');
 var $send_block = $('.send_block');
@@ -89,7 +89,7 @@ $('.esc_icon').on('click', function () {
 });
 $(document).mouseup(function (e) {
     var div = $send_block;
-    if (!div.is(e.target)&&div.has(e.target).length === 0) $pupupBlock.fadeOut($speed_pp);
+    if (!div.is(e.target) && div.has(e.target).length === 0) $pupupBlock.fadeOut($speed_pp);
 });
 
 // First POPUP script in mymaterial.blade.php
@@ -103,7 +103,7 @@ $('.my_esc_icon').on('click', function () {
 });
 $(document).mouseup(function (e) {
     var div = $mysend_block;
-    if (!div.is(e.target)&&div.has(e.target).length === 0) $mypupupBlock.fadeOut($speed_pp);
+    if (!div.is(e.target) && div.has(e.target).length === 0) $mypupupBlock.fadeOut($speed_pp);
 });
 
 
@@ -119,10 +119,17 @@ $('.my_esc_icon').on('click', function () {
 $(document).mouseup(function (e) {
     var div = $mysend_block2;
     var div2 = $('.my_send_block');
-    if (!div.is(e.target)&&div.has(e.target).length === 0&&!div2.is(e.target)&&div2.has(e.target).length === 0) $mypupupBlock2.fadeOut($speed_pp);
+    if (!div.is(e.target) && div.has(e.target).length === 0 && !div2.is(e.target) && div2.has(e.target).length === 0) $mypupupBlock2.fadeOut($speed_pp);
 });
 
-
+//hint подсказка in materialpublication
+$('.question').on('click', function () {
+    $('.hint').fadeIn($speed_pp);
+});
+$(document).mouseup(function (e) {
+    var div = $('.hint');
+    if (!div.is(e.target) && div.has(e.target).length === 0) div.fadeOut($speed_pp);
+});
 
 $('img.img-svg').each(function () {
     var $img = $(this);

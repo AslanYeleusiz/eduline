@@ -23,6 +23,9 @@ Route::get('/materials', function () {
 Route::get('/materials/my-materials', function () {
     return view('pages.materials.mymaterial');
 });
+Route::get('/materials/my-materials/publication', function () {
+    return view('pages.materials.materialpublication');
+});
 Route::get('/materials/my-materials/change', function () {
     return view('pages.materials.materialchange');
 });
@@ -38,6 +41,7 @@ Route::get('/calculator', function () {
 Route::get('/consultation', function () {
     return view('pages.consultationPrev');
 });
-Route::get('/consultation/main','mailController@index');
+Route::get('/consultation/main', function () {
+    return view('pages.consultation');
+});
 
-Route::post('/consultation/send','mailController@send');

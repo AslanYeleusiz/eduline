@@ -27,15 +27,15 @@
             Материал ақпаратын өзгерту
         </div>
         <div class="m_block mp_block mc_block">
-            <div class="mb-4">
+           <form class="m_form" action="">
+            <div class="mb-4 w-100">
                 <label for="exampleFormControlInput1" class="form-label">Материал тақырыбы</label>
                 <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып">
             </div>
-            <div class="mb-3">
+            <div class="mb-3 w-100">
                 <label for="exampleFormControlTextarea1" class="form-label">Материалдың қысқаша түсінігі</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады."></textarea>
             </div>
-            <form class="m_form" action="">
             <div class="m_control mc_control">
                 <select class="form-select m_box m_cbox g1">
                     <option hidden selected id="select">Пәнді таңдаңыз</option>

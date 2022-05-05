@@ -1406,6 +1406,7 @@ line-height: 23px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
 }
 .mc_warning{
     font-size: 16px;
@@ -1414,6 +1415,192 @@ line-height: 23px;
     max-width: 528px;
     text-align: center;
 }
+
+/*Material PAGE publication PAGE*/
+.question{
+    margin-left: 10px;
+    padding: 0;
+}
+.question:hover{
+    cursor: pointer;
+}
+.hint{
+    position: absolute;
+    display: none;
+    padding: 15px;
+    font-family: "Gilroy-Regular";
+    font-size: 14px;
+    line-height: 17px;
+    border-bottom: 4px solid #03B113;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 6px 6px 0 0;
+    transform: translate(319px,-70px);
+    background: #ffffff;
+}
+.question:hover{
+    cursor: pointer;
+}
+.tag_user{
+    margin: 0 0 0 auto;
+    right: 0;
+}
+.pub_block{
+    padding: 0;
+}
+.pub_body{
+    padding-left: 30px;
+    display: flex;
+}
+.mc_block .my_drop{
+    width: 100%;
+
+    background: #EFF3FF;
+    border: 1px dashed #3E6CED;
+    border-radius: 10px;
+    padding: 0 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*DROPZONE*/
+.successmode,.loadedmode,.expectations{
+    display: none;
+}
+.successmode.active, .loadedmode.active,.expectations.active{
+    display: flex;
+    flex-direction: column;
+}
+.drop-zone__input{
+    display: none;
+}
+/*DROPZONE success animation*/
+.success-animation {
+    margin: 0 auto;
+}
+.checkmark {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #4bb71b;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #4bb71b;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+    position:relative;
+    top: 5px;
+    right: 5px;
+   margin: 0 auto;
+}
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4bb71b;
+    fill: #fff;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+
+}
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes scale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #4bb71b;
+    }
+}
+.success-informer{
+    margin-top: 20px;
+    font-family: "Gilroy-Bold";
+    font-size: 14px;
+    color: #03B113;
+}
+
+/*DROPZONE loadmode animation*/
+.lineload {
+    display: block;
+    height: 10px;
+    width: 260px;
+    background: none;
+    border-radius: 50px;
+    margin: 0 auto;
+    position: relative;
+}
+.lineload2 {
+    display: block;
+    height: 10px;
+    background: #BBD7FF;
+    border-radius: 50px;
+}
+.matzharproc {
+    display: block;
+    font-family: 'gilsb';
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+}
+
+/*DROPZONE режим ожидания animation*/
+.expectations{
+    align-items: center;
+}
+.expectations a{
+    margin-top: 10px;
+}
+.extension_message{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+}
+.extension_message .b{
+    font-family: "Gilroy-Semibold";
+line-height: 17px;
+
+}
+.ex{
+    width: 240px;
+    height: 142px;
+    background: url(/images/cloudupload.svg) no-repeat;
+    background-size: 100%;
+    background-position: 50% 20%;
+}
+.ex{
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function:ease-out;
+}
+@keyframes example{
+    0%{
+        background-position: 50% 20%;
+    }
+    50%{
+        background-position: 50% 150%;
+    }
+    100%{
+        background-position: 50% 20%;
+    }
+}
+
 
 
 @media (min-width: 1920px) {
@@ -1549,67 +1736,52 @@ line-height: 23px;
         line-height: 48px;
         margin-left: 30px;
     }
-
     .k_heading {
         margin: 0;
     }
-
     .dl_block {
         width: 370px;
     }
-
     .dl_info {
         line-height: 18px;
     }
-
     .store_info {
         margin-top: 30px;
         font-size: 17px;
     }
-
     .stores img {
         width: 168px;
     }
-
     .store_button {
         width: 353px;
     }
-
     .cns_val {
         font-size: 44px;
     }
-
     .cns_free_block {
         width: 766px;
     }
-
     .cns_bg_block {
         width: 725px;
     }
-
     .t_cns_val {
         font-size: 41px;
     }
-
     .t_head {
         font-size: 30px;
         margin: 0;
         line-height: 43px;
     }
-
     .t_dl_info {
         font-size: 17px;
         line-height: 22px;
     }
-
     .t_add_info {
         font-size: 16px;
     }
-
     .t_store_info {
         font-size: 17px;
     }
-
     .t_img {
         transform: translate(-134px, -76px);
     }
@@ -1721,6 +1893,9 @@ line-height: 23px;
     }
     .mc{
         padding-top: 30px;
+    }
+    .hint{
+        transform: translate(-53px,-70px);
     }
 }
 @media (max-width: 991px) {
@@ -1874,6 +2049,10 @@ line-height: 23px;
     .mp_sert .p{
         font-size: 12px;
     }
+    .tag_user{
+        width: 90px;
+        margin: 0;
+    }
 }
 @media (max-width: 870px) {
     .heading {
@@ -1971,6 +2150,16 @@ line-height: 23px;
     .mp_success{
         font-size: 14px;
     }
+    .pub{
+        flex-direction: column;
+    }
+    .pub_body{
+        padding: 30px 30px 10px 30px;
+    }
+    .tag_user{
+        margin: 0 0 0 auto;
+    }
+
 }
 @media (max-width: 767px) {
     .mb_menu{
