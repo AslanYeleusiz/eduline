@@ -20,8 +20,11 @@ Route::get('/', function () {
 Route::get('/materials', function () {
     return view('pages.materials.material');
 });
-Route::get('/materials/edit', function () {
+Route::get('/materials/my-materials', function () {
     return view('pages.materials.mymaterial');
+});
+Route::get('/materials/my-materials/change', function () {
+    return view('pages.materials.materialchange');
 });
 Route::get('/materials/item', function () {
     return view('pages.materials.materialpage');

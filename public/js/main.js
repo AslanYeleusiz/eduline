@@ -76,50 +76,67 @@ $(".phone_mask").mask("+7 (999) 999-99-99");
 $(".t_input").mask("+7 (999) 999-99-99");
 
 
+
+var $speed_pp = 300;
 // POPUP script
-// let btnPupup=document.querySelector('.pupup');
-// let pupupBlock = document.querySelector('.mail_send_pupup');
-// let esc_btn = document.querySelector('.esc_btn');
-// let send_block = document.querySelector('.send_block');
+var $pupupBlock = $('.mail_send_pupup');
+var $send_block = $('.send_block');
+$('.pupup').on('click', function () {
+    $pupupBlock.fadeIn($speed_pp);
+});
+$('.esc_icon').on('click', function () {
+    $pupupBlock.fadeOut($speed_pp);
+});
+$(document).mouseup(function (e) {
+    var div = $send_block;
+    if (!div.is(e.target)&&div.has(e.target).length === 0) $pupupBlock.fadeOut($speed_pp);
+});
 
-// btnPupup.addEventListener('click',function(){
-//     pupupBlock.style.display="flex";
-//     setTimeout(function(){
-//         pupupBlock.style.opacity="1";
-//     },150);
-// });
-
-// esc_btn.addEventListener('click',function(){
-//     escapePupup();
-// });
-// function escapePupup(){
-//     pupupBlock.style.opacity="0";
-//     setTimeout(function(){
-//         pupupBlock.style.display="none";
-//     },400);
-// }
-// pupupBlock.addEventListener( 'click', (e) => {
-//     const withinBoundaries = e.composedPath().includes(send_block);
-
-//     if ( ! withinBoundaries ) {
-//         escapePupup();
-//     }
-// });
+// First POPUP script in mymaterial.blade.php
+var $mypupupBlock = $('#popup1');
+var $mysend_block = $('.popup_body');
+$('.pupup1').on('click', function () {
+    $mypupupBlock.fadeIn($speed_pp);
+});
+$('.my_esc_icon').on('click', function () {
+    $mypupupBlock.fadeOut($speed_pp);
+});
+$(document).mouseup(function (e) {
+    var div = $mysend_block;
+    if (!div.is(e.target)&&div.has(e.target).length === 0) $mypupupBlock.fadeOut($speed_pp);
+});
 
 
-$('img.img-svg').each(function(){
-  var $img = $(this);
-  var imgClass = $img.attr('class');
-  var imgURL = $img.attr('src');
-  $.get(imgURL, function(data) {
-    var $svg = $(data).find('svg');
-    if(typeof imgClass !== 'undefined') {
-      $svg = $svg.attr('class', imgClass+' replaced-svg');
-    }
-    $svg = $svg.removeAttr('xmlns:a');
-    if(!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-      $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
-    }
-    $img.replaceWith($svg);
-  }, 'xml');
+// Second POPUP script in mymaterial.blade.php
+var $mypupupBlock2 = $('#popup2');
+var $mysend_block2 = $('.popup_body');
+$('.popup2').on('click', function () {
+    $mypupupBlock2.fadeIn($speed_pp);
+});
+$('.my_esc_icon').on('click', function () {
+    $mypupupBlock2.fadeOut($speed_pp);
+});
+$(document).mouseup(function (e) {
+    var div = $mysend_block2;
+    var div2 = $('.my_send_block');
+    if (!div.is(e.target)&&div.has(e.target).length === 0&&!div2.is(e.target)&&div2.has(e.target).length === 0) $mypupupBlock2.fadeOut($speed_pp);
+});
+
+
+
+$('img.img-svg').each(function () {
+    var $img = $(this);
+    var imgClass = $img.attr('class');
+    var imgURL = $img.attr('src');
+    $.get(imgURL, function (data) {
+        var $svg = $(data).find('svg');
+        if (typeof imgClass !== 'undefined') {
+            $svg = $svg.attr('class', imgClass + ' replaced-svg');
+        }
+        $svg = $svg.removeAttr('xmlns:a');
+        if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+        }
+        $img.replaceWith($svg);
+    }, 'xml');
 });
