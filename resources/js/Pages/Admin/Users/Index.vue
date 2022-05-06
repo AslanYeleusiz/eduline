@@ -89,13 +89,13 @@
                                                 @change.prevent="search"
                                             >
                                                 <option :value="null">
-                                                    Все
+                                                    Барлығы
                                                 </option>
                                                 <option value="1">
-                                                    Мужской
+                                                    Ер
                                                 </option>
                                                 <option value="2">
-                                                    Женский
+                                                    Әйел
                                                 </option>
                                             </select>
                                         </td>
@@ -123,9 +123,9 @@
                                             {{
                                                 user.sex
                                                     ? user.sex == 1
-                                                        ? "Мужской"
-                                                        : "Женский"
-                                                    : "Не задано"
+                                                        ? "Ер"
+                                                        : "Әйел"
+                                                    : "Толтырылмаған"
                                             }}
                                         </td>
                                         <td>
@@ -161,7 +161,7 @@
                                                 <button
                                                 @click.prevent="deleteData(user.id)"
                                                     class="btn btn-danger"
-                                                    title="Удалить"
+                                                    title="Жою"
                                                 >
                                                     <i
                                                         class="fas fa-times red"

@@ -16,7 +16,7 @@ class PersonalAdviceController extends Controller
         $price = $request->price;
         $isDiscount = $request->is_discount;
         $isActive = $request->is_active;
-        $personalAdvices = PersonalAdvice::when($title, fn ($query) => $query->where('title', 'like', "%$title%"))
+        $personalAdvices = PersonalAdvice::when($title, fn ($query) => $query->where('title->kk', 'like', "%$title%"))
             ->when($price, fn ($query) => $query->where('price', $price))
             ->when($isDiscount, fn ($query) => $query->where('is_discount', ($isDiscount == 'true') ? 1 : 0))
             ->when($isActive, fn ($query) => $query->where('is_active', ($isActive == 'true') ? 1 : 0))

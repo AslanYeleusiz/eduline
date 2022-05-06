@@ -253,14 +253,14 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mr-1">
-                            Сохранить
+                            Сақтау
                         </button>
                         <button
                             type="button"
                             class="btn btn-danger"
                             @click.prevent="back()"
                         >
-                            Назад
+                            Артқа
                         </button>
                     </div>
                 </form>

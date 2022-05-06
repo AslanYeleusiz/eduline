@@ -49,6 +49,17 @@ class User extends Authenticatable
         return $this->hasMany(Material::class);
     }
 
+    public function subscription()
+    {
+        $date = now();
+        // return $this->belongsToMany(Subscription::class, 'user_subscriptions','user_id', 'subscription_id')
+        return $this->hasOne(UserSubscription::class,'user_id')
+        ->whereDate('from_date','<=',$date)->whereDate('to_date','>=',$date)
+        // ->leftJoin('subscriptions', 'user_subscriptions.subscription_id', 'subscriptions.id')
+        ->orderByDesc('id');
+        // ->whereBetween(now(), ['from_date', 'to_date']);
+    }
+
     /**
      * The attributes that should be cast.
      *

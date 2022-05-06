@@ -28,7 +28,6 @@ class UserController extends Controller
 
     public function profile()
     {
-
         $user = auth()->guard('api')->user();
         return new UserProfileResource($user);
     }

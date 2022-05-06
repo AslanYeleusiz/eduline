@@ -16,7 +16,7 @@ class PersonalAdviceOrderController extends Controller
         $phone = $request->phone;
         $personalAdviceId = $request->personal_advice_id;
         $commentForNote = $request->comment_for_note;
-        $personalAdvices = PersonalAdvice::isActive()->get();
+        $personalAdvices = PersonalAdvice::get();
         $personalAdviceOrders = PersonalAdviceOrder::when($fullName, fn ($query) => $query->where('full_name', 'like', "%$fullName%"))
         ->when($phone, fn ($query) => $query->where('phone', 'like', "%$phone%"))
         ->when($commentForNote, fn ($query) => $query->where('comment_for_note', 'like', "%$commentForNote%"))

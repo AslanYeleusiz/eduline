@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/overlayScrollbars.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet" />
@@ -14,7 +14,7 @@
     <script  type="text/javascript" src="{{ asset('js/adminlte.min.js') }}"></script>
     <script  type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
 
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- @inertiaHead --}}
   </head>
   <body class="hold-transition sidebar-mini">
