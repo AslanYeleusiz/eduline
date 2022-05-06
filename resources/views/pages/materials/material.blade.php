@@ -3,12 +3,15 @@
 @section('content')
 <style>
     .menuactive5 {
-        background: #3E6CED!important;
-        color: #fff!important;
+        background: #3E6CED !important;
+        color: #fff !important;
     }
-    .menuactive5 .img-svg path, .img-svg polygon {
+
+    .menuactive5 .img-svg path,
+    .img-svg polygon {
         stroke: #fff;
     }
+
 </style>
 <div class="m_href">
     <div class="cst_pd">
@@ -17,7 +20,7 @@
                 <img src="{{asset('images/folder-2.png')}}">
                 <span>Материалдар</span>
             </a>
-            <a href="/materials/edit" class="my_materials">
+            <a href="/materials/my-materials" class="my_materials">
                 <img src="{{asset('images/folder-cloud.png')}}">
                 <span>Менің материалдарым</span>
             </a>
@@ -103,7 +106,7 @@
         select[1].textContent = "Бағытын таңдаңыз";
         select[2].textContent = "Сыныбын таңдаңыз";
     }
-    $(window).resize(function () {
+    $(window).resize(function() {
         if ($(window).width() <= '917') {
             select[0].textContent = "Пені";
             select[1].textContent = "Бағыты";

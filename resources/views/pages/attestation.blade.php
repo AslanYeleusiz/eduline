@@ -17,7 +17,7 @@
 </style>
 <div class="mail_send_pupup">
     <div class="send_block t_pupup">
-        <div class="esc_btn"><img src="{{asset('images/escape.png')}}"></div>
+        <div class="esc_btn"><img class="esc_icon" src="{{asset('images/escape.png')}}"></div>
         <div class="t_pupup_head">
             Смс арқылы жүктеу сілтемесін жібереміз
         </div>

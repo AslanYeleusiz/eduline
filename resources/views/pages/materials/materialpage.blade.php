@@ -12,10 +12,10 @@
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">
-        <button class="btn mp_back">
-            <img src="{{asset('images/arrow-right.png')}}">Артқа қайту
-        </button>
-        <div class="mp_blockhref"><span>Материалдар / Балабақша / Мақала / Мектепке дейінгі балалар /</span> Балабақшадағы балалардың...</div>
+        <a href="#" class="btn mp_back">
+            <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
+        </a>
+        <div class="mp_blockhref"><span><a href="#">Материалдар</a> / <a href="#">Балабақша</a> / <a href="#">Мақала</a> / <a href="#">Мектепке дейінгі балалар</a> /</span> Балабақшадағы балалардың...</div>
     </div>
 </div>
 <section class="materials">
@@ -28,115 +28,62 @@
                 Материал туралы қысқаша түсінік
                 1.Балаларды отансүйгіштікке тәрбиелеу және қысқаша тарихына шолу жасай келе, болашақта Қазақстанды өркендетуге білімді жастар керек екендігін түсіндіру. 2.Топпен жұмыс істеу, ой қозғау, сипаттау, баяндау дағдыларын дамыту. 3.Ана тілін, отанын сүюге, елін, жерін қорғауға, қастерлеуге тәрбиелеу. Көрнекілік: Қ.Р рәміздері, Қ.Р конституциясы, компьютерлік слайдтар, қанатты сөздер.
             </div>
-            <div class="m_footer">
+            <div class="m_footer mp_footer">
                 <div class="m_item">
-                    <img src="{{asset('images/profile-c.png')}}">
+                    <img src="{{asset('images/profile-circle2.svg')}}">
                     <span id="name">Сембиев Нартай</span>
                 </div>
                 <div class="m_item">
-                    <img src="{{asset('images/calendar.png')}}">
+                    <img src="{{asset('images/calendar2.svg')}}">
                     <span id="date">04.12.2021</span>
                 </div>
                 <div class="m_item">
-                    <img src="{{asset('images/eye.png')}}">
+                    <img src="{{asset('images/eye2.svg')}}">
                     <span id="views">200</span>
                 </div>
                 <div class="m_item">
-                    <img src="{{asset('images/re-square.png')}}">
+                    <img src="{{asset('images/receive2.svg')}}">
                     <span id="downloads">96</span>
                 </div>
             </div>
             <div class="mp_sert">
                 <img src="{{asset('images/sertif.svg')}}">
-                <p>Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.</p>
+                <div class="p">Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.</div>
                 <div class="mp_btn_group">
-                    <button class="btn mp_btn">Сертификатты жүктеу</button>
-                    <button class="btn mp_btn">Материалды жүктеу</button>
-                    <button class="btn mp_btn">Журналға жіберу</button>
+                    <a href="#"><button class="btn mp_btn">Сертификатты жүктеу</button></a>
+                    <a href="#"><button class="btn mp_btn">Материалды жүктеу</button></a>
+                    <a href="#"><button class="btn mp_btn">Журналға жіберу</button></a>
                 </div>
             </div>
             <div class="mp_success">
                 <img src="{{asset('images/success.svg')}}"> Мaтериалдың толық нұсқасын жүктеп алып, көруге болады
             </div>
 
-            <iframe class="mp_frame" src="{{asset('dddd.htm')}}" frameborder="0"></iframe>
+            <iframe class="mp_frame" src="{{asset('files/3d.htm')}}" frameborder="0"></iframe>
 
             <div class="mp_btn_pos">
-                <button class="btn btn-dark mp_button">
+                <button class="btn btn-primary mp_button">
                 <img src="{{asset('images/receive.svg')}}" alt="">
                 Материалды жүктеу
             </button>
             </div>
 
             <div class="mp_like">
-                Материал ұнаса әріптестеріңізбен бөлісіңіз
+                <span>Материал ұнаса әріптестеріңізбен бөлісіңіз</span>
                 <div class="mp_socseti">
-                    <div class="mp_seti s1"><img src="{{asset('images/whatsapp.svg')}}">Ватсапта бөлісу</div>
-                    <div class="mp_seti s2"><img src="{{asset('images/telegram.svg')}}">Телеграммда бөлісу</div>
-                    <div class="mp_seti s3"><img src="{{asset('images/facebook.svg')}}">Фейсбукта бөлісу</div>
-                    <div class="mp_seti s4"><img src="{{asset('images/layer2.svg')}}">Сілтемені көшіру</div>
+                    <a href="#"><div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">Ватсапта бөлісу</div></a>
+                    <a href="#"><div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">Телеграммда бөлісу</div></a>
+                    <a href="#"><div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">Фейсбукта бөлісу</div></a>
+                    <a href="#"><div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">Сілтемені көшіру</div></a>
+                </div>
+            </div>
+            <div class="mp_sert mp_foot_sert">
+                <img src="{{asset('images/info-circle.svg')}}">
+                <div class="mp_foot_body">
+                    БАҚ тіркелгендігі туралы куәлік: 15685-ИА. Материалдарды қайта басуға және де басқа түрде қолдануға, сонымен қоса электрондық БАҚ-да тек қана сайттың әкімшілігінің жазбаша рұқсатымен ғана жүзеге асырылады. Сонымен қатар сайқа сілтеме міндетті түрде болу керек. Егер Сіз біздің сайтта заңсыз түрде материалдар қолданғанын көрсеңіз, сайт әкімшілігіне жеткізіңіз - материалдар жойылады. Редакцияның көзқарасы автордың көзқарасымен сәйкес келмеуі мүмкін.
                 </div>
             </div>
         </div>
-
-        <form class="m_form" action="">
-            <div class="m_control">
-                <input type="text" class="form-control m_box m_input" placeholder="Тақырып бойынша іздеу">
-                <button class="btn btn-primary m_btn">Іздеу</button>
-                <select class="form-select m_box m_cbox g1">
-                    <option hidden selected id="select">Пәнді таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m_box m_cbox g2">
-                    <option hidden selected id="select">Бағытын таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m_box m_cbox g3">
-                    <option hidden selected id="select">Сыныбын таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-        </form>
-        <div class="m_val">
-            Барлығы: <span id="value">{value}</span> материал
-        </div>
-
-        <div class="m_content">
-            <div class="m_block">
-                <a target="_blank" href="/materials/item" id="m_head" class="m_block_head">
-                    Ашық сабақ "Сап және оның элементтері. Саптық тұрыс"
-                </a>
-                <div id="m_body" class="m_body">
-                    Түркістан облысы Бәйдібек ауданының адами әлеуетті дамыту бөліміне қарасты "С.Ерубаев атындағы жалпы орта мектебі" коммуналдық мемлекеттік мекемесінің тәлімгері
-                </div>
-                <div class="m_footer">
-                    <div class="m_item">
-                        <img src="{{asset('images/profile-c.png')}}">
-                        <span id="name">Сембиев Нартай</span>
-                    </div>
-                    <div class="m_item">
-                        <img src="{{asset('images/calendar.png')}}">
-                        <span id="date">04.12.2021</span>
-                    </div>
-                    <div class="m_item">
-                        <img src="{{asset('images/eye.png')}}">
-                        <span id="views">200</span>
-                    </div>
-                    <div class="m_item">
-                        <img src="{{asset('images/re-square.png')}}">
-                        <span id="downloads">96</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-
 </section>
 @endsection
