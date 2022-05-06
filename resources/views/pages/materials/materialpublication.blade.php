@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="m_block mp_block mc_block">
-            <form class="m_form" action="" method="POST" enctype="multipart/form-data">
+            <form class="m_form" action="" method="" enctype="multipart/form-data">
                @csrf
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
@@ -151,6 +151,8 @@
         var ajax_req = new XMLHttpRequest();
         var form_data = new FormData();
         $('.lineload2').width('0%');
+        $('#procofp').text("0");
+        var percentload = 0;
         $.ajax({
             url: "{{route('ajaxupload.action')}}",
             type: "POST",
@@ -172,8 +174,8 @@
             success: function () {
                 console.log("success");
             },
-            Error: function(){
-                console.log("error");
+            error: function(data){
+                console.log(data);
             }
         });
     })

@@ -6,9 +6,12 @@
         background: #3E6CED !important;
         color: #fff !important;
     }
-    .menuactive5 .img-svg path, .img-svg polygon {
+
+    .menuactive5 .img-svg path,
+    .img-svg polygon {
         stroke: #fff;
     }
+
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">
@@ -63,18 +66,26 @@
 
             <div class="mp_btn_pos">
                 <button class="btn btn-primary mp_button">
-                <img src="{{asset('images/receive.svg')}}" alt="">
-                Материалды жүктеу
-            </button>
+                    <img src="{{asset('images/receive.svg')}}" alt="">
+                    Материалды жүктеу
+                </button>
             </div>
 
             <div class="mp_like">
                 <span>Материал ұнаса әріптестеріңізбен бөлісіңіз</span>
                 <div class="mp_socseti">
-                    <a href="#"><div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">Ватсапта бөлісу</div></a>
-                    <a href="#"><div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">Телеграммда бөлісу</div></a>
-                    <a href="#"><div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">Фейсбукта бөлісу</div></a>
-                    <a href="#"><div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">Сілтемені көшіру</div></a>
+                    <a href="#">
+                        <div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">Ватсапта бөлісу</div>
+                    </a>
+                    <a href="#">
+                        <div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">Телеграммда бөлісу</div>
+                    </a>
+                    <a href="#">
+                        <div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">Фейсбукта бөлісу</div>
+                    </a>
+                    <a href="#">
+                        <div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">Сілтемені көшіру</div>
+                    </a>
                 </div>
             </div>
             <div class="mp_sert mp_foot_sert">

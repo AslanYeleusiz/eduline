@@ -1,5 +1,5 @@
-@import url(/fonts/Gilroy/fonts.css);
-@import url(/fonts/Exo2/fonts.css);
+@import url(/public/fonts/Gilroy/fonts.css);
+@import url(/public/fonts/Exo2/fonts.css);
 /*
 font-family:
 font-weight:
@@ -100,6 +100,34 @@ ul.menu-ul {
     height: 28px;
     margin-right: 13px;
 }*/
+.tilder {
+    background: #e6edff;
+    border-radius: 44px;
+    display: block;
+    width: 106px;
+    height: 32px;
+    color: #3E6CED;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Gilroy-Medium";
+    font-size: 14px;
+    padding-top: 5px;
+    margin-top: 20px;
+}
+.tilder-menu {
+    padding: 0;
+    min-width: 10px!important;
+    width: 106px!important;
+}
+.tilder-item {
+    color: #3E6CED!important;
+    font-family: "Gilroy-Medium"!important;
+    font-size: 14px!important;
+}
+.tilder-item:hover {
+    background-color: #e6edff!important;
+}
+
 li.menu-li {
     list-style: none;
 }
@@ -943,7 +971,7 @@ line-height: 45px;
     grid-area: w;
 }
 .form-select{
-    background-image: url(/images/selectButton.png);
+    background-image: url(/public/images/selectButton.png);
     background-size: 16px 9px;
     background-position: right 18px center;
 }
@@ -1585,7 +1613,7 @@ line-height: 17px;
 .ex{
     width: 240px;
     height: 142px;
-    background: url(/images/cloudupload.svg) no-repeat;
+    background: url(/public/images/cloudupload.svg) no-repeat;
     background-size: 100%;
     background-position: 50% 20%;
 }
@@ -1593,7 +1621,7 @@ line-height: 17px;
     animation-name: example;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-    animation-timing-function:ease-out;
+    animation-timing-function: ease-out;
 }
 @keyframes example{
     0%{

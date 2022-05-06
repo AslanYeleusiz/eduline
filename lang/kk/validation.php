@@ -244,7 +244,7 @@ return [
         'notification_type_id' => 'Хабарландыру түрі',
         'status' => 'Статус',
         'card_number' => 'Карта нөмірі',
-        'full_name' => 'ФИО',
+        'full_name' => 'Аты-жөні',
         'comment' => 'Пікір',
         'iin' => 'ИИН',
         'receipt' => 'Чек',
