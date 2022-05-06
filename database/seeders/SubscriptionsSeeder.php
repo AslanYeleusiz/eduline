@@ -17,23 +17,23 @@ class SubscriptionsSeeder extends Seeder
     {
         $data = [
             [
-                'title' => '1 айға жазылу',
+                'name' => '1 айға жазылу',
                 'duration' => 1,
                 'price' => 2590,
             ],
             [
-                'title' => '3 айға жазылу',
+                'name' => '3 айға жазылу',
                 'duration' => 3,
                 'price' => 1990,
             ],
             [
-                'title' => '6 айға жазылу
+                'name' => '6 айға жазылу
                 ',
                 'duration' => 6,
                 'price' => 1490,
             ],
             [
-                'title' => '12 айға жазылу',
+                'name' => '12 айға жазылу',
                 'duration' => 12,
                 'price' => 990,
             ],
