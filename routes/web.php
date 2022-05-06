@@ -23,9 +23,12 @@ Route::get('/materials', function () {
 Route::get('/materials/my-materials', function () {
     return view('pages.materials.mymaterial');
 });
+Route::post('/materials/my-materials/publication/action', 'AjaxUploadController@action')->name('ajaxupload.action');
+
 Route::get('/materials/my-materials/publication', function () {
     return view('pages.materials.materialpublication');
-});
+})->name('publication');
+
 Route::get('/materials/my-materials/change', function () {
     return view('pages.materials.materialchange');
 });

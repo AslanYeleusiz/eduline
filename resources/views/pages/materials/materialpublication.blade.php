@@ -39,7 +39,8 @@
             </div>
         </div>
         <div class="m_block mp_block mc_block">
-            <form class="m_form" action="">
+            <form class="m_form" action="" method="POST" enctype="multipart/form-data">
+               @csrf
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
                     <label class="form-label">Материал файлын жүктеу</label>
@@ -52,8 +53,8 @@
                             </div>
                             <a href="#">Файлды жүктеу</a>
                         </div>
-                        <div class="loadedmode ">
-                            <h4 class="matzharproc"><span id="procofp">100</span>% жүктелуде...</h4>
+                        <div class="loadedmode">
+                            <h4 class="matzharproc"><span id="procofp">0</span>% жүктелуде...</h4>
                             <div class="lineload">
                                 <div class="lineload2" style="width: 100%;"></div>
                             </div>
@@ -69,7 +70,7 @@
                                 Сіздің файлыңыз <span class="drop-zone__thumb">asdasd.svg</span> сәтті жүктелді
                             </div>
                         </div>
-                        <input type="file" name="myfile" class="drop-zone__input">
+                        <input type="file" name="file[]" multiple accept="image/jpeg, image/png, image/gif" class="drop-zone__input">
                     </div>
                 </div>
                 <!--               FILE DROPZONE-->
@@ -117,6 +118,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script type="text/javascript">
     if ($(window).width() < '1099' && $(window).width() > '767') {
         select[0].textContent = "Пені";
@@ -138,5 +143,39 @@
             select[2].textContent = "Сыныбын таңдаңыз";
         }
     });
+    // DROPZONE из materialpublication
+    $('.drop-zone__input').on('drop', e => {
+        e.preventDefault();
+        $('.expectations').removeClass("active");
+        $('.loadedmode').addClass("active");
+        var ajax_req = new XMLHttpRequest();
+        var form_data = new FormData();
+        $('.lineload2').width('0%');
+        $.ajax({
+            url: "{{route('ajaxupload.action')}}",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: 'json',
+            xhr: function () {
+                var xhr = $.ajaxSettings.xhr();
+                xhr.upload.addEventListener('progress', function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
+                        $('.lineload2').width(percentComplete + '%');
+                        $('#procofp').text(percentComplete);
+                    }
+                }, false);
+                return xhr;
+            },
+            success: function () {
+                console.log("success");
+            },
+            Error: function(){
+                console.log("error");
+            }
+        });
+    })
 </script>
 @endsection
