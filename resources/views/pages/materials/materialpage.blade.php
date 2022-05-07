@@ -62,13 +62,25 @@
                 <img src="{{asset('images/success.svg')}}"> Мaтериалдың толық нұсқасын жүктеп алып, көруге болады
             </div>
 
-            <iframe class="mp_frame" src="{{asset('files/3d.htm')}}" frameborder="0"></iframe>
+
+
+            <!--            ТЕСТОВЫЙ ФРЕЙМ-->
+            <iframe src="https://docs.google.com/document/d/1I1Z0gyme8aquPsLXNMu7iFh-nLJjt4ISWb5LAJBixq4/preview" width="100%" height="720" frameborder="0"></iframe>
+
+
+
+            <!--            ПРАВИЛЬНЫЙ ФРЕЙМ(Не работает на локальных серверах, нужен запуск хостинга)-->
+            <!--           <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{asset('files/3d.docx')}}" width="100%" height="720" frameborder="0"></iframe>-->
+
+
 
             <div class="mp_btn_pos">
-                <button class="btn btn-primary mp_button">
-                    <img src="{{asset('images/receive.svg')}}" alt="">
-                    Материалды жүктеу
-                </button>
+                <a href="{{asset('files/3d.docx')}}" download="">
+                    <button class="btn btn-primary mp_button" id="downloadFile">
+                        <img src="{{asset('images/receive.svg')}}" alt="">
+                        Материалды жүктеу
+                    </button>
+                </a>
             </div>
 
             <div class="mp_like">

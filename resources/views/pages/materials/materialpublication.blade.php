@@ -1,6 +1,7 @@
 @extends('pages.layouts.main')
 @section('title', 'Eduline.kz')
 @section('content')
+
 <style>
     .menuactive5 {
         background: #3E6CED !important;
@@ -40,7 +41,7 @@
         </div>
         <div class="m_block mp_block mc_block">
             <form class="m_form" action="" method="" enctype="multipart/form-data">
-               @csrf
+
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
                     <label class="form-label">Материал файлын жүктеу</label>
@@ -56,7 +57,7 @@
                         <div class="loadedmode">
                             <h4 class="matzharproc"><span id="procofp">0</span>% жүктелуде...</h4>
                             <div class="lineload">
-                                <div class="lineload2" style="width: 100%;"></div>
+                                <div class="lineload2"></div>
                             </div>
                         </div>
                         <div class="successmode">
@@ -70,7 +71,8 @@
                                 Сіздің файлыңыз <span class="drop-zone__thumb">asdasd.svg</span> сәтті жүктелді
                             </div>
                         </div>
-                        <input type="file" name="file[]" multiple accept="image/jpeg, image/png, image/gif" class="drop-zone__input">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="file" name="file" multiple class="drop-zone__input">
                     </div>
                 </div>
                 <!--               FILE DROPZONE-->
@@ -123,6 +125,7 @@
 
 
 <script type="text/javascript">
+
     if ($(window).width() < '1099' && $(window).width() > '767') {
         select[0].textContent = "Пені";
         select[1].textContent = "Бағыты";
@@ -144,40 +147,64 @@
         }
     });
     // DROPZONE из materialpublication
-    $('.drop-zone__input').on('drop', e => {
+    $.ajaxSetup({
+       headers: {
+           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       }
+    });
+
+    $('.drop-zone__input').on('change', e => {
         e.preventDefault();
         $('.expectations').removeClass("active");
         $('.loadedmode').addClass("active");
-        var ajax_req = new XMLHttpRequest();
-        var form_data = new FormData();
+        var dataName = e.target.files[0];
+        var formData  = new FormData();
+        var $percentdata = 0;
         $('.lineload2').width('0%');
         $('#procofp').text("0");
-        var percentload = 0;
         $.ajax({
             url: "{{route('ajaxupload.action')}}",
             type: "POST",
             contentType: false,
             processData: false,
-            data: form_data,
+            data: formData,
             dataType: 'json',
             xhr: function () {
                 var xhr = $.ajaxSettings.xhr();
                 xhr.upload.addEventListener('progress', function (evt) {
                     if (evt.lengthComputable) {
                         var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
-                        $('.lineload2').width(percentComplete + '%');
-                        $('#procofp').text(percentComplete);
+                        $percentdata = percentComplete;
                     }
                 }, false);
                 return xhr;
             },
             success: function () {
-                console.log("success");
+                //Дейстиве при успешности
+                console.log(dataName);
+                $('.lineload2').width($percentdata + '%');
+                $('#procofp').text($percentdata);
+                setTimeout(function(){
+                    $('.loadedmode').removeClass("active");
+                    $('.successmode').addClass("active");
+                    $('.my_drop').addClass("active");
+                },1000);
+
+
             },
             error: function(data){
-                console.log(data);
+                //Действте при ошибки
+                console.log(dataName);
+                $('.lineload2').width($percentdata + '%');
+                $('#procofp').text($percentdata);
+                setTimeout(function(){
+                    $('.loadedmode').removeClass("active");
+                    $('.successmode').addClass("active");
+                    $('.my_drop').addClass("active");
+                },1000);
             }
         });
+
     })
 </script>
 @endsection
