@@ -42,7 +42,7 @@
                 <img src="{{asset('images/myprofile.svg')}}" alt="">
                 <div class="tak_name">Автор: Сембиев Нартай Амангалиулы<br><span class="mekeni">Павлодар облысы Ақсу қаласы №16 сәбилер бақшасы тәрбиешісі</span></div>
             </div>
-            <button class="btn btn-primary m_btn my_m_btn">Журналға жіберу</button>
+            <button class="btn btn-primary m_btn my_m_btn popup_m_btn">Журналға жіберу</button>
         </div>
     </div>
     <div class="send_block my_send_block">
@@ -72,7 +72,7 @@
         <div class="m_info">
             Бұл бетте сіз жариялаған барлық материалдар сайттан өшпей сақталып қалады. Өзіңіздің барлық материалдарыңызды осында тегін жариялап архив ретінде сақтауға болады
         </div>
-        <a href="/materials/my-materials/publication"><button class="btn btn-primary m_btn my_m_btn">Материал жариялау</button></a>
+        <a href="{{route('publication')}}"><button class="btn btn-primary m_btn my_m_btn">Материал жариялау</button></a>
         <div class="m_val">
             Барлығы: <span id="value">{value}</span> материал
         </div>

@@ -40,8 +40,8 @@
             </div>
         </div>
         <div class="m_block mp_block mc_block">
-            <form class="m_form" action="" method="" enctype="multipart/form-data">
-
+            <form class="m_form" action="" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
                     <label class="form-label">Материал файлын жүктеу</label>
@@ -68,11 +68,16 @@
                                 </svg>
                             </div>
                             <div class="success-informer">
-                                Сіздің файлыңыз <span class="drop-zone__thumb">asdasd.svg</span> сәтті жүктелді
+                                Сіздің файлыңыз сәтті жүктелді
+                            </div>
+                            <div class="drop-zone__thumb">
+                                <span id="file_name">name.jpg</span><img src="{{asset('images/pen.svg')}}"><span class="ah">Өзгерту</span>
                             </div>
                         </div>
+                        <div class="help-block"></div>
+
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="file" name="file" multiple class="drop-zone__input">
+                        <input type="file" name="file" id="js-file" multiple class="drop-zone__input">
                     </div>
                 </div>
                 <!--               FILE DROPZONE-->
@@ -125,7 +130,6 @@
 
 
 <script type="text/javascript">
-
     if ($(window).width() < '1099' && $(window).width() > '767') {
         select[0].textContent = "Пені";
         select[1].textContent = "Бағыты";
@@ -146,65 +150,6 @@
             select[2].textContent = "Сыныбын таңдаңыз";
         }
     });
-    // DROPZONE из materialpublication
-    $.ajaxSetup({
-       headers: {
-           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-       }
-    });
 
-    $('.drop-zone__input').on('change', e => {
-        e.preventDefault();
-        $('.expectations').removeClass("active");
-        $('.loadedmode').addClass("active");
-        var dataName = e.target.files[0];
-        var formData  = new FormData();
-        var $percentdata = 0;
-        $('.lineload2').width('0%');
-        $('#procofp').text("0");
-        $.ajax({
-            url: "{{route('ajaxupload.action')}}",
-            type: "POST",
-            contentType: false,
-            processData: false,
-            data: formData,
-            dataType: 'json',
-            xhr: function () {
-                var xhr = $.ajaxSettings.xhr();
-                xhr.upload.addEventListener('progress', function (evt) {
-                    if (evt.lengthComputable) {
-                        var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
-                        $percentdata = percentComplete;
-                    }
-                }, false);
-                return xhr;
-            },
-            success: function () {
-                //Дейстиве при успешности
-                console.log(dataName);
-                $('.lineload2').width($percentdata + '%');
-                $('#procofp').text($percentdata);
-                setTimeout(function(){
-                    $('.loadedmode').removeClass("active");
-                    $('.successmode').addClass("active");
-                    $('.my_drop').addClass("active");
-                },1000);
-
-
-            },
-            error: function(data){
-                //Действте при ошибки
-                console.log(dataName);
-                $('.lineload2').width($percentdata + '%');
-                $('#procofp').text($percentdata);
-                setTimeout(function(){
-                    $('.loadedmode').removeClass("active");
-                    $('.successmode').addClass("active");
-                    $('.my_drop').addClass("active");
-                },1000);
-            }
-        });
-
-    })
 </script>
 @endsection
