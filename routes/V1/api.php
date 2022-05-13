@@ -39,6 +39,7 @@ Route::middleware('auth:api')->group(function () {
      Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
      Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
 });
+
 Route::get('news/populars', [NewsController::class, 'popularNews'])->name('news.populars');
 Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 
@@ -52,7 +53,7 @@ Route::middleware('auth:api')->group(function () {
      Route::get('profile', [UserController::class, 'profile'])->name('profile');
      Route::post('profile', [UserController::class, 'updateProfile'])->name('profile.update');
      Route::post('profile/password', [UserController::class, 'updatePassword'])->name('profile.updatePassword');
-      
+
      Route::post('profile/email', [UserController::class, 'updateEmail'])->name('profile.updateEmail');
      Route::post('profile/phone', [UserController::class, 'updatePhone'])->name('profile.updatePhone');
      Route::post('profile/phone/check-send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('profile.checkSendSmsNewPhone');
@@ -60,7 +61,7 @@ Route::middleware('auth:api')->group(function () {
 
      Route::post('materials/{id}/send-journal', [MaterialController::class, 'sendToJournal'])->name('materials.sendJournal');
      Route::post('materials/{id}/comment', [MaterialController::class, 'materialCommentSave'])->name('materials.commentSave');
-     
+
 });
 Route::apiResource('materials',  MaterialController::class)->names('materials.')->only(['index', 'show']);
 

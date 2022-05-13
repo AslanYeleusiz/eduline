@@ -207,8 +207,8 @@ $('.drop-zone__input').on('change', e => {
 
 function validate(file){
     var array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.presentationml.presentation","application/pdf"];
-    console.log(array[0]);
-    console.log(file.type);
+    // console.log(array[0]);
+    // console.log(file.type);
     for(let n=0; n<array.length; n++){
         if(array[n]==file.type) success=true;
     }
@@ -219,4 +219,57 @@ function validate(file){
     }
     return $('.help-block').show();
 }
+
+
+
+$(".phone").mask("+7 (999) 999-99-99");
+
+function openLogin() {
+    $('.modal').modal('hide');
+
+    setTimeout(() => {
+        $('#loginPopup').modal('show');
+    }, 500)
+}
+
+function openRegister() {
+    $('.modal').modal('hide')
+    $('.only-register').css('display', 'block')
+
+    setTimeout(() => {
+        $('#registerPopup').modal('show');
+    }, 500)
+}
+
+function closeModal(e) {
+    $(".container-modal").removeClass("show");
+    return $(e).closest('.container-modal').removeClass('show');
+}
+
+function openRegisterLink(e) {
+    closeModal(e)
+    openRegister();
+}
+
+function openLoginLink(e) {
+    closeModal(e)
+    openLogin();
+}
+
+function iconEye(event) {
+    $(event).closest('.form-input-block').find('.icon-eye').css('display', 'none')
+    $(event).closest('.form-input-block').find('.icon-eye-off').css('display', 'block')
+    if ($(event).closest('.form-input-block').find('.password-input').attr('type') === 'password') {
+        $(event).closest('.form-input-block').find('.password-input').attr('type', 'text');
+    }
+}
+
+function iconEyeOff(event) {
+    $(event).closest('.form-input-block').find('.icon-eye-off').css('display', 'none')
+    $(event).closest('.form-input-block').find('.icon-eye').css('display', 'block')
+    if ($(event).closest('.form-input-block').find('.password-input').attr('type') === 'text') {
+        $(event).closest('.form-input-block').find('.password-input').attr('type', 'password');
+    }
+}
+
 

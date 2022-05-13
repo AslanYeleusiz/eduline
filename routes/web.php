@@ -54,18 +54,18 @@ Route::get('/consultation/main', function () {
 
 Route::get('/set_locale/{locale}',[PageController::class,'set_locale'])->name('set_locale');
 
-
-
 //- -- -- - -- - - - - - //
 
 // Route::get('/', [MainController::class, 'index'])->name('index');
 
 // Route::get('/calc', [MainController::class, 'calc'])->name('calc');
 Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+
 // Route::get('/materials/{}/certificate',            [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('get_certificate');
 // Route::get('/thank-letter/{id}',           [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('get_certificate_thank_letter');
 // Route::get('/certificate-honor/{id}',      [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('get_certificate_honor');
 // Route::post('/certificate',                [MaterialControllerdonwload::class, 'updateCertificate'])->name('update_certificate');
+
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
 Route::get('login', [AuthController::class, 'loginShowForm'])->name('loginShow')->middleware('guest');
 Route::post('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
