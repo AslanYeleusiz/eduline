@@ -11,7 +11,11 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loader.css?v=1') }}">
+    <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css?v=1') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/media.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -25,20 +29,36 @@
 </head>
 
 <body>
-@include('pages.components.MobileMenu')
+@include('components.MobileMenu')
+
+<div class="loader">
+    @include('components.Loader')
+</div>
 
 <div class="main_wrap">
-    @include('pages.components.MenuBar')
+    @include('components.MenuBar')
     <div class="content">
         @yield('content')
     </div>
 </div>
 
 @guest
-    @include('pages.components.LoginModal')
-    @include('pages.components.RegisterModal')
+    @include('components.LoginModal')
+    @include('components.RegisterModal')
 @endguest
 
+<script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+
+<script>
+    @if(session('success'))
+    alertModal("{{ session('success') }}")
+    @endif
+
+    @error('invalid_link')
+    alertWarningModal("{{ $message }}")
+    @enderror
+</script>
+
 </body>
 </html>

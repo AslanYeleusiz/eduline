@@ -1,15 +1,7 @@
-@extends('pages.layouts.main')
+@extends('layouts.main')
 @section('title', 'Eduline.kz')
 @section('content')
-<style>
-    .menuactive4 {
-        background: #3E6CED!important;
-        color: #fff!important;
-    }
-    .menuactive4 .img-svg path, .img-svg polygon {
-        stroke: #fff;
-    }
-</style>
+
 <section class="kenesPrev">
     <div class="cst_pd">
         <div class="kp_head">

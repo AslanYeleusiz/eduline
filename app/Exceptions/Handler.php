@@ -84,7 +84,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
- 
+
         if (!$this->isApiRoute($request)) {
             return parent::render($request, $exception);
         }
@@ -113,8 +113,7 @@ class Handler extends ExceptionHandler
             if ($request->expectsJson()) {
                 return response()->json(['error' => __('errors.unauthenticated')], 401);
             }
-            return redirect()->guest(route('loginShow'));
+            return redirect()->guest(route('adminLoginShow'));
         }
-
     }
 }

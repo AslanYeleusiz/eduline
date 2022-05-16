@@ -18,4 +18,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'sms_verification' => config('app.name') . ' Your confirmation code: ',
     'incorrect_code' => 'Incorrect code',
+    'Login or password is incorrect' => 'Login or password is incorrect',
+    'Phone number not found' => 'Phone number not found'
 ];

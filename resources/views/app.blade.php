@@ -17,8 +17,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- @inertiaHead --}}
   </head>
+
   <body class="hold-transition sidebar-mini">
     @inertia
   </body>
-  
 </html>

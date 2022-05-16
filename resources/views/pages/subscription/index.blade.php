@@ -1,12 +1,16 @@
-@extends('pages.layouts.main')
-@section('title', 'Eduline.kz')
+@extends('layouts.main')
+@section('title', $pageName)
 @section('content')
 <style>
     body {
         background: #F9F9F9;
     }
-
 </style>
+
+@component('components.NavBar')
+    @slot('profile') @endslot
+@endcomponent
+
 <section class="donat">
     <div class="cst_pd">
         <div class="dt_head">Сайтқа жазылып, барлық мүмкіндіктерді шексіз қолданыңыз!</div>

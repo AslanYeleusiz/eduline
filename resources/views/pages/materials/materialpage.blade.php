@@ -1,4 +1,4 @@
-@extends('pages.layouts.main')
+@extends('layouts.main')
 @section('title', 'Eduline.kz')
 @section('content')
 <style>
@@ -11,7 +11,6 @@
     .img-svg polygon {
         stroke: #fff;
     }
-
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">

@@ -19,42 +19,21 @@ use App\Http\Controllers\AjaxUploadController;
 |
 */
 
+Route::view('/', 'pages.home')->name('index');
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('index');
-Route::get('/materials', function () {
-    return view('pages.materials.material');
-});
-Route::get('/materials/my-materials', function () {
-    return view('pages.materials.mymaterial');
-});
-Route::post('/materials/my-materials/publication/action', [ AjaxUploadController::class, 'upload' ])->name('ajaxupload.action');
+Route::view('/attestation', 'pages.attestation')->name('attestation');
 
-Route::get('/materials/my-materials/publication', [ AjaxUploadController::class, 'index' ])->name('publication');
+Route::view('/calculator', 'pages.calculator')->name('calculator');
 
-Route::get('/materials/my-materials/change', function () {
-    return view('pages.materials.materialchange');
-});
-Route::get('/materials/item', function () {
-    return view('pages.materials.materialpage');
-});
-Route::get('/attestation', function () {
-    return view('pages.attestation');
-});
-Route::get('/calculator', function () {
-    return view('pages.calculator');
-});
 Route::get('/consultation', function () {
     return view('pages.consultationPrev');
 });
+
 Route::get('/consultation/main', function () {
     return view('pages.consultation');
-});
+})->name('consultation');
 
-Route::get('/set_locale/{locale}',[PageController::class,'set_locale'])->name('set_locale');
-
-//- -- -- - -- - - - - - //
+Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 
 // Route::get('/', [MainController::class, 'index'])->name('index');
 
@@ -67,6 +46,38 @@ Route::get('/materials/{id}/download', [MaterialController::class, 'download'])-
 // Route::post('/certificate',                [MaterialControllerdonwload::class, 'updateCertificate'])->name('update_certificate');
 
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
-Route::get('login', [AuthController::class, 'loginShowForm'])->name('loginShow')->middleware('guest');
-Route::post('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::view('admin/login', 'auth.login')->name('adminLoginShow');
+Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
+
+Route::middleware('guest')->group(function () {
+    Route::view('login', 'pages.home')->name('login');
+    Route::view('register', 'pages.home')->name('register');
+
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+});
+
+Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::middleware('auth')->prefix('profile')->name('profile')->group(function () {
+    Route::get('/', [PageController::class, 'profile']);
+    Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
+});
+
+Route::prefix('materials')->name('materials')->group(function () {
+    Route::get('/', [PageController::class, 'materials']);
+    Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+});
+
+Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('ajaxupload.action');
+
+Route::get('/materials/my-materials/publication', [AjaxUploadController::class, 'index'])->name('publication');
+
+Route::get('/materials/my-materials/change', function () {
+    return view('pages.materials.materialchange');
+});
+
+Route::get('/materials/item', function () {
+    return view('pages.materials.materialpage');
+});

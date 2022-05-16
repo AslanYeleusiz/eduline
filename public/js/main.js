@@ -6,7 +6,7 @@ var comblockwidth = document.querySelectorAll('.com_block');
 let video = document.querySelectorAll('.video');
 let vPlay = document.querySelectorAll('.v_play');
 var select = document.querySelectorAll('#select');
-let success=false;
+let success = false;
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     // код для мобильных устройств
@@ -69,14 +69,9 @@ $(document).ready(function () {
     });
 });
 
-
-
-
 //PHOME MASK JQUERY
 $(".phone_mask").mask("+7 (999) 999-99-99");
 $(".t_input").mask("+7 (999) 999-99-99");
-
-
 
 var $speed_pp = 400;
 // POPUP script
@@ -150,7 +145,6 @@ $('img.img-svg').each(function () {
 });
 
 
-
 // DROPZONE из materialpublication
 $.ajaxSetup({
     headers: {
@@ -163,10 +157,10 @@ $('.drop-zone__input').on('change', e => {
     $('.expectations').removeClass("active");
     $('.successmode').removeClass("active");
     $('.loadedmode').addClass("active");
-    var dataName = e.target.files[0];
-    var formData = new FormData();
+    const dataName = e.target.files[0];
+    const formData = new FormData();
     formData.append('file', $("#js-file")[0].files[0]);
-    var $percentdata = 0;
+    const $percentdata = 0;
     $('.lineload2').width('0%');
     $('#procofp').text("0");
     $.ajax({
@@ -205,28 +199,25 @@ $('.drop-zone__input').on('change', e => {
     });
 });
 
-function validate(file){
-    var array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.presentationml.presentation","application/pdf"];
+function validate(file) {
+    const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf"];
     // console.log(array[0]);
     // console.log(file.type);
-    for(let n=0; n<array.length; n++){
-        if(array[n]==file.type) success=true;
+    for (let n = 0; n < array.length; n++) {
+        if (array[n] == file.type) success = true;
     }
-    if(!success){
+    if (!success) {
         $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
-    }else if(file.size > 10485760){
+    } else if (file.size > 10485760) {
         $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
     }
     return $('.help-block').show();
 }
 
-
-
 $(".phone").mask("+7 (999) 999-99-99");
 
 function openLogin() {
     $('.modal').modal('hide');
-
     setTimeout(() => {
         $('#loginPopup').modal('show');
     }, 500)
@@ -272,4 +263,120 @@ function iconEyeOff(event) {
     }
 }
 
+
+function alertModal(text = '', timer = 1500) {
+    Swal.fire({
+        text: text ? text : 'Успешно сохранен!',
+        padding: '2em',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: timer
+    })
+}
+
+function alertWarningModal(text = '') {
+    Swal.fire({
+        text: text ? text : 'Ошибка!',
+        padding: '2em',
+        icon: 'warning',
+        showConfirmButton: true,
+    })
+}
+
+
+function clearInvalidFeedback() {
+    $(".invalid").css("display", 'none');
+    $(".invalid").text("");
+}
+
+$(function () {
+    $("#registerForm").submit(function (e) {
+        e.preventDefault();
+
+        let fullName = $('#full_name').val();
+        let email = $('#register-email').val();
+        let phone = $('#register-phone').val();
+
+        let password = $('#register-password').val();
+        let password_confirmation = $('#register-password_confirmation').val();
+
+        let roleId = $("input[name=role_id]:checked").val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        clearInvalidFeedback()
+
+        $(".loader").addClass("loading");
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: $(this).attr('method'),
+            type: "POST",
+            data: {
+                '_token': _token,
+                'full_name': fullName,
+                'email': email,
+                'phone': phone,
+                'password': password,
+                'password_confirmation': password_confirmation,
+                'role_id': roleId,
+            },
+            success: function (res) {
+                $(".loader").removeClass("loading");
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1500)
+            },
+            error: function (err) {
+                $(".loader").removeClass("loading");
+                let response_text = JSON.parse(err.responseText);
+
+                if (response_text.errors && typeof response_text.errors == 'object') {
+                    Object.entries(response_text.errors).forEach(([key, value]) => {
+                        $('#error-register-' + key).text(value[0]);
+                        $('#error-register-' + key).css('display', 'block');
+                    })
+                }
+
+            }
+        });
+    });
+
+    $('#loginForm').submit(function (e) {
+        e.preventDefault();
+
+        let phone = $('#login-phone').val();
+        let password = $('#password').val();
+        let _token = $('meta[name="csrf-token"]').attr('content');
+
+        $(".loader").addClass("loading");
+
+        clearInvalidFeedback()
+
+        $.ajax({
+            url: $(this).attr('action'),
+            type: "POST",
+            data: {
+                'phone': phone,
+                'password': password,
+                '_token': _token
+            },
+            success: function (res) {
+                $(".loader").removeClass("loading");
+                if (res.data && res.data.success) {
+                    window.location.reload();
+                }
+            },
+            error: function (err) {
+                $(".loader").removeClass("loading");
+                let response_text = JSON.parse(err.responseText);
+                if (response_text.errors && typeof response_text.errors == 'object') {
+                    Object.entries(response_text.errors).forEach(([key, value]) => {
+                        $('#error-login-' + key).text(value[0]);
+                        $('#error-login-' + key).css('display', 'block');
+                    })
+                }
+            }
+        });
+    });
+})
 
