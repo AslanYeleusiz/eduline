@@ -35,8 +35,11 @@ class SubscriptionController extends Controller
             'subscription' => $subscription
         ]);
     }
-    public function update(Subscription $subscription, SubscriptionSaveRequest $request)
+    public function update($id, SubscriptionSaveRequest $request)
     {
+//        dd($id);
+
+        $subscription = Subscription::findOrFail($id);
         $subscription->name = $request->name;
         $subscription->price = $request->price;
         $subscription->duration = $request->duration > 12 ? 1 : $request->duration;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
@@ -54,20 +55,27 @@ Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
     Route::view('register', 'pages.home')->name('register');
 
-    Route::post('register', [AuthController::class, 'register'])->name('register');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
+    Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
 
-Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->prefix('profile')->name('profile')->group(function () {
-    Route::get('/', [PageController::class, 'profile']);
-    Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
-});
+    Route::prefix('profile')->name('profile')->group(function () {
+        Route::get('/', [PageController::class, 'profile']);
+        Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
 
-Route::prefix('materials')->name('materials')->group(function () {
-    Route::get('/', [PageController::class, 'materials']);
-    Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+        Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
+        Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
+        Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
+//        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
+    });
+
+    Route::prefix('materials')->name('materials')->group(function () {
+        Route::get('/', [PageController::class, 'materials']);
+        Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+    });
 });
 
 Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('ajaxupload.action');

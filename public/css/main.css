@@ -1095,6 +1095,13 @@ li.menu-li {
     color: #ffffff;
 }
 
+.dt_btn:hover {
+    color: #ffffff;
+}
+
+.dt_btn:active, .dt_btn:focus {
+    color: #ffffff;
+}
 
 /*Materials PAGE*/
 .m_href {

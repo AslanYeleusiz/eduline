@@ -1,35 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers;
 
-use App\Exceptions\ErrorException;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
-use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
-use App\Http\Requests\Api\V1\User\UserProfileSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
-use App\Mail\EmailUpdate;
 use App\Models\SmsVerification;
 use App\Services\V1\SmsService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-
     public function __construct(public SmsService $smsService)
     {
-    }
-
-    public function profile()
-    {
-        $user = auth()->guard('api')->user();
-        return new UserProfileResource($user);
     }
 
     public function updateProfile(UserProfileSaveRequest $request)
@@ -40,33 +28,16 @@ class UserController extends Controller
         $user->sex = $request->sex;
         $user->birthday = $request->birthday;
         $user->save();
-        return new UserProfileResource($user);
+
+        return response()->json(['data' => [
+            'success' => true,
+        ]]);
     }
 
-    public function updatePassword(UserPasswordSaveRequest $request)
-    {
-        $user = auth()->guard('api')->user();
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return new MessageResource(__('message.success.saved'));
-    }
-
-    public function updateEmail(UserEmailSaveRequest $request)
-    {
-        $user = auth()->guard('api')->user();
-        $token = Str::uuid();
-        $user->email_token = $token;
-        $user->save();
-        Mail::to($request->email)->send(new EmailUpdate($token));
-
-        // $request->email
-
-        return new UserProfileResource($user);
-    }
-
-    public function updatePhone(UserPhoneSaveRequest $request)
+    public function updatePhone(Request $request): \Illuminate\Http\JsonResponse
     {
         DB::beginTransaction();
+
         $sms = SmsVerification::where('code', $request->code)
             ->where('phone', $request->phone)
             ->statusPending()
@@ -79,13 +50,13 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
         DB::commit();
-        return new UserProfileResource($user);
-        // sms accept
-        // SMS ACCEPT
-        // sms accept
+
+        return response()->json(['data' => [
+            'success' => true,
+        ]]);
     }
 
-    public function checkSendSmsNewPhone(UserPhoneSaveRequest $request)
+    public function checkSendSmsNewPhone(\App\Http\Requests\UserPhoneSaveRequest $request): \Illuminate\Http\JsonResponse
     {
         $phone = $request->phone;
 
@@ -100,6 +71,30 @@ class UserController extends Controller
             'status' => SmsVerification::STATUS_PENDING,
             'phone' => $phone
         ]);
-        return new MessageResource(__('message.success.sent'));
+
+        return response()->json(['data' => [
+            'success' => true,
+        ]]);
     }
+
+    public function updatePassword(UserPasswordSaveRequest $request)
+    {
+        $user = auth()->guard('api')->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return new MessageResource(__('message.success.saved'));
+    }
+
+    public function updateEmail(UserEmailSaveRequest $request)
+    {
+        $user = auth()->user();
+
+        $token = Str::uuid();
+        $user->email_token = $token;
+        $user->save();
+        Mail::to($request->email)->send(new EmailUpdate($token));
+
+        return;
+    }
+
 }

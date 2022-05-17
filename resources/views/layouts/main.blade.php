@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
 
+    @yield('styles')
+
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
@@ -50,6 +52,8 @@
 <script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
+@yield('scripts')
+
 <script>
     @if(session('success'))
     alertModal("{{ session('success') }}")
@@ -59,6 +63,5 @@
     alertWarningModal("{{ $message }}")
     @enderror
 </script>
-
 </body>
 </html>

@@ -2,11 +2,11 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Кабинетке кіру</h2>
+                <h2 class="modal-title">Құпия сөзді жаңарту</h2>
                 <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="loginForm" class="modal-form" action="{{ route('ajax.login') }}" method="POST">
+                <form id="loginForm" class="modal-form" action="{{ route('ajax.edit.password') }}" method="POST">
                     @csrf
                     <div class="form-input-block">
                         <label class="modal-form-label" for="login-phone">@lang('validation.attributes.phone'):</label>
@@ -26,12 +26,6 @@
                     </div>
                     <button class="modal-default-btn">Войти</button>
                 </form>
-            </div>
-
-            {{--onclick="openResetPasswordLink(this)"--}}
-
-            <div class="forgot-password-block">
-                <a href="javascript: void(0)" class="forgot-password-link">Құпия сөзді ұмыттыңыз ба?</a>
             </div>
 
             <div class="modal-footer">

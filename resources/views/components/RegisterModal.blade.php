@@ -8,7 +8,8 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="registerForm" class="modal-form register-form" action="{{ route('register') }}" method="POST">
+                <form id="registerForm" class="modal-form register-form" action="{{ route('ajax.register') }}"
+                      method="POST">
                     @csrf
                     <div class="inner-form">
                         <div class="inner-form-left">
@@ -16,21 +17,21 @@
                                 <label class="modal-form-label" for="register-phone">Телефон:</label>
                                 <input id="register-phone" name="phone"
                                        class="modal-form-input phone" type="tel"
-                                       placeholder="+7 (7__) ___-__-__" >
+                                       placeholder="+7 (7__) ___-__-__">
                                 <span class="invalid" role="alert" id="error-register-phone"></span>
                             </div>
                             <div class="form-input-block">
                                 <label class="modal-form-label" for="full_name">Есіміңіз:</label>
                                 <input id="full_name" name="full_name"
                                        class="modal-form-input" type="text"
-                                       placeholder="Есіміңізді енгізіңіз" >
+                                       placeholder="Есіміңізді енгізіңіз">
                                 <span class="invalid" role="alert" id="error-register-full_name"></span>
                             </div>
                             <div class="form-input-block">
                                 <label class="modal-form-label" for="register-email">Email Почтаңыз:</label>
                                 <input id="register-email" name="email"
                                        class="modal-form-input" type="email"
-                                       placeholder="Email почтаңызды енгізіңіз" >
+                                       placeholder="Email почтаңызды енгізіңіз">
                                 <span class="invalid" role="alert" id="error-register-email"></span>
                             </div>
                         </div>
@@ -41,7 +42,7 @@
                                 <label class="modal-form-label" for="register-password">Құпиясөз:</label>
                                 <input id="register-password" name="password"
                                        class="modal-form-input password-input" type="password"
-                                       placeholder="Құпия сөзді енгізіңіз" >
+                                       placeholder="Құпия сөзді енгізіңіз">
                                 <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
                                 <span class="invalid" role="alert" id="error-register-password"></span>
                             </div>
@@ -51,7 +52,7 @@
                                     енгізіңіз:</label>
                                 <input id="register-password_confirmation" name="password_confirmation"
                                        class="modal-form-input password-input" type="password"
-                                       placeholder="Құпия сөзді қайта енгізіңіз" >
+                                       placeholder="Құпия сөзді қайта енгізіңіз">
                                 <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
                                 <span class="invalid" role="alert"
                                       id="error-register-password_confirmation"></span>
