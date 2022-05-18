@@ -1,4 +1,4 @@
-@extends('pages.layouts.main')
+@extends('layouts.main')
 @section('title', 'Eduline.kz')
 @section('content')
     <style>
@@ -36,9 +36,9 @@
     </div>
 </div>
 
-<section class="materials">
-    <div class="cst_pd">
-        
-    </div>
-</section>
+    <section class="welcome">
+        <div class="container">
+            {{__('site.Продукты')}}
+        </div>
+    </section>
 @endsection

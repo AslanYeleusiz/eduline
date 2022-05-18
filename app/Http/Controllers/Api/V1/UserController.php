@@ -88,13 +88,13 @@ class UserController extends Controller
     public function checkSendSmsNewPhone(UserPhoneSaveRequest $request)
     {
         $phone = $request->phone;
-            
+
         $this->smsService->checkLimitSms($phone);
-        
+
         $code = $this->smsService->generateCode();
         $msg = __('auth.sms_verification') . $code;
         $this->smsService->send($msg, $phone);
-  
+
         SmsVerification::create([
             'code' => $code,
             'status' => SmsVerification::STATUS_PENDING,

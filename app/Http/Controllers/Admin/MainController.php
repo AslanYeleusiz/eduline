@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('admin.users.index');
     }

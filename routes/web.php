@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
@@ -19,54 +20,72 @@ use App\Http\Controllers\AjaxUploadController;
 |
 */
 
+Route::view('/', 'pages.home')->name('index');
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('index');
-Route::get('/materials', function () {
-    return view('pages.materials.material');
-});
-Route::get('/materials/my-materials', function () {
-    return view('pages.materials.mymaterial');
-});
-Route::post('/materials/my-materials/publication/action', [ AjaxUploadController::class, 'upload' ])->name('ajaxupload.action');
+Route::view('/attestation', 'pages.attestation')->name('attestation');
 
-Route::get('/materials/my-materials/publication', [ AjaxUploadController::class, 'index' ])->name('publication');
+Route::view('/calculator', 'pages.calculator')->name('calculator');
 
-Route::get('/materials/my-materials/change', function () {
-    return view('pages.materials.materialchange');
-});
-Route::get('/materials/item', function () {
-    return view('pages.materials.materialpage');
-});
-Route::get('/attestation', function () {
-    return view('pages.attestation');
-});
-Route::get('/calculator', function () {
-    return view('pages.calculator');
-});
 Route::get('/consultation', function () {
     return view('pages.consultationPrev');
 });
+
 Route::get('/consultation/main', function () {
     return view('pages.consultation');
-});
+})->name('consultation');
 
-Route::get('/set_locale/{locale}',[PageController::class,'set_locale'])->name('set_locale');
-
-
-
-//- -- -- - -- - - - - - //
+Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 
 // Route::get('/', [MainController::class, 'index'])->name('index');
 
 // Route::get('/calc', [MainController::class, 'calc'])->name('calc');
 Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
+
 // Route::get('/materials/{}/certificate',            [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('get_certificate');
 // Route::get('/thank-letter/{id}',           [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('get_certificate_thank_letter');
 // Route::get('/certificate-honor/{id}',      [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('get_certificate_honor');
 // Route::post('/certificate',                [MaterialControllerdonwload::class, 'updateCertificate'])->name('update_certificate');
+
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
-Route::get('login', [AuthController::class, 'loginShowForm'])->name('loginShow')->middleware('guest');
-Route::post('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::view('admin/login', 'auth.login')->name('adminLoginShow');
+Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
+
+Route::middleware('guest')->group(function () {
+    Route::view('login', 'pages.home')->name('login');
+    Route::view('register', 'pages.home')->name('register');
+
+    Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
+    Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('profile')->name('profile')->group(function () {
+        Route::get('/', [PageController::class, 'profile']);
+        Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
+
+        Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
+        Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
+        Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
+//        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
+    });
+
+    Route::prefix('materials')->name('materials')->group(function () {
+        Route::get('/', [PageController::class, 'materials']);
+        Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+    });
+});
+
+Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('ajaxupload.action');
+
+Route::get('/materials/my-materials/publication', [AjaxUploadController::class, 'index'])->name('publication');
+
+Route::get('/materials/my-materials/change', function () {
+    return view('pages.materials.materialchange');
+});
+
+Route::get('/materials/item', function () {
+    return view('pages.materials.materialpage');
+});

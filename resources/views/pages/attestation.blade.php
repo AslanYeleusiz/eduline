@@ -1,4 +1,4 @@
-@extends('pages.layouts.main')
+@extends('layouts.main')
 @section('title', 'Eduline.kz')
 @section('app')
 <div class="mb_dop_info">
