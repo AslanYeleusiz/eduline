@@ -6,6 +6,7 @@ var comblockwidth = document.querySelectorAll('.com_block');
 let video = document.querySelectorAll('.video');
 let vPlay = document.querySelectorAll('.v_play');
 var select = document.querySelectorAll('#select');
+let success=false;
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     // код для мобильных устройств
@@ -147,3 +148,75 @@ $('img.img-svg').each(function () {
         $img.replaceWith($svg);
     }, 'xml');
 });
+
+
+
+// DROPZONE из materialpublication
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+$('.drop-zone__input').on('change', e => {
+    e.preventDefault();
+    $('.expectations').removeClass("active");
+    $('.successmode').removeClass("active");
+    $('.loadedmode').addClass("active");
+    var dataName = e.target.files[0];
+    var formData = new FormData();
+    formData.append('file', $("#js-file")[0].files[0]);
+    var $percentdata = 0;
+    $('.lineload2').width('0%');
+    $('#procofp').text("0");
+    $.ajax({
+        url: "/materials/my-materials/publication/action",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: formData,
+        dataType: 'json',
+        success: function () {
+            //Дейстиве при успешности
+            console.log(dataName);
+            $('.lineload2').width('100%');
+            $('#procofp').text('100');
+            validate(dataName);
+            setTimeout(function () {
+                $('.loadedmode').removeClass("active");
+                $('.successmode').addClass("active");
+                $('.my_drop').addClass("active");
+            }, 1000);
+        },
+        error: function (data) {
+            //Действте при ошибки
+            console.log(dataName);
+            console.log((dataName.size / 1024) + 'кб');
+            $('.lineload2').width('100%');
+            $('#procofp').text('100');
+            validate(dataName);
+            setTimeout(function () {
+                $('.loadedmode').removeClass("active");
+                $('.successmode').addClass("active");
+                $('.my_drop').addClass("active");
+                $('#file_name').text(dataName.name);
+            }, 1000);
+        }
+    });
+});
+
+function validate(file){
+    var array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.openxmlformats-officedocument.presentationml.presentation","application/pdf"];
+    console.log(array[0]);
+    console.log(file.type);
+    for(let n=0; n<array.length; n++){
+        if(array[n]==file.type) success=true;
+    }
+    if(!success){
+        $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
+    }else if(file.size > 10485760){
+        $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
+    }
+    return $('.help-block').show();
+}
+

@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\AjaxUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\AjaxUploadController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +31,7 @@ Route::get('/materials/my-materials', function () {
 });
 Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, "action"])->name('ajaxupload.action');
 
-Route::get('/materials/my-materials/publication', function () {
-    return view('pages.materials.materialpublication');
-})->name('publication');
+Route::get('/materials/my-materials/publication', [ AjaxUploadController::class, 'index' ])->name('publication');
 
 Route::get('/materials/my-materials/change', function () {
     return view('pages.materials.materialchange');

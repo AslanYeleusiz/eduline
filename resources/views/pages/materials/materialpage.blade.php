@@ -69,8 +69,8 @@
 
 
 
-            <!--            ПРАВИЛЬНЫЙ ФРЕЙМ(Не работает на локальных серверах, нужен запуск хостинга)-->
-            <!--           <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{asset('files/3d.docx')}}" width="100%" height="720" frameborder="0"></iframe>-->
+            <!--ПРАВИЛЬНЫЙ ФРЕЙМ(Не работает на локальных серверах, нужен запуск хостинга)-->
+            <!--<iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{asset('files/3d.docx')}}" width="100%" height="720" frameborder="0"></iframe>-->
 
 
 
