@@ -9,7 +9,13 @@ class TestQuestion extends Model
 {
     use HasFactory;
 
+    public function subject()
+    {
+        return $this->belongsTo(TestSubject::class, 'subject_id');
+    }
+
     protected $casts = [
+        'answers' => 'json',
         'is_active' => 'boolean'
     ];
 }

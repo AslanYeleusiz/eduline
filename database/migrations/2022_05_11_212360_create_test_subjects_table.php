@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignId('language_id')->constrained('test_languages');
             $table->text('description')->nullable();
-            $table->boolean('is_main')->default(false);
+            $table->boolean('is_pedagogy')->default(false);
             $table->integer('questions_count')->default(0);
             $table->timestamps();
         });

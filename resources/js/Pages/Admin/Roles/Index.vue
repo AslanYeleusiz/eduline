@@ -47,7 +47,7 @@
                                     <tr role="row">
                                         <th>№</th>
                                         <th>Аты</th>
-                                        <th>Жалпылама рөль</th>
+                                        <th>Жалпылама роль</th>
                                         <th>Әрекет</th>
                                     </tr>
                                     <tr class="filters">
@@ -121,7 +121,7 @@
                                                     title="Жою"
                                                 >
                                                     <i
-                                                        class="fas fa-times red"
+                                                        class="fas fa-times"
                                                     ></i>
                                                 </button>
                                             </div>

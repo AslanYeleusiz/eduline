@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AjaxUploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 
@@ -27,7 +28,7 @@ Route::get('/materials', function () {
 Route::get('/materials/my-materials', function () {
     return view('pages.materials.mymaterial');
 });
-Route::post('/materials/my-materials/publication/action', 'AjaxUploadController@action')->name('ajaxupload.action');
+Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, "action"])->name('ajaxupload.action');
 
 Route::get('/materials/my-materials/publication', function () {
     return view('pages.materials.materialpublication');

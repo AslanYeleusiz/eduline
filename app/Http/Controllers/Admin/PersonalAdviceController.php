@@ -65,7 +65,7 @@ class PersonalAdviceController extends Controller
         $personalAdvice->discount_percentage = $discountPercentage;
         $personalAdvice->is_active = $request->is_active == 'true';
         $personalAdvice->save();
-        return redirect()->route('admin.PersonalAdvice.index')->withSuccess('Успешно добавлено');
+        return redirect()->route('admin.personalAdvice.index')->withSuccess('Успешно добавлено');
     }
 
     public function destroy(PersonalAdvice $personalAdvice)

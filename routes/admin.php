@@ -15,6 +15,12 @@ use App\Http\Controllers\Admin\PersonalAdviceController;
 use App\Http\Controllers\Admin\PersonalAdviceOrderController;
 use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\Test\TestClassController;
+use App\Http\Controllers\Admin\Test\TestDirectionController;
+use App\Http\Controllers\Admin\Test\TestLanguageController;
+use App\Http\Controllers\Admin\Test\TestQuestionController;
+use App\Http\Controllers\Admin\Test\TestSubjectController;
+use App\Http\Controllers\Admin\Test\TestSubjectOptionController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
@@ -57,4 +63,11 @@ Route::resource('news-types', NewsTypeController::class)->except(['show'])->name
 Route::resource('news', NewsController::class)->except(['show'])->names('news');
 Route::get('news/{id}/comments', [NewsController::class, 'comments'])->name('news.comments');
 Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commentDelete'])->name('news.commentsDelete');
-
+Route::name('test.')->group(function() {
+    Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
+    Route::resource('subjects', TestSubjectController::class)->except(['show'])->names('subjects');
+    Route::resource('subjects/{subject}/options', TestSubjectOptionController::class)->except(['show'])->names('subjectOptions');
+    Route::resource('directions', TestDirectionController::class)->except(['show'])->names('directions');
+   Route::resource('questions', TestQuestionController::class)->except(['show'])->names('questions');
+   Route::resource('classes', TestClassController::class)->except(['show'])->names('classes');
+});

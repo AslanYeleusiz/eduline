@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('test_preparation_classes', function (Blueprint $table) {
+        Schema::create('test_direction_test_subjects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('direction_id')->constrained('test_directions')->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained('test_subjects')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_preparation_classes');
+        Schema::dropIfExists('test_direction_test_subjects');
     }
 };

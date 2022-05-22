@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\MaterialController;
 use App\Http\Controllers\Api\V1\MyMaterialController;
 use App\Http\Controllers\Api\V1\NewsController;
 use App\Http\Controllers\Api\V1\PersonalAdviceController;
+use App\Http\Controllers\Api\V1\RolesController;
 use App\Http\Controllers\Api\V1\SmsController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -39,6 +40,8 @@ Route::middleware('auth:api')->group(function () {
      Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
      Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
 });
+Route::get('roles', RolesController::class)->name('roles');
+
 Route::get('news/populars', [NewsController::class, 'popularNews'])->name('news.populars');
 Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 

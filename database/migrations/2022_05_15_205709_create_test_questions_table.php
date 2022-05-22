@@ -21,11 +21,12 @@ return new class extends Migration
             $table->text('text');
             // TODO:: {number, text, is_correct}s
             $table->json('answers');
+            $table->foreignId('subject_id')->constrained('test_subjects')->cascadeOnDelete();
             // $table->tinyInteger('correct_answers_count')->default(1);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
-    }
+    } 
 
     /**
      * Reverse the migrations.

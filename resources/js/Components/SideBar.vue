@@ -277,6 +277,48 @@ export default {
                         }
                     ],
                 },
+                 {
+                    name: "Тест",
+                    font: "fa-newspaper",
+                    menu_active: [
+                        "admin.test.subjects", "admin.test.directions",
+                        "admin.test.questions", "admin.test.languages", 
+                        "admin.test.classes"
+                     ],
+                    route_name: "",
+                    childs_items: [
+                        {
+                            name: "Пән",
+                            font: "fa-list",
+                            route_name: "admin.test.subjects.index",
+                            menu_active: ["admin.test.subjects"],
+                        },
+                        {
+                            name: "Сынып",
+                            font: "fa-list",
+                            route_name: "admin.test.classes.index",
+                            menu_active: ["admin.test.classes"],
+                        },
+                        {
+                            name: "Тіл",
+                            font: "fa-globe",
+                            route_name: "admin.test.languages.index",
+                            menu_active: ["admin.test.languages"],
+                        },
+                        {
+                            name: "Бағыт",
+                            font: "fa-atlas",
+                            route_name: "admin.test.directions.index",
+                            menu_active: ["admin.test.directions"],
+                        },
+                        {
+                            name: "Сұрақтар",
+                            font: "fa-newspaper",
+                            route_name: "admin.test.questions.index",
+                            menu_active: ["admin.test.questions"],
+                        },
+                    ],
+                },
             ],
         };
     },
