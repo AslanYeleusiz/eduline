@@ -49,7 +49,7 @@
                             d="M15.5799 11.58C15.5799 13.56 13.9799 15.17 11.9999 15.17C10.0199 15.17 8.41992 13.56 8.41992 11.58C8.41992 9.60002 10.0199 8 11.9999 8C13.9799 8 15.5799 9.60002 15.5799 11.58Z"
                             fill="#3E6CED"/>
                     </svg>
-                    <span>@lang('site.Профиль')</span>
+                    <span>@lang('site.Жеке кабинет')</span>
                 </a>
                 <a href="{{ route('profile.subscription') }}"
                    class="my_materials @if(request()->routeIs('profile.subscription')) active @endif">
@@ -69,7 +69,7 @@
                             fill="#3E6CED"/>
                     </svg>
 
-                    <span>Жазылым</span>
+                    <span>@lang('site.Жазылым')</span>
                 </a>
             </div>
         </div>

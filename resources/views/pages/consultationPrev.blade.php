@@ -5,35 +5,35 @@
 <section class="kenesPrev">
     <div class="cst_pd">
         <div class="kp_head">
-            Тренерден жеке кеңес
+            @lang('site.Тренерден жеке кеңес')
         </div>
         <div class="kp_info">
-            Құрметті әріптестер, Қазақстанның ең үздік тренерлерінен жеке кеңес алыңыз
+            @lang('site.Құрметті әріптестер, Қазақстанның ең үздік тренерлерінен жеке кеңес алыңыз')
         </div>
         <div class="kp_block">
             <div class="kp_b_info">
-                <span><span class="kp_b_head">Авторлық бағдарлама жасауды үйрену</span><br>Консультация</span>
+                <span><span class="kp_b_head">Авторлық бағдарлама жасауды үйрену</span><br>@lang('site.Жеке кеңес')</span>
             </div>
             <div class="kp_b_url">
                 <div class="kp_btn_1">
-                    7700 тг
+                    7700 ₸
                 </div>
                 <a href="/consultation/main" class="kp_btn_2">
-                    Толығырақ
+                    @lang('site.Толығырақ')
                     <img src="{{asset('images/arrow-right.png')}}">
                 </a>
             </div>
         </div>
          <div class="kp_block">
             <div class="kp_b_info">
-                <span><span class="kp_b_head">Авторлық бағдарлама жасауды үйрену</span><br>Консультация</span>
+                <span><span class="kp_b_head">Авторлық бағдарлама жасауды үйрену</span><br>@lang('site.Жеке кеңес')</span>
             </div>
             <div class="kp_b_url">
                 <div class="kp_btn_1">
-                    7700 тг
+                    7700 ₸
                 </div>
                 <a href="/consultation/main" class="kp_btn_2">
-                    Толығырақ
+                    @lang('site.Толығырақ')
                     <img src="{{asset('images/arrow-right.png')}}">
                 </a>
             </div>

@@ -14,19 +14,19 @@
                     <div class="profile-username">{{ $user->full_name }}</div>
                     <div class="profile-information">
                         <div class="information-item">
-                            <div class="information-item-label">ИНН:</div>
+                            <div class="information-item-label">@lang('site.ЖСН'):</div>
                             <div class="information-item-result">984026******</div>
                         </div>
                         <div class="information-item">
-                            <div class="information-item-label">Туған күні:</div>
+                            <div class="information-item-label">@lang('site.Туған күні'):</div>
                             <div class="information-item-result">14.05.1994</div>
                         </div>
                         <div class="information-item">
-                            <div class="information-item-label">Жынысы:</div>
-                            <div class="information-item-result">Ер</div>
+                            <div class="information-item-label">@lang('site.Жынысы'):</div>
+                            <div class="information-item-result">@lang('site.Ер')</div>
                         </div>
                     </div>
-                    <div class="profile-edit">Өзгерту</div>
+                    <div class="profile-edit">@lang('site.Өзгерту')</div>
                 </div>
             </div>
             <div class="profile-info-group">
@@ -35,18 +35,18 @@
                         <div class="profile-info-title">@lang('validation.attributes.phone')</div>
                         <div class="profile-info-description">{{ $user->phone }}</div>
                     </div>
-                    <div class="profile-info-action" onclick="editPhonePopup(this)">Өзгерту</div>
+                    <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
                 </div>
                 <div class="profile-info profile-info-email">
                     <div class="profile-info-header">
-                        <div class="profile-info-title">@lang('validation.attributes.email')</div>
+                        <div class="profile-info-title">Email</div>
                         <div class="profile-info-description">{{ $user->email }}</div>
                     </div>
                     <div class="profile-info-actions-group">
                         @if(!$user->is_email_verified)
-                            <div class="profile-info-action">Растау</div>
+                            <div class="profile-info-action">@lang('site.Растау')</div>
                         @endif
-                        <div class="profile-info-action">Өзгерту</div>
+                        <div class="profile-info-action">@lang('site.Өзгерту')</div>
                     </div>
                 </div>
                 <div class="profile-info profile-info-password">
@@ -54,33 +54,32 @@
                         <div class="profile-info-title">@lang('validation.attributes.password')</div>
                         <div class="profile-info-description">******************</div>
                     </div>
-                    <div class="profile-info-action">Өзгерту</div>
+                    <div class="profile-info-action">@lang('site.Өзгерту')</div>
                 </div>
             </div>
             <div class="profile-footer">
                 <div class="profile-footer-item">
                     <div class="profile-item-content">
-                        <div class="profile-footer-content-title">Ұлттық біліктілік тест сертификатын алу</div>
-                        <div class="profile-footer-content-description"> ЖСН (ИИН) енгізу арқылы жүктеп алуға болады
+                        <div class="profile-footer-content-title">@lang('site.Ұлттық біліктілік тест сертификатын алу')</div>
+                        <div class="profile-footer-content-description"> @lang('site.ЖСН (ИИН) енгізу арқылы жүктеп алуға болады')
                         </div>
                     </div>
-                    <a onclick="comingSoon()" class="profile-footer-action">Толығырақ</a>
+                    <a onclick="comingSoon()" class="profile-footer-action">@lang('site.Толығырақ')</a>
                 </div>
                 <div class="profile-footer-item">
                     <div class="profile-item-content">
-                        <div class="profile-footer-content-title">Менің материалдарым</div>
-                        <div class="profile-footer-content-description">Жинаққа жариялаған барлық материалдарыңыз</div>
+                        <div class="profile-footer-content-title">@lang('site.Менің материалдарым')</div>
+                        <div class="profile-footer-content-description">@lang('site.Жинаққа жариялаған барлық материалдарыңыз')</div>
                     </div>
-                    <a href="{{ route('materials.myMaterials') }}" class="profile-footer-action">Толығырақ</a>
+                    <a href="{{ route('materials.myMaterials') }}" class="profile-footer-action">@lang('site.Толығырақ')</a>
                 </div>
                 <div class="profile-footer-item">
                     <div class="profile-item-content">
-                        <div class="profile-footer-content-title">Жазылым</div>
-                        <div class="profile-footer-content-description">Сайтқа жазылып, барлық мүмкіндіктерді шексіз
-                            қолданыңыз!
+                        <div class="profile-footer-content-title">@lang('site.Жазылым')</div>
+                        <div class="profile-footer-content-description">@lang('site.Сайтқа жазылып, барлық мүмкіндіктерді шексіз қолданыңыз')
                         </div>
                     </div>
-                    <a href="{{ route('profile.subscription') }}" class="profile-footer-action">Толығырақ</a>
+                    <a href="{{ route('profile.subscription') }}" class="profile-footer-action">@lang('site.Толығырақ')</a>
                 </div>
             </div>
         </div>

@@ -153,7 +153,7 @@ return [
         'mobile'                => 'Моб. номер',
         'month'                 => 'Месяц',
         'name'                  => 'Имя',
-        'password'              => 'пароль',
+        'password'              => 'Пароль',
         'password_confirmation' => 'подтверждение пароля',
         'phone'                 => 'Телефон',
         'second'                => 'Секунда',

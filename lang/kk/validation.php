@@ -255,7 +255,7 @@ return [
         'email' => 'E-Mail адрес',
         'first_name' => 'Аты',
         'last_name' => 'Фамилия',
-        'password' => 'Құпиясөз',
+        'password' => 'Құпия сөз',
         'password_confirmation' => 'Құпиясөзді растау',
         'new_password_confirmation' => 'Жаңа құпия сөзді растау',
         'country' => 'Ел',

@@ -24,15 +24,19 @@ Route::view('/', 'pages.home')->name('index');
 
 Route::view('/attestation', 'pages.attestation')->name('attestation');
 
+Route::post('/attestation', [MainController::class, 'attestation'])->name('attestation');
+
 Route::view('/calculator', 'pages.calculator')->name('calculator');
+
+Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator');
 
 Route::get('/consultation', function () {
     return view('pages.consultationPrev');
-});
+})->name('consultation');
 
 Route::get('/consultation/main', function () {
     return view('pages.consultation');
-})->name('consultation');
+});
 
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 

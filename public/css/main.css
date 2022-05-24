@@ -121,7 +121,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    /*gap: 10px;*/
 
     font-family: "Gilroy-Medium";
     font-size: 16px;
@@ -151,7 +151,10 @@ body {
     transition: all 0.4s;
     stroke: #B2C4F8;
 }
-
+.menu-link:focus svg path {
+    transition: all 0.4s;
+    stroke: #B2C4F8;
+}
 
 .menu-link.active {
     background: #3E6CED;
@@ -418,7 +421,7 @@ li.menu-li {
 .com_info {
     width: 100%;
     font-family: 'Exo2-Bold';
-    font-size: 36px;
+    font-size: 30px;
     letter-spacing: 0em;
     text-align: center;
     line-height: 52.2px;
@@ -577,7 +580,7 @@ li.menu-li {
     position: absolute;
     width: 80px;
     height: 80px;
-    background: url(/images/playB.png) center/auto 100% no-repeat;
+    background: url(/public/images/playB.png) center/auto 100% no-repeat;
 }
 
 .video {
@@ -1206,7 +1209,7 @@ li.menu-li {
 }
 
 .form-select {
-    background-image: url(/images/selectButton.png);
+    background-image: url(/public/images/selectButton.png);
     background-size: 16px 9px;
     background-position: right 18px center;
 }
@@ -2000,7 +2003,7 @@ li.menu-li {
 .ex {
     width: 240px;
     height: 142px;
-    background: url(/images/cloudupload.svg) no-repeat;
+    background: url(/public/images/cloudupload.svg) no-repeat;
     background-size: 100%;
     background-position: 50% 20%;
 }

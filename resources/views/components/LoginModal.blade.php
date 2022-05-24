@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Кабинетке кіру</h2>
+                <h2 class="modal-title">@lang('site.Кабинетке кіру')</h2>
                 <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -24,18 +24,18 @@
                         <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
                         <span class="invalid" role="alert" id="error-login-password"></span>
                     </div>
-                    <button class="modal-default-btn">Войти</button>
+                    <button class="modal-default-btn">@lang('site.Кіру')</button>
                 </form>
             </div>
 
             {{--onclick="openResetPasswordLink(this)"--}}
 
             <div class="forgot-password-block">
-                <a href="javascript: void(0)" class="forgot-password-link">Құпия сөзді ұмыттыңыз ба?</a>
+                <a href="javascript: void(0)" class="forgot-password-link">@lang('site.Құпия сөзді ұмыттыңыз ба?')</a>
             </div>
 
             <div class="modal-footer">
-                <a onclick="openRegisterLink(this)" class="modal-default-btn modal-default-btn-outline">Тіркелу</a>
+                <a onclick="openRegisterLink(this)" class="modal-default-btn modal-default-btn-outline">@lang('site.Тіркелу')</a>
             </div>
         </div>
     </div>
