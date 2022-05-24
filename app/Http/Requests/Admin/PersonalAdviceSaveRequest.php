@@ -17,6 +17,7 @@ class PersonalAdviceSaveRequest extends FormRequest
     {
         return [
             'title' => 'required|array',
+            'description' => 'required|array',
             'price' => 'required'
         ];
     }

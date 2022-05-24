@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('personal_advice', function (Blueprint $table) {
             $table->id();
             $table->text('title');
+            $table->json('description')->nullable();
             $table->integer('price');
             $table->boolean('is_discount')->default(false);
             $table->integer('discount_percentage')->nullable();

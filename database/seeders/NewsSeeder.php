@@ -22,7 +22,9 @@ class NewsSeeder extends Seeder
     {
         //  News::factory(10)->create();
         $faker = Container::getInstance()->make(Generator::class);
-
+        if(!Storage::disk('public')->exists('images/news')) {
+            Storage::disk('public')->makeDirectory('images/news');
+        }
 
         $newsTypes =  NewsType::inRandomOrder()->get();
         $data = [
@@ -47,6 +49,7 @@ class NewsSeeder extends Seeder
                 ]
             ]
         ];
+    
         foreach ($data as $datum) {
             News::create($datum);
         }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name');
             $table->integer('price')->default(0);
             $table->boolean('is_discount')->default(false);
             $table->integer('discount_percentage')->nullable();

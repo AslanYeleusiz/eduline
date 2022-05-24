@@ -39,6 +39,7 @@ class PersonalAdviceController extends Controller
         ? $request->discount_percentage 
         : 0;
         $personalAdvice->title = $request->title;
+        $personalAdvice->description = $request->description;
         $personalAdvice->price = $request->price;
         $personalAdvice->is_discount = $request->is_discount == 'true';
         $personalAdvice->discount_percentage = $discountPercentage;

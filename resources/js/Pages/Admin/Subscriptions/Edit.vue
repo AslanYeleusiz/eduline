@@ -33,17 +33,34 @@
             <div class="card card-primary">
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
-                        <div class="form-group">
+                         <div class="form-group">
                             <label for="">Аты</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                v-model="subscription.name"
-                                name="name"
-                                placeholder="Аты"
-                                required
-                            />
-                            <validation-error :field="'name'" />
+                            <div class="ml-2">
+                                <div class="form-group">
+                                    <label for="">KK</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="subscription.name.kk"
+                                        name="name.kk"
+                                        placeholder="Аты"
+                                         required
+                                    />
+                                    <validation-error :field="'name.kk'" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="">RU</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="subscription.name.ru"
+                                        name="name.ru"
+                                        placeholder="Аты"
+                                        required
+                                    />
+                                    <validation-error :field="'name.ru'" />
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="">Бағасы</label>

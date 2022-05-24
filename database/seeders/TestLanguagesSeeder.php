@@ -16,11 +16,17 @@ class TestLanguagesSeeder extends Seeder
     public function run()
     {
         $data = [
-            'Қазақша',
-            'Русский язык'
+            [
+                'name' => 'Қазақша',
+                'code' => 'kk',
+            ],
+            [
+                'name' => 'Русский язык',
+                'code' => 'kk',
+            ]
         ];
-        foreach($data as $datum) {
-            TestLanguage::create(['name' => $datum]);
+        foreach ($data as $datum) {
+            TestLanguage::create($datum);
         }
     }
 }
