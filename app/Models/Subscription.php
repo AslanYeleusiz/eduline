@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Translatable\HasTranslations;
 
 class Subscription extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasTranslations;
     protected $guarded = [];
+    public $translatable = ['name'];
 
     public function scopeIsActive($query)
     {
@@ -17,6 +19,7 @@ class Subscription extends Model
     }
 
     protected $casts = [
+        'name' => 'json',
         'is_discount' => 'boolean',
         'is_active' => 'boolean',
     ];

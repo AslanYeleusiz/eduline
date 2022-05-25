@@ -17,6 +17,7 @@ class PersonalAdviceResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'description' => $this->description,
             'price' => $this->price,
             'is_discount' => $this->is_discount,
             'discount_percentage' => (int) $this->discount_percentage < 101 ? $this->discount_percentage : 0,

@@ -62,6 +62,32 @@
                                 </div>
                             </div>
                         </div>
+                             
+                       <div class="form-group">
+                            <label for="">Түсініктеме</label>
+                            <div class="ml-2">
+                                <div class="form-group">
+                                    <label for="">KK</label>
+                                <textarea 
+                                    class="form-control"
+                                    v-model="personalAdvice.description.kk"
+                                    required
+                                     id="" cols="10" rows="5">
+                                    </textarea>
+                                    <validation-error :field="'description.kk'" />
+                                </div>
+                                 <div class="form-group">
+                                    <label for="">RU</label>
+                                    <textarea name=""
+                                    class="form-control"
+                                    v-model="personalAdvice.description.ru"
+                                    required
+                                     id="" cols="10" rows="5">
+                                    </textarea>
+                                    <validation-error :field="'description.ru'" />
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="">Бағасы</label>
                             <input

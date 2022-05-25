@@ -140,7 +140,7 @@
                                                     : index + 1
                                             }}
                                         </td>
-                                        <td>{{ subscription.name }}</td>
+                                        <td>{{ subscription.name.kk }}</td>
                                         <td>{{ subscription.price }} тг.</td>
                                         <td>{{ subscription.duration }} ай</td>
                                         <td>

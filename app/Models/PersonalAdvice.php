@@ -12,7 +12,7 @@ class PersonalAdvice extends Model
     use HasFactory, SoftDeletes, HasTranslations;
     protected $guarded = [];
 
-    public $translatable = ['title'];
+    public $translatable = ['title', 'description'];
 
     public function orders()
     {
@@ -27,6 +27,7 @@ class PersonalAdvice extends Model
     protected $casts = [
         // 'id' => 'integer',
         'title' => 'json',
+        'description' => 'json',
         'is_discount' => 'boolean',
         'is_active' => 'boolean',
     ];
