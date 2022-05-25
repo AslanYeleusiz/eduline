@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             SendingMaterialJournalSeeder::class,
             SubscriptionsSeeder::class,
             PersonalAdviceSeeder::class,
+            TestLanguagesSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }

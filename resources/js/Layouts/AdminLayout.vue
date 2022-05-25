@@ -71,3 +71,8 @@ export default {
     },
 };
 </script>
+<style>
+.red {
+    color:  #dc3545;
+    }
+</style>

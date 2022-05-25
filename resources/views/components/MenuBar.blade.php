@@ -53,7 +53,7 @@
             </a>
         </li>
         <li class="menu-li">
-            <a class="menu-link @if(request()->routeIs('consultation')) || request()->routeIs('consultation.*')) active @endif" href="{{ route('consultation') }}">
+            <a class="menu-link @if(request()->routeIs('consultations') || request()->routeIs('consultation')) active @endif" href="{{ route('consultations') }}">
                 <img class="img-svg" src="{{asset('images/question.svg')}}">
                 @lang('site.Жеке кеңес')
             </a>

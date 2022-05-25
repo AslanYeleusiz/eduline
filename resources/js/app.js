@@ -41,7 +41,9 @@ createInertiaApp({
             }
         });
         return params;
-    },back(){
+    }, clone(obj) {
+      return JSON.parse(JSON.stringify(obj));
+  },back(){
       return       window.history.back();
     } }, Helper
     })

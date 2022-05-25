@@ -6,15 +6,6 @@
 </div>
 @endsection
 @section('content')
-<style>
-    .menuactive2 {
-        background: #3E6CED!important;
-        color: #fff!important;
-    }
-    .menuactive2 .img-svg path, .img-svg polygon {
-        stroke: #fff;
-    }
-</style>
 <div class="mail_send_pupup">
     <div class="send_block t_pupup">
         <div class="esc_btn"><img class="esc_icon" src="{{asset('images/escape.png')}}"></div>
@@ -26,7 +17,7 @@
         </span>
         <form action="" method="post" class="needs-validation" novalidate>
             @csrf
-            <input type="text" class="form-control t_input" placeholder="+7 (___) ___-__-__" id="phone" name="phone" required>
+            <input type="text" class="form-control phone_mask" placeholder="+7 (___) ___-__-__" id="phone" name="phone" required>
             <button class="btn t_pupup_btn">
                 @lang('site.Жіберу')
             </button>
@@ -267,13 +258,4 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript">
-
-</script>
-
-<!--
-<script src="{{asset('js/commentScroll.js')}}"></script>
-<script src="{{asset('js/checkInput.js')}}"></script>
--->
 @endsection

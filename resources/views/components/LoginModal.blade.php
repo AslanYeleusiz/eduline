@@ -10,9 +10,7 @@
                     @csrf
                     <div class="form-input-block">
                         <label class="modal-form-label" for="login-phone">@lang('validation.attributes.phone'):</label>
-                        <input id="login-phone" name="phone"
-                               class="modal-form-input phone" type="tel"
-                               placeholder="+7 (7__) ___-__-__">
+                        <input id="login-phone" name="phone" class="modal-form-input phone phone_mask" type="tel" placeholder="+7 (___) ___-__-__">
                         <span class="invalid error-phone" role="alert" id="error-login-phone"></span>
                     </div>
 

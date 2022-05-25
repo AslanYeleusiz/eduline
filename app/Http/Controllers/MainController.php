@@ -7,6 +7,7 @@ use App\Models\User;
 use ErrorException;
 use Illuminate\Http\Request;
 use App\Models\SmsVerification;
+use App\Models\PersonalAdvice;
 use App\Services\V1\SmsService;
 
 class MainController extends Controller
@@ -64,5 +65,17 @@ class MainController extends Controller
             $this->smsService->send($msg, $phone);
         }
         return view('pages.calculator');
+    }
+
+    public function consultations()
+    {
+        $consultations = PersonalAdvice::all();
+        return view('pages.consultations', ['consultations' => $consultations]);
+    }    
+
+    public function consultation($id=1)
+    {
+        $consultation = PersonalAdvice::where('id',$id)->firstOrFail();
+        return view('pages.consultation', ['consultation' => $consultation]);
     }
 }

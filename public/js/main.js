@@ -1,13 +1,3 @@
-let input = document.getElementsByClassName('t_input')[0]
-input.addEventListener('focus', (e, el) => {
-    $(".t_input").val("+7 (___) ___-__-__");
-    e.preventDefault()
-})
-input.addEventListener('mouseup', (e, el) => {
-    e.preventDefault()
-    console.log(input.setSelectionRange(4, 4))
-})
-
 //Comment, Video scroll scripts
 
 let eclipse = document.querySelectorAll('.com_p_ecl');
@@ -80,8 +70,7 @@ $(document).ready(function () {
 });
 
 //PHOME MASK JQUERY
-$(".phone_mask").mask("+7 (999) 999-99-99");
-$(".t_input").mask("+7 (000) 000-00-00");
+$(".phone_mask").mask("+7 (000) 000-00-00");
 
 var $speed_pp = 400;
 // POPUP script
@@ -223,8 +212,6 @@ function validate(file) {
     }
     return $('.help-block').show();
 }
-
-$(".phone").mask("+7 (999) 999-99-99");
 
 function openLogin() {
     $('.modal').modal('hide');
@@ -388,5 +375,17 @@ $(function () {
             }
         });
     });
+
+    let input = document.getElementsByClassName('phone_mask')[0];
+    input.addEventListener('focus', (e, el) => {
+        $(".phone_mask").val("+7 (___) ___-__-__");
+        e.preventDefault()
+    })
+    input.addEventListener('mouseup', (e, el) => {
+        e.preventDefault()
+        console.log(input.setSelectionRange(4, 4))
+    })
 })
+
+
 

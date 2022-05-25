@@ -140,7 +140,7 @@
                                                     title="Жою"
                                                 >
                                                     <i
-                                                        class="fas fa-times red"
+                                                        class="fas fa-times"
                                                     ></i>
                                                 </button>
                                             </div>

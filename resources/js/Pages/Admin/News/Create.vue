@@ -118,7 +118,8 @@
                                     />
                                 </div>
                                 <div class="form-group">
-                                    <label for="">RU</label>                                     <ckeditor
+                                    <label for="">RU</label>
+                                    <ckeditor
                                         :editor="editor"
                                         v-model="news.description.ru"
                                         :config="editorConfig"

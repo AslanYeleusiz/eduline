@@ -20,7 +20,8 @@ use App\Http\Controllers\AjaxUploadController;
 |
 */
 
-Route::view('/', 'pages.home')->name('index');
+
+Route::get('/', function () {return view('pages.home');})->name('index');
 
 Route::view('/attestation', 'pages.attestation')->name('attestation');
 
@@ -30,19 +31,16 @@ Route::view('/calculator', 'pages.calculator')->name('calculator');
 
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator');
 
-Route::get('/consultation', function () {
-    return view('pages.consultationPrev');
-})->name('consultation');
+Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
 
-Route::get('/consultation/main', function () {
-    return view('pages.consultation');
-});
+Route::get('/consultation/{id?}', [MainController::class, 'consultation'], ['id' => 'id'])->name('consultation');
+
+Route::get('/materials', function () { return view('pages.materials.material');});
+Route::get('/materials/my-materials', function () { return view('pages.materials.mymaterial');});
+Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, "action"])->name('ajaxupload.action');
 
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 
-// Route::get('/', [MainController::class, 'index'])->name('index');
-
-// Route::get('/calc', [MainController::class, 'calc'])->name('calc');
 Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
 // Route::get('/materials/{}/certificate',            [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('get_certificate');
@@ -69,7 +67,6 @@ Route::middleware('auth')->group(function () {
     Route::prefix('profile')->name('profile')->group(function () {
         Route::get('/', [PageController::class, 'profile']);
         Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
-
         Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');

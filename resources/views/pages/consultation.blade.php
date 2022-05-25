@@ -10,14 +10,6 @@
         .content {
             background: #ffffff;
         }
-
-        .right_btn {
-            background-image: url({{asset('images/arrow-right.png')}})
-        }
-
-        .left_btn {
-            background-image: url({{asset('images/arrow-right.png')}})
-        }
     </style>
     <div class="mail_send_pupup">
         <div class="send_block">
@@ -28,7 +20,7 @@
     </div>
     <section class="kenes">
         <div class="cst_pd">
-            <div class="heading k_heading">Авторлық бағдарлама <br>жасауды <span class="_orange">тренермен үйрену</span>
+            <div class="heading k_heading">{{$consultation->title}}</span>
             </div>
             <div class="dl_info k_dl_info">
                 Құрметті әріптес, тренермен бетпе бет отырып авторлық бағдарламаға тақырып таңдап, жасау жолын және
@@ -41,7 +33,7 @@
         </div>
         <div class="k_form_block">
             <div class="cst_pd">
-                <div class="k_form_head">@lang('site.Консультация бағасы') - 7700 ₸</div>
+                <div class="k_form_head">@lang('site.Консультация бағасы') - {{$consultation->price}} ₸</div>
 
                 <form method="post" action="{{url('kenes/send')}}" class="k_form needs-validation" novalidate>
                     @csrf
@@ -51,8 +43,7 @@
                                    name="name" required>
                         </div>
                         <div class="col-md">
-                            <input type="text" class="form-control k_cst_inp phone_mask" placeholder="+7 (___) ___ __ __"
-                                   id="phone" name="phone" required>
+                            <input type="text" class="form-control k_cst_inp phone_mask" placeholder="+7 (___) ___-__-__" id="phone" name="phone" required>
                         </div>
                         <div class="col-md">
                             <button class="btn chat-btn k_btn" type="submit">@lang('site.Консультацияға жазылу')</button>
@@ -249,7 +240,7 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="com_info">
-                        @lang('site.Тегін консултация')
+                        @lang('site.Тегін консультация')
                     </div>
                     <p>
                         @lang('site.Программаны телефонға орнатудан түсінбесеңіз немесе біздің орталық туралы сұрақтарыңыз болса бізге хабарласыңыз, біздің менеджерлер сізге түсіндіріп береді')
