@@ -1,5 +1,5 @@
-@import url(/public/fonts/Gilroy/fonts.css);
-@import url(/public/fonts/Exo2/fonts.css);
+@import url(/fonts/Gilroy/fonts.css);
+@import url(/fonts/Exo2/fonts.css);
 
 body {
     margin: 0;
@@ -329,6 +329,103 @@ li.menu-li {
 }
 
 
+/*MAIN NEWS SECTION*/
+
+.cst_container{
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 700px;
+    justify-content: space-between;
+    margin: 0 auto 0 100px;
+
+}
+.ns_list{
+    display: flex;
+    flex-direction: column;
+}
+.news{
+    padding-bottom: 100px;
+}
+.news .m_block{
+    margin: 30px 0 0;
+    padding: 20px 30px 30px;
+}
+.ns_pre{
+    display: flex;
+    justify-content: space-between;
+    font-family: "Gilroy-Regular";
+    font-size: 18px;
+    color: #C7C7C7;
+}
+.news .mp_head{
+font-size: 24px;
+line-height: 30px;
+    margin-top: 20px;
+}
+.news .mp_info{
+font-size: 18px;
+line-height: 22px;
+}
+.ns_img{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 310px;
+    background: left 100% no-repeat;
+}
+
+.ns_savebut, .ns_views, .ns_comments{
+    width: 24px;
+    height: 24px;
+    background: center 50% / 100% no-repeat;
+}
+.ns_savebut{
+    background-image: url(/images/savebut.svg);
+}
+.ns_views{
+    margin-right: 10px;
+    background-image: url(/images/views.svg);
+}
+.ns_comments{
+    margin: 0 10px 0 30px;
+    background-image: url(/images/comments.svg);
+}
+.ns_likes{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+/*PAGINATION*/
+.pagination{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pagination li{
+    width: 40px;
+    height: 40px;
+    background: #FBFBFB;
+    border: 0.5px solid #3E6CED;
+    border-radius: 10px;
+    font-family: "Gilroy-Regular";
+    font-size: 22px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.pagination li a{
+    color: #3E6CED;
+    text-decoration: none;
+}
+.pagination li.active{
+    color: #ffffff;
+    background: #3E6CED;
+}
 /*APP STORE SECTION*/
 .calculate {
     display: block;
@@ -1110,8 +1207,13 @@ li.menu-li {
 .m_href {
     width: 100vw;
     background: #ffffff;
+    overflow-x: scroll;
 }
-
+.m_href::-webkit-scrollbar { /* chrome based */
+    width: 0px;
+    height: 0px;/* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
 .m_center {
     display: flex;
     flex-direction: row;

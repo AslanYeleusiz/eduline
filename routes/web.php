@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('materials')->name('materials')->group(function () {
         Route::get('/', [PageController::class, 'materials']);
+        Route::get('/search', [PageController::class, 'search'])->name('.search');
+        Route::get('/item-{id}', [PageController::class, 'material'])->name('.material');
         Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
     });
 });
@@ -85,8 +87,4 @@ Route::get('/materials/my-materials/publication', [AjaxUploadController::class, 
 
 Route::get('/materials/my-materials/change', function () {
     return view('pages.materials.materialchange');
-});
-
-Route::get('/materials/item', function () {
-    return view('pages.materials.materialpage');
 });

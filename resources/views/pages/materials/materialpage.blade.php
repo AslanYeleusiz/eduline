@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', $pageName)
 @section('content')
 <style>
     .menuactive5 {
@@ -14,7 +14,7 @@
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">
-        <a href="#" class="btn mp_back">
+        <a href="/materials" class="btn mp_back">
             <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
         </a>
         <div class="mp_blockhref"><span><a href="#">Материалдар</a> / <a href="#">Балабақша</a> / <a href="#">Мақала</a> / <a href="#">Мектепке дейінгі балалар</a> /</span> Балабақшадағы балалардың...</div>
@@ -24,28 +24,28 @@
     <div class="cst_pd">
         <div class="m_block mp_block">
             <div class="mp_head">
-                Балабақшадағы балалардың психологиясы бойынша кеңестер
+                {{$material->title}}
             </div>
             <div class="mp_info">
                 Материал туралы қысқаша түсінік
-                1.Балаларды отансүйгіштікке тәрбиелеу және қысқаша тарихына шолу жасай келе, болашақта Қазақстанды өркендетуге білімді жастар керек екендігін түсіндіру. 2.Топпен жұмыс істеу, ой қозғау, сипаттау, баяндау дағдыларын дамыту. 3.Ана тілін, отанын сүюге, елін, жерін қорғауға, қастерлеуге тәрбиелеу. Көрнекілік: Қ.Р рәміздері, Қ.Р конституциясы, компьютерлік слайдтар, қанатты сөздер.
+                {{$material->description}}
             </div>
             <div class="m_footer mp_footer">
                 <div class="m_item">
                     <img src="{{asset('images/profile-circle2.svg')}}">
-                    <span id="name">Сембиев Нартай</span>
+                    <span id="name">{{$material->user->full_name}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/calendar2.svg')}}">
-                    <span id="date">04.12.2021</span>
+                    <span id="date">{{$material->created_at}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/eye2.svg')}}">
-                    <span id="views">200</span>
+                    <span id="views">{{$material->view}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/receive2.svg')}}">
-                    <span id="downloads">96</span>
+                    <span id="downloads">{{$material->download}}</span>
                 </div>
             </div>
             <div class="mp_sert">
