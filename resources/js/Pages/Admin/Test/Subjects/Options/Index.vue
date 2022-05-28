@@ -103,12 +103,25 @@
                                                 <Link
                                                     :href="
                                                         route(
+                                                            'admin.test.subjectOptionQuestions.index',
+                                                           {subject: subject.id, option: optionItem.id}
+                                                        )
+                                                    "
+                                                    class="btn btn-success"
+                                                    title="Изменить"
+                                                >
+                                                    <i class="fas fa-question"></i>
+                                                </Link>
+
+                                                <Link
+                                                    :href="
+                                                        route(
                                                             'admin.test.subjectOptions.edit',
                                                            {subject: subject.id, option: optionItem.id}
                                                         )
                                                     "
                                                     class="btn btn-primary"
-                                                    title="Изменить"
+                                                    title="Сұрақтар"
                                                 >
                                                     <i class="fas fa-edit"></i>
                                                 </Link>

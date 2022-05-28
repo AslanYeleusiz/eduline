@@ -22,7 +22,8 @@ class TestQuestionController extends Controller
         ->latest()
         ->paginate($request->input('per_page', 20))
         ->appends($request->except('page'));
-        return Inertia::render('Admin/Test/Questions/Index', compact('questions'));
+        $subjects = TestSubject::orderBy('name')->get();
+        return Inertia::render('Admin/Test/Questions/Index', compact('questions', 'subjects'));
     }
 
     public function edit(TestQuestion $question)

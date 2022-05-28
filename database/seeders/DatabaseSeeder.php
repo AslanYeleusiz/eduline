@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             SubscriptionsSeeder::class,
             PersonalAdviceSeeder::class,
             TestLanguagesSeeder::class,
+            TestDirectionsSeeder::class,
+            TestSubjectsSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
     }

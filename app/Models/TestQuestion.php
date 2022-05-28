@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class TestQuestion extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+
+    public function scopeSubjectBy($query, $subjectId)
+    {
+        return $query->where('subject_id', $subjectId);
+    }
 
     public function subject()
     {

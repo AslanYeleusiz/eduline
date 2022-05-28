@@ -253,7 +253,7 @@ export default {
         return {
             question: {
                 text: null,
-                subject_id: route().params.text ?? null,
+                subject_id: route().params.subject_id ?? null,
                 answers: [
                     {
                         number: 1,

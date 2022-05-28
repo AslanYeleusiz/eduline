@@ -3,6 +3,7 @@
 use App\Models\Material;
 use App\Models\News;
 use App\Models\Role;
+use App\Models\TestSubjectOption;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Faker\Generator;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
+    $option = TestSubjectOption::with('questions')->get();
+    dd($option);
     $user = User::with('subscription')->first();
     dd($user->subscription, $user,'user');
     // dd('ok');
