@@ -1,18 +1,6 @@
-@extends('pages.layouts.main')
+@extends('layouts.main')
 @section('title', 'Eduline.kz')
 @section('content')
-    <style>
-    .menuactive1 {
-        background: #3E6CED!important;
-        color: #fff!important;
-    }
-    .menuactive1 .img-svg path, .img-svg polygon {
-        stroke: #fff;
-    }
-    .my_materials {
-        margin-right: 60px;
-    }
-</style>
 <div class="m_href">
     <div class="cst_pd">
         <div class="m_center">
@@ -36,9 +24,9 @@
     </div>
 </div>
 
-<section class="materials">
-    <div class="cst_pd">
-        
-    </div>
-</section>
+    <section class="welcome">
+        <div class="container">
+            {{__('site.Продукты')}}
+        </div>
+    </section>
 @endsection

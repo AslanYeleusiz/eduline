@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('test_subject_option_questions', function (Blueprint $table) {
             $table->foreignId('option_id')->constrained('test_subject_options')->cascadeOnDelete();
             $table->foreignId('question_id')->constrained('test_questions')->cascadeOnDelete();
-            $table->integer('number');
+            $table->integer('number')->default(0);
         });
     }
 

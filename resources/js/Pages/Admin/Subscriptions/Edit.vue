@@ -103,7 +103,7 @@
                             </div>
                             <validation-error :field="'is_discount'" />
                         </div>
-                        
+
                         <div class="form-group" v-if="subscription.is_discount">
                             <label for="">Скидка поценті</label>
                             <input
@@ -169,7 +169,7 @@ export default {
     methods: {
         submit() {
             this.$inertia.put(
-                route("admin.subscriptions.update", this.subscription.id),
+                route("admin.subscriptions.update", this.subscription),
                 this.subscription,
                 {
                     onError: () => console.log("An error has occurred"),

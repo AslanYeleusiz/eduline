@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\Test\TestLanguageController;
 use App\Http\Controllers\Admin\Test\TestQuestionController;
 use App\Http\Controllers\Admin\Test\TestSubjectController;
 use App\Http\Controllers\Admin\Test\TestSubjectOptionController;
+use App\Http\Controllers\Admin\Test\TestSubjectPreparationController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
@@ -66,11 +67,28 @@ Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commen
 Route::name('test.')->group(function () {
     Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
     Route::resource('subjects', TestSubjectController::class)->except(['show'])->names('subjects');
+    
+    // -- options//
+    // test_subject_preparation_classes delete //
+    
     Route::resource('subjects/{subject}/options', TestSubjectOptionController::class)->except(['show'])->names('subjectOptions');
     Route::get('subjects/{subject}/options/{option}/questions', [TestSubjectOptionController::class, 'questions'])->name('subjectOptionQuestions.index');
     Route::post('subjects/{subject}/options/{option}/questions', [TestSubjectOptionController::class, 'saveQuestions'])->name('subjectOptionQuestions.save');
     Route::post('subjects/{subject}/options/{option}/create-questions', [TestSubjectOptionController::class, 'createQuestions'])->name('subjectOptionQuestions.create');
+    Route::post('subjects/{subject}/options/{option}/questions-numbers', [TestSubjectOptionController::class, 'saveQuestionsNumbers'])->name('subjectOptionQuestions.saveNumbers');
     Route::delete('subjects/{subject}/options/{option}/questions/{question}', [TestSubjectOptionController::class, 'deleteQuestions'])->name('subjectOptionQuestions.delete');
+    
+    // -- preparation //
+    
+    Route::resource('subjects/{subject}/preparations', TestSubjectPreparationController::class)->except(['show'])->names('subjectPreparations');
+    Route::get('subjects/{subject}/preparations/{preparation}/questions', [TestSubjectPreparationController::class, 'questions'])->name('subjectPreparationQuestions.index');
+    Route::post('subjects/{subject}/preparations/{preparation}/questions', [TestSubjectPreparationController::class, 'saveQuestions'])->name('subjectPreparationQuestions.save');
+    Route::post('subjects/{subject}/preparations/{preparation}/create-questions', [TestSubjectPreparationController::class, 'createQuestions'])->name('subjectPreparationQuestions.create');
+    Route::post('subjects/{subject}/preparations/{preparation}/questions-numbers', [TestSubjectPreparationController::class, 'saveQuestionsNumbers'])->name('subjectPreparationQuestions.saveNumbers');
+    Route::delete('subjects/{subject}/preparations/{preparation}/questions/{question}', [TestSubjectPreparationController::class, 'deleteQuestions'])->name('subjectPreparationQuestions.delete');
+    
+    // -- end -- //
+    
     Route::resource('directions', TestDirectionController::class)->except(['show'])->names('directions');
     Route::resource('questions', TestQuestionController::class)->except(['show'])->names('questions');
     Route::resource('classes', TestClassController::class)->except(['show'])->names('classes');

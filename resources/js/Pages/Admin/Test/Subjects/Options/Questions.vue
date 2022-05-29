@@ -38,7 +38,7 @@
             <div class="buttons">
                 <button
                     type="button"
-                    class="btn btn-default btn-success"
+                    class="btn btn-success btn-success"
                     data-toggle="modal"
                     data-target="#modal-question-create"
                 >
@@ -121,8 +121,13 @@
                                         <td>
                                             <div class="btn-group btn-group-sm">
                                                 <button
-                                                v-if="index != 0"
-                                                @click="changePosition(optionQuestion.id, 'top')"
+                                                    v-if="index != 0"
+                                                    @click="
+                                                        changePosition(
+                                                            optionQuestion.id,
+                                                            'top'
+                                                        )
+                                                    "
                                                     class="btn btn-success"
                                                     title="Изменить"
                                                 >
@@ -132,13 +137,24 @@
                                                 </button>
 
                                                 <button
-                                                
-                                                v-if="index !== (option.questions.length - 1)"
-                                                    @click="changePosition(optionQuestion.id, 'top')"
+                                                    v-if="
+                                                        index !==
+                                                        option.questions
+                                                            .length -
+                                                            1
+                                                    "
+                                                    @click="
+                                                        changePosition(
+                                                            optionQuestion.id,
+                                                            'top'
+                                                        )
+                                                    "
                                                     class="btn btn-primary"
                                                     title="Сұрақтар"
                                                 >
-                                                    <i class="fas fa-long-arrow-alt-down" ></i>
+                                                    <i
+                                                        class="fas fa-long-arrow-alt-down"
+                                                    ></i>
                                                 </button>
 
                                                 <button
@@ -158,12 +174,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                             <div class="buttons">
+                            <div class="buttons">
                                 <button
                                     class="btn btn-success"
-                                    @click="savePosition()"
+                                    @click="saveOptionQuestionPositions()"
                                 >
-                                    Сақтау
+                                    Ретін сақтау 
                                 </button>
                             </div>
                         </div>
@@ -515,6 +531,7 @@ export default {
                 text: "",
                 is_active: null,
             },
+
             question: {
                 text: null,
                 answers: [
@@ -556,24 +573,37 @@ export default {
         };
     },
     methods: {
-        savePosition() {
-            
+        saveOptionQuestionPositions() {
+            let questions = [];
+            for (const [key, value] of Object.entries(this.option.questions)) {
+                questions.push({ number: parseInt(key) + 1, id: value.id });
+            }
+            let data = {
+                questions: questions
+            }
+            this.$inertia.post(
+                route("admin.test.subjectOptionQuestions.saveNumbers", {
+                    subject: this.subject.id,
+                    option: this.option.id,
+                }),
+                data,   
+                {
+                    onError: () => {},
+                    onSuccess: () => {},
+                }
+            );
+
         },
-        changePosition(id, position = 'top') {
-                    
-        const fromIndex = this.option.questions.findIndex(i => i.id == id); 
-        // 👉️ 0
-        // if(fromIndex > 0 && fromIndex < this.option.questions.length) {
-        //     return null
-        // }
-        const toIndex = position == 'top' ? fromIndex - 1 : fromIndex  + 1;
+        changePosition(id, position = "top") {
+            const fromIndex = this.option.questions.findIndex(
+                (i) => i.id == id
+            );
+            const toIndex = position == "top" ? fromIndex - 1 : fromIndex + 1;
 
-        const element = this.option.questions.splice(fromIndex, 1)[0];
-        console.log(element)
-        // console.log(element); // ['css']
+            const element = this.option.questions.splice(fromIndex, 1)[0];
+            console.log(element);
 
-        this.option.questions.splice(toIndex, 0, element);
-
+            this.option.questions.splice(toIndex, 0, element);
         },
         deleteAnswer(number) {
             if (this.correct_answer_number == number) {
@@ -642,40 +672,43 @@ export default {
                     onError: () => {},
                     onSuccess: () => {
                         $(".modal").modal("hide");
-                        this.question = {
-                            text: null,
-                            answers: [
-                                {
-                                    number: 1,
-                                    text: "",
-                                    is_correct: false,
-                                },
-                                {
-                                    number: 2,
-                                    text: "",
-                                    is_correct: false,
-                                },
-                                {
-                                    number: 3,
-                                    text: "",
-                                    is_correct: false,
-                                },
-                                {
-                                    number: 4,
-                                    text: "",
-                                    is_correct: false,
-                                },
-                                {
-                                    number: 5,
-                                    text: "",
-                                    is_correct: false,
-                                },
-                            ],
-                            is_active: false,
-                        };
+                        this.clearQuestion();
                     },
                 }
             );
+        },
+        clearQuestion() {
+            this.question = {
+                text: null,
+                answers: [
+                    {
+                        number: 1,
+                        text: "",
+                        is_correct: false,
+                    },
+                    {
+                        number: 2,
+                        text: "",
+                        is_correct: false,
+                    },
+                    {
+                        number: 3,
+                        text: "",
+                        is_correct: false,
+                    },
+                    {
+                        number: 4,
+                        text: "",
+                        is_correct: false,
+                    },
+                    {
+                        number: 5,
+                        text: "",
+                        is_correct: false,
+                    },
+                ],
+                is_active: false,
+            };
         },
         deleteQuestion(id) {
             console.log("id", id);

@@ -25,6 +25,7 @@ class PersonalAdvice extends Model
     }
 
     protected $casts = [
+        // 'id' => 'integer',
         'title' => 'json',
         'description' => 'json',
         'is_discount' => 'boolean',

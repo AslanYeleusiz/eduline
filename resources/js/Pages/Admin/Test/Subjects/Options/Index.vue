@@ -98,8 +98,6 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                
-
                                                 <Link
                                                     :href="
                                                         route(
@@ -108,7 +106,7 @@
                                                         )
                                                     "
                                                     class="btn btn-success"
-                                                    title="Изменить"
+                                                    title="Сұрақтар"
                                                 >
                                                     <i class="fas fa-question"></i>
                                                 </Link>

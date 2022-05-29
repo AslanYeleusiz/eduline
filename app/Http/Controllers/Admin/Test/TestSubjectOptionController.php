@@ -24,7 +24,8 @@ class TestSubjectOptionController extends Controller
 
         $subject = TestSubject::findOrFail($id);
         $options = TestSubjectOption::when($name, fn ($query) => $query->where('name', 'like', "%$name%"))
-            // ->when($questionsCount, fn ($query) => $query->where('questions_count',$questionsCount))
+            ->subjectBy($subject->id)    
+        // ->when($questionsCount, fn ($query) => $query->where('questions_count',$questionsCount))
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
         return Inertia::render(
@@ -118,6 +119,19 @@ class TestSubjectOptionController extends Controller
         ->firtOrFail();
         $optionQuestion->delete();
         return redirect()->back()->withSuccess('Успешно удалено');
+    }
+
+    public function saveQuestionsNumbers($subjectId, $optionId, Request $request)
+    {
+        $subject = TestSubject::findOrFail($subjectId);
+        $option = TestSubjectOption::subjectBy($subject->id)->findOrFail($optionId);
+        $questions = $request->questions;
+        foreach($questions as $question) {
+            $option->questions()->updateExistingPivot($question['id'], [
+                    'number' => $question['number'],
+                ]);
+        }     
+        return redirect()->back()->withSuccess('Успешно обнавлено');
     }
     public function update($subjectId, $optionId, TestSubjectOptionSaveRequest $request)
     {

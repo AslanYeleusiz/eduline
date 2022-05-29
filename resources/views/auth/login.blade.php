@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                 @endif
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('adminLoginForm') }}">
                         @csrf
                         @error('login')
                         <span class="invalid-feedback text-center  mb-2" role="alert">
