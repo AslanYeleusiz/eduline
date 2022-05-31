@@ -3,7 +3,6 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MaterialController;
@@ -31,9 +30,18 @@ Route::view('/calculator', 'pages.calculator')->name('calculator');
 
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator');
 
+
+
+
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
 
 Route::get('/consultation/{id?}', [MainController::class, 'consultation'], ['id' => 'id'])->name('consultation');
+
+Route::post('/consultation/{id?}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone']);
+
+
+
+
 
 Route::get('/materials', function () { return view('pages.materials.material');});
 Route::get('/materials/my-materials', function () { return view('pages.materials.mymaterial');});

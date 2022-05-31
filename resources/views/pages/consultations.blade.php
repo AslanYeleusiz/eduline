@@ -10,7 +10,10 @@
             @lang('site.Құрметті әріптестер, Қазақстанның ең үздік тренерлерінен жеке кеңес алыңыз')
         </div>
 
-        <?php foreach ($consultations as $key => $value) { ?>
+        <?php 
+        if(count($consultations) != 0)
+        {
+        foreach ($consultations as $key => $value) { ?>
             <div class="kp_block">
                 <div class="kp_b_info">
                     <span>
@@ -26,6 +29,15 @@
                         @lang('site.Толығырақ')
                         <img src="{{asset('images/arrow-right.png')}}">
                     </a>
+                </div>
+            </div>
+        <?php } 
+        } else { ?>
+            <div class="kp_block">
+                <div class="kp_b_info">
+                    <span>
+                        <span class="kp_b_head">@lang('site.Әзірше жеке кеңес сайтқа енгізілмеді.')</span><br>
+                    </span>
                 </div>
             </div>
         <?php } ?>
