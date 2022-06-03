@@ -15,9 +15,7 @@
                         <div class="inner-form-left">
                             <div class="form-input-block">
                                 <label class="modal-form-label" for="register-phone">Телефон:</label>
-                                <input id="register-phone" name="phone"
-                                       class="modal-form-input phone" type="tel"
-                                       placeholder="+7 (7__) ___-__-__">
+                                <input id="register-phone" name="phone" class="modal-form-input phone phone_mask" type="tel" placeholder="+7 (___) ___-__-__">
                                 <span class="invalid" role="alert" id="error-register-phone"></span>
                             </div>
                             <div class="form-input-block">
