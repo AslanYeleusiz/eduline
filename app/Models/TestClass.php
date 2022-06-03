@@ -10,4 +10,12 @@ class TestClass extends Model
     use HasFactory;
 
     protected  $fillable = ['name'];
+
+    public function preparations()
+    {
+        return $this->hasMany(TestSubjectPreparationClass::class, 'class_id');
+    }
+    
+
+
 }

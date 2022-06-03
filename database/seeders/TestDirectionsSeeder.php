@@ -16,7 +16,6 @@ class TestDirectionsSeeder extends Seeder
     public function run()
     {
         $data = [
-
             'Мектепке дейінгі білім беру',
             'Қосымша білім беру',
             'Жалпы орта білім беру',

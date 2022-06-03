@@ -98,7 +98,18 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                
+                                                <Link
+                                                    :href="
+                                                        route(
+                                                            'admin.test.subjectOptionQuestions.index',
+                                                           {subject: subject.id, option: optionItem.id}
+                                                        )
+                                                    "
+                                                    class="btn btn-success"
+                                                    title="Сұрақтар"
+                                                >
+                                                    <i class="fas fa-question"></i>
+                                                </Link>
 
                                                 <Link
                                                     :href="
@@ -108,7 +119,7 @@
                                                         )
                                                     "
                                                     class="btn btn-primary"
-                                                    title="Изменить"
+                                                    title="Сұрақтар"
                                                 >
                                                     <i class="fas fa-edit"></i>
                                                 </Link>

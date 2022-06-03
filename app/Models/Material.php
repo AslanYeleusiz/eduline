@@ -9,7 +9,8 @@ class Material extends Model
 {
     use HasFactory;
     const FILE_PATH = 'files/materials/';
-    
+    const CERTIFICATE_PATH = 'images/certificates/';
+
     const STATUS_DELETED_CREATED = 1;
     const STATUS_DELETED_REJECTED = 2;
     const STATUS_DELETED_ACCEPT = 3;

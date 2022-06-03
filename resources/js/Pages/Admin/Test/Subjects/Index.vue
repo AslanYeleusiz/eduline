@@ -163,6 +163,19 @@
                                                     ></i>
                                                 </Link>
 
+                                                 <Link
+                                                :href="
+                                                        route(
+                                                            'admin.test.subjectPreparations.index',
+                                                            subject
+                                                        )
+                                                    "
+                                                    class="btn btn-success"
+                                                    title="Дайындық"
+                                                >
+                                   <i class="fas fa-book-reader"></i>
+                                                </Link>
+
                                                 <Link
                                                     :href="
                                                         route(

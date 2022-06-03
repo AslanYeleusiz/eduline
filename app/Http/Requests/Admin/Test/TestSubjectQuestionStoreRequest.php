@@ -4,9 +4,8 @@ namespace App\Http\Requests\Admin\Test;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TestQuestionSaveRequest extends FormRequest
+class TestSubjectQuestionStoreRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,9 +15,8 @@ class TestQuestionSaveRequest extends FormRequest
     {
         return [
             'text' => 'required',
-            'subject_id' => 'required',
             'correct_answer_number' => 'required',
-            'answers' => 'required',
+            'answers' => 'required|array',
             'answers.*.text' => 'required',
         ];
     }

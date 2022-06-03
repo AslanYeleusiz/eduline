@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active">
-                     {{ subject.name }} - Нұсқаны өзгерту №{{subject.id}}
+                     {{ subject.name }} - Нұсқаны өзгерту №{{option.id}}
                         </li>
                     </ol>
                 </div>
