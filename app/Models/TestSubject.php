@@ -21,6 +21,10 @@ class TestSubject extends Model
         return $this->hasMany(TestQuestion::class, 'subject_id');
     }
 
+    public function preparationChilds()
+    {
+        return $this->hasMany(TestSubjectPreparation::class, 'subject_id')->whereNotNull('parent_id');
+    }
     protected $casts = [
         'is_pedagogy' => 'boolean'
     ];

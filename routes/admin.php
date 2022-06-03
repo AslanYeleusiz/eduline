@@ -81,11 +81,6 @@ Route::name('test.')->group(function () {
     // -- preparation //
     
     Route::resource('subjects/{subject}/preparations', TestSubjectPreparationController::class)->except(['show'])->names('subjectPreparations');
-    Route::get('subjects/{subject}/preparations/{preparation}/questions', [TestSubjectPreparationController::class, 'questions'])->name('subjectPreparationQuestions.index');
-    Route::post('subjects/{subject}/preparations/{preparation}/questions', [TestSubjectPreparationController::class, 'saveQuestions'])->name('subjectPreparationQuestions.save');
-    Route::post('subjects/{subject}/preparations/{preparation}/create-questions', [TestSubjectPreparationController::class, 'createQuestions'])->name('subjectPreparationQuestions.create');
-    Route::post('subjects/{subject}/preparations/{preparation}/questions-numbers', [TestSubjectPreparationController::class, 'saveQuestionsNumbers'])->name('subjectPreparationQuestions.saveNumbers');
-    Route::delete('subjects/{subject}/preparations/{preparation}/questions/{question}', [TestSubjectPreparationController::class, 'deleteQuestions'])->name('subjectPreparationQuestions.delete');
     
     // -- end -- //
     

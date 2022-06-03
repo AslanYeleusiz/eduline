@@ -43,10 +43,9 @@ Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name(
 
 Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->name('materials.download');
 
-// Route::get('/materials/{}/certificate',            [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('get_certificate');
-// Route::get('/thank-letter/{id}',           [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('get_certificate_thank_letter');
-// Route::get('/certificate-honor/{id}',      [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('get_certificate_honor');
-// Route::post('/certificate',                [MaterialControllerdonwload::class, 'updateCertificate'])->name('update_certificate');
+Route::get('materials/{id}/certificate',            [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('materials.getCertificate');
+Route::get('materials/{id}/thank-letter',           [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('materials.getCertificateThank_letter');
+Route::get('materials/{id}/certificate-honor',      [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('materials.getCertificateHonor');
 
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
 

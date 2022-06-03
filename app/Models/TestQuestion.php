@@ -20,6 +20,12 @@ class TestQuestion extends Model
         return $this->belongsTo(TestSubject::class, 'subject_id');
     }
 
+    public function preparations()
+    {
+        return $this->belongsToMany(TestSubjectPreparation::class,
+         TestSubjectPreparationQuestion::class, 'question_id', 'preparation_id');
+    }
+
     protected $casts = [
         'answers' => 'json',
         'is_active' => 'boolean'

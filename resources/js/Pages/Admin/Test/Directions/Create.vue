@@ -194,6 +194,6 @@ li {
     list-style: none;
 }
 ul {
-    padding-left: 20px !importantx;
+    padding-left: 20px !important;
 }
 </style>

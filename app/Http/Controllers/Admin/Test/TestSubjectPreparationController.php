@@ -41,118 +41,41 @@ class TestSubjectPreparationController extends Controller
     {
         $subject = TestSubject::findOrFail($subjectId);
         $preparation = TestSubjectPreparation::subjectBy($subject->id)
+        ->with('classItems')
         ->findOrFail($preparationId);
         $parentPreparations = TestSubjectPreparation::subjectBy($subject->id)
         ->isParent()
         ->get();
+        $classItems = TestClass::orderBy('name')->get(); 
+        $class_ids = $preparation->classItems->pluck('id')->toArray();
         return Inertia::render('Admin/Test/Subjects/Preparations/Edit', compact('subject', 
-        'preparation', 'parentPreparations'));
-    }
-
-    public function questions($subjectId, $optionId)
-    {
-        $subject = TestSubject::findOrFail($subjectId);
-        $option = TestSubjectOption::subjectBy($subject->id)
-        ->with('questions', fn($query) => $query->orderByPivot('number'))
-        ->findOrFail($optionId);
-
-        $options = TestSubjectOption::get();
-
-        $questions = TestQuestion::subjectBy($subject->id)->orderBy('text')->get();
-        $option_question_ids = $option->questions->pluck('id')->toArray();
-        return Inertia::render('Admin/Test/Subjects/Preparations/Questions',
-         compact('subject', 'option', 'questions', 'option_question_ids'));
-    }
-
-    // public function saveQuestions($subjectId, $optionId, Request $request)
-    public function saveClassPreparations($subjectId, $classId, Request $request)
-    {
-        $subject = TestSubject::findOrFail($subjectId);
-        $classItem = TestClass::with('preparations' => fn($query) => $query->where('subject_id', $subject->id))
-        ->findOrFail($classId);
-        $preparationIds = $request->input('preparation_ids', []);
-        if (empty($questionIds)) {
-            $classItem->preparations()->where('subject_id', $subject->id)->sync([]);
-        } else {
-            $optionQuestionIds = $classItem->preparations->pluck('id')->toArray();
-            $countOptionQuestionIds = count($optionQuestionIds);
-            $isNotquestionIds = array_diff($questionIds, $optionQuestionIds);
-            $isNotOptionQuestionIds = array_diff($optionQuestionIds, $questionIds);
-            DB::beginTransaction();
-            $option->questions()->detach($isNotOptionQuestionIds);
-            $numbers = [];
-            for($i = 0; $i < count($isNotquestionIds); $i++) {
-                    array_push($numbers,[
-                        'number' => ++$countOptionQuestionIds
-                    ]);
-            }
-            $isNotquestionIds = array_combine($isNotquestionIds, $numbers);
-            $option->questions()->attach($isNotquestionIds);
-            DB::commit();
-        }
-        return redirect()->back()->withSuccess('Успешно сохранено');
-    }
-
-    public function createQuestions($subjectId, $optionId, TestSubjectQuestionStoreRequest $request)
-    {
-        $subject = TestSubject::findOrFail($subjectId);
-        $option = TestSubjectOption::subjectBy($subject->id)->with('questions')->findOrFail($optionId);
-        $answers = array_map(function ($answer) use ($request) {
-            return [
-                'number' => $answer['number'],
-                'text' => $answer['text'],
-                'is_correct' => $answer['number'] == $request->correct_answer_number
-            ];
-        }, $request->answers);
-        DB::beginTransaction();
-        $question = new TestQuestion();
-        $question->text = $request->text;
-        $question->answers = $answers;
-        $question->subject_id = $subject->id;
-        $question->is_active = $request->is_active == 'true';
-        $question->save();
-        $option->questions()->attach([$question->id => [
-            'number' => $option->questions->count() + 1 
-        ]]);
-        DB::commit();
-        return redirect()->back()->withSuccess('Успешно добавлено');
-    }
-
-    public function deleteQuestions($subjectId, $optionId, $questionId)
-    {
-        $subject = TestSubject::findOrFail($subjectId);
-        $option = TestSubjectOption::subjectBy($subject->id)->findOrFail($optionId);
-
-        $optionQuestion = TestSubjectOptionQuestion::where('option_id', $option->id)
-        ->where('id', $questionId)
-        ->firtOrFail();
-        $optionQuestion->delete();
-        return redirect()->back()->withSuccess('Успешно удалено');
-    }
-
-    public function saveQuestionsNumbers($subjectId, $optionId, Request $request)
-    {
-        $subject = TestSubject::findOrFail($subjectId);
-        $option = TestSubjectOption::subjectBy($subject->id)->findOrFail($optionId);
-        $questions = $request->questions;
-        foreach($questions as $question) {
-            $option->questions()->updateExistingPivot($question['id'], [
-                    'number' => $question['number'],
-                ]);
-        }     
-        return redirect()->back()->withSuccess('Успешно обнавлено');
+        'preparation', 'parentPreparations', 'classItems', 'class_ids'));
     }
     public function update($subjectId, $preparationId, TestSubjectPreparationSaveRequest $request)
     {
         $subject = TestSubject::findOrFail($subjectId);
+        $classIds = $request->class_ids;
+        $subjectId = [];
+        for($i = 0; $i < count($classIds); $i++) {
+            
+                array_push($subjectId,[
+                    'subject_id' => $subject->id
+                ]);
+        }
+        $classIds = array_combine($classIds, $subjectId);
         $preparation = TestSubjectPreparation::subjectBy($subject->id)->findOrFail($preparationId);
+        DB::beginTransaction();
         $preparation->title = $request->title;
         $preparation->description = $request->description;
         $preparation->video_link = $request->video_link;
         $preparation->subject_id = $subject->id;
         $preparation->parent_id = $request->parent_id;
         $preparation->save();
-        return redirect()->route('admin.test.subjectPreparations.index', $subject->id)->withSuccess('Успешно сохранено');
+        $preparation->classItems()->sync($classIds);
+
+        DB::commit();
+        return redirect()->back()->withSuccess('Успешно сохранено');
+        // return redirect()->route('admin.test.subjectPreparations.index', $subject->id)->withSuccess('Успешно сохранено');
     }
 
     public function create($subjectId)
@@ -161,20 +84,37 @@ class TestSubjectPreparationController extends Controller
         $parentPreparations = TestSubjectPreparation::subjectBy($subject->id)
         ->isParent()
         ->get();
-        return Inertia::render('Admin/Test/Subjects/Preparations/Create', compact('subject', 'parentPreparations'));
+        $classItems = TestClass::orderBy('name')->get(); 
+        return Inertia::render('Admin/Test/Subjects/Preparations/Create', compact('subject', 'parentPreparations', 'classItems'));
     }
 
     public function store($subjectId, TestSubjectPreparationSaveRequest $request)
     {
         $subject = TestSubject::findOrFail($subjectId);
+
+        $classIds = $request->class_ids;
+        $subjectId = [];
+        for($i = 0; $i < count($classIds); $i++) {
+            
+                array_push($subjectId,[
+                    'subject_id' => $subject->id
+                ]);
+        }
+        $classIds = array_combine($classIds, $subjectId);
+
+        DB::beginTransaction();
         $preparation = new TestSubjectPreparation();
 
+        
         $preparation->title = $request->title;
         $preparation->description = $request->description;
         $preparation->video_link = $request->video_link;
         $preparation->subject_id = $subject->id;
         $preparation->parent_id = $request->parent_id;
         $preparation->save();
+        $preparation->classItems()->sync($classIds);
+        DB::commit();
+        
         return redirect()->route('admin.test.subjectPreparations.index', $subject->id)->withSuccess('Успешно добавлено');
     }
 

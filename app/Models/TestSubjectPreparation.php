@@ -14,6 +14,11 @@ class TestSubjectPreparation extends Model
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    public function classItems()
+    {
+        return $this->belongsToMany(TestClass::class,TestSubjectPreparationClass::class, 'preparation_id', 'class_id');
+    }
+
     public function scopeSubjectBy($query, $subjectId)
     {
         return $query->where('subject_id', $subjectId);
@@ -23,4 +28,6 @@ class TestSubjectPreparation extends Model
     {
         return $query->whereNull('parent_id');
     }
+
+
 }

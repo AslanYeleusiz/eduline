@@ -10,6 +10,8 @@ use App\Http\Resources\V1\MessageResource;
 use App\Models\Material;
 use App\Models\SendingMaterialJournal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MaterialController extends Controller
 {
@@ -57,5 +59,32 @@ class MaterialController extends Controller
         ]);
         return new MessageResource(__('message.success.saved'));
 
+    }
+
+    public function download($id)
+    {
+        $material = Material::findOrFail($id);
+        return response()->download(Storage::disk('public')->path(Material::FILE_PATH . '/1654222118.docx'));
+        if(empty($material->created_at)) {
+            throw new NotFoundHttpException(__('errors.not_found'));
+        }
+    }
+
+    public function getCertificate($id)
+    {
+        $material = Material::findOrFail($id);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'certificate.jpg'));
+    }
+    
+    public function getCertificateThankLetter($id)
+    {
+        $material = Material::findOrFail($id);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'thank-letter.jpg'));
+    }
+    
+    public function getCertificateHonor($id)
+    {
+        $material = Material::findOrFail($id);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'honor.jpg'));
     }
 }
