@@ -8,6 +8,7 @@ use ErrorException;
 use Illuminate\Http\Request;
 use App\Models\SmsVerification;
 use App\Models\PersonalAdvice;
+use App\Models\PersonalAdviceOrder;
 use App\Services\V1\SmsService;
 
 class MainController extends Controller
@@ -51,6 +52,8 @@ class MainController extends Controller
             $phone = str_replace($array, "", $phone);
             $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
             $this->smsService->send($msg, $phone);
+
+            return redirect()->route('attestation')->withSuccess(__('site.SMS жіберілді'));
         }
         return view('pages.attestation');
     }
@@ -62,20 +65,39 @@ class MainController extends Controller
             $array = ["+","-"," ","(", ")"];
             $phone = str_replace($array, "", $phone);
             $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
-            $this->smsService->send($msg, $phone);
+            if($this->smsService->send($msg, $phone))
+                return redirect()->route('calculator')->withSuccess(__('site.SMS жіберілді'));
+            else 
+                return redirect()->route('calculator')->withErrors(__('site.Қате! SMS жіберілмеді.'));
         }
-        return view('pages.calculator');
+        else
+            return view('pages.calculator');
     }
 
     public function consultations()
     {
-        $consultations = PersonalAdvice::all();
+        $consultations = PersonalAdvice::where('is_active', true)->get();
         return view('pages.consultations', ['consultations' => $consultations]);
     }    
 
-    public function consultation($id=1)
+    public function consultation($id)
     {
-        $consultation = PersonalAdvice::where('id',$id)->firstOrFail();
+        $consultation = PersonalAdvice::where('id',$id)->where('is_active',true)->firstOrFail();
         return view('pages.consultation', ['consultation' => $consultation]);
+    }
+
+    public function send(Request $request)
+    {
+        $id = $request->id;
+        $name = $request->name;
+        $phone = $request->phone;
+
+        PersonalAdviceOrder::create([
+            'personal_advice_id' => $id,
+            'full_name' => $name,
+            'phone' => $phone,
+        ]);
+
+        return redirect()->route('consultation', ['id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
     }
 }

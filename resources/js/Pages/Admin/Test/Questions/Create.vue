@@ -66,6 +66,25 @@
                                         />
                                     </td>
                                 </tr>
+                                 <tr class="odd even">
+                                    <td><b>Тақырыпша</b></td>
+                                    <td>
+                                        <Multiselect
+                                            v-model="preparationIds"
+                                            track-by="title"
+                                            mode="tags"
+                                            :close-on-select="false"
+                                            :searchable="true"
+                                            :create-option="true"
+                                            label="title"
+                                            valueProp="id"
+                                            :options="preparations"
+                                        />
+                                        <validation-error
+                                            :field="'preparation_id'"
+                                        />
+                                    </td>
+                                </tr>
                                 <tr class="odd even">
                                     <td><b>Сұрақ</b> <i class="red">*</i></td>
                                     <td id="question">
@@ -239,6 +258,7 @@ import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../../Components/Pagination.vue";
 import ValidationError from "../../../../Components/ValidationError.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import Multiselect from "@vueform/multiselect";
 
 export default {
     components: {
@@ -247,13 +267,15 @@ export default {
         Pagination,
         ValidationError,
         Head,
+        Multiselect,
+
     },
     props: ["subjects"],
     data() {
         return {
             question: {
                 text: null,
-                subject_id: route().params.text ?? null,
+                subject_id: route().params.subject_id ?? null,
                 answers: [
                     {
                         number: 1,
@@ -289,6 +311,8 @@ export default {
             editorConfig: {
                 // The configuration of the editor.
             },
+            preparationIds: null,
+
         };
     },
     methods: {
@@ -342,6 +366,7 @@ export default {
                     showCancelButton: false,
                 });
             }
+            this.question.preparation_ids = this.preparationIds
             this.$inertia.post(
                 route("admin.test.questions.store"),
                 this.question,
@@ -353,6 +378,17 @@ export default {
             );
         },
     },
+    computed: {
+        preparations() {
+            if (!this.question.subject_id) {
+                return []
+            }
+            let subject = this.subjects
+                .filter((item) => item.id == this.question.subject_id)
+                .shift();
+            return subject.preparation_childs ?? [];
+        },
+    }
 };
 </script>
 <style scoped>
@@ -366,3 +402,4 @@ p {
     height: 25px;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>

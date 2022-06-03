@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-     dd('api v1');
      return 'asdsd';
 });
 
@@ -65,6 +64,12 @@ Route::middleware('auth:api')->group(function () {
      Route::post('materials/{id}/comment', [MaterialController::class, 'materialCommentSave'])->name('materials.commentSave');
 
 });
+
+Route::get('materials/{id}/download',            [MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('materials.download');
+Route::get('materials/{id}/certificate',         [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('materials.getCertificate');
+Route::get('materials/{id}/thank-letter',        [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('materials.getCertificateThankLetter');
+Route::get('materials/{id}/certificate-honor',   [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('materials.getCertificateHonor');
+
 Route::apiResource('materials',  MaterialController::class)->names('materials.')->only(['index', 'show']);
 
 Route::middleware('guest')->group(function () {

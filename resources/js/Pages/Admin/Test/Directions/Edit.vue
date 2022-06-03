@@ -88,7 +88,7 @@
                                 >
                                     <input
                                         :id="'subject' + subject.name"
-                                        v-model="subject_ids"
+                                        v-model="subjectIds"
                                         type="checkbox"
                                         :value="subject.id"
                                     />
@@ -157,11 +157,12 @@ export default {
         return {
             subject_search: "",
             selectAllSubjects: false,
+            subjectIds: []
         };
     },
     methods: {
         submit() {
-            this.direction.subject_ids = this.subject_ids
+            this.direction.subject_ids = this.subjectIds
             this.$inertia.put(
                 route("admin.test.directions.update", this.direction.id),
                 this.direction,
@@ -177,13 +178,16 @@ export default {
         selectAllSubjects: {
             handler(val, oldVal) {
                 if (val) {
-                    this.subject_ids = this.subjects.map((item) => item.id);
+                    this.subjectIds = this.subjects.map((item) => item.id);
                 } else {
-                    this.subject_ids = [];
+                    this.subjectIds = [];
                 }
             },
         },
     },
+    created() {
+        this.subjectIds = this.clone(this.subject_ids)
+    }
 };
 </script>
 <style scoped>
@@ -191,6 +195,6 @@ li {
     list-style: none;
 }
 ul {
-    padding-left: 20px !importantx;
+    padding-left: 20px !important;
 }
 </style>

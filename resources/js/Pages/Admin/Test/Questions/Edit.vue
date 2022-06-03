@@ -69,6 +69,25 @@
                                     </td>
                                 </tr>
                                 <tr class="odd even">
+                                    <td><b>Тақырыпша</b></td>
+                                    <td>
+                                        <Multiselect
+                                            v-model="preparationIds"
+                                            track-by="title"
+                                            mode="tags"
+                                            :close-on-select="false"
+                                            :searchable="true"
+                                            :create-option="true"
+                                            label="title"
+                                            valueProp="id"
+                                            :options="preparations"
+                                        />
+                                        <validation-error
+                                            :field="'preparation_id'"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="odd even">
                                     <td><b>Сұрақ</b> <i class="red">*</i></td>
                                     <td id="question">
                                         <ckeditor
@@ -241,6 +260,8 @@ import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../../Components/Pagination.vue";
 import ValidationError from "../../../../Components/ValidationError.vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+//   import Multiselect from 'vue-multiselect'
+import Multiselect from "@vueform/multiselect";
 
 export default {
     components: {
@@ -249,9 +270,11 @@ export default {
         Pagination,
         ValidationError,
         Head,
+        Multiselect,
+        // Multiselect
     },
-    props: ["subjects", "question"],
-    
+    props: ["subjects", "question", "preparation_ids"],
+
     data() {
         return {
             editor: ClassicEditor,
@@ -260,7 +283,8 @@ export default {
             editorConfig: {
                 // The configuration of the editor.
             },
-            answers: this.$page.props.question.answers,
+            preparationIds: null,
+            answers: this.question.answers
         };
     },
     methods: {
@@ -304,6 +328,7 @@ export default {
             this.correct_answer_number = null;
         },
         submit() {
+            console.log("value", this.preparationIds);
             this.question.correct_answer_number = this.correct_answer_number;
             if (!this.question.correct_answer_number) {
                 return Swal.fire({
@@ -319,6 +344,7 @@ export default {
                 answers: this.answers,
                 correct_answer_number: this.correct_answer_number,
                 is_active: this.question.is_active,
+                preparation_ids: this.preparationIds
             };
             this.$inertia.put(
                 route("admin.test.questions.update", this.question.id),
@@ -332,17 +358,27 @@ export default {
         },
     },
     mounted() {
-        if(!this.correct_answer_number) {
-
-        this.answers = this.clone(this.question.answers);
-        let correct_answer = this.question.answers
-            .filter((item) => item.is_correct)
-            .shift();
-        if (correct_answer && correct_answer.number) {
-            this.correct_answer_number = correct_answer.number;
-        }
+        if (!this.correct_answer_number) {
+            this.answers = this.clone(this.question.answers);
+            let correct_answer = this.question.answers
+                .filter((item) => item.is_correct)
+                .shift();
+            if (correct_answer && correct_answer.number) {
+                this.correct_answer_number = correct_answer.number;
+            }
         }
     },
+    computed: {
+        preparations() {
+            let subject = this.subjects
+                .filter((item) => item.id == this.question.subject_id)
+                .shift();
+            return subject.preparation_childs ?? [];
+        },
+    },
+    created() {
+        this.preparationIds = this.preparation_ids ? this.clone(this.preparation_ids): null
+    }
 };
 </script>
 <style scoped>
@@ -356,3 +392,4 @@ p {
     height: 25px;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>

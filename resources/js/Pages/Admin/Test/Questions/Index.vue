@@ -25,7 +25,7 @@
             <div class="buttons">
                 <Link
                     class="btn btn-primary mr-2"
-                    :href="route('admin.test.questions.create')"
+                    :href="route('admin.test.questions.create', {subject_id: filter.subject_id})"
                 >
                     <i class="fa fa-plus"></i> Қосу
                 </Link>
@@ -73,8 +73,10 @@
                                                     Барлығы
                                                 </option>
                                                 <option v-for="subject in subjects"
+                                                :value="subject.id"
                                                 :key="'subject' + subject.id">
-                                                    {{ subject.name }}
+                                                    {{ subject.name }} 
+                                                    {{ subject.description ? ` (${subject.description})` : ''}}
                                                 </option>
                                             </select>
                                         </td>
@@ -112,7 +114,7 @@
                                                     : index + 1
                                             }}
                                         </td>
-                                        <td>{{ question.text }}</td>
+                                        <td v-html="question.text"></td>
                                         <td>
                                             {{ question.subject.name}}
                                         </td>
@@ -152,7 +154,7 @@
                             </table>
                         </div>
                     </div>
-                                        <Pagination :links="questions.links" />
+                    <Pagination :links="questions.links" />
 
                 </div>
             </div>
@@ -171,7 +173,7 @@ export default {
         Head,
         Pagination
     },
-    props: ["questions"],
+    props: ["questions", "subjects"],
     data() {
         return {
             filter: {

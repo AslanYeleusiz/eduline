@@ -33,7 +33,7 @@
             <div class="cst_pd">
                 <div class="k_form_head">@lang('site.Консультация бағасы') - {{$consultation->price}} ₸</div>
 
-                <form method="post" action="{{url('kenes/send')}}" class="k_form needs-validation" novalidate>
+                <form method="post" action="/consultation/{{ $consultation->id }}" class="k_form needs-validation forma-ajax" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md">
@@ -44,6 +44,7 @@
                             <input type="text" class="form-control k_cst_inp phone_mask" placeholder="+7 (___) ___-__-__" id="phone" name="phone" required>
                         </div>
                         <div class="col-md">
+                            <input type="hidden" name="id" id="id" value="{{ $consultation->id }}">
                             <button class="btn chat-btn k_btn" type="submit">@lang('site.Консультацияға жазылу')</button>
                         </div>
                     </div>
@@ -259,6 +260,7 @@
     </section>
     <script>
         (function () {
+
             'use strict'
             var forms = document.querySelectorAll('.needs-validation')
             Array.prototype.slice.call(forms)
@@ -273,6 +275,46 @@
                         }
                     }, false)
                 })
+
+            $('.forma-ajax').submit(function(){
+
+
+                var id = $("#id").val();
+                var name = $("#name").val();
+                var phone = $("#phone").val();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    method: $(this).attr('method'),
+                    type: "POST",
+                    data: {
+                        'id': id,
+                        'name': name,
+                        'phone': phone,
+                    },
+                    success: function (res) {
+                        // $(".loader").removeClass("loading");
+                        // setTimeout(() => {
+                        //     window.location.reload()
+                        // }, 1500)
+                        var tess = id+' - '+name+' - '+phone;
+                        // alert(tess);
+                        // alert(res);
+                    },
+                    error: function (err) {
+                        // $(".loader").removeClass("loading");
+                        // let response_text = JSON.parse(err.responseText);
+
+                        // if (response_text.errors && typeof response_text.errors == 'object') {
+                        //     Object.entries(response_text.errors).forEach(([key, value]) => {
+                        //         $('#error-register-' + key).text(value[0]);
+                        //         $('#error-register-' + key).css('display', 'block');
+                        //     })
+                        // }
+                        // alert("Мәлімет енгізілмеді!");
+                    }
+                });
+            });
         })();
     </script>
 @endsection

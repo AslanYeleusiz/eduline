@@ -34,7 +34,7 @@
             </div>
             <div class="takyryb">
                 <img src="{{asset('images/myprofile.svg')}}" alt="">
-                <div class="tak_name">Автор: <span id="journal_author">{{$material->first()->user->full_name}}</span><br><span class="mekeni">{{$material->first()->user->place_work}}</span>
+                <div class="tak_name">Автор: <span id="journal_author">{{Auth::user()->full_name}}</span><br><span class="mekeni">{{Auth::user()->place_work}}</span>
                 </div>
             </div>
             <form action="" method="get" id="ajax-form">
