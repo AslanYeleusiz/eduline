@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserNewsSaved extends Model
+class NewsCommentAnswer extends Model
 {
     use HasFactory;
 
-    public function newsSaves()
+    public function user()
     {
-        return $this->belongsTo(News::class, 'news_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
-
 }

@@ -8,7 +8,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AjaxUploadController;
-
+use App\Http\Controllers\MaterialsController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CommentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +23,21 @@ use App\Http\Controllers\AjaxUploadController;
 */
 
 
-Route::get('/', function () {return view('pages.home');})->name('index');
+
+Route::prefix('/')->name('index')->group(function () {
+        Route::get('/Announcement', [NewsController::class, 'announcement']);
+        Route::get('/Popular', [NewsController::class, 'popular']);
+        Route::group(['middleware' => 'auth'], function () {
+            Route::get('/news/save', [NewsController::class, 'save'])->name('.save');
+            Route::get('/Saves', [NewsController::class, 'news_saves'])->name('.saves');
+            Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('.comments.store');
+            Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('.comments.answer');
+            Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('.comments.likes');
+        });
+        Route::get('/news/id={id}', [NewsController::class, 'newspage']);
+        Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
+        Route::get('/', [NewsController::class, 'index']);
+    });
 
 Route::view('/attestation', 'pages.attestation')->name('attestation');
 
@@ -72,19 +88,21 @@ Route::middleware('auth')->group(function () {
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
 //        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
     });
-
     Route::prefix('materials')->name('materials')->group(function () {
         Route::get('/', [PageController::class, 'materials']);
         Route::get('/search', [PageController::class, 'search'])->name('.search');
         Route::get('/item-{id}', [PageController::class, 'material'])->name('.material');
         Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+        Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
+        Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
+        Route::get('/my-materials/publication', [AjaxUploadController::class, 'index'])->name('.publication');
+        Route::get('/my-materials/change/id-{id}', [PageController::class, 'change'])->name('.myMaterials.change');
+        Route::post('/my-materials/changed/id-{id}', [PageController::class, 'changed'])->name('.myMaterials.changed');
+        Route::post('/my-materials/delete', [PageController::class, 'delete'])->name('.myMaterials.delete');
+        Route::get('/my-materials/send/journal', [PageController::class, 'journal'])->name('.myMaterials.journal');
     });
 });
 
-Route::post('/materials/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('ajaxupload.action');
 
-Route::get('/materials/my-materials/publication', [AjaxUploadController::class, 'index'])->name('publication');
 
-Route::get('/materials/my-materials/change', function () {
-    return view('pages.materials.materialchange');
-});
+

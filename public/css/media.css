@@ -946,6 +946,10 @@
         flex-direction: column;
         align-items: flex-start;
     }
+    .ns_img {
+    height: 211px;
+    background: center 50% / auto 100% no-repeat;
+}
 }
 
 @media (max-width: 741px) {

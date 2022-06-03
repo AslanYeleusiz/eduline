@@ -8,10 +8,12 @@ use App\Models\Material;
 use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
+use App\Models\SendingMaterialJournal;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Inertia\Inertia
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PageController extends Controller
 {
@@ -43,12 +45,11 @@ class PageController extends Controller
 
     public function materials(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $materialCount = Material::count();
-        $materials = Material::orderBy('created_at','desc')->paginate(5);
+        $materials = Material::where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
         $pageName = __('site.Материалдар');
-        return Inertia::render('Materials', [
+        return view('pages.materials.index', [
             'materials' => $materials,
-            'materialCount' => $materialCount,
+            'materialCount' => $materials->count(),
             'materialSubject' => MaterialSubject::get(),
             'materialDirection' => MaterialDirection::get(),
             'materialClass' => MaterialClass::get(),
@@ -83,6 +84,7 @@ class PageController extends Controller
     public function material($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $material = Material::find($id);
+        $material->increment('view');
         $pageName = __('site.Материал');
         return view('pages.materials.materialpage', [
             'material' => $material
@@ -91,8 +93,59 @@ class PageController extends Controller
 
     public function myMaterials(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-
+        $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
         $pageName = __('site.Менің материалдарым');
-        return view('pages.materials.my-materials',compact('pageName'));
+        return view('pages.materials.my-materials',compact('pageName','material'));
     }
+
+    public function change($id, Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        $material = Material::where('id','=',$id)->first();
+        $pageName = __('site.Менің материалдарым');
+        return view('pages.materials.materialchange', compact('material'), [
+            'sub' => MaterialSubject::get(),
+            'dir' => MaterialDirection::get(),
+            'class' => MaterialClass::get()
+        ]);
+    }
+    public function changed($id, Request $request)
+    {
+        $material = Material::find($id);
+        $material -> title = $request -> name;
+        $material -> description = $request -> text;
+        $material -> subject_id = $request -> subject;
+        $material -> direction_id = $request -> direction;
+        $material -> class_id = $request -> class;
+        $material -> save();
+        return redirect()->back()->withSuccess('Материял сатты жуктелды');
+    }
+
+    public function delete(Request $request)
+    {
+        $material = Material::find($request->material_id);
+        $material -> comment_when_deleted = $request -> comment;
+        $material -> status_deleted = 1;
+        $material -> save();
+        return redirect()->back()->withSuccess('Материял қарастыруға жуктелды');
+    }
+    public function journal(Request $request)
+    {
+        $journal = SendingMaterialJournal::where('material_id','=', $request->material_id)->first();
+        if($journal === null){
+            $send = new SendingMaterialJournal;
+            $send->user_id = auth()->user()->id;
+            $send->material_id = $request->material_id;
+            $send->save();
+        }else{
+            if($journal->status==null)
+                return "Сіздің сұранысыңыз қабылдау барысында. Сайт әкімшілігі тексерген соң сізге хабарласады";
+
+            $data = 'Сіздің сұранысыңыз тексерілді. Сайт әкімшілігі жинаққа жіберуді ';
+            $journal->status==1 ? $data.="қабылдамады" : $data.="қабылдады";
+            return $data;
+        }
+        return "Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң сізге хабарласады";
+    }
+
+
 }

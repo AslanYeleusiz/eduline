@@ -19,7 +19,7 @@
         <a href="#" class="btn mp_back">
             <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
         </a>
-        <div class="mp_blockhref"> Материал ақпаратын өзгерту</div>
+        <div class="mp_blockhref"> Материал ақпаратын жариялау</div>
     </div>
 </div>
 <section class="materials mc">
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="m_block mp_block mc_block">
-            <form class="m_form" action="" method="post" enctype="multipart/form-data">
+            <form class="m_form" action="{{route('materials.ajaxupload.store')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
@@ -77,40 +77,41 @@
                         <div class="help-block"></div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="file" name="file" id="js-file" multiple class="drop-zone__input">
+                        <input type="file" name="file" id="js-file" multiple class="drop-zone__input" required>
                     </div>
                 </div>
                 <!--               FILE DROPZONE-->
                 <div class="mb-4 w-100">
                     <label for="exampleFormControlInput1" class="form-label">Материал тақырыбы</label>
-                    <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып">
+                    <input name="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып" required>
                 </div>
                 <div class="mb-3 w-100">
                     <label for="exampleFormControlTextarea1" class="form-label">Материалдың қысқаша түсінігі</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады."></textarea>
+                    <textarea class="form-control" name="text" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады." required></textarea>
                 </div>
 
                 <div class="m_control mc_control">
-                    <select class="form-select m_box m_cbox g1">
-                        <option hidden selected id="select">Пәнді таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g1" name="subject" required>
+                        <option value="" disabled hidden selected id="select">Пәнді таңдаңыз</option>
+                        @foreach($sub as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+
                     </select>
-                    <select class="form-select m_box m_cbox g2">
-                        <option hidden selected id="select">Бағытын таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g2" name="direction" required>
+                        <option value="" disabled hidden selected id="select">Бағытын таңдаңыз</option>
+                        @foreach($dir as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
                     </select>
-                    <select class="form-select m_box m_cbox g3">
-                        <option hidden selected id="select">Сыныбын таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g3" name="class" required>
+                        <option value="" disabled hidden selected id="select">Сыныбын таңдаңыз</option>
+                        @foreach($class as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
                     </select>
                 </div>
-                <button class="btn btn-primary m_btn">Өзгерту</button>
+                <button type="submit" class="btn btn-primary m_btn">Жариялау</button>
                 <div class="mc_warning">
                     Сіз материалды жариялау арқылы <a href="#">сайттың ережелерімен</a> келіскеніңізді растайсыз.
                 </div>

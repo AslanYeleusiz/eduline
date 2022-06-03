@@ -207,27 +207,22 @@ ul.menu-ul {
     padding-top: 5px;
     margin-top: 20px;
 }
-
 .tilder-menu {
     padding: 0;
     min-width: 10px !important;
     width: 106px !important;
 }
-
 .tilder-item {
     color: #3E6CED !important;
     font-family: "Gilroy-Medium" !important;
     font-size: 14px !important;
 }
-
 .tilder-item:hover {
     background-color: #e6edff !important;
 }
-
 li.menu-li {
     list-style: none;
 }
-
 .menuphone {
     font-family: "Gilroy-Medium";
     font-size: 16px;
@@ -243,19 +238,16 @@ li.menu-li {
     text-decoration: none;
     margin-top: 180px;
 }
-
 .menuphone:hover {
     text-decoration: none;
     color: #4E4E4E;
     background: #F3F6FF;
 }
-
 .menuphone img {
     width: 28px;
     height: 28px;
     margin-right: 13px;
 }
-
 .menu-til {
     background: #F8FAFF;
     border-radius: 44px;
@@ -276,14 +268,12 @@ li.menu-li {
     bottom: 0;
     z-index: 20;
 }
-
 .mb_dop_info {
     padding: 10px 0;
     background: #ffffff;
     display: flex;
     justify-content: center;
 }
-
 .mb_dop_info .mb_btn {
     width: 320px;
     height: 40px;
@@ -291,7 +281,6 @@ li.menu-li {
     font-family: "Gilroy-Bold";
     font-size: 14px;
 }
-
 .mb_menubar {
     display: flex;
     align-items: center;
@@ -301,7 +290,6 @@ li.menu-li {
 
 
 }
-
 .mb_block {
     display: flex;
     flex-direction: column;
@@ -315,13 +303,11 @@ li.menu-li {
     border: 1px solid #F3F3F3;
     color: #4E4E4E;
 }
-
 .mb_block:hover {
     color: #4E4E4E;
     text-decoration: none;
     background: #F3F6FF;
 }
-
 .mb_block img {
     margin-bottom: 5px;
     width: 20px;
@@ -357,9 +343,13 @@ li.menu-li {
     font-size: 18px;
     color: #C7C7C7;
 }
-.news .mp_head{
-font-size: 24px;
-line-height: 30px;
+.news .mp_head,.news a{
+    font-size: 24px;
+    line-height: 30px;
+    color: #292929;
+    text-decoration: none;
+}
+.news .m_block .mp_head{
     margin-top: 20px;
 }
 .news .mp_info{
@@ -370,9 +360,8 @@ line-height: 22px;
     margin-top: 20px;
     margin-bottom: 30px;
     height: 310px;
-    background: left 100% no-repeat;
+    background: center 50% / 100% no-repeat;
 }
-
 .ns_savebut, .ns_views, .ns_comments{
     width: 24px;
     height: 24px;
@@ -380,6 +369,9 @@ line-height: 22px;
 }
 .ns_savebut{
     background-image: url(/images/savebut.svg);
+}
+.ns_savebut.active{
+    background-image: url(/images/savebutactive.svg);
 }
 .ns_views{
     margin-right: 10px;
@@ -393,10 +385,185 @@ line-height: 22px;
     display: flex;
     flex-direction: row;
 }
+.new{
+    padding-bottom: 125px;
+}
+.new .ns_img{
+    height: auto;
+    width: 100%;
+    margin: 15px 0;
+}
+.ns_block{
+    max-width: 840px;
+}
+.ns_href{
+    border-bottom: 1px solid #F3F3F3;
+}
+.ns_href a{
+    font-size: 14px;
+    color: #0d6efd;
+}
+.ns_href a:hover{
+    text-decoration: underline;
+}.new .ns_pre{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.new .mp_info{
+    margin-top: 20px;
+}
+.new .ns_likes{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 0;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #C7C7C7;
+}
+.new .ns_view{
+    display: flex;
+    align-items: center;
+    color: #8B8B8B;
+}
+.ns_com_head{
+    font-family: 'Gilroy-Bold';
+font-size: 36px;
+line-height: 45px;
+    margin-top: 50px;
+}
+/*NEWS COMMENTS SECTION*/
+.cm_main{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: #ffffff;
+}
+.m_block.cm_main{
+    padding: 20px 0;
+    margin: 0;
+    z-index: 17;
+}
+.cm_block{
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+    border-bottom: 1px solid #F3F3F3;
+}
 
-
-
-
+.cm_avatar{
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: center/auto 100% no-repeat;
+}
+.cm_block.mini{
+    margin: 10px 0;
+    border: none;
+}
+.cm_block.mini .cm_avatar{
+    min-width: 30px;
+    height: 30px;
+}
+.cm_content{
+    margin-left: 20px;
+    width: 100%;
+}
+.cm_block.mini .cm_content{
+    margin-left: 10px;
+}
+.cm_head{
+    font-family: "Gilroy-Semibold";
+    font-size: 18px;
+    line-height: 23px;
+}
+.cm_body{
+    margin: 10px 0;
+    border-radius: 10px;
+    background: #F9F9F9;
+    padding: 20px;
+    font-family: "Gilroy-Regular";
+    font-size: 14px;
+    line-height: 17px;
+}
+.cm_footer{
+    width: 210px;
+    display: flex;
+    justify-content: space-between;
+}
+.cm_anothers{
+    margin: 10px 0 20px;
+    padding: 0;
+}
+.cm_likes, .cm_qsts, .cm_anothers{
+    display: flex;
+    align-items: center;
+    color: #8B8B8B;
+    padding: 0;
+}
+.cm_like, .cm_qst, .cm_arrow{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+.cm_like{
+    background: url(/images/news/heart-active.svg);
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    opacity: 0.5;
+}
+.cm_qst{
+    background: url('/images/news/back-active.svg');
+    opacity: 0.5;
+}
+.cm_arrow{
+    background: url('/images/news/arrow-active.svg');
+    opacity: 0.5;
+    margin-left: 5px;
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+.cm_likes.active, .cm_qsts.active, .cm_anothers.active{
+    color: #292929;
+}
+.cm_likes.active .cm_like{
+    filter: grayscale(0%);
+    -webkit-filter: grayscale(0%);
+    opacity: 0.8;
+}
+.cm_qsts.active .cm_qst{
+    opacity: 0.8;
+}
+.cm_anothers.active .cm_arrow{
+    opacity: 0.8;
+    transform: rotate(0deg);
+}
+.cm_form{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 10px;
+    margin: 10px 0;
+}
+.cm_main .cm_form{
+    grid-template-columns: auto 3fr 1fr;
+    grid-gap: 20px;
+    align-items: center;
+}
+.cm_input, .cm_btn{
+    border-radius: 10px;
+    height: 46px;
+}
+.cm_input{
+    border: 1px solid #3E6CED;
+    padding: 0 20px;
+}
+.cm_input::placeholder{
+font-size: 14px;
+line-height: 17px;
+}
+.cm_btn{
+    background: #3E6CED;
+    color: #ffffff;
+}
 
 /*PAGINATION*/
 .pagination{
@@ -1594,6 +1761,7 @@ line-height: 22px;
 }
 
 .my_send_block {
+    display: none;
     margin: 20vh auto 0;
     margin-top: 50px;
     height: auto;
@@ -1654,6 +1822,7 @@ line-height: 22px;
     font-size: 14px;
     line-height: 20px;
     margin-top: 10px;
+    color: #888888;
 }
 
 .mp_sert {

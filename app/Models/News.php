@@ -30,12 +30,14 @@ class News extends Model
     public function thisUserSaved()
     {
 
-        $userCheck = !request()->expectsJson() ? auth()->check() : auth()->guard('api')->check();
-
-
-        $userId = $userCheck ? (!request()->expectsJson() ? auth()->user()->id : auth()->guard('api')->user()->id) : 0;
+//        $userCheck = !request()->expectsJson() ? auth()->check() : auth()->guard('api')->check();
+//
+//
+//        $userId = $userCheck ? (!request()->expectsJson() ? auth()->user()->id : auth()->guard('api')->user()->id) : 0;
+//        return $this->hasOne(UserNewsSaved::class)
+//            ->where('user_id', $userId);
         return $this->hasOne(UserNewsSaved::class)
-            ->where('user_id', $userId);
+            ->where('user_id', auth()->check() ? auth()->user()->id : 0);
     }
 
     public $casts = [

@@ -27,40 +27,39 @@
             Материал ақпаратын өзгерту
         </div>
         <div class="m_block mp_block mc_block">
-           <form class="m_form" action="">
-            <div class="mb-4 w-100">
-                <label for="exampleFormControlInput1" class="form-label">Материал тақырыбы</label>
-                <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып">
-            </div>
-            <div class="mb-3 w-100">
-                <label for="exampleFormControlTextarea1" class="form-label">Материалдың қысқаша түсінігі</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады."></textarea>
-            </div>
-            <div class="m_control mc_control">
-                <select class="form-select m_box m_cbox g1">
-                    <option hidden selected id="select">Пәнді таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m_box m_cbox g2">
-                    <option hidden selected id="select">Бағытын таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                <select class="form-select m_box m_cbox g3">
-                    <option hidden selected id="select">Сыныбын таңдаңыз</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-            </div>
-            <button class="btn btn-primary m_btn">Өзгерту</button>
-            <div class="mc_warning">
-                Ескерту: сізге ақпаратты өзгерту үшін 1 ғана мүмкіндік беріледі, сол себепті мұқият жазуыңызды сұраймыз!
-            </div>
-        </form>
+            <form method="post" class="m_form" action="/materials/my-materials/changed/id-{{$material->id}}">
+               @csrf
+                <div class="mb-4 w-100">
+                    <label for="exampleFormControlInput1" class="form-label">Материал тақырыбы</label>
+                    <input name="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып" value="{{$material->title}}">
+                </div>
+                <div class="mb-3 w-100">
+                    <label for="exampleFormControlTextarea1" class="form-label">Материалдың қысқаша түсінігі</label>
+                    <textarea name="text" class="form-control" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады.">{{$material->description}}</textarea>
+                </div>
+                <div class="m_control mc_control">
+                    <select class="form-select m_box m_cbox g1" name="subject" required>
+                        @foreach($sub as $subject)
+                        <option @if($subject->id==$material->subject_id) selected @endif value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+
+                    </select>
+                    <select class="form-select m_box m_cbox g2" name="direction" required>
+                        @foreach($dir as $subject)
+                        <option @if($subject->id==$material->direction_id) selected @endif value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+                    </select>
+                    <select class="form-select m_box m_cbox g3" name="class" required>
+                        @foreach($class as $subject)
+                        <option @if($subject->id==$material->class_id) selected @endif value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary m_btn">Өзгерту</button>
+                <div class="mc_warning">
+                    Ескерту: сізге ақпаратты өзгерту үшін 1 ғана мүмкіндік беріледі, сол себепті мұқият жазуыңызды сұраймыз!
+                </div>
+            </form>
         </div>
     </div>
 </section>
@@ -85,5 +84,6 @@
             select[2].textContent = "Сыныбын таңдаңыз";
         }
     });
+
 </script>
 @endsection

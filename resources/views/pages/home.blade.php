@@ -5,19 +5,19 @@
     <div class="m_href">
         <div class="cst_pd">
             <div class="cst_container">
-                <a href="/" class="my_materials active">
+                <a href="/" class="my_materials @if($url=='/') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-1.svg')}}">
                     <span>{{__('site.Барлығы')}}</span>
                 </a>
-                <a href="#" class="my_materials">
+                <a href="/Announcement" class="my_materials @if($url=='Announcement') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Хабарландыру')}}</span>
                 </a>
-                <a href="#" class="my_materials">
+                <a href="/Popular" class="my_materials @if($url=='Popular') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Танымал')}}</span>
                 </a>
-                <a href="#" class="my_materials">
+                <a href="/Saves" class="my_materials @if($url=='Saves') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-3.svg')}}">
                     <span>{{__('site.Сақталғандар')}}</span>
                 </a>
@@ -25,53 +25,77 @@
         </div>
     </div>
     <div class="cst_pd">
+        <div class="cst_container ns_list" id="results"></div>
         <div class="cst_container ns_list">
-            <div class="m_block">
-                <div class="ns_pre">
-                    <div class="ns_cat">Приказдар</div>
-                    <div class="ns_time">2 сағат бүрын</div>
-                </div>
-                <div class="mp_head">
-                    На смену ЕНТ может прийти портфолио - глава BTS Education о будущем образования
-                </div>
-                <div class="mp_info">
-                    Әр адамның өз армандары, мақсаттары болады. Біреу тіл үйренгісі келсе, біреу қаржылық жағдайын жақсартқысы келеді...
-                </div>
-                <div class="ns_img" style="background-image: url({{asset('images/news1.png')}})"></div>
-                <div class="ns_pre">
-                    <div class="ns_likes">
-                    <div class="ns_views"></div>
-                    167
-                    <div class="ns_comments"></div>
-                    8
-                    </div>
-                    <div class="ns_savebut" style=""></div>
-                </div>
-            </div>
-            <div class="m_block">
-                <div class="ns_pre">
-                    <div class="ns_cat">Приказдар</div>
-                    <div class="ns_time">2 сағат бүрын</div>
-                </div>
-                <div class="mp_head">
-                    На смену ЕНТ может прийти портфолио - глава BTS Education о будущем образования
-                </div>
-                <div class="mp_info">
-                    Әр адамның өз армандары, мақсаттары болады. Біреу тіл үйренгісі келсе, біреу қаржылық жағдайын жақсартқысы келеді...
-                </div>
-                <div class="ns_img" style="background-image: url({{asset('images/news1.png')}})"></div>
-                <div class="ns_pre">
-                    <div class="ns_likes">
-                    <div class="ns_views"></div>
-                    167
-                    <div class="ns_comments"></div>
-                    8
-                    </div>
-                    <div class="ns_savebut" style=""></div>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div style="display:flex;" class="m_block" id="ajax-loading">
+                <div style="margin: 0 auto;" class="spinner-border" role="status">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var site_url = "{{ url($url) }}";
+        var page = 1;
+
+        load_more(page);
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+                page++;
+                load_more(page);
+            }
+        });
+
+        function load_more(page) {
+            $.ajax({
+                    url: site_url + '?page=' + page,
+                    type: "get",
+                    datatype: "html",
+                    beforeSend: function() {
+                        $('#ajax-loading').show();
+                    }
+                })
+                .done(function(data) {
+                    if (data.length == 0) {
+                        $('#ajax-loading').html("Жаңалықтар тізімі бітті");
+                        return;
+                    }
+                    $('#ajax-loading').hide();
+                    $("#results").append(data);
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
+                    alert('No response from server');
+                });
+        }
+
+
+    });
+$(document).on('click touchstart', '#ajax-form .btn.ns_savebut', function() {
+            let data = $(this).closest('#ajax-form');
+            let btn = data.find('.btn.ns_savebut');
+            $.ajax({
+                url: '/news/save',
+                type: "GET", //метод отправки
+                dataType: "html", //формат данных
+                data: data.serialize(), // Сеарилизуем объект
+                success: function(response) { //Данные отправлены успешно
+                    btn.hasClass('active') ?
+                        btn.removeClass('active') : btn.addClass('active');
+
+                },
+                error: function(response) { // Данные не отправлены
+                    console.log('fail');
+                }
+            });
+        });
+</script>
 @endsection

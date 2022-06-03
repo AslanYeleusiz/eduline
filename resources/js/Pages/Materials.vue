@@ -1,11 +1,14 @@
+
 <template>
-    <h1>HOME</h1>
+
+<h1>KRASSAVA</h1>
+
 </template>
 
 
 <script>
-export default {
-    name: "Materials"
-}
-</script>
+    export default {
+        name: 'materials'
+    }
 
+</script>

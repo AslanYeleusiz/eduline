@@ -6,19 +6,19 @@
 @slot('materials') @endslot
 @endcomponent
 
+
 <section class="materials">
-    <div class="cst_pd">
+    <div class="cst_pd" id="app">
         <div class="m_head">
-            Оқу-әдістемелік материалдар жинағы
+            @lang('site.Оқу-әдістемелік материалдар жинағы')
         </div>
         <div class="m_info">
-            Сіз үшін 250 000 ұстаздардың еңбегі мен тәжірибесін біріктіріп, ең үлкен материалдар базасын жасадық.
-            Барлық материалдарды сайт қолданушылары тегін жүктеп алып сабағына қолдана алады
+            @lang('site.Сіз үшін 250 000 ұстаздардың еңбегі мен тәжірибесін біріктіріп, ең үлкен материалдар базасын жасадық. Барлық материалдарды сайт қолданушылары тегін жүктеп алып сабағына қолдана алады')
         </div>
         <form class="m_form" action="{{route('materials.search')}}" method="get">
             <div class="m_control">
-                <input type="text" class="form-control m_box m_input" name="s" placeholder="Тақырып бойынша іздеу">
-                <button class="btn btn-primary m_btn">Іздеу</button>
+                <input type="text" class="form-control m_box m_input" name="s" placeholder="@lang('site.Тақырып бойынша іздеу')">
+                <button class="btn btn-primary m_btn">@lang('site.Іздеу')</button>
                 <select class="form-select m_box m_cbox g1" name="pan">
                     <option value="0" hidden selected id="select">Пәнді таңдаңыз</option>
                     @foreach($materialSubject as $subject)
@@ -39,8 +39,9 @@
                 </select>
             </div>
         </form>
+
         <div class="m_val">
-           @if($materialCount)
+            @if($materialCount)
             Барлығы: <span id="value">{{$materialCount}}</span> материал
             @else
             Бұндай материал табылмады.
@@ -63,7 +64,7 @@
                     </div>
                     <div class="m_item">
                         <img src="{{asset('images/calendar.png')}}">
-                        <span id="date">{{$material->created_at}}</span>
+                        <span id="date">{{$material->createdAt($material->created_at)}}</span>
                     </div>
                     <div class="m_item">
                         <img src="{{asset('images/eye.png')}}">
@@ -82,7 +83,9 @@
     </div>
 
 </section>
-<script src="./js/app.js"></script>
+
+<script src="{{asset('js/app.js')}}"></script>
+
 <script type="text/javascript">
     if ($(window).width() <= '917') {
         select[0].textContent = "Пені";
@@ -104,5 +107,7 @@
             select[2].textContent = "Сыныбын таңдаңыз";
         }
     });
+
 </script>
+
 @endsection

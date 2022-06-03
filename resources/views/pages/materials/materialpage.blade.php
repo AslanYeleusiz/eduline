@@ -37,7 +37,7 @@
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/calendar2.svg')}}">
-                    <span id="date">{{$material->created_at}}</span>
+                    <span id="date">{{$material->createdAt($material->created_at)}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/eye2.svg')}}">
