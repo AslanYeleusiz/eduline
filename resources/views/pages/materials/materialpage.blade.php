@@ -64,9 +64,9 @@
             </div>
 
             @if(pathinfo(storage_path().$material->file_name, PATHINFO_EXTENSION) == 'pdf')
-            <iframe src="{{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
+            <iframe src="eduline.kz{{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
             @else
-            <iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
+            <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=eduline.kz{{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
             @endif
 
             <div class="mp_btn_pos">
