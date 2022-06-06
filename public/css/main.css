@@ -431,6 +431,9 @@ font-size: 36px;
 line-height: 45px;
     margin-top: 50px;
 }
+.my_ls{
+    padding-right: 15px;
+}
 /*NEWS COMMENTS SECTION*/
 .cm_main{
     position: fixed;

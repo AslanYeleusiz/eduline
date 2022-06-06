@@ -17,7 +17,7 @@
                     <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Танымал')}}</span>
                 </a>
-                <a href="/Saves" class="my_materials @if($url=='Saves') active @endif">
+                <a href="/Saves" class="my_ls my_materials @if($url=='Saves') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-3.svg')}}">
                     <span>{{__('site.Сақталғандар')}}</span>
                 </a>
