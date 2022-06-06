@@ -43,7 +43,7 @@
 
     <div class="cst_pd">
         <div class="ns_block">
-            <img class="ns_img" src="{{asset('images/news1.png')}}">
+            <img class="ns_img" src="{{asset('storage/images/news')}}/{{$material->image}}">
             <div class="ns_pre">
                 <div class="ns_cat">{{$material->newsType->name}}</div>
                 <div class="ns_time">{{$date}}</div>
