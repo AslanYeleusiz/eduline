@@ -9,6 +9,7 @@ use App\Http\Resources\V1\Material\MaterialsResource;
 use App\Http\Resources\V1\MessageResource;
 use App\Models\Material;
 use App\Models\SendingMaterialJournal;
+use App\Services\V1\MaterialCertificateGenerateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -70,21 +71,42 @@ class MaterialController extends Controller
         }
     }
 
+    // public function getCertificate($id)
+    // {
+    //     $material = Material::findOrFail($id);
+    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'certificate.jpg'));
+    // }
+    
+    // public function getCertificateThankLetter($id)
+    // {
+    //     $material = Material::findOrFail($id);
+    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'thank-letter.jpg'));
+    // }
+    
+    // public function getCertificateHonor($id)
+    // {
+    //     $material = Material::findOrFail($id);
+    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'honor.jpg'));
+    // }
     public function getCertificate($id)
     {
-        $material = Material::findOrFail($id);
-        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'certificate.jpg'));
+        $material = Material::with('user')->findOrFail($id);
+
+        $certificateName = MaterialCertificateGenerateService::getCertificate($material);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . '/'. $certificateName));
     }
-    
+
     public function getCertificateThankLetter($id)
     {
         $material = Material::findOrFail($id);
-        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'thank-letter.jpg'));
+        $certificateName = MaterialCertificateGenerateService::getThankLetter($material);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . '/'. $certificateName));
     }
-    
+
     public function getCertificateHonor($id)
     {
         $material = Material::findOrFail($id);
-        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'honor.jpg'));
+        $certificateName = MaterialCertificateGenerateService::getHonor($material);
+        return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . '/'. $certificateName));
     }
 }
