@@ -49,7 +49,8 @@
         load_more(page);
 
         $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()-50) {
+
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()-100) {
                 page++;
                 load_more(page);
             }
