@@ -26,7 +26,7 @@
     </div>
 </div>
 <section class="new">
-
+    @section('app')
     <div class="m_block cm_main">
         <div class="cst_pd">
             <form action="{{route('index.comments.store')}}" class="cm_form ns_block">
@@ -40,7 +40,20 @@
             </form>
         </div>
     </div>
-
+    @endsection
+    <div class="m_block cm_main dmob">
+        <div class="cst_pd">
+            <form action="{{route('index.comments.store')}}" class="cm_form ns_block">
+                @csrf
+                <img src="{{asset('/images/news/avatar.png')}}" alt="">
+                <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
+                <input type="hidden" name="id_news" value="{{$material->id}}">
+                <button type="submit" class="btn-primary btn cm_btn">
+                    @lang('site.Жіберу') <img src="{{asset('images/news/send.svg')}}" alt="">
+                </button>
+            </form>
+        </div>
+    </div>
     <div class="cst_pd">
         <div class="ns_block">
             <img class="ns_img" src="{{asset('storage/images/news')}}/{{$material->image}}">
@@ -50,7 +63,7 @@
             </div>
             <div class="mp_head">{{$material->title}}</div>
             <div class="mp_info">
-                <?echo $material['description']?>
+                <?php echo $material->description?>
             </div>
             <div class="ns_likes">
                 <div class="ns_view">
@@ -75,48 +88,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!--
-
-            <div class="cm_block">
-                <div class="cm_avatar" style="background-image: url({{asset('images/avatar.png')}})"></div>
-                <div class="cm_content">
-                    <div class="cm_head">Ainura</div>
-                    <div class="cm_body">Қаңтар ҰБТ-сының нәтежесін приложениеден шықпай-ақ көр! Ол үшін өз профиліңе кіріп, ИИН терсең жеткілікті</div>
-                    <div class="cm_footer">
-                        <div class="cm_likes">
-                            <div class="cm_like"></div>12
-                        </div>
-                        <button class="btn cm_qsts">
-                            <div class="cm_qst"></div>Жауап жазу
-                        </button>
-                    </div>
-                    <form action="" class="cm_form" style="display:none">
-                        <input type="text" class="form-control cm_input" name="text" placeholder="Өз пікіріңізді жазыңыз..." autocomplete="off">
-                        <button type="submit" class="btn-primary btn cm_btn">
-                            Жіберу <img src="{{asset('images/news/send.svg')}}" alt="">
-                        </button>
-                    </form>
-                    <div class="cm_anothers">Жауаптарды көру (2)
-                        <div class="cm_arrow"></div>
-                    </div>
-                    <div class="cm_block mini">
-                        <div class="cm_avatar" style="background-image: url({{asset('images/avatar.png')}})"></div>
-                        <div class="cm_content">
-                            <div class="cm_head">Ainura</div>
-                            <div class="cm_body">Қаңтар ҰБТ-сының нәтежесін приложениеден шықпай-ақ көр! Ол үшін өз профиліңе кіріп, ИИН терсең жеткілікті</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
--->
-
-
-
-
-
 
 
         </div>
@@ -173,7 +144,7 @@
                 });
         }
     });
-        $(document).on('click touchstart', '.cm_anothers', function() {
+        $(document).on('click', '.cm_anothers', function() {
             e = $(this).closest('.cm_block').find('#answer_list');
             if (e.is(':visible')) {
                 $(this).removeClass('active');
@@ -185,25 +156,25 @@
             e.show();
         });
 
-$(document).on('click touchstart', '#ajax_form .cm_btn', function() {
+$(document).on('click', '#ajax_form .cm_btn', function() {
     e = $(this).closest('.cm_block');
     let data = e.find('#ajax_form');
     $.ajax({
         url: '/news/comments/answer',
-        type: "GET", //метод отправки
-        dataType: "html", //формат данных
-        data: data.serialize(), // Сеарилизуем объект
-        success: function(response) { //Данные отправлены успешно
+        type: "GET",
+        dataType: "html",
+        data: data.serialize(),
+        success: function(response) {
             console.log('done');
-            data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset("images/avatar.png")}})"></div><div class="cm_content"><div class="cm_head">{{Auth::user()->full_name}}</div><div class="cm_body">'+e.find('.cm_input')[0].value+'</div></div></div>');
+            data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset("images/avatar.png")}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">'+e.find('.cm_input')[0].value+'</div></div></div>');
             e.find('.cm_input')[0].value = '';
         },
-        error: function(response) { // Данные не отправлены
+        error: function(response) {
             console.log('fail');
         }
     });
     });
-$(document).on('click touchstart', '.btn.cm_likes', function() {
+$(document).on('click', '.btn.cm_likes', function() {
     let data = $(this).closest('.cm_block').find('#ajax_form');
     let like = $(this).closest('.cm_block').find('.btn.cm_likes');
     let count = $(this).find('#like_count')[0];

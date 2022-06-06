@@ -711,6 +711,7 @@
 
     .menubar {
         display: none;
+        overflow: scroll;
     }
 
     .cst_pd,
@@ -949,6 +950,19 @@
     .ns_img {
     height: 211px;
     background: center 50% / auto 100% no-repeat;
+}
+    .dmob{
+    display: none;
+}
+    .m_block.cm_main {
+        position: relative;
+        padding: 0;
+    }
+    .new{
+        padding-bottom: 130px;
+    }
+    .cm_main .cm_form {
+    grid-gap: 10px;
 }
 }
 
