@@ -966,6 +966,9 @@
     grid-gap: 10px;
     margin: 10px 0 5px;
 }
+    .btn-primary.btn.cm_btn img{
+        display: none;
+    }
 }
 
 @media (max-width: 741px) {
