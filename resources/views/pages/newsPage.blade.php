@@ -75,50 +75,8 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!--
-
-            <div class="cm_block">
-                <div class="cm_avatar" style="background-image: url({{asset('images/avatar.png')}})"></div>
-                <div class="cm_content">
-                    <div class="cm_head">Ainura</div>
-                    <div class="cm_body">Қаңтар ҰБТ-сының нәтежесін приложениеден шықпай-ақ көр! Ол үшін өз профиліңе кіріп, ИИН терсең жеткілікті</div>
-                    <div class="cm_footer">
-                        <div class="cm_likes">
-                            <div class="cm_like"></div>12
-                        </div>
-                        <button class="btn cm_qsts">
-                            <div class="cm_qst"></div>Жауап жазу
-                        </button>
-                    </div>
-                    <form action="" class="cm_form" style="display:none">
-                        <input type="text" class="form-control cm_input" name="text" placeholder="Өз пікіріңізді жазыңыз..." autocomplete="off">
-                        <button type="submit" class="btn-primary btn cm_btn">
-                            Жіберу <img src="{{asset('images/news/send.svg')}}" alt="">
-                        </button>
-                    </form>
-                    <div class="cm_anothers">Жауаптарды көру (2)
-                        <div class="cm_arrow"></div>
-                    </div>
-                    <div class="cm_block mini">
-                        <div class="cm_avatar" style="background-image: url({{asset('images/avatar.png')}})"></div>
-                        <div class="cm_content">
-                            <div class="cm_head">Ainura</div>
-                            <div class="cm_body">Қаңтар ҰБТ-сының нәтежесін приложениеден шықпай-ақ көр! Ол үшін өз профиліңе кіріп, ИИН терсең жеткілікті</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
--->
-
-
-
-
-
-
-
+            
+            
         </div>
     </div>
 </section>
