@@ -50,7 +50,7 @@
             </div>
             <div class="mp_head">{{$material->title}}</div>
             <div class="mp_info">
-                {{$material->description}}
+                <?echo $material['description']?>
             </div>
             <div class="ns_likes">
                 <div class="ns_view">
