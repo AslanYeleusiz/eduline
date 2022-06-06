@@ -22,14 +22,11 @@ class AjaxUploadController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('file')->store('uploads', 'public');
-        return view('pages.materials.materialpublication', ['path' => $path]);
+        $path = $request->file('file');
+        return 'path';
     }
     public function store(Request $request)
     {
-        if($request -> subject == 0 ||
-           $request -> direction == 0 ||
-           $request -> class == 0) return redirect()->back()->withErrors('Мәлімет толық емес!');
         $material = new Material();
         $material -> title = $request -> name;
         $material -> description = $request -> text;
@@ -40,7 +37,7 @@ class AjaxUploadController extends Controller
         $path = $request->file('file')->store('uploads/file', 'public');
         $material -> file_name = $path;
         $material -> save();
-        return redirect()->back()->withSuccess('Материял сатты жуктелды');
+        return redirect()->back()->withSuccess(__('site.Материал сәтті жүктелді'));
     }
 
 }

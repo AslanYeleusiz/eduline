@@ -9,6 +9,7 @@ use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
 use App\Models\SendingMaterialJournal;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -84,18 +85,18 @@ class PageController extends Controller
     public function material($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $material = Material::find($id);
+        $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
         $material->increment('view');
         $pageName = __('site.Материал');
-        return view('pages.materials.materialpage', [
-            'material' => $material
-        ], compact('pageName'));
+        return view('pages.materials.materialpage', compact('material','pageName','userSub'));
     }
 
     public function myMaterials(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
+        $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
         $pageName = __('site.Менің материалдарым');
-        return view('pages.materials.my-materials',compact('pageName','material'));
+        return view('pages.materials.my-materials',compact('pageName','material','userSub'));
     }
 
     public function change($id, Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
@@ -108,16 +109,19 @@ class PageController extends Controller
             'class' => MaterialClass::get()
         ]);
     }
-    public function changed($id, Request $request)
+    public function changed(Request $request)
     {
-        $material = Material::find($id);
-        $material -> title = $request -> name;
-        $material -> description = $request -> text;
-        $material -> subject_id = $request -> subject;
-        $material -> direction_id = $request -> direction;
-        $material -> class_id = $request -> class;
-        $material -> save();
-        return redirect()->back()->withSuccess('Материял сатты жуктелды');
+        $material = Material::find($request->material_id);
+        if($material->created_at == $material->updated_at){
+            $material -> title = $request -> name;
+            $material -> description = $request -> text;
+            $material -> subject_id = $request -> subject;
+            $material -> direction_id = $request -> direction;
+            $material -> class_id = $request -> class;
+            $material -> save();
+        }else return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
+
+        return __('site.Материал сәтті өзгертілді');
     }
 
     public function delete(Request $request)
@@ -126,7 +130,7 @@ class PageController extends Controller
         $material -> comment_when_deleted = $request -> comment;
         $material -> status_deleted = 1;
         $material -> save();
-        return redirect()->back()->withSuccess('Материял қарастыруға жуктелды');
+        return redirect()->back()->withSuccess(__('site.Материал қарастыруға жүктелді'));
     }
     public function journal(Request $request)
     {
@@ -138,13 +142,13 @@ class PageController extends Controller
             $send->save();
         }else{
             if($journal->status==null)
-                return "Сіздің сұранысыңыз қабылдау барысында. Сайт әкімшілігі тексерген соң сізге хабарласады";
+                return __('site.Сіздің сұранысыңыз қабылдау барысында. Сайт әкімшілігі тексерген соң сізге хабарласады');
 
-            $data = 'Сіздің сұранысыңыз тексерілді. Сайт әкімшілігі жинаққа жіберуді ';
-            $journal->status==1 ? $data.="қабылдамады" : $data.="қабылдады";
+            $data = __('site.Сіздің сұранысыңыз тексерілді. Сайт әкімшілігі жинаққа жіберуді');
+            $journal->status==1 ? $data.=__('site.қабылдамады') : $data.= __('site.қабылдады');
             return $data;
         }
-        return "Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң сізге хабарласады";
+        return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң сізге хабарласады');
     }
 
 

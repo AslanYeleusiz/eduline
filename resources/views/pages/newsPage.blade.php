@@ -20,9 +20,9 @@
 <div class="m_href mp_href ns_href">
     <div class="cst_pd mp_thref">
         <a href="/" class="btn mp_back">
-            <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
+            <img src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
         </a>
-        <div class="mp_blockhref"><span><a href="/">Жаңалықтар</a> /</span> {{$material->title}}</div>
+        <div class="mp_blockhref"><span><a href="/">@lang('site.Жаңалықтар')</a> /</span> {{$material->title}}</div>
     </div>
 </div>
 <section class="new">
@@ -32,10 +32,10 @@
             <form action="{{route('index.comments.store')}}" class="cm_form ns_block">
                 @csrf
                 <img src="{{asset('/images/news/avatar.png')}}" alt="">
-                <input type="text" class="form-control cm_input" name="text" placeholder="Өз пікіріңізді жазыңыз..." autocomplete="off">
+                <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
                 <button type="submit" class="btn-primary btn cm_btn">
-                    Жіберу <img src="{{asset('images/news/send.svg')}}" alt="">
+                    @lang('site.Жіберу') <img src="{{asset('images/news/send.svg')}}" alt="">
                 </button>
             </form>
         </div>
@@ -45,7 +45,7 @@
         <div class="ns_block">
             <img class="ns_img" src="{{asset('images/news1.png')}}">
             <div class="ns_pre">
-                <div class="ns_cat">Приказдар</div>
+                <div class="ns_cat">{{$material->newsType->name}}</div>
                 <div class="ns_time">{{$date}}</div>
             </div>
             <div class="mp_head">{{$material->title}}</div>
@@ -62,7 +62,7 @@
                     <button type="button" class="btn ns_savebut @if($material->thisUserSaved) active @endif"></button>
                 </form>
             </div>
-            <div class="ns_com_head">Пікірлер ({{$comments}})</div>
+            <div class="ns_com_head">@lang('site.Пікірлер') ({{$comments}})</div>
 
 
 

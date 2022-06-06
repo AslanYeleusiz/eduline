@@ -42,9 +42,14 @@
 
         <div class="m_val">
             @if($materialCount)
-            Барлығы: <span id="value">{{$materialCount}}</span> материал
+            @lang('site.Барлығы'): <span id="value">{{$materialCount}}</span>
+            @if($materialCount < 5)
+            @lang('site.материала')
             @else
-            Бұндай материал табылмады.
+            @lang('site.материал')
+            @endif
+            @else
+            @lang('site.Бұндай материал табылмады.')
             @endif
         </div>
 
@@ -88,23 +93,23 @@
 
 <script type="text/javascript">
     if ($(window).width() <= '917') {
-        select[0].textContent = "Пені";
-        select[1].textContent = "Бағыты";
-        select[2].textContent = "Сыныбы";
+        select[0].textContent = "@lang('site.Пәні')";
+        select[1].textContent = "@lang('site.Бағыты')";
+        select[2].textContent = "@lang('site.Сыныбы')";
     } else {
-        select[0].textContent = "Пәнді таңдаңыз";
-        select[1].textContent = "Бағытын таңдаңыз";
-        select[2].textContent = "Сыныбын таңдаңыз";
+        select[0].textContent = "@lang('site.Пәнді таңдаңыз')";
+        select[1].textContent = "@lang('site.Бағытын таңдаңыз')";
+        select[2].textContent = "@lang('site.Сыныбын таңдаңыз')";
     }
     $(window).resize(function() {
         if ($(window).width() <= '917') {
-            select[0].textContent = "Пені";
-            select[1].textContent = "Бағыты";
-            select[2].textContent = "Сыныбы";
+            select[0].textContent = "@lang('site.Пәні')";
+            select[1].textContent = "@lang('site.Бағыты')";
+            select[2].textContent = "@lang('site.Сыныбы')";
         } else {
-            select[0].textContent = "Пәнді таңдаңыз";
-            select[1].textContent = "Бағытын таңдаңыз";
-            select[2].textContent = "Сыныбын таңдаңыз";
+            select[0].textContent = "@lang('site.Пәнді таңдаңыз')";
+            select[1].textContent = "@lang('site.Бағытын таңдаңыз')";
+            select[2].textContent = "@lang('site.Сыныбын таңдаңыз')";
         }
     });
 
