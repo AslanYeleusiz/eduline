@@ -131,7 +131,7 @@
                 });
         }
     });
-        $(document).on('click touchstart', '.cm_anothers', function() {
+        $(document).on('click', '.cm_anothers', function() {
             e = $(this).closest('.cm_block').find('#answer_list');
             if (e.is(':visible')) {
                 $(this).removeClass('active');
@@ -143,7 +143,7 @@
             e.show();
         });
 
-$(document).on('click touchstart', '#ajax_form .cm_btn', function() {
+$(document).on('click', '#ajax_form .cm_btn', function() {
     e = $(this).closest('.cm_block');
     let data = e.find('#ajax_form');
     $.ajax({
@@ -161,7 +161,7 @@ $(document).on('click touchstart', '#ajax_form .cm_btn', function() {
         }
     });
     });
-$(document).on('click touchstart', '.btn.cm_likes', function() {
+$(document).on('click', '.btn.cm_likes', function() {
     let data = $(this).closest('.cm_block').find('#ajax_form');
     let like = $(this).closest('.cm_block').find('.btn.cm_likes');
     let count = $(this).find('#like_count')[0];
