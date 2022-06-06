@@ -957,12 +957,14 @@
     .m_block.cm_main {
         position: relative;
         padding: 0;
+        box-shadow: none;
     }
     .new{
         padding-bottom: 130px;
     }
     .cm_main .cm_form {
     grid-gap: 10px;
+    margin: 10px 0 5px;
 }
 }
 
