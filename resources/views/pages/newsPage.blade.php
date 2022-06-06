@@ -148,15 +148,15 @@ $(document).on('click touchstart', '#ajax_form .cm_btn', function() {
     let data = e.find('#ajax_form');
     $.ajax({
         url: '/news/comments/answer',
-        type: "GET", //метод отправки
-        dataType: "html", //формат данных
-        data: data.serialize(), // Сеарилизуем объект
-        success: function(response) { //Данные отправлены успешно
+        type: "GET",
+        dataType: "html",
+        data: data.serialize(), 
+        success: function(response) { 
             console.log('done');
-            data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset("images/avatar.png")}})"></div><div class="cm_content"><div class="cm_head">{{Auth::user()->full_name}}</div><div class="cm_body">'+e.find('.cm_input')[0].value+'</div></div></div>');
+            data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset("images/avatar.png")}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">'+e.find('.cm_input')[0].value+'</div></div></div>');
             e.find('.cm_input')[0].value = '';
         },
-        error: function(response) { // Данные не отправлены
+        error: function(response) { 
             console.log('fail');
         }
     });
