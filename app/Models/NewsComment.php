@@ -20,11 +20,16 @@ class NewsComment extends Model
     {
         return $this->hasMany(NewsComment::class, 'parent_id', 'id');
     }
-   
+
     public function thisUserLiked()
     {
         return $this->hasOne(NewsCommentLike::class)
             ->where('user_id', auth()->check() ? auth()->user()->id : 0);
-  
+
+    }
+    public function thisLikes()
+    {
+        return $this->hasMany(NewsCommentLike::class);
+
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', $pageName)
 @section('content')
 <style>
     .menuactive5 {
@@ -14,95 +14,91 @@
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">
-        <a href="#" class="btn mp_back">
-            <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
+        <a href="/materials" class="btn mp_back">
+            <img src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
         </a>
-        <div class="mp_blockhref"><span><a href="#">Материалдар</a> / <a href="#">Балабақша</a> / <a href="#">Мақала</a> / <a href="#">Мектепке дейінгі балалар</a> /</span> Балабақшадағы балалардың...</div>
+        <div class="mp_blockhref"><span><a href="/materials">@lang('site.Материалдар')</a> / <a href="#">{{$material->subject->name}}</a> / <a href="#">{{$material->direction->name}}</a> / <a href="#">{{$material->class->name}}</a> /</span> {{$material->title}}</div>
     </div>
 </div>
 <section class="materials">
     <div class="cst_pd">
         <div class="m_block mp_block">
             <div class="mp_head">
-                Балабақшадағы балалардың психологиясы бойынша кеңестер
+                {{$material->title}}
             </div>
             <div class="mp_info">
-                Материал туралы қысқаша түсінік
-                1.Балаларды отансүйгіштікке тәрбиелеу және қысқаша тарихына шолу жасай келе, болашақта Қазақстанды өркендетуге білімді жастар керек екендігін түсіндіру. 2.Топпен жұмыс істеу, ой қозғау, сипаттау, баяндау дағдыларын дамыту. 3.Ана тілін, отанын сүюге, елін, жерін қорғауға, қастерлеуге тәрбиелеу. Көрнекілік: Қ.Р рәміздері, Қ.Р конституциясы, компьютерлік слайдтар, қанатты сөздер.
+                @lang('site.Материал туралы қысқаша түсінік')
+                {{$material->description}}
             </div>
             <div class="m_footer mp_footer">
                 <div class="m_item">
                     <img src="{{asset('images/profile-circle2.svg')}}">
-                    <span id="name">Сембиев Нартай</span>
+                    <span id="name">{{$material->user->full_name}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/calendar2.svg')}}">
-                    <span id="date">04.12.2021</span>
+                    <span id="date">{{$material->createdAt($material->created_at)}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/eye2.svg')}}">
-                    <span id="views">200</span>
+                    <span id="views">{{$material->view}}</span>
                 </div>
                 <div class="m_item">
                     <img src="{{asset('images/receive2.svg')}}">
-                    <span id="downloads">96</span>
+                    <span id="downloads">{{$material->download}}</span>
                 </div>
             </div>
+            @if($userSub != null)
             <div class="mp_sert">
                 <img src="{{asset('images/sertif.svg')}}">
-                <div class="p">Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.</div>
+                <div class="p">@lang('site.Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.')</div>
                 <div class="mp_btn_group">
-                    <a href="#"><button class="btn mp_btn">Сертификатты жүктеу</button></a>
-                    <a href="#"><button class="btn mp_btn">Материалды жүктеу</button></a>
-                    <a href="#"><button class="btn mp_btn">Журналға жіберу</button></a>
+                    <a href="#"><button class="btn mp_btn">@lang('site.Сертификатты жүктеу')</button></a>
+                    <a href="#"><button class="btn mp_btn">@lang('site.Материалды жүктеу')</button></a>
+                    <a href="#"><button class="btn mp_btn">@lang('site.Журналға жіберу')</button></a>
                 </div>
             </div>
+            @endif
             <div class="mp_success">
-                <img src="{{asset('images/success.svg')}}"> Мaтериалдың толық нұсқасын жүктеп алып, көруге болады
+                <img src="{{asset('images/success.svg')}}"> @lang('site.Мaтериалдың толық нұсқасын жүктеп алып, көруге болады')
             </div>
 
-
-
-            <!--            ТЕСТОВЫЙ ФРЕЙМ-->
-            <iframe src="https://docs.google.com/document/d/1I1Z0gyme8aquPsLXNMu7iFh-nLJjt4ISWb5LAJBixq4/preview" width="100%" height="720" frameborder="0"></iframe>
-
-
-
-            <!--ПРАВИЛЬНЫЙ ФРЕЙМ(Не работает на локальных серверах, нужен запуск хостинга)-->
-            <!--<iframe src="https://view.officeapps.live.com/op/embed.aspx?src={{asset('files/3d.docx')}}" width="100%" height="720" frameborder="0"></iframe>-->
-
-
+            @if(pathinfo(storage_path().$material->file_name, PATHINFO_EXTENSION) == 'pdf')
+            <iframe src="{{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
+            @else
+            <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=eduline.kz{{asset('storage')}}/{{$material->file_name}}" width="100%" height="720" frameborder="0"></iframe>
+            @endif
 
             <div class="mp_btn_pos">
-                <a href="{{asset('files/3d.docx')}}" download="">
+                <a href="/materials/{{$material->id}}/download">
                     <button class="btn btn-primary mp_button" id="downloadFile">
                         <img src="{{asset('images/receive.svg')}}" alt="">
-                        Материалды жүктеу
+                        @lang('site.Материалды жүктеу')
                     </button>
                 </a>
             </div>
 
             <div class="mp_like">
-                <span>Материал ұнаса әріптестеріңізбен бөлісіңіз</span>
+                <span>@lang('site.Материал ұнаса әріптестеріңізбен бөлісіңіз')</span>
                 <div class="mp_socseti">
                     <a href="#">
-                        <div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">Ватсапта бөлісу</div>
+                        <div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">@lang('site.Ватсапта бөлісу')</div>
                     </a>
                     <a href="#">
-                        <div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">Телеграммда бөлісу</div>
+                        <div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">@lang('site.Телеграммда бөлісу')</div>
                     </a>
                     <a href="#">
-                        <div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">Фейсбукта бөлісу</div>
+                        <div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">@lang('site.Фейсбукта бөлісу')</div>
                     </a>
                     <a href="#">
-                        <div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">Сілтемені көшіру</div>
+                        <div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">@lang('site.Сілтемені көшіру')</div>
                     </a>
                 </div>
             </div>
             <div class="mp_sert mp_foot_sert">
                 <img src="{{asset('images/info-circle.svg')}}">
                 <div class="mp_foot_body">
-                    БАҚ тіркелгендігі туралы куәлік: 15685-ИА. Материалдарды қайта басуға және де басқа түрде қолдануға, сонымен қоса электрондық БАҚ-да тек қана сайттың әкімшілігінің жазбаша рұқсатымен ғана жүзеге асырылады. Сонымен қатар сайқа сілтеме міндетті түрде болу керек. Егер Сіз біздің сайтта заңсыз түрде материалдар қолданғанын көрсеңіз, сайт әкімшілігіне жеткізіңіз - материалдар жойылады. Редакцияның көзқарасы автордың көзқарасымен сәйкес келмеуі мүмкін.
+                    @lang('site.БАҚ тіркелгендігі туралы куәлік: 15685-ИА. Материалдарды қайта басуға және де басқа түрде қолдануға, сонымен қоса электрондық БАҚ-да тек қана сайттың әкімшілігінің жазбаша рұқсатымен ғана жүзеге асырылады. Сонымен қатар сайқа сілтеме міндетті түрде болу керек. Егер Сіз біздің сайтта заңсыз түрде материалдар қолданғанын көрсеңіз, сайт әкімшілігіне жеткізіңіз - материалдар жойылады. Редакцияның көзқарасы автордың көзқарасымен сәйкес келмеуі мүмкін.')
                 </div>
             </div>
         </div>

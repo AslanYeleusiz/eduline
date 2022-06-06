@@ -16,46 +16,46 @@
 </style>
 <div class="m_href mp_href">
     <div class="cst_pd mp_thref">
-        <a href="#" class="btn mp_back">
-            <img src="{{asset('images/arrow-right.png')}}"><span>Артқа қайту</span>
+        <a href="/materials/my-materials" class="btn mp_back">
+            <img src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
         </a>
-        <div class="mp_blockhref"> Материал ақпаратын өзгерту</div>
+        <div class="mp_blockhref"> @lang('site.Материал ақпаратын жариялау')</div>
     </div>
 </div>
 <section class="materials mc">
     <div class="cst_pd">
         <div class="mp_head mc_head">
-            Материалыңызды жариялап марапаттар алыңыз!
+            @lang('site.Материалыңызды жариялап марапаттар алыңыз')!
         </div>
         <div class="m_block mp_block mc_block pub_block">
             <div class="takyryb pub">
                 <div class="pub_body">
                     <img src="{{asset('images/myprofile.svg')}}">
-                    <div class="tak_name">Автор: Сембиев Нартай Амангалиулы <img class="question" src="{{asset('images/question-circle.svg')}}">
-                        <div class="hint">Сіз тек өз атыңыздан материал жариялай аласыз</div>
-                        <br><span class="mekeni">Павлодар облысы Ақсу қаласы №16 сәбилер бақшасы тәрбиешісі</span>
+                    <div class="tak_name">Автор: {{Auth::user()->full_name}} <img class="question" src="{{asset('images/question-circle.svg')}}">
+                        <div class="hint">@lang('site.Сіз тек өз атыңыздан материал жариялай аласыз')</div>
+                        <br><span class="mekeni">{{Auth::user()->place_work}}</span>
                     </div>
                 </div>
                 <img class="tag_user" src="{{asset('images/tag-user.svg')}}">
             </div>
         </div>
         <div class="m_block mp_block mc_block">
-            <form class="m_form" action="" method="post" enctype="multipart/form-data">
+            <form class="m_form" action="{{route('materials.ajaxupload.store')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <!--FILE DROPZONE-->
                 <div class="mb-4 w-100">
-                    <label class="form-label">Материал файлын жүктеу</label>
+                    <label class="form-label">@lang('site.Материал файлын жүктеу')</label>
                     <div class="dropzone my_drop" id="dropzoneForm">
                         <div class="expectations active">
                             <div class="ex"></div>
                             <div class="extension_message">
-                                <span class="b">doc, docx, ppt, pptx, pdf</span><br>
-                                файлдарын жүктеуге болады
+                                <span class="b">@lang('site.doc, docx, ppt, pptx, pdf')</span><br>
+                                @lang('site.файлдарын жүктеуге болады')
                             </div>
-                            <a href="#">Файлды жүктеу</a>
+                            <a href="#">@lang('site.Файлды жүктеу')</a>
                         </div>
                         <div class="loadedmode">
-                            <h4 class="matzharproc"><span id="procofp">0</span>% жүктелуде...</h4>
+                            <h4 class="matzharproc"><span id="procofp">0</span>% @lang('site.жүктелуде')...</h4>
                             <div class="lineload">
                                 <div class="lineload2"></div>
                             </div>
@@ -68,51 +68,52 @@
                                 </svg>
                             </div>
                             <div class="success-informer">
-                                Сіздің файлыңыз сәтті жүктелді
+                                @lang('site.Сіздің файлыңыз сәтті жүктелді')
                             </div>
                             <div class="drop-zone__thumb">
-                                <span id="file_name">name.jpg</span><img src="{{asset('images/pen.svg')}}"><span class="ah">Өзгерту</span>
+                                <span id="file_name">name.jpg</span><img src="{{asset('images/pen.svg')}}"><span class="ah">@lang('site.Өзгерту')</span>
                             </div>
                         </div>
                         <div class="help-block"></div>
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="file" name="file" id="js-file" multiple class="drop-zone__input">
+                        <input type="file" name="file" id="js-file" multiple class="drop-zone__input" required>
                     </div>
                 </div>
                 <!--               FILE DROPZONE-->
                 <div class="mb-4 w-100">
-                    <label for="exampleFormControlInput1" class="form-label">Материал тақырыбы</label>
-                    <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Ашық сабақ Ыбырай Алтынсарин 5 сынып">
+                    <label for="exampleFormControlInput1" class="form-label">@lang('site.Материал тақырыбы')</label>
+                    <input name="name" class="form-control" id="exampleFormControlInput1" placeholder="@lang('site.Ашық сабақ Ыбырай Алтынсарин 5 сынып')" required>
                 </div>
                 <div class="mb-3 w-100">
-                    <label for="exampleFormControlTextarea1" class="form-label">Материалдың қысқаша түсінігі</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады."></textarea>
+                    <label for="exampleFormControlTextarea1" class="form-label">@lang('site.Материалдың қысқаша түсінігі')</label>
+                    <textarea class="form-control" name="text" id="exampleFormControlTextarea1" placeholder="@lang('site.Қысқаша түсінік ретінде материалдың басқаларға пайдасы, негізгі ойы, форматы туралы ақпарат жазуға болады.')" required></textarea>
                 </div>
 
                 <div class="m_control mc_control">
-                    <select class="form-select m_box m_cbox g1">
-                        <option hidden selected id="select">Пәнді таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g1" name="subject" required>
+                        <option value="" disabled hidden selected id="select">Пәнді таңдаңыз</option>
+                        @foreach($sub as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+
                     </select>
-                    <select class="form-select m_box m_cbox g2">
-                        <option hidden selected id="select">Бағытын таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g2" name="direction" required>
+                        <option value="" disabled hidden selected id="select">Бағытын таңдаңыз</option>
+                        @foreach($dir as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
                     </select>
-                    <select class="form-select m_box m_cbox g3">
-                        <option hidden selected id="select">Сыныбын таңдаңыз</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select m_box m_cbox g3" name="class" required>
+                        <option value="" disabled hidden selected id="select">Сыныбын таңдаңыз</option>
+                        @foreach($class as $subject)
+                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
                     </select>
                 </div>
-                <button class="btn btn-primary m_btn">Өзгерту</button>
+                <button type="submit" class="btn btn-primary m_btn">@lang('site.Жариялау')</button>
                 <div class="mc_warning">
-                    Сіз материалды жариялау арқылы <a href="#">сайттың ережелерімен</a> келіскеніңізді растайсыз.
+                    @lang('site.Сіз материалды жариялау арқылы') <a href="#">@lang('site.сайттың ережелерімен')</a> @lang('site.келіскеніңізді растайсыз.')
                 </div>
             </form>
         </div>
@@ -130,24 +131,24 @@
 
 
 <script type="text/javascript">
-    if ($(window).width() < '1099' && $(window).width() > '767') {
-        select[0].textContent = "Пені";
-        select[1].textContent = "Бағыты";
-        select[2].textContent = "Сыныбы";
+    if ($(window).width() <= '917') {
+        select[0].textContent = "@lang('site.Пәні')";
+        select[1].textContent = "@lang('site.Бағыты')";
+        select[2].textContent = "@lang('site.Сыныбы')";
     } else {
-        select[0].textContent = "Пәнді таңдаңыз";
-        select[1].textContent = "Бағытын таңдаңыз";
-        select[2].textContent = "Сыныбын таңдаңыз";
+        select[0].textContent = "@lang('site.Пәнді таңдаңыз')";
+        select[1].textContent = "@lang('site.Бағытын таңдаңыз')";
+        select[2].textContent = "@lang('site.Сыныбын таңдаңыз')";
     }
     $(window).resize(function() {
-        if ($(window).width() < '1099' && $(window).width() > '767') {
-            select[0].textContent = "Пені";
-            select[1].textContent = "Бағыты";
-            select[2].textContent = "Сыныбы";
+        if ($(window).width() <= '917') {
+            select[0].textContent = "@lang('site.Пәні')";
+            select[1].textContent = "@lang('site.Бағыты')";
+            select[2].textContent = "@lang('site.Сыныбы')";
         } else {
-            select[0].textContent = "Пәнді таңдаңыз";
-            select[1].textContent = "Бағытын таңдаңыз";
-            select[2].textContent = "Сыныбын таңдаңыз";
+            select[0].textContent = "@lang('site.Пәнді таңдаңыз')";
+            select[1].textContent = "@lang('site.Бағытын таңдаңыз')";
+            select[2].textContent = "@lang('site.Сыныбын таңдаңыз')";
         }
     });
 

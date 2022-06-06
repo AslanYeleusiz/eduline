@@ -376,16 +376,13 @@ $(function () {
         });
     });
 
-    let input = document.getElementsByClassName('phone_mask')[0];
-    input.addEventListener('focus', (e, el) => {
-        $(".phone_mask").val("+7 (___) ___-__-__");
-        e.preventDefault()
-    })
-    input.addEventListener('mouseup', (e, el) => {
-        e.preventDefault()
-        console.log(input.setSelectionRange(4, 4))
-    })
+//    let input = document.getElementsByClassName('phone_mask')[0];
+//    input.addEventListener('focus', (e, el) => {
+//        $(".phone_mask").val("+7 (___) ___-__-__");
+//        e.preventDefault()
+//    })
+//    input.addEventListener('mouseup', (e, el) => {
+//        e.preventDefault()
+//        console.log(input.setSelectionRange(4, 4))
+//    })
 })
-
-
-

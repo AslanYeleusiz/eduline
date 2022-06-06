@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Material extends Model
 {
@@ -25,17 +26,17 @@ class Material extends Model
     {
         return $this->belongsTo(MaterialSubject::class, 'subject_id')->withTrashed();
     }
-    
+
     public function class()
     {
         return $this->belongsTo(MaterialClass::class, 'class_id')->withTrashed();
     }
-    
+
     public function direction()
     {
         return $this->belongsTo(MaterialDirection::class, 'direction_id')->withTrashed();
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -56,8 +57,15 @@ class Material extends Model
         return Material::FILE_PATH . $this->created_at->format('Y')
         .'/'. $this->created_at->format('m') . '/' . $this->file_name;
     }
-    
-   
+    public function createdAt($date)
+{
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
+}
+
+public function updatedAt($date)
+{
+    return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
+}
 
     public $casts = [
         'is_active' => 'boolean'
