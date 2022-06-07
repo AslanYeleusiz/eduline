@@ -15,6 +15,10 @@ class TestQuestion extends Model
         return $query->where('subject_id', $subjectId);
     }
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
     public function subject()
     {
         return $this->belongsTo(TestSubject::class, 'subject_id');

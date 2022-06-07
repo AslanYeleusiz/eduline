@@ -8,6 +8,9 @@ use App\Http\Controllers\Api\V1\PersonalAdviceController;
 use App\Http\Controllers\Api\V1\RolesController;
 use App\Http\Controllers\Api\V1\SmsController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
+use App\Http\Controllers\Api\V1\Test\TestDirectionController;
+use App\Http\Controllers\Api\V1\Test\TestLanguageController;
+use App\Http\Controllers\Api\V1\Test\TestSubjectOptionController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +49,14 @@ Route::apiResource('news', NewsController::class)->names('news.')->only('index',
 
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('send-sms', [SmsController::class, 'store'])->name('sms.send');
+
+Route::prefix('test')->name('test.')->group(function() {
+     Route::get('languages', [TestLanguageController::class, 'index'])->name('languages.index');
+     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
+     Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
+     Route::get('subjects/{id}/options/{option_id}/start', [TestSubjectOptionController::class, 'start'])->name('subjects.options.start');
+     
+});
 
 Route::middleware('auth:api')->group(function () {
      Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')

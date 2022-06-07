@@ -151,11 +151,31 @@ class TestSubjectOptionController extends Controller
     public function store($subjectId, TestSubjectOptionSaveRequest $request)
     {
         $subject = TestSubject::findOrFail($subjectId);
+        
+        $questionsIds = TestQuestion::subjectBy($subject->id)
+        ->inRandomOrder()
+        ->limit($subject->questions_count)
+        ->get()
+        ->pluck('id')
+        ->toArray();
+
+        DB::beginTransaction();
         $option = new TestSubjectOption();
 
         $option->name = $request->name;
         $option->subject_id = $subject->id;
         $option->save();
+
+        $questionsCount = count($questionsIds);
+        $numbers = [];
+        for($i = 0; $i < $questionsCount; $i++) {
+                array_push($numbers,[
+                    'number' => $i
+                ]);
+        }
+        $questionsIds = array_combine($questionsIds, $numbers);
+        $option->questions()->sync($questionsIds);
+        DB::commit();
         return redirect()->route('admin.test.subjectOptions.index', $subject->id)->withSuccess('Успешно добавлено');
     }
 

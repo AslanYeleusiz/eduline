@@ -16,6 +16,11 @@ class TestDirection extends Model
         return $this->belongsToMany(TestSubject::class, 'test_direction_test_subjects', 'direction_id', 'subject_id');
     }
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('is_active', 1);
+    }
+
     protected $casts = [
         'is_active' => 'boolean'
     ];

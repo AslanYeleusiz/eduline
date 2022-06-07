@@ -23,9 +23,8 @@ use App\Http\Controllers\CommentsController;
 
 
 
-Route::prefix('/')->name('index')->group(function () {
         Route::get('/Announcement', [NewsController::class, 'announcement']);
-        Route::get('/Popular', [NewsController::class, 'popular']);
+        Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
         Route::group(['middleware' => 'auth'], function () {
             Route::get('/news/save', [NewsController::class, 'save'])->name('.save');
             Route::get('/Saves', [NewsController::class, 'news_saves'])->name('.saves');
@@ -33,10 +32,9 @@ Route::prefix('/')->name('index')->group(function () {
             Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('.comments.answer');
             Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('.comments.likes');
         });
-        Route::get('/news/id={id}', [NewsController::class, 'newspage']);
+        Route::get('/news/id={id}', [NewsController::class, 'newspage'])->name('news.show');
         Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
-        Route::get('/', [NewsController::class, 'index']);
-    });
+        Route::get('/', [NewsController::class, 'index'])->name('index');
 
 Route::view('/attestation', 'pages.attestation')->name('attestation');
 

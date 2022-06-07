@@ -71,23 +71,6 @@ class MaterialController extends Controller
         }
     }
 
-    // public function getCertificate($id)
-    // {
-    //     $material = Material::findOrFail($id);
-    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'certificate.jpg'));
-    // }
-    
-    // public function getCertificateThankLetter($id)
-    // {
-    //     $material = Material::findOrFail($id);
-    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'thank-letter.jpg'));
-    // }
-    
-    // public function getCertificateHonor($id)
-    // {
-    //     $material = Material::findOrFail($id);
-    //     return response()->download(Storage::disk('public')->path(Material::CERTIFICATE_PATH . 'honor.jpg'));
-    // }
     public function getCertificate($id)
     {
         $material = Material::with('user')->findOrFail($id);
