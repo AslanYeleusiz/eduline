@@ -60,7 +60,7 @@
         <div class="m_content">
             @foreach($materials as $material)
             <div class="m_block">
-                <a target="_blank" href="/materials/item-{{$material->id}}" id="m_head" class="m_block_head">
+                <a target="_blank" href="/materials/{{$material->slug($material->title)}}-{{$material->id}}.html" id="m_head" class="m_block_head">
                     {{$material->title}}
                 </a>
                 <div id="m_body" class="m_body">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Material extends Model
 {
@@ -66,6 +67,11 @@ public function updatedAt($date)
 {
     return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d.m.Y');
 }
+
+    public function slug($date)
+    {
+        return Str::slug($date, '_');
+    }
 
     public $casts = [
         'is_active' => 'boolean'

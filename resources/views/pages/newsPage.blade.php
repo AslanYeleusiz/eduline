@@ -3,7 +3,7 @@
 @section('meta')
 <meta name="description" content="{{$material->description}}">
 <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
-<link rel="canonical" href="eduline.kz/news/{{$material->title}}-{{$material->id}}.html">
+<link rel="canonical" href="eduline.kz/news/{{$material->slug($material->title)}}-{{$material->id}}.html">
 @endsection
 @section('content')
 <style>

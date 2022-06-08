@@ -32,7 +32,7 @@ use App\Http\Controllers\CommentsController;
             Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
             Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
         });
-        Route::get('/news/id={id}', [NewsController::class, 'newspage'])->name('news.show');
+        Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
         Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
         Route::get('/', [NewsController::class, 'index'])->name('index');
 
@@ -90,7 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('materials')->name('materials')->group(function () {
         Route::get('/', [PageController::class, 'materials']);
         Route::get('/search', [PageController::class, 'search'])->name('.search');
-        Route::get('/item-{id}', [PageController::class, 'material'])->name('.material');
+        Route::get('/{slug}-{id}', [PageController::class, 'material'])->name('.material');
         Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
         Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
         Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
