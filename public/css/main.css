@@ -1385,6 +1385,9 @@ line-height: 17px;
     height: 0px;/* ширина scrollbar'a */
     background: transparent;  /* опционально */
 }
+.m_href a{
+    cursor: pointer;
+}
 .m_center {
     display: flex;
     flex-direction: row;

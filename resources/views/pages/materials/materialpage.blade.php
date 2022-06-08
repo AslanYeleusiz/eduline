@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('title', $pageName)
+@section('meta')
+<meta name="description" content="{{$material->description}}">
+<meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
+<link rel="canonical" href="eduline.kz/materials/{{$material->title}}-{{$material->id}}.html">
+@endsection
 @section('content')
 <style>
     .menuactive5 {

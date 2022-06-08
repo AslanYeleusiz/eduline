@@ -59,7 +59,7 @@
             </a>
         </li>
         <li class="menu-li">
-            <a class="menu-link @if(request()->routeIs('materials') || request()->routeIs('materials.*')) active @endif" href="{{ route('materials') }}">
+            <a class="menu-link @if(request()->routeIs('materials') || request()->routeIs('materials.*')) active @endif" @guest onclick="openLogin('materials')" @endguest @auth href="{{ route('materials') }}" @endauth >
                 <img class="img-svg" src="{{asset('images/folder.svg')}}">
                 @lang('site.Материалдар')
             </a>

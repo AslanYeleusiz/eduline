@@ -110,17 +110,17 @@
                     </div>
                     @if($userSub != null)
                     <div class="my_admin_btns">
-                        <a href="#">
+                        <a href="/materials/{{$mt->id}}/certificate">
                             <button class="btn my_btn c1">
                                 @lang('site.Сертификатты жүктеу')
                             </button>
                         </a>
-                        <a href="#">
+                        <a href="/materials/{{$mt->id}}/thank-letter">
                             <button class="btn my_btn c2">
                                 @lang('site.Алғыс хатты жүктеу')
                             </button>
                         </a>
-                        <a href="#">
+                        <a href="/materials/{{$mt->id}}/certificate-honor">
                             <button class="btn my_btn c3">
                                 @lang('site.Құрмет грамотасын жүктеу')
                             </button>

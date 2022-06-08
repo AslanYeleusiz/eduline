@@ -42,6 +42,7 @@ class AuthController extends Controller
 
         return response()->json(['data' => [
             'success' => true,
+            'endRoute' => $request->endRoute
         ]]);
     }
 

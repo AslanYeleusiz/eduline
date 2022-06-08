@@ -26,11 +26,11 @@ use App\Http\Controllers\CommentsController;
         Route::get('/Announcement', [NewsController::class, 'announcement']);
         Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
         Route::group(['middleware' => 'auth'], function () {
-            Route::get('/news/save', [NewsController::class, 'save'])->name('.save');
-            Route::get('/Saves', [NewsController::class, 'news_saves'])->name('.saves');
-            Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('.comments.store');
-            Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('.comments.answer');
-            Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('.comments.likes');
+            Route::get('/news/save', [NewsController::class, 'save'])->name('news.save');
+            Route::get('/Saves', [NewsController::class, 'news_saves'])->name('news.saves');
+            Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('index.comments.store');
+            Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
+            Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
         });
         Route::get('/news/id={id}', [NewsController::class, 'newspage'])->name('news.show');
         Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');

@@ -12,7 +12,7 @@ class MaterialController extends Controller
 {
     public function __construct(public MaterialCertificateGenerateService $materialCertificateGenerateService)
     {
-        
+
     }
     public function download($id)
     {
@@ -30,21 +30,20 @@ class MaterialController extends Controller
         $material = Material::with('user')->findOrFail($id);
 
         $certificateName = MaterialCertificateGenerateService::getCertificate($material);
-        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . '/'. $certificateName) ;
+        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . '/'. $certificateName);
     }
 
     public function getCertificateThankLetter($id)
     {
         $material = Material::findOrFail($id);
         $certificateName = MaterialCertificateGenerateService::getThankLetter($material);
-        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . 'thank-letter.jpg');
+        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . '/'. $certificateName);
     }
 
     public function getCertificateHonor($id)
     {
         $material = Material::findOrFail($id);
         $certificateName = MaterialCertificateGenerateService::getHonor($material);
-        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . '/'. $certificateName) ;
-        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . 'honor.jpg');
+        return Storage::disk('public')->download(Material::CERTIFICATE_PATH . '/'. $certificateName);
     }
 }

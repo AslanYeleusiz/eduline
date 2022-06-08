@@ -1,7 +1,11 @@
 @extends('layouts.main')
 @section('title', $pageName)
 @section('content')
-
+@section('meta')
+<meta name="description" content="Ұстаздар мен тәрбиешілерге арналған материалдар, файлдар. Eduline.kz">
+<meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
+<link rel="canonical" href="eduline.kz/materials">
+@endsection
 @component('components.NavBar')
 @slot('materials') @endslot
 @endcomponent

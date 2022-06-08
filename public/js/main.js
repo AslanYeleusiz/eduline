@@ -213,16 +213,17 @@ function validate(file) {
     return $('.help-block').show();
 }
 
-function openLogin() {
+function openLogin(routeName) {
     $('.modal').modal('hide');
+    $('.endRoute').val(routeName);
     setTimeout(() => {
         $('#loginPopup').modal('show');
     }, 500)
 }
 
 function openRegister() {
-    $('.modal').modal('hide')
-    $('.only-register').css('display', 'block')
+    $('.modal').modal('hide');
+    $('.only-register').css('display', 'block');
 
     setTimeout(() => {
         $('#registerPopup').modal('show');
@@ -344,6 +345,7 @@ $(function () {
         let phone = $('#login-phone').val();
         let password = $('#password').val();
         let _token = $('meta[name="csrf-token"]').attr('content');
+        let endRoute = $('.endRoute').val();
 
         $(".loader").addClass("loading");
 
@@ -355,12 +357,14 @@ $(function () {
             data: {
                 'phone': phone,
                 'password': password,
-                '_token': _token
+                '_token': _token,
+                'endRoute': endRoute
             },
             success: function (res) {
                 $(".loader").removeClass("loading");
                 if (res.data && res.data.success) {
-                    window.location.reload();
+                    if(res.data.endRoute != null) window.location.href = '/'+res.data.endRoute;
+                    else window.location.reload();
                 }
             },
             error: function (err) {
