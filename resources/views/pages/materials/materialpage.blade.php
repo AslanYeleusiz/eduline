@@ -94,7 +94,7 @@
                 <div class="mp_btn_group">
                     <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}"@else href="/materials/{{$material->id}}/certificate"@endif @endguest><button class="btn mp_btn">@lang('site.Сертификатты жүктеу')</button></a>
                     <a href="/materials/{{$material->id}}/download"><button class="btn mp_btn">@lang('site.Материалды жүктеу')</button></a>
-                    <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}"@else onclick="popup()"@endif @endguest><button class="btn mp_btn popup2">@lang('site.Журналға жіберу')</button></a>
+                    <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}" @endif @endguest><button class="btn mp_btn @auth @if($userSub!=null) popup2 @endif @endauth">@lang('site.Журналға жіберу')</button></a>
                 </div>
             </div>
             <div class="mp_success">
