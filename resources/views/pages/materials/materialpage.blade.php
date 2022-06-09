@@ -16,6 +16,7 @@
     .img-svg polygon {
         stroke: #fff;
     }
+
 </style>
 <div id="popup2" class="my_popup">
     <div class="popup_body">
@@ -92,7 +93,7 @@
                 <img src="{{asset('images/sertif.svg')}}">
                 <div class="p">@lang('site.Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.')</div>
                 <div class="mp_btn_group">
-                    <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}"@else href="/materials/{{$material->id}}/certificate"@endif @endguest><button class="btn mp_btn">@lang('site.Сертификатты жүктеу')</button></a>
+                    <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}" @else href="/materials/{{$material->id}}/certificate" @endif @endguest><button class="btn mp_btn">@lang('site.Сертификатты жүктеу')</button></a>
                     <a href="/materials/{{$material->id}}/download"><button class="btn mp_btn">@lang('site.Материалды жүктеу')</button></a>
                     <a @guest onclick="openLogin()" @else @if($userSub==null)href="{{route('profile.subscription')}}" @endif @endguest><button class="btn mp_btn @auth @if($userSub!=null) popup2 @endif @endauth">@lang('site.Журналға жіберу')</button></a>
                 </div>
@@ -120,17 +121,17 @@
                 <span>@lang('site.Материал ұнаса әріптестеріңізбен бөлісіңіз')</span>
                 <script src="https://yastatic.net/share2/share.js"></script>
                 <div class="mp_socseti">
-                    <a class="ya-share2__link" href="https://api.whatsapp.com/send?text={{url()->current()}}&amp;utm_source=share2" rel="nofollow noopener" target="_blank" title="WhatsApp">
+                    <a onclick="open('https://api.whatsapp.com/send?text={{url()->current()}}&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" title="WhatsApp">
                         <div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">@lang('site.Ватсапта бөлісу')</div>
                     </a>
-                    <a class="ya-share2__link" href="https://t.me/share/url?url={{url()->current()}}&amp;utm_source=share2" rel="nofollow noopener" target="_blank" title="Telegram">
+                    <a onclick="open('https://t.me/share/url?url={{url()->current()}}&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" title="Telegram">
                         <div class="mp_seti mp_cross t"><img src="{{asset('images/telegram.svg')}}">@lang('site.Телеграммда бөлісу')</div>
                     </a>
-                    <a class="ya-share2__link" href="https://www.facebook.com/sharer.php?src=sp&amp;u={{url()->current()}}&amp;utm_source=share2" rel="nofollow noopener" target="_blank" title="Facebook">
+                    <a onclick="open('https://www.facebook.com/sharer.php?src=sp&amp;u={{url()->current()}}&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" title="Facebook">
                         <div class="mp_seti mp_cross f"><img src="{{asset('images/facebook.svg')}}">@lang('site.Фейсбукта бөлісу')</div>
                     </a>
                     <a href="#" class="urlLite">
-                       <input type="hidden" name="copyUrl" class="copyUrl" value="{{url()->current()}}">
+                        <input type="hidden" name="copyUrl" class="copyUrl" value="{{url()->current()}}">
                         <div class="mp_seti s"><img src="{{asset('images/layer2.svg')}}">@lang('site.Сілтемені көшіру')</div>
                     </a>
                 </div>
@@ -163,7 +164,7 @@
             },
         })
     });
-    $('.urlLite').on('click',function(e){
+    $('.urlLite').on('click', function(e) {
         e.preventDefault();
         var $temp = $("<input>");
         $("body").append($temp);
@@ -171,5 +172,6 @@
         document.execCommand("copy");
         alert("Copied the text: " + $('.copyUrl').val());
     })
+
 </script>
 @endsection
