@@ -89,7 +89,10 @@ class PageController extends Controller
 
     public function myMaterials()
     {
-        $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(20);
+        $material = Material::where('user_id','=',auth()->user()->id)->where(function ($query) {
+               $query->where('status_deleted', '=', null)
+                     ->orWhere('status_deleted', '<', 3);
+           })->orderBy('created_at','desc')->paginate(20);
         $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
         $pageName = __('site.Менің материалдарым');
         return view('pages.materials.my-materials',compact('pageName','material','userSub'));
@@ -115,8 +118,9 @@ class PageController extends Controller
             $material -> direction_id = $request -> direction;
             $material -> class_id = $request -> class;
             $material -> save();
-        }else return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
-
+        }else {
+            return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
+        }
         return __('site.Материал сәтті өзгертілді');
     }
 
