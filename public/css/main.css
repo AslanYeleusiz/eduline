@@ -1945,6 +1945,7 @@ textarea.form-control:focus::placeholder{
 
 .mp_socseti a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .mp_seti {
