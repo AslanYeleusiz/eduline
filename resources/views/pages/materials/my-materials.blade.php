@@ -139,15 +139,15 @@
     </div>
 </section>
 <script>
-    $(document).on('click touchstart', '.my_edit .btn.deleteBtn', function() {
+    $(document).on('click', '.my_edit .btn.deleteBtn', function() {
         $('.delete')[0].value = $(this).closest('.m_block.my_m_block').find('.material_id')[0].value;
     });
-    $(document).on('click touchstart', '.my_admin_btns .btn.my_btn.c4.popup2', function() {
+    $(document).on('click', '.my_admin_btns .btn.my_btn.c4.popup2', function() {
         let data_id = $(this).closest('.m_block.my_m_block').find('.material_id')[0].value;
         $('#journal_title')[0].innerText = $('#m_head')[0].innerText;
         $('#material_id')[0].value = data_id;
     });
-    $(document).on('click touchstart', '#ajax-form #journal_button', function() {
+    $(document).on('click', '#ajax-form #journal_button', function() {
         let data = $(this).closest('#ajax-form');
 
         $.ajax({

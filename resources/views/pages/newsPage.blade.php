@@ -36,7 +36,7 @@
         <div class="cst_pd">
             <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
                 @csrf
-                <div class="img" style="background-image: url({{asset(Auth::user()->avatar)}})" alt=""></div>
+                <div class="img" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@else{{asset('/images/avatar_default.png')}}@endauth)" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
                 <button type="button" class="btn-primary btn cm_btn">
@@ -50,7 +50,7 @@
         <div class="cst_pd">
             <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
                 @csrf
-                <div class="img" style="background-image: url({{asset(Auth::user()->avatar)}})" alt=""></div>
+                <div class="img" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@else{{asset('/images/avatar_default.png')}}@endauth)" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
                 <button type="button" class="btn-primary btn cm_btn">
@@ -195,7 +195,7 @@
             data: data.serialize(),
             success: function(response) {
                 response = JSON.parse(response);
-                $('#results').prepend('<div class="cm_block"><div class="cm_avatar" style="background-image: url({{asset(Auth::user()->avatar)}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + data.find('.cm_input')[0].value + '</div><div class="cm_footer"><button type="button" class="btn cm_likes"><div class="cm_like"></div><span id="like_count">0</span></button><button class="btn cm_qsts"><div class="cm_qst"></div>@lang('site.Жауап жазу')</button></div><form action="" id="ajax_form" method="post" class="cm_form a" style="display:none"><input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз ')..." autocomplete="off"><input type="hidden" name="comment_id" class="comment_id" value="'+response.id_comment+'"><button type="button" class="btn-primary btn cm_btn">@lang('site.Жіберу ') <img src="{{asset("images/news/send.svg")}}" alt=""></button></form></div>');
+                $('#results').prepend('<div class="cm_block"><div class="cm_avatar" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@endauth)"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + data.find('.cm_input')[0].value + '</div><div class="cm_footer"><button type="button" class="btn cm_likes"><div class="cm_like"></div><span id="like_count">0</span></button><button class="btn cm_qsts"><div class="cm_qst"></div>@lang('site.Жауап жазу')</button></div><form action="" id="ajax_form" method="post" class="cm_form a" style="display:none"><input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз ')..." autocomplete="off"><input type="hidden" name="comment_id" class="comment_id" value="'+response.id_comment+'"><button type="button" class="btn-primary btn cm_btn">@lang('site.Жіберу ') <img src="{{asset("images/news/send.svg")}}" alt=""></button></form></div>');
                 data.find('.cm_input')[0].value = '';
                 $('.cm_qsts').click(function() {
                     e = $(this).closest('.cm_block').find('.cm_form.a');

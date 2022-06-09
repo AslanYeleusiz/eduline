@@ -78,14 +78,18 @@ class PageController extends Controller
     public function material($slug, $id)
     {
         $material = Material::find($id);
+        $userSub = null;
+        if(Auth::user()){
+            $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
+        }
         $material->increment('view');
         $pageName = __('site.Материал');
-        return view('pages.materials.materialpage', compact('material','pageName'));
+        return view('pages.materials.materialpage', compact('material','pageName','userSub'));
     }
 
     public function myMaterials()
     {
-        $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
+        $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(20);
         $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
         $pageName = __('site.Менің материалдарым');
         return view('pages.materials.my-materials',compact('pageName','material','userSub'));

@@ -569,7 +569,9 @@ line-height: 45px;
 font-size: 14px;
 line-height: 17px;
 }
-.cm_input:focus::placeholder{
+.cm_input:focus::placeholder,
+input.form-control:focus::placeholder,
+textarea.form-control:focus::placeholder{
     color: #ffffff;
 }
 .cm_btn{

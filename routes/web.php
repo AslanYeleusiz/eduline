@@ -23,7 +23,7 @@ use App\Http\Controllers\CommentsController;
 
 
 
-        Route::get('/Announcement', [NewsController::class, 'announcement']);
+        Route::get('/Announcement', [NewsController::class, 'announcement'])->name('news.announcement');
         Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
         Route::group(['middleware' => 'auth'], function () {
             Route::get('/news/save', [NewsController::class, 'save'])->name('news.save');
