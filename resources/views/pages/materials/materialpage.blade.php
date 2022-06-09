@@ -3,7 +3,7 @@
 @section('meta')
 <meta name="description" content="{{$material->description}}">
 <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
-<link rel="canonical" href="eduline.kz/materials/{{$material->slug($material->title)}}-{{$material->id}}.html">
+<link rel="canonical" href="https://eduline.kz/materials/{{$material->slug($material->title)}}-{{$material->id}}.html">
 @endsection
 @section('content')
 <style>
@@ -22,7 +22,7 @@
         <a href="/materials" class="btn mp_back">
             <img src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
         </a>
-        <div class="mp_blockhref"><span><a href="/materials">@lang('site.Материалдар')</a> / <a href="#">{{$material->subject->name}}</a> / <a href="#">{{$material->direction->name}}</a> / <a href="#">{{$material->class->name}}</a> /</span> {{$material->title}}</div>
+        <div class="mp_blockhref"><span><a href="/materials">@lang('site.Материалдар')</a> / <a href="/materials/search">{{$material->subject->name}}</a> / <a href="/materials/search">{{$material->direction->name}}</a> / <a href="/materials/search">{{$material->class->name}}</a> /</span> {{$material->title}}</div>
     </div>
 </div>
 <section class="materials">
@@ -53,7 +53,6 @@
                     <span id="downloads">{{$material->download}}</span>
                 </div>
             </div>
-            @if($userSub != null)
             <div class="mp_sert">
                 <img src="{{asset('images/sertif.svg')}}">
                 <div class="p">@lang('site.Бұл сертификат «Ustaz tilegi» Республикалық ғылыми – әдістемелік журналының желілік басылымына өз авторлық жұмысын жарияланғанын растайды. Журнал Қазақстан Республикасы Ақпарат және Қоғамдық даму министрлігінің №KZ09VPY00029937 куәлігін алған. Сондықтан материал бұқаралық ақпарат құралына жариялаған болып саналады.')</div>
@@ -63,7 +62,6 @@
                     <a href="#"><button class="btn mp_btn">@lang('site.Журналға жіберу')</button></a>
                 </div>
             </div>
-            @endif
             <div class="mp_success">
                 <img src="{{asset('images/success.svg')}}"> @lang('site.Мaтериалдың толық нұсқасын жүктеп алып, көруге болады')
             </div>

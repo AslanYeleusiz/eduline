@@ -87,10 +87,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
 //        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
     });
-    Route::prefix('materials')->name('materials')->group(function () {
-        Route::get('/', [PageController::class, 'materials']);
+});
+Route::prefix('materials')->name('materials')->group(function () {
+        Route::get('/', [PageController::class, 'ajaxMaterials']);
         Route::get('/search', [PageController::class, 'search'])->name('.search');
-        Route::get('/{slug}-{id}', [PageController::class, 'material'])->name('.material');
+        Route::get('/{slug}-{id}.html', [PageController::class, 'material'])->name('.material');
         Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
         Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
         Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
@@ -107,4 +108,3 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
     });
-});

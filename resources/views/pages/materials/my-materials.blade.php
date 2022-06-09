@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="my_m_block_b">
-                    <a href="/materials/item-{{$mt->id}}" id="m_head" class="m_block_head">
+                    <a href="/materials/{{$mt->slug($mt->title)}}-{{$mt->id}}.html" id="m_head" class="m_block_head">
                         {{$mt->title}}
                     </a>
                     <div class="m_item my_item">

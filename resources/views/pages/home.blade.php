@@ -3,7 +3,7 @@
 @section('meta')
 <meta name="description" content="Ұстаздар мен мұғалімдерге арналған жаңалықтар. Аттестация жаңалықтары. Eduline.kz">
 <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
-<link rel="canonical" href="eduline.kz">
+<link rel="canonical" href="https://eduline.kz">
 @endsection
 @section('content')
 <section class="news">

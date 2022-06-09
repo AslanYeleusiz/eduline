@@ -3,7 +3,7 @@
 @section('meta')
 <meta name="description" content="{{$material->description}}">
 <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
-<link rel="canonical" href="eduline.kz/news/{{$material->slug($material->title)}}-{{$material->id}}.html">
+<link rel="canonical" href="https://eduline.kz/news/{{$material->slug($material->title)}}-{{$material->id}}.html">
 @endsection
 @section('content')
 <style>
@@ -34,12 +34,12 @@
     @section('app')
     <div class="m_block cm_main">
         <div class="cst_pd">
-            <form action="{{route('index.comments.store')}}" class="cm_form ns_block">
+            <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
                 @csrf
-                <img src="{{asset('/images/news/avatar.png')}}" alt="">
+                <div class="img" style="background-image: url({{asset(Auth::user()->avatar)}})" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
-                <button type="submit" class="btn-primary btn cm_btn">
+                <button type="button" class="btn-primary btn cm_btn">
                     @lang('site.Жіберу') <img src="{{asset('images/news/send.svg')}}" alt="">
                 </button>
             </form>
@@ -48,12 +48,12 @@
     @endsection
     <div class="m_block cm_main dmob">
         <div class="cst_pd">
-            <form action="{{route('index.comments.store')}}" class="cm_form ns_block">
+            <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
                 @csrf
-                <img src="{{asset('/images/news/avatar.png')}}" alt="">
+                <div class="img" style="background-image: url({{asset(Auth::user()->avatar)}})" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
-                <button type="submit" class="btn-primary btn cm_btn">
+                <button type="button" class="btn-primary btn cm_btn">
                     @lang('site.Жіберу') <img src="{{asset('images/news/send.svg')}}" alt="">
                 </button>
             </form>
@@ -74,9 +74,9 @@
                 <div class="ns_view">
                     <div class="ns_views"></div>{{$material->view}}
                 </div>
-                <form method="get" id="ajax_formbut" action="">
-                   @csrf
-                   <input type="hidden" name="id_news" value="{{$material->id}}">
+                <form method="get" id="ajax-formbut" action="">
+                    @csrf
+                    <input type="hidden" name="id_news" value="{{$material->id}}">
                     <button type="button" class="btn ns_savebut @if($material->thisUserSaved) active @endif"></button>
                 </form>
             </div>
@@ -105,13 +105,13 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        var site_url = "/news/id=" + {{$material->id}} + "/comments";
+        var site_url = "/news/id=" + {{$material -> id}} + "/comments";
         var page = 1;
 
         load_more(page);
 
         $(window).scroll(function() {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height()-50) {
                 page++;
                 load_more(page);
             }
@@ -149,82 +149,123 @@
                 });
         }
     });
-        $(document).on('click', '.cm_anothers', function() {
-            e = $(this).closest('.cm_block').find('#answer_list');
-            if (e.is(':visible')) {
-                $(this).removeClass('active');
-                e.hide();
-                return;
+    $(document).on('click', '.cm_anothers', function() {
+        e = $(this).closest('.cm_block').find('#answer_list');
+        if (e.is(':visible')) {
+            $(this).removeClass('active');
+            e.hide();
+            return;
+        }
+        $(this).addClass('active');
+        e.show();
+    });
 
+    $(document).on('click', '#ajax_form .cm_btn', function() {
+        @guest
+        openLogin();
+        @else
+        e = $(this).closest('.cm_block');
+        let data = e.find('#ajax_form');
+        $.ajax({
+            url: '/news/comments/answer',
+            type: "GET",
+            dataType: "html",
+            data: data.serialize(),
+            success: function(response) {
+                console.log('done');
+                data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset(Auth::user()->avatar)}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + e.find('.cm_input')[0].value + '</div></div></div>');
+                e.find('.cm_input')[0].value = '';
+            },
+            error: function(response) {
+                console.log('fail');
             }
-            $(this).addClass('active');
-            e.show();
         });
+        @endguest
+    });
 
-$(document).on('click', '#ajax_form .cm_btn', function() {
-    e = $(this).closest('.cm_block');
-    let data = e.find('#ajax_form');
-    $.ajax({
-        url: '/news/comments/answer',
-        type: "GET",
-        dataType: "html",
-        data: data.serialize(),
-        success: function(response) {
-            console.log('done');
-            data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset("images/avatar.png")}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">'+e.find('.cm_input')[0].value+'</div></div></div>');
-            e.find('.cm_input')[0].value = '';
-        },
-        error: function(response) {
-            console.log('fail');
-        }
-    });
-    });
-$(document).on('click', '.btn.cm_likes', function() {
-    let data = $(this).closest('.cm_block').find('#ajax_form');
-    let like = $(this).closest('.cm_block').find('.btn.cm_likes');
-    let count = $(this).find('#like_count')[0];
-    $.ajax({
-        url: '/news/comments/likes',
-        type: "GET",
-        dataType: "html",
-        data: data.serialize(),
-        success: function(response) {
-            console.log('done');
-        },
-        error: function(response) {
-            console.log('fail');
-        }
-    }).done(function(data){
-        var s = count.innerText;
-        var x = +s;
-        if(like.hasClass('active')){
-            like.removeClass('active');
-            count.innerText = --x;
-        }else{
-            like.addClass('active');
-            count.innerText = ++x;
-        }
-
-    });
-    });
-$(document).on('click', '#ajax-formbut .btn.ns_savebut', function() {
-            let data = $(this).closest('#ajax-formbut');
-            let btn = data.find('.btn.ns_savebut');
-            $.ajax({
-                url: '/news/save',
-                type: "GET", //метод отправки
-                dataType: "html", //формат данных
-                data: data.serialize(), // Сеарилизуем объект
-                success: function(response) { //Данные отправлены успешно
-                    btn.hasClass('active') ?
-                        btn.removeClass('active') : btn.addClass('active');
-
-                },
-                error: function(response) { // Данные не отправлены
-                    console.log('fail');
-                }
-            });
+    $(document).on('click', '.comment_btn .cm_btn', function() {
+        @guest
+        openLogin();
+        @else
+        let data = $(this).closest('.comment_btn');
+        $.ajax({
+            url: '/news/comments/store',
+            type: "GET",
+            dataType: "html",
+            data: data.serialize(),
+            success: function(response) {
+                response = JSON.parse(response);
+                $('#results').prepend('<div class="cm_block"><div class="cm_avatar" style="background-image: url({{asset(Auth::user()->avatar)}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + data.find('.cm_input')[0].value + '</div><div class="cm_footer"><button type="button" class="btn cm_likes"><div class="cm_like"></div><span id="like_count">0</span></button><button class="btn cm_qsts"><div class="cm_qst"></div>@lang('site.Жауап жазу')</button></div><form action="" id="ajax_form" method="post" class="cm_form a" style="display:none"><input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз ')..." autocomplete="off"><input type="hidden" name="comment_id" class="comment_id" value="'+response.id_comment+'"><button type="button" class="btn-primary btn cm_btn">@lang('site.Жіберу ') <img src="{{asset("images/news/send.svg")}}" alt=""></button></form></div>');
+                data.find('.cm_input')[0].value = '';
+                $('.cm_qsts').click(function() {
+                    e = $(this).closest('.cm_block').find('.cm_form.a');
+                    if (!e.is(':visible')) {
+                        $('.cm_form.a').hide();
+                        $('.cm_qsts').removeClass('active');
+                        $(this).closest('.cm_block').find('.cm_qsts').addClass('active');
+                        e.show();
+                    }
+                });
+            },
+            error: function(response) {
+                console.log('fail');
+            }
         });
+        @endguest
+    });
+
+
+    $(document).on('click', '.btn.cm_likes', function() {
+        let data = $(this).closest('.cm_block').find('#ajax_form');
+        let like = $(this).closest('.cm_block').find('.btn.cm_likes');
+        let count = $(this).find('#like_count')[0];
+        $.ajax({
+            url: '/news/comments/likes',
+            type: "GET",
+            dataType: "html",
+            data: data.serialize(),
+            success: function(response) {
+                console.log('done');
+            },
+            error: function(response) {
+                console.log('fail');
+            }
+        }).done(function(data) {
+            var s = count.innerText;
+            var x = +s;
+            if (like.hasClass('active')) {
+                like.removeClass('active');
+                count.innerText = --x;
+            } else {
+                like.addClass('active');
+                count.innerText = ++x;
+            }
+
+        });
+    });
+    $('.ns_savebut').on('click', function() {
+        @guest
+        openLogin();
+        @else
+        let data = $('#ajax-formbut');
+        let btn = $('.ns_savebut');
+        $.ajax({
+            url: '/news/save',
+            type: "GET", //метод отправки
+            dataType: "html", //формат данных
+            data: data.serialize(), // Сеарилизуем объект
+            success: function(response) { //Данные отправлены успешно
+                btn.hasClass('active') ?
+                    btn.removeClass('active') : btn.addClass('active');
+                console.log('done');
+
+            },
+            error: function(response) { // Данные не отправлены
+                console.log('fail');
+            }
+        });
+        @endguest
+    });
 
 </script>
 @endsection
