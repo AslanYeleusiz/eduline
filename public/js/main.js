@@ -194,6 +194,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
+                $('#file_name').text(dataName.name);
                 if(data!=0) $('#fileName').val(data.responseText);
             }, 1000);
         }
@@ -209,10 +210,9 @@ function validate(file) {
     }
     if (!success) {
         $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
-
     }
     if (file.size > 10485760) {
-        $('.help-block').text('Ваш файл превышает 10 мб');
+        $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
     }
     return $('.help-block').show();
 }
