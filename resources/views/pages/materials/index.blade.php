@@ -42,7 +42,7 @@
         </form>
 
         <div class="m_val">
-            @lang('site.Барлығы'): <span id="value">{{$materialCount}}</span> @lang('site.материал')
+            @lang('site.Барлығы'): <span class="data_value">{{$materialCount}}</span> @lang('site.материал')
         </div>
                 <div style="display:flex;" class="" id="ajax-loading">
                     <div style="margin: 0 auto;" class="spinner-border" role="status"></div>
@@ -102,7 +102,7 @@
                 })
                 .done(function(data) {
                     $('#ajax-loading').hide();
-                    $(".m_content").html(data);
+                    $(".m_content").html(data.data);
                     $('.pagination li a').on('click', function(e){
                         e.preventDefault();
                         load_page($(this).attr('href'));
@@ -115,7 +115,7 @@
 
         function search() {
             $.ajax({
-                    url: '/materials?page=1',
+                    url: '/materials',
                     type: "get",
                     datatype: "html",
                     data: $('.m_form').serialize(),
@@ -126,7 +126,8 @@
                 })
                 .done(function(data) {
                     $('#ajax-loading').hide();
-                    $(".m_content").html(data);
+                    $(".m_content").html(data.data);
+                    $('.data_value').html(data.count);
                     $('.pagination li a').on('click', function(e){
                         e.preventDefault();
                         load_page($(this).attr('href'));
