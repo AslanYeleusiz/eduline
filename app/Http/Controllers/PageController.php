@@ -53,7 +53,10 @@ class PageController extends Controller
             if($request->synyp > 1) $materials = $materials->where('class_id','=',$request->synyp);
             if($request->s != null) $materials = $materials->where('title','like','%'.$request->s.'%');
         }
-        $materials = $materials->where('status_deleted','=',null)->orWhere('status_deleted','<',3);
+        $materials = $materials->where(function ($query) {
+               $query->where('status_deleted', '=', null)
+                     ->orWhere('status_deleted', '<', 3);
+        });
         $materialCount = $materials->count();
         $materials = $materials->orderBy('created_at','desc')->paginate(20);
         $pageName = __('site.Материалдар');
@@ -63,7 +66,7 @@ class PageController extends Controller
                 $data.='<div class="m_block"><a target="_blank" href="/materials/'.$material->slug($material->title).'-'.$material->id.'.html" id="m_head" class="m_block_head">'.$material->title.'</a><div id="m_body" class="m_body">'.$material->description.'</div><div class="m_footer"><div class="m_item"><img src="'.asset('images/profile-c.png').'"><span id="name">'.$material->user->full_name.'</span></div><div class="m_item"><img src="'.asset('images/calendar.png').'"><span id="date">'.$material->createdAt($material->created_at).'</span></div><div class="m_item"><img src="'.asset('images/eye.png').'"><span id="views">'.$material->view.'</span></div><div class="m_item"><img src="'.asset('images/re-square.png').'"><span id="downloads">'.$material->download.'</span></div></div></div>';
             }
             $data.=$materials->links('vendor.pagination.default');
-            return $data;
+            return ['data'=>$data, 'count'=>$materialCount];
         }
         return view('pages.materials.index', [
             'materialCount' => $materialCount,

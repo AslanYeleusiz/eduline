@@ -181,7 +181,7 @@ export default {
                     menu_active: ["admin.promoCodes"],
                 },
 
-              
+
                 {
                     name: "Жинақ материалдар",
                     font: "fa-book",
@@ -282,7 +282,7 @@ export default {
                     font: "fa-newspaper",
                     menu_active: [
                         "admin.test.subjects", "admin.test.directions",
-                        "admin.test.questions", "admin.test.languages", 
+                        "admin.test.questions", "admin.test.languages",
                         "admin.test.classes"
                      ],
                     route_name: "",

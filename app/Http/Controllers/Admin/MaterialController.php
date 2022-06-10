@@ -11,6 +11,7 @@ use App\Models\MaterialDirection;
 use App\Models\MaterialSubject;
 use App\Services\FileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class MaterialController extends Controller
@@ -67,7 +68,7 @@ class MaterialController extends Controller
         $material->view = $request->view;
         $material->download = $request->download;
         if($request->hasFile('file_name')) {
-        
+
             $year = (int) ($material->created_at?->format('Y') ?? now()->format('Y'));
             $month = (int) ($material->created_at?->format('m') ?? now()->format('m'));
             $path = Material::FILE_PATH . $year . '/'. $month;
@@ -105,7 +106,7 @@ class MaterialController extends Controller
             'material' => $material
         ]);
     }
-    
+
     public function commentDelete($material, $commentId)
     {
         MaterialComment::destroy($commentId);
@@ -116,6 +117,7 @@ class MaterialController extends Controller
     {
         //file delete
         $material->delete();
+        Storage::disk('public')->delete($material->file_name);
         return redirect()->back()->withSuccess('Успешно удалено');
     }
 }

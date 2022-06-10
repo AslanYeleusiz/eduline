@@ -119,7 +119,6 @@
 
             <div class="mp_like">
                 <span>@lang('site.Материал ұнаса әріптестеріңізбен бөлісіңіз')</span>
-                <script src="https://yastatic.net/share2/share.js"></script>
                 <div class="mp_socseti">
                     <a onclick="open('https://api.whatsapp.com/send?text={{url()->current()}}&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" title="WhatsApp">
                         <div class="mp_seti mp_cross w"><img src="{{asset('images/whatsapp.svg')}}">@lang('site.Ватсапта бөлісу')</div>
