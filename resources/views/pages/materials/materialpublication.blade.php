@@ -120,7 +120,7 @@
                         @endforeach
                     </select>
                 </div>
-
+                <input type="hidden" name="fileName" id="fileName">
                 <button type="submit" class="btn btn-primary m_btn">@lang('site.Жариялау')</button>
                 <div class="mc_warning">
                     @lang('site.Сіз материалды жариялау арқылы') <a href="#">@lang('site.сайттың ережелерімен')</a> @lang('site.келіскеніңізді растайсыз.')

@@ -170,9 +170,9 @@ $('.drop-zone__input').on('change', e => {
         processData: false,
         data: formData,
         dataType: 'json',
-        success: function () {
+        success: function (data) {
             //Дейстиве при успешности
-            console.log(dataName);
+            console.log(data);
             $('.lineload2').width('100%');
             $('#procofp').text('100');
             validate(dataName);
@@ -180,6 +180,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
+                if(data!=0) $('#fileName').val(data.responseText);
             }, 1000);
         },
         error: function (data) {
@@ -193,7 +194,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
-                $('#file_name').text(dataName.name);
+                if(data!=0) $('#fileName').val(data.responseText);
             }, 1000);
         }
     });
@@ -208,9 +209,10 @@ function validate(file) {
     }
     if (!success) {
         $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
+
     }
     if (file.size > 10485760) {
-        $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
+        $('.help-block').text('Ваш файл превышает 10 мб');
     }
     return $('.help-block').show();
 }

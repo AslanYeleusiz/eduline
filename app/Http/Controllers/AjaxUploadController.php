@@ -25,16 +25,21 @@ class AjaxUploadController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('file');
-        return 'path';
-    }
-    public function store(Request $request)
-    {
         $validator = Validator::make($request->all(), [
             'file' => 'required|file|mimes:ppt,pptx,doc,docx,pdf|max:10485760'
         ]);
         if($validator->fails()){
-            return redirect()->back()->withErrors($validator);
+            return 0;
+        };
+        $file = $request->file('file');
+        $fileName = time() . "_" . Str::random(5) .'.' . $file->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs('uploads/file', $file, $fileName);
+        return $fileName;
+    }
+    public function store(Request $request)
+    {
+        if($request->fileName == null){
+            return redirect()->back()->withErrors([__('site.Файл не был соответствован требованию сайта. Пожалуйста проверьте правильность файла.'), __('site.Файл должен иметь следующие расширения: pdf, pptx, ppt, docx, doc.'), __('site.Размер файла не должен превышать 10 мб.')]);
         }
         $material = new Material();
         $material -> title = $request -> name;
@@ -43,10 +48,7 @@ class AjaxUploadController extends Controller
         $material -> subject_id = $request -> subject;
         $material -> direction_id = $request -> direction;
         $material -> class_id = $request -> class;
-        $file = $request->file('file');
-        $fileName = time() . "_" . Str::random(5) .'.' . $file->getClientOriginalExtension();
-        Storage::disk('public')->putFileAs('uploads/file', $file, $fileName);
-        $material -> file_name = 'uploads/file/'.$fileName;
+        $material -> file_name = 'uploads/file/'.$request->fileName;
         $material -> save();
         return redirect()->route('materials.myMaterials')->withSuccess(__('site.Материал сәтті жүктелді'));
     }
