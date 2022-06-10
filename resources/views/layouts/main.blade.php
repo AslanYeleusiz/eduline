@@ -51,7 +51,7 @@
 @endguest
 
 <script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/main.js') }}?v=1"></script>
 
 @yield('scripts')
 
