@@ -153,6 +153,7 @@ $.ajaxSetup({
 
 $('.drop-zone__input').on('change', e => {
     e.preventDefault();
+    $('.help-block').html('');
     $('.expectations').removeClass("active");
     $('.successmode').removeClass("active");
     $('.loadedmode').addClass("active");
@@ -199,7 +200,7 @@ $('.drop-zone__input').on('change', e => {
 });
 
 function validate(file) {
-    const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf"];
+    const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf", 'application/msword', 'application/vnd.ms-powerpoint'];
     // console.log(array[0]);
     // console.log(file.type);
     for (let n = 0; n < array.length; n++) {
@@ -207,7 +208,8 @@ function validate(file) {
     }
     if (!success) {
         $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
-    } else if (file.size > 10485760) {
+    }
+    if (file.size > 10485760) {
         $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
     }
     return $('.help-block').show();

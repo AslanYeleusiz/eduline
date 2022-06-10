@@ -169,7 +169,7 @@
         $("body").append($temp);
         $temp.val($('.copyUrl').val()).select();
         document.execCommand("copy");
-        alert("Copied the text: " + $('.copyUrl').val());
+        alert("@lang('site.Сілтеме көшірілді')!");
     })
 
 </script>

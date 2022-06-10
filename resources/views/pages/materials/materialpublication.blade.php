@@ -43,6 +43,15 @@
             <form class="m_form" action="{{route('materials.ajaxupload.store')}}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <!--FILE DROPZONE-->
+                 @if ($errors->any())
+                    <div class="alert alert-danger w-100">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="mb-4 w-100">
                     <label class="form-label">@lang('site.Материал файлын жүктеу')</label>
                     <div class="dropzone my_drop" id="dropzoneForm">
@@ -111,6 +120,7 @@
                         @endforeach
                     </select>
                 </div>
+
                 <button type="submit" class="btn btn-primary m_btn">@lang('site.Жариялау')</button>
                 <div class="mc_warning">
                     @lang('site.Сіз материалды жариялау арқылы') <a href="#">@lang('site.сайттың ережелерімен')</a> @lang('site.келіскеніңізді растайсыз.')
@@ -120,12 +130,6 @@
 
     </div>
 </section>
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/slim.js/4.0.7/Slim.min.js" integrity="sha512-xt1hkdXiNbyEBTZ6SmRqZ4PS/MbhLRB4Lmh6sdwva/n8SsK1YObdaem5ZRKOtyQ32XGukMubvwFow1KnnfzdFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js" integrity="sha512-8cU710tp3iH9RniUh6fq5zJsGnjLzOWLWdZqBMLtqaoZUA6AWIE34lwMB3ipUNiTBP5jEZKY95SfbNnQ8cCKvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js" integrity="sha512-oQq8uth41D+gIH/NJvSJvVB85MFk1eWpMK6glnkg6I7EdMqC1XVkW7RxLheXwmFdG03qScCM7gKS/Cx3FYt7Tg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
--->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -151,6 +155,5 @@
             select[2].textContent = "@lang('site.Сыныбын таңдаңыз')";
         }
     });
-
 </script>
 @endsection
