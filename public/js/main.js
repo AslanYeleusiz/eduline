@@ -180,7 +180,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
-                data==0 ? $('#fileName').val(data) :  $('#fileName').val(data.responseText);
+                data==0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
             }, 1000);
         },
         error: function (data) {

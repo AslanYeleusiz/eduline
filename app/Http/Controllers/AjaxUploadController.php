@@ -39,7 +39,7 @@ class AjaxUploadController extends Controller
     public function store(Request $request)
     {
         if($request->fileName == 0){
-            return redirect()->back()->withErrors([__('site.Файл не был соответствован требованию сайта. Пожалуйста проверьте правильность файла.'), __('site.Файл должен иметь следующие расширения: pdf, pptx, ppt, docx, doc.'), __('site.Размер файла не должен превышать 10 мб.')]);
+            return redirect()->route('materials.publication')->withErrors([__('site.Файл не был соответствован требованию сайта. Пожалуйста проверьте правильность файла.'), __('site.Файл должен иметь следующие расширения: pdf, pptx, ppt, docx, doc.'), __('site.Размер файла не должен превышать 10 мб.')]);
         }
         $material = new Material();
         $material -> title = $request -> name;
