@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DeletedMaterialController;
+use App\Http\Controllers\Admin\MaterialEditController;
 use App\Http\Controllers\Admin\MaterialClassController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
@@ -53,6 +54,7 @@ Route::resource('materials/classes', MaterialClassController::class)->except(['s
 Route::resource('materials', MaterialController::class)->except(['show', 'create', 'store'])->names('materials');
 Route::resource('material-journals', MaterialJournalController::class)->except(['show', 'create', 'store'])->names('materialJournals');
 Route::resource('deleted-materials', DeletedMaterialController::class)->except(['show', 'create', 'store'])->names('deletedMaterials');
+Route::resource('edited-materials', MaterialEditController::class)->except(['show', 'create', 'store'])->names('editedMaterials');
 Route::get('materials/{id}/comments', [MaterialController::class, 'comments'])->name('materials.comments');
 Route::delete('materials/{id}/comments/{comment_id}', [MaterialController::class, 'commentDelete'])->name('materials.commentsDelete');
 Route::resource('subscriptions', SubscriptionController::class)->except(['show'])->names('subscriptions');
@@ -67,23 +69,23 @@ Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commen
 Route::name('test.')->group(function () {
     Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
     Route::resource('subjects', TestSubjectController::class)->except(['show'])->names('subjects');
-    
+
     // -- options//
     // test_subject_preparation_classes delete //
-    
+
     Route::resource('subjects/{subject}/options', TestSubjectOptionController::class)->except(['show'])->names('subjectOptions');
     Route::get('subjects/{subject}/options/{option}/questions', [TestSubjectOptionController::class, 'questions'])->name('subjectOptionQuestions.index');
     Route::post('subjects/{subject}/options/{option}/questions', [TestSubjectOptionController::class, 'saveQuestions'])->name('subjectOptionQuestions.save');
     Route::post('subjects/{subject}/options/{option}/create-questions', [TestSubjectOptionController::class, 'createQuestions'])->name('subjectOptionQuestions.create');
     Route::post('subjects/{subject}/options/{option}/questions-numbers', [TestSubjectOptionController::class, 'saveQuestionsNumbers'])->name('subjectOptionQuestions.saveNumbers');
     Route::delete('subjects/{subject}/options/{option}/questions/{question}', [TestSubjectOptionController::class, 'deleteQuestions'])->name('subjectOptionQuestions.delete');
-    
+
     // -- preparation //
-    
+
     Route::resource('subjects/{subject}/preparations', TestSubjectPreparationController::class)->except(['show'])->names('subjectPreparations');
-    
+
     // -- end -- //
-    
+
     Route::resource('directions', TestDirectionController::class)->except(['show'])->names('directions');
     Route::resource('questions', TestQuestionController::class)->except(['show'])->names('questions');
     Route::resource('classes', TestClassController::class)->except(['show'])->names('classes');

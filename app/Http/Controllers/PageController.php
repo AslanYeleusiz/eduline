@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use App\Models\UserSubscription;
 use App\Models\Material;
+use App\Models\MaterialEdit;
 use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
@@ -113,18 +114,32 @@ class PageController extends Controller
     }
     public function changed(Request $request)
     {
-        $material = Material::find($request->material_id);
-        if($material->created_at == $material->updated_at){
-            $material -> title = $request -> name;
-            $material -> description = $request -> text;
-            $material -> subject_id = $request -> subject;
-            $material -> direction_id = $request -> direction;
-            $material -> class_id = $request -> class;
-            $material -> save();
-        }else {
+        $material = MaterialEdit::where('material_id','=',$request->material_id)->first();
+        if($material == null){
+            $edit = new MaterialEdit();
+            $edit -> user_id = auth()->user()->id;
+            $edit -> material_id = $request->material_id;
+            $edit -> title = $request -> name;
+            $edit -> description = $request -> text;
+            $edit -> subject_id = $request -> subject;
+            $edit -> direction_id = $request -> direction;
+            $edit -> class_id = $request -> class;
+            $edit -> status_edited = 1;
+            $edit -> save();
             return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
         }
-        return __('site.Материал сәтті өзгертілді');
+        switch($material->status_edited) {
+            case 1: {
+                return __('site.Сіздің сұранысыңыз тексеру барысында. Сайт әкімшілігі тексерген соң өзгертіледі');
+                break;
+            }case 2: {
+                return __('site.Өкінішке орай сайт әкімшілігі сіздің сұранысыңызды өзгертуден бас тартты.');
+                break;
+            }case 3: {
+                return __('site.Сіз материады тек бір рет қана өзгерте аласыз. Сіз материалды соңғы рет өзгерткен мерзім:').'<br/>'.$material->updated_at;
+                break;
+            }
+        }
     }
 
     public function delete(Request $request)
