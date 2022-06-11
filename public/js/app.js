@@ -27816,7 +27816,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , _hoisted_39)])]), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         "class": "img-circle img-bordered-sm",
-        src: $props.material.user.avatar ? _ctx.route('index') + '/storage/images/avatars/' + $props.material.user.avatar : _ctx.route('index') + '/images/user.png',
+        src: $props.material.user.avatar ? _ctx.route('index') + $props.material.user.avatar : _ctx.route('index') + '/images/user.png',
         alt: "user image"
       }, null, 8
       /* PROPS */
@@ -28634,7 +28634,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , _hoisted_39)])]), _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         "class": "img-circle img-bordered-sm",
-        src: $props.material.user.avatar ? _ctx.route('index') + '/storage/images/avatars/' + $props.material.user.avatar : _ctx.route('index') + '/images/user.png',
+        src: $props.oldMaterial.user.avatar ? _ctx.route('index') + $props.material.user.avatar : _ctx.route('index') + '/images/user.png',
         alt: "user image"
       }, null, 8
       /* PROPS */
@@ -28642,7 +28642,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         href: _ctx.route('admin.users.edit', $props.material.user.id)
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.material.user.full_name), 1
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.oldMaterial.user.full_name), 1
           /* TEXT */
           )];
         }),

@@ -120,10 +120,8 @@
                                             <img
                                                 class="img-circle img-bordered-sm"
                                                 :src="
-                                                    material.user.avatar
-                                                        ? route('index') +
-                                                          '/storage/images/avatars/' +
-                                                          material.user.avatar
+                                                    oldMaterial.user.avatar
+                                                        ? route('index') + material.user.avatar
                                                         : route('index') +
                                                           '/images/user.png'
                                                 "
@@ -140,7 +138,7 @@
                                                     "
                                                 >
                                                     {{
-                                                        material.user.full_name
+                                                        oldMaterial.user.full_name
                                                     }}
                                                 </Link>
                                             </span>
