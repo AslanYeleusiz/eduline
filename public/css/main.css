@@ -2099,6 +2099,10 @@ textarea.form-control:focus::placeholder{
     padding-left: 30px;
     display: flex;
 }
+.pub_body .min_avatar{
+    width: 30px;
+    height: 30px;
+}
 
 .mc_block .my_drop {
     width: 100%;

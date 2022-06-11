@@ -30,7 +30,7 @@
         <div class="m_block mp_block mc_block pub_block">
             <div class="takyryb pub">
                 <div class="pub_body">
-                    <img src="{{asset('images/myprofile.svg')}}">
+                    <img class="min_avatar" src="{{Auth::user()->avatar}}">
                     <div class="tak_name">Автор: {{Auth::user()->full_name}} <img class="question" src="{{asset('images/question-circle.svg')}}">
                         <div class="hint">@lang('site.Сіз тек өз атыңыздан материал жариялай аласыз')</div>
                         <br><span class="mekeni">{{Auth::user()->place_work}}</span>
