@@ -39,7 +39,7 @@ class AjaxUploadController extends Controller
     public function store(Request $request)
     {
         if($request->fileName == 0){
-            return redirect()->back();
+            return redirect()->back()->withErrors('Ошибка файла!');
         }
         $material = new Material();
         $material -> title = $request -> name;
