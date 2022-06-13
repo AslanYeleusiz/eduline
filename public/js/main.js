@@ -210,6 +210,11 @@ $('.drop-zone__input').on('change', e => {
     });
 });
 
+function openMobileSlideMenu() {
+    $('.mb_menu-slide').slideToggle("slow")
+    $('.parent-mb_menu-slide + .overlay').toggle(.3)
+}
+
 function validate(file) {
     const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf", 'application/msword', 'application/vnd.ms-powerpoint'];
     // console.log(array[0]);

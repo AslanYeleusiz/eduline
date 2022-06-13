@@ -23,18 +23,18 @@ use App\Http\Controllers\CommentsController;
 
 
 
-        Route::get('/Announcement', [NewsController::class, 'announcement'])->name('news.announcement');
-        Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
-        Route::group(['middleware' => 'auth'], function () {
-            Route::get('/news/save', [NewsController::class, 'save'])->name('news.save');
-            Route::get('/Saves', [NewsController::class, 'news_saves'])->name('news.saves');
-            Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('index.comments.store');
-            Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
-            Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
-        });
-        Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
-        Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
-        Route::get('/', [NewsController::class, 'index'])->name('index');
+Route::get('/Announcement', [NewsController::class, 'announcement'])->name('news.announcement');
+Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/news/save', [NewsController::class, 'save'])->name('news.save');
+    Route::get('/Saves', [NewsController::class, 'news_saves'])->name('news.saves');
+    Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('index.comments.store');
+    Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
+    Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
+});
+Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
+Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
+Route::get('/', [NewsController::class, 'index'])->name('index');
 
 Route::view('/attestation', 'pages.attestation')->name('attestation');
 
@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
+        Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
 //        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
     });
 });
