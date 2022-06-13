@@ -705,10 +705,13 @@
 }
 
 @media (max-width: 767px) {
-    .mb_menu {
+    .mb_menu, .mb_header {
         display: flex;
     }
-
+    .mb_menu-slide-active {
+        display: flex;
+        z-index: 99;
+    }
     .menubar {
         display: none;
         overflow: scroll;
