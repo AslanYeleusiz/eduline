@@ -46,7 +46,7 @@
                         @if(!$user->is_email_verified)
                             <div class="profile-info-action">@lang('site.Растау')</div>
                         @endif
-                        <div class="profile-info-action">@lang('site.Өзгерту')</div>
+                        <div class="profile-info-action" onclick="editEmailPopup(this)">@lang('site.Өзгерту')</div>
                     </div>
                 </div>
                 <div class="profile-info profile-info-password">
@@ -86,7 +86,9 @@
     </section>
 @endsection
 
-@include('components.EditPhoneModal')
+@include('components.EditPhoneModal', ['phone' => $user->phone])
+@include('components.ComingSoonModal')
+@include('components.EditEmailModal')
 
 @section('scripts')
     <script>
@@ -109,11 +111,24 @@
             }, 500)
         }
 
+
+        function editEmailPopup(event) {
+            $('.modal').modal('hide');
+
+            let userEmail = $.trim($(event).closest('.profile-info-phone').find('.profile-info-description').text())
+            let emailInModal = $("#editEmailPopup").find('.modal-body-subtitle').text(userEmail);
+
+            setTimeout(() => {
+                $('#editPhonePopup').modal('show');
+            }, 500)
+        }
+
         $(function () {
-            $('#editPhonePopup').submit(function (e) {
+            $('#editPhoneForm').submit(function (e) {
                 e.preventDefault();
 
                 let phone = $('#new-phone').val();
+
                 let _token = $('meta[name="csrf-token"]').attr('content');
 
                 $(".loader").addClass("loading");

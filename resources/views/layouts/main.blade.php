@@ -33,6 +33,8 @@
 
 <body>
 @include('components.MobileMenu')
+@include('components.MobileHeader')
+@include('components.MobileMenuSlide')
 
 <div class="loader">
     @include('components.Loader')

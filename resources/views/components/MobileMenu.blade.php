@@ -13,7 +13,7 @@
             <img src="{{asset('images/calculator.svg')}}">
             {{__('site.Калькулятор')}}
         </a>
-        <a class="mb_block">
+        <a class="mb_block" onclick="openMobileSlideMenu()">
             <img src="{{asset('images/menubar.png')}}">
             {{__('site.Мәзір')}}
         </a>
