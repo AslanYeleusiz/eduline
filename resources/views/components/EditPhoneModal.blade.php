@@ -19,7 +19,7 @@
                     <div class="form-input-block">
                         <label class="modal-form-label" for="new-phone">Жаңа номеріңізді жазыңыз::</label>
                         <input id="new-phone" name="phone"
-                               class="modal-form-input phone" type="tel"
+                               class="modal-form-input phone phone_mask" type="tel"
                                placeholder="+7 (7__) ___-__-__">
                         <span class="invalid error-phone" role="alert" id="error-new-phone"></span>
                     </div>
