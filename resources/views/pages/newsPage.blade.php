@@ -34,7 +34,7 @@
     @section('app')
     <div class="m_block cm_main">
         <div class="cst_pd">
-            <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
+            <form class="cm_form ns_block comment_btn">
                 @csrf
                 <div class="img" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@else{{asset('/images/avatar_default.png')}}@endauth)" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
@@ -48,7 +48,7 @@
     @endsection
     <div class="m_block cm_main dmob">
         <div class="cst_pd">
-            <form action="{{route('index.comments.store')}}" class="cm_form ns_block comment_btn">
+            <form class="cm_form ns_block comment_btn">
                 @csrf
                 <div class="img" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@else{{asset('/images/avatar_default.png')}}@endauth)" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
@@ -183,11 +183,20 @@
         @endguest
     });
 
-    $(document).on('click', '.comment_btn .cm_btn', function() {
+    $(document).on('click', '.comment_btn .cm_btn', function(e) {
+        e.preventDefault();
+        sendComment($(this).closest('.comment_btn'));
+    });
+    $(document).on('submit','.comment_btn', function(e) {
+        e.preventDefault();
+        sendComment($(this));
+    });
+
+    function sendComment(data){
         @guest
         openLogin();
         @else
-        let data = $(this).closest('.comment_btn');
+        console.log(data);
         $.ajax({
             url: '/news/comments/store',
             type: "GET",
@@ -212,8 +221,7 @@
             }
         });
         @endguest
-    });
-
+    };
 
     $(document).on('click', '.btn.cm_likes', function() {
         let data = $(this).closest('.cm_block').find('#ajax_form');

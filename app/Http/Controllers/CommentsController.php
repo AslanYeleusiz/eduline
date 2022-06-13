@@ -12,13 +12,16 @@ class CommentsController extends Controller
 {
     public function store(Request $request) {
 //        $data = $request;
-//        dd($data->id_news);
+
         $com = new NewsComment();
         $com->user_id = auth()->user()->id;
         $com->news_id = $request->id_news;
         $com->text = $request->text;
         $com->save();
-        return response()->json(['id_comment'=>$com->id]);
+        if($request->ajax()){
+            return response()->json(['id_comment'=>$com->id]);
+        }
+        return redirect()->back();
     }
 public function show($id, Request $request) {
 //        $data = $request;
