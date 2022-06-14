@@ -15,15 +15,15 @@
                     <div class="profile-information">
                         <div class="information-item">
                             <div class="information-item-label">@lang('site.ЖСН'):</div>
-                            <div class="information-item-result">984026******</div>
+                            <div class="information-item-result">{{ auth()->user()->iin !== null ? auth()->user()->iin : "Еңгізілмеді" }}</div>
                         </div>
                         <div class="information-item">
                             <div class="information-item-label">@lang('site.Туған күні'):</div>
-                            <div class="information-item-result">14.05.1994</div>
+                            <div class="information-item-result">{{ auth()->user()->birthday !== null ? auth()->user()->birthday : "Еңгізілмеді" }}</div>
                         </div>
                         <div class="information-item">
                             <div class="information-item-label">@lang('site.Жынысы'):</div>
-                            <div class="information-item-result">@lang('site.Ер')</div>
+                            <div class="information-item-result">{{ auth()->user()->sex !== null ? auth()->user()->sex : "Еңгізілмеді" }}</div>
                         </div>
                     </div>
                     <div class="profile-edit" onclick="editProfileInformation()">@lang('site.Өзгерту')</div>
@@ -43,8 +43,12 @@
                         <div class="profile-info-description">{{ $user->email }}</div>
                     </div>
                     <div class="profile-info-actions-group">
-                        @if(!$user->is_email_verified)
-                            <div class="profile-info-action">@lang('site.Растау')</div>
+                        @if($user->is_email_verified)
+                            <div class="profile-info-action">Расталған</div>
+                        @else
+                            <form action="{{ route('profile.link.confirm.email') }}" method="GET" id="confirmEmail">
+                                <button class="profile-info-action" style="background: none; border: none">@lang('site.Растау')</button>
+                            </form>
                         @endif
                         <div class="profile-info-action" onclick="editEmailPopup(this)">@lang('site.Өзгерту')</div>
                     </div>
@@ -91,9 +95,8 @@
 @include('components.EditEmailModal', ['email' => "admin@admin.com"])
 @include('components.EditPasswordModal')
 @include('components.SmsModal')
-@include('components.SuccessPhone')
-@include('components.ChangeEmailProcess')
 @include('components.ProfileUpdateInformation')
+@include('components.SuccessPopup')
 
 
 @section('scripts')
@@ -130,7 +133,6 @@
             }, 500)
         }
 
-
         function editEmailPopup(event) {
             $('.modal').modal('hide');
 
@@ -152,6 +154,7 @@
                 $('#editPasswordPopup').modal('show');
             }, 500)
         }
+
         $(function () {
             $('#editPhoneForm').submit(function (e) {
                 e.preventDefault();
@@ -198,6 +201,34 @@
                 });
             });
 
+            $('#confirmEmail').submit(function (e) {
+                e.preventDefault();
+                $('.modal').modal('hide');
+
+                setTimeout(() => {
+                    $('#successPopup').modal('show');
+                    $('#successPopup .modal-title').text('Cіздің почтаңызға растау сілтемесі жіберілді. Сілтемені басқан соң почтаңыз расталады');
+                }, 500)
+
+                const email = $('.profile-info-email .profile-info-header .profile-info-description').text();
+                console.log(email)
+                let _token = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: "GET",
+                    data: {
+                        'email': email,
+                        '_token': _token
+                    },
+                    success: function (res) {
+                        console.log(res)
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            })
+
             $('#editPasswordForm').submit(function (e) {
                 e.preventDefault();
 
@@ -225,9 +256,17 @@
                     },
                     success: function (res) {
                         $(".loader").removeClass("loading");
-                        if (res.data && res.data.success) {
-                            window.location.reload();
-                        }
+
+                        $('.modal').modal('hide');
+
+                        setTimeout(() => {
+                            $('#successPopup').modal('show');
+                            $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
+                        }, 500)
+
+                        // if (res.data && res.data.success) {
+                        //     window.location.reload();
+                        // }
                     },
                     error: function (err) {
                         $(".loader").removeClass("loading");
@@ -251,8 +290,6 @@
 
                 $(".loader").addClass("loading");
 
-                console.log(email)
-
                 clearInvalidFeedback()
 
                 $.ajax({
@@ -269,7 +306,60 @@
 
                         console.log('ok')
                         setTimeout(() => {
-                            $('#changeEmailProcessPopup').modal('show');
+                            $('#successPopup').modal('show');
+                            $('#successPopup .modal-title').text('Cіздің почтаңызға растау сілтемесі жіберілді. Сілтемені басқан соң почтаңыз өзгереді');
+                        }, 500)
+
+                        // if (res.data && res.data.success) {
+                        //     window.location.reload();
+                        // }
+                    },
+                    error: function (err) {
+                        $(".loader").removeClass("loading");
+                        let response_text = JSON.parse(err.responseText);
+                        if (response_text.errors && typeof response_text.errors == 'object') {
+                            Object.entries(response_text.errors).forEach(([key, value]) => {
+                                $('#error-new-' + key).text(value[0]);
+                                $('#error-new-' + key).css('display', 'block');
+                            })
+                        }
+                    }
+                });
+            });
+
+            $('#profileEditInformation').submit(function (e) {
+                e.preventDefault();
+
+                let iin = $('#iin').val();
+                let birthday = $('#birthday').val();
+                let sex = $('#sex').val();
+
+                let _token = $('meta[name="csrf-token"]').attr('content');
+
+                $(".loader").addClass("loading");
+
+                console.log(email)
+
+                clearInvalidFeedback()
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: "GET",
+                    data: {
+                        '_token': _token,
+                        'iin': iin,
+                        'birthday': birthday,
+                        'sex': sex,
+                    },
+                    success: function (res) {
+                        $(".loader").removeClass("loading");
+
+                        $('.modal').modal('hide');
+
+                        console.log('ok')
+                        setTimeout(() => {
+                            $('#successPopup').modal('show');
+                            $('#successPopup .modal-title').text('Жеке деректеріңіз сәтті өзгертілді');
                         }, 500)
 
                         // if (res.data && res.data.success) {
@@ -322,7 +412,8 @@
                         $('.modal').modal('hide');
 
                         setTimeout(() => {
-                            $('#successPhonePopup').modal('show');
+                            $('#successPopup').modal('show');
+                            $('#successPopup .modal-title').text('Номеріңіз сәтті өзгертілді');
                         }, 500)
 
                         // if (res.data && res.data.success) {

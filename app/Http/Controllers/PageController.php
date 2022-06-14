@@ -37,7 +37,7 @@ class PageController extends Controller
     public function subscription(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $pageName = __('site.Жазылым');
-        $subscriptions = Subscription::query()->where('is_active', 0)->get();
+        $subscriptions = Subscription::query()->where('is_active', 1)->get();
 
         $userSubscription = UserSubscription::query()->where('user_id', auth()->id())
             ->with('subscription')->first();
