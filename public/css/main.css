@@ -285,26 +285,36 @@ li.menu-li {
 .mb_menu-slide {
     display: none;
 
-    z-index: 99;
+
+    transform: translateX(-100%);
+    transform-origin: left;
+    transition: .3s all;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     background-color: #fff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0px 3px rgba(0, 0, 0, .1);
+    width: 80%;
+    padding: 20px 50px;
+    height: 100%;
+    z-index: 22;
 }
-.parent-mb_menu-slide {
-    position: relative;
-    z-index: 999;
+.mb_menu-slide.active {
+    transition: .5s all;
+    transform: translateX(0);
 }
-.parent-mb_menu-slide + .overlay {
+.mb_menu-slide + .overlay {
     background: rgba(0, 0, 0, .3);
     width: 100vw;
     height: 100vh;
-    display: none;
-    z-index: 99;
+    display: block;
+    opacity: 0;
     position: fixed;
+    transition: .3s opacity;
+    z-index: -1;
+}
+.mb_menu-slide + .overlay.active {
+    opacity: 1;
+    z-index: 21;
 }
 
 .mb_menu-slide .mb_header-slide {
@@ -2383,4 +2393,26 @@ textarea.form-control:focus::placeholder{
     100% {
         background-position: 50% 20%;
     }
+}
+
+#editEmailForm .modal-body-line, #editPhoneForm .modal-body-line {
+    background: #C7C7C7;
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+}
+#smsModal .form-input-block input {
+    width: 50px;
+    height: 50px;
+    border-radius: 2px;
+}
+#smsModal .modal-default-btn {
+    width: 190px;
+}
+#smsModal .form-input-block {
+    flex-direction: row;
+    justify-content: center;
+}
+#smsModal .modal-title {
+    text-align: center;
 }

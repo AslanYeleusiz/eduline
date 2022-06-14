@@ -17,9 +17,8 @@ class UserPasswordSaveRequest extends FormRequest
     {
         return [
             'current_password' => ['required', new UserGuardApiMatchOldPassword],
-            'password' => 'required|confirmed|min:6',   
+            'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required|same:password|min:6',
-            
         ];
     }
 }

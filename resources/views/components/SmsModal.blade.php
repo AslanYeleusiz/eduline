@@ -1,42 +1,29 @@
-<div class="modal fade" id="loginPopup" tabindex="-1" role="dialog" aria-labelledby="loginPopup" aria-hidden="true">
+<div class="modal fade" id="smsModal" tabindex="-1" role="dialog" aria-labelledby="loginPopup" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Кабинетке кіру</h2>
+                <div style="display: flex; flex-direction: column">
+                    <h2 class="modal-title">SMS арқылы алынған кодты енгізіңіз:</h2>
+                    <h2 class="modal-phone" style="color: #03B113; font-size: 24px; font-weight: 800; text-align: center; font-family: 'Exo2-Bold'"></h2>
+                </div>
                 <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="loginForm" class="modal-form" action="{{ route('ajax.login') }}" method="POST">
+                <form id="smsForm" class="modal-form" action="{{ route('profile.ajax.updatePhone') }}" method="POST">
                     @csrf
                     <div class="form-input-block">
-                        <label class="modal-form-label" for="login-phone">@lang('validation.attributes.phone'):</label>
-                        <input id="login-phone" name="phone"
-                               class="modal-form-input phone" type="tel"
-                               placeholder="+7 (7__) ___-__-__">
-                        <span class="invalid error-phone" role="alert" id="error-login-phone"></span>
+                        <input name="code" class="modal-form-input smsCode smsCode1" maxlength="1" type="tel">
+                        <input name="code" class="modal-form-input smsCode smsCode2" maxlength="1" type="tel">
+                        <input name="code" class="modal-form-input smsCode smsCode3" maxlength="1" type="tel">
+                        <input name="code" class="modal-form-input smsCode smsCode4" maxlength="1" type="tel">
                     </div>
 
-                    <div class="form-input-block">
-                        <i class="form-input-icon icon-eye" onclick="iconEye(this)"></i>
-                        <label class="modal-form-label" for="password">@lang('validation.attributes.password'):</label>
-                        <input id="password" name="password" class="modal-form-input password-input"
-                               type="password" placeholder="@lang('validation.attributes.password')" required>
-                        <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
-                        <span class="invalid" role="alert" id="error-login-password"></span>
+                    <div style="display: flex; justify-content: center">
+                        <button class="modal-default-btn">Жіберу</button>
                     </div>
-                    <button class="modal-default-btn">Войти</button>
                 </form>
             </div>
 
-            {{--onclick="openResetPasswordLink(this)"--}}
-
-            <div class="forgot-password-block">
-                <a href="javascript: void(0)" class="forgot-password-link">Құпия сөзді ұмыттыңыз ба?</a>
-            </div>
-
-            <div class="modal-footer">
-                <a onclick="openRegisterLink(this)" class="modal-default-btn modal-default-btn-outline">Тіркелу</a>
-            </div>
         </div>
     </div>
 </div>
