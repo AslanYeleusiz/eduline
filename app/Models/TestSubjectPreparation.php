@@ -16,7 +16,7 @@ class TestSubjectPreparation extends Model
 
     public function classItems()
     {
-        return $this->belongsToMany(TestClass::class,TestSubjectPreparationClass::class, 'preparation_id', 'class_id');
+        return $this->belongsToMany(TestClass::class, TestSubjectPreparationClass::class, 'preparation_id', 'class_id');
     }
 
     public function scopeSubjectBy($query, $subjectId)

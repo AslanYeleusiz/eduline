@@ -76,7 +76,7 @@
                             />
                             <validation-error :field="'title'" />
                         </div>
-                        <template v-if="!preparation.parent_id">
+                        <template v-if="preparation.parent_id">
                         <div class="form-group">
                             <label for="">Видео ссылка</label>
                             <input

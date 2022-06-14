@@ -13,7 +13,9 @@ class TestClass extends Model
 
     public function preparations()
     {
-        return $this->hasMany(TestSubjectPreparationClass::class, 'class_id');
+        // return $this->hasMany(TestSubjectPreparationClass::class, 'class_id');
+        return $this->belongsToMany(TestSubjectPreparation::class,
+         TestSubjectPreparationClass::class, 'class_id', 'preparation_id');
     }
     
 

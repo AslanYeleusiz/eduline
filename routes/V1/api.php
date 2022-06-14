@@ -8,9 +8,11 @@ use App\Http\Controllers\Api\V1\PersonalAdviceController;
 use App\Http\Controllers\Api\V1\RolesController;
 use App\Http\Controllers\Api\V1\SmsController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
+use App\Http\Controllers\Api\V1\Test\FullTestController;
 use App\Http\Controllers\Api\V1\Test\TestDirectionController;
 use App\Http\Controllers\Api\V1\Test\TestLanguageController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectOptionController;
+use App\Http\Controllers\Api\V1\Test\TestSubjectPreparationController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,8 +56,26 @@ Route::prefix('test')->name('test.')->group(function() {
      Route::get('languages', [TestLanguageController::class, 'index'])->name('languages.index');
      Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
      Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
-     Route::get('subjects/{id}/options/{option_id}/start', [TestSubjectOptionController::class, 'start'])->name('subjects.options.start');
+     Route::post('subjects/{id}/options/{option_id}', [TestSubjectOptionController::class, 'store'])->name('subjects.options.store');
+     Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');
+    
+     Route::get('subjects/{id}/preparations', [TestSubjectPreparationController::class, 'preparationsByTitle'])->name('subjects.options.preparationsByTitle');
+     Route::get('subjects/{id}/preparations/{preparation_id}', [TestSubjectPreparationController::class, 'preparation'])->name('subjects.options.preparation');
+
+     Route::post('subjects/{id}/preparations/{preparation_id}/test-start', [TestSubjectPreparationController::class, 'preparationTestStart'])->name('subjects.options.preparationTestStart');
+     Route::post('subjects/{id}/preparations/{preparation_id}/test-finish', [TestSubjectPreparationController::class, 'preparationTestFinish'])->name('subjects.options.preparationTestFinish');
+    
+     Route::post('subjects/{id}/preparations/{preparation_id}/appeal', [TestSubjectPreparationController::class, 'preparationAppeal'])->name('subjects.options.preparationAppeal');
      
+     Route::get('subjects/{id}/preparations-classes', [TestSubjectPreparationController::class, 'preparationClasses'])->name('subjects.options.preparationClasses');
+     Route::get('subjects/{id}/preparations-classes/{class_id}', [TestSubjectPreparationController::class, 'preparationClass'])->name('subjects.options.preparationClass');
+
+     Route::get('full/{id}', [FullTestController::class, 'show'])->name('full.show');
+     Route::get('full/{uuid}/result', [FullTestController::class, 'result']);
+     Route::post('full', [FullTestController::class, 'store'])->name('full.store');
+     Route::post('full/{id}/answer', [FullTestController::class, 'saveAnswer']);
+     Route::post('full/{id}/appeal', [FullTestController::class, 'testQuestionAppeal']);
+     Route::post('full/{id}/finish', [FullTestController::class, 'finish']);
 });
 
 Route::middleware('auth:api')->group(function () {

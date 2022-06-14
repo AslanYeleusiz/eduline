@@ -5,7 +5,7 @@ namespace App\Http\Resources\V1\Test;
 use App\Models\FullTest;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TestSubjectOptionsResource extends JsonResource
+class TestSubjectPreparationTestStartResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,14 +16,11 @@ class TestSubjectOptionsResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->resource['subject']->id,
-            'name' => $this->resource['subject']->name,
-            'option_id' => $this->resource['option']->id,
-            'option_name' => $this->resource['option']->name,
+            'id' => $this->resource['preparation']->id,
+            'name' => $this->resource['preparation']->name,
             'time' => FullTest::OPTION_TEST_TIME,
-            // 'questions' => $this->whenLoaded('questions'),
-            'questions' => TestQuestionsResource::collection($this->resource['option']->questions),
-            'questions_count' => $this->resource['subject']->questions_count
+            'questions_count' => $this->resource['questions']->count(),
+            'questions' => TestQuestionsResource::collection($this->resource['questions']),
         ];
     }
 
