@@ -275,7 +275,6 @@ li.menu-li {
     background: #ffffff;
     position: relative;
     width: 100%;
-
     padding-top: 20px !important;
     padding-bottom: 20px !important;
 }
@@ -1198,6 +1197,7 @@ textarea.form-control:focus::placeholder{
     background: rgba(0, 0, 0, 0.6);
     z-index: 21;
     position: fixed;
+    top: 0;
     display: none;
     padding: 20vh 15px;
 }
@@ -1766,6 +1766,7 @@ textarea.form-control:focus::placeholder{
     width: 100%;
     height: 100vh;
     position: fixed;
+    top: 0;
     background: rgba(0, 0, 0, 0.6);
     padding: 0 15px;
 }
