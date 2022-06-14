@@ -7,21 +7,21 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editPhonePopup" class="modal-form" action=""
+                <form id="editEmailForm" class="modal-form" action="{{ route('profile.ajax.updateEmail', auth()->user()) }}"
                       method="POST">
                     @csrf
 
-                    <div class="modal-body-title">Cіздің расталған номеріңіз Email</div>
-                    <div class="modal-body-subtitle">+7 (701) 026-95-95</div>
+                    <div class="modal-body-title">Cіздің қазіргі поштаңыз</div>
+                    <div>n4msin@mail.ru</div>
 
                     <div class="modal-body-line"></div>
 
                     <div class="form-input-block">
-                        <label class="modal-form-label" for="new-phone">Жаңа номеріңізді жазыңыз::</label>
-                        <input id="new-phone" name="phone"
-                               class="modal-form-input phone" type="tel"
-                               placeholder="+7 (7__) ___-__-__">
-                        <span class="invalid error-phone" role="alert" id="error-new-phone"></span>
+                        <label class="modal-form-label" for="new-phone">Жаңа поштаңызды жазыңыз:</label>
+                        <input id="email" name="email"
+                               class="modal-form-input email" type="email"
+                               placeholder="E-mail">
+                        <span class="invalid error-email" role="alert" id="error-new-email"></span>
                     </div>
 
                     <button class="modal-default-btn">Сақтау</button>

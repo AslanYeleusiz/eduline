@@ -20,21 +20,23 @@
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
 
     @yield('styles')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
-
     <script src="{{ asset('js/bootstrap-v5.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+
     <title>@yield('title')</title>
 </head>
 
 <body>
-@include('components.MobileMenu')
 @include('components.MobileHeader')
 @include('components.MobileMenuSlide')
+@include('components.MobileMenu')
 
 <div class="loader">
     @include('components.Loader')

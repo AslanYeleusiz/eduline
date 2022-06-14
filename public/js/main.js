@@ -211,8 +211,11 @@ $('.drop-zone__input').on('change', e => {
 });
 
 function openMobileSlideMenu() {
-    $('.mb_menu-slide').slideToggle("slow")
-    $('.parent-mb_menu-slide + .overlay').toggle(.3)
+    const menu = document.querySelector(".mb_menu-slide");
+    $('.mb_menu-slide').toggleClass('active');
+
+    // $('.mb_menu-slide').toggleClass("active", 2000);
+    $('.mb_menu-slide + .overlay').toggleClass('active')
 }
 
 function validate(file) {

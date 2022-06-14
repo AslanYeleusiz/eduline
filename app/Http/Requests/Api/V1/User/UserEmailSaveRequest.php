@@ -15,7 +15,7 @@ class UserEmailSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:users,email,' . auth()->guard('api')->user()->id
+            'email' => 'required|email|unique:users,email,' . auth()->user()->id
         ];
     }
 }

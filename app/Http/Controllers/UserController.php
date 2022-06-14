@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
+use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
+use App\Http\Requests\Api\V1\User\UserProfileSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
+use App\Mail\EmailConfirm;
+use App\Mail\EmailUpdate;
 use App\Models\SmsVerification;
+use App\Models\User;
 use App\Services\V1\SmsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,9 +28,8 @@ class UserController extends Controller
 
     public function updateProfile(UserProfileSaveRequest $request)
     {
-        $user = auth()->guard('api')->user();
-        $user->full_name = $request->full_name;
-        $user->place_work = $request->place_work;
+        $user = auth()->user();
+        $user->iin = $request->iin;
         $user->sex = $request->sex;
         $user->birthday = $request->birthday;
         $user->save();
@@ -42,11 +47,12 @@ class UserController extends Controller
             ->where('phone', $request->phone)
             ->statusPending()
             ->firstOr(function () {
-                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
+                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телеф
+                .она']);
             });
         $sms->delete();
 
-        $user = auth()->guard('api')->user();
+        $user = auth()->user();
         $user->phone = $request->phone;
         $user->save();
         DB::commit();
@@ -77,9 +83,9 @@ class UserController extends Controller
         ]]);
     }
 
-    public function updatePassword(UserPasswordSaveRequest $request)
+    public function updatePassword(Request $request)
     {
-        $user = auth()->guard('api')->user();
+        $user = auth()->user();
         $user->password = Hash::make($request->password);
         $user->save();
         return new MessageResource(__('message.success.saved'));
@@ -92,9 +98,24 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-        Mail::to($request->email)->send(new EmailUpdate($token));
+
+        Mail::to($request->email)->send(new EmailUpdate($token, $request->email));
 
         return;
     }
 
+    public function linkToConfirmEmail(Request $request)
+    {
+        Mail::to($request->email)->send(new EmailConfirm($request->email));
+
+        return $request->email;
+    }
+
+    public function confirmEmail($email) {
+        $user = User::where('email', $email)->first();
+        $user->is_email_verified = 1;
+        $user->save();
+
+        return redirect()->route('index')->withSuccess('Успешно подтверждён!');
+    }
 }
