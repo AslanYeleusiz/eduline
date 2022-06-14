@@ -708,13 +708,13 @@
     .mb_menu, .mb_header {
         display: flex;
     }
-    .mb_menu-slide-active {
-        display: flex;
-        z-index: 99;
-    }
     .menubar {
         display: none;
         overflow: scroll;
+    }
+    .mb_menu-slide {
+        display: flex;
+        flex-direction: column;
     }
 
     .cst_pd,

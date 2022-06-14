@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
         Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
-//        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
+        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('.ajax.checkSendSmsPhone');
     });
 });
 Route::prefix('materials')->name('materials')->group(function () {

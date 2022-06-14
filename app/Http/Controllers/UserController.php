@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
+use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
+use App\Mail\EmailUpdate;
 use App\Models\SmsVerification;
 use App\Services\V1\SmsService;
 use Illuminate\Http\Request;
@@ -46,7 +49,7 @@ class UserController extends Controller
             });
         $sms->delete();
 
-        $user = auth()->guard('api')->user();
+        $user = auth()->user();
         $user->phone = $request->phone;
         $user->save();
         DB::commit();
@@ -77,9 +80,9 @@ class UserController extends Controller
         ]]);
     }
 
-    public function updatePassword(UserPasswordSaveRequest $request)
+    public function updatePassword(Request $request)
     {
-        $user = auth()->guard('api')->user();
+        $user = auth()->user();
         $user->password = Hash::make($request->password);
         $user->save();
         return new MessageResource(__('message.success.saved'));
@@ -92,7 +95,8 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-        Mail::to($request->email)->send(new EmailUpdate($token));
+
+        Mail::to($request->email)->send(new EmailUpdate($token, $request->email));
 
         return;
     }

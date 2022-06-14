@@ -26,7 +26,7 @@ class UserPhoneSaveRequest extends FormRequest
     {
         return [
             'phone' => 'required|unique:users,phone,' . auth()->id(),
-            'code' => 'required|min:4|max:4'
+//            'code' => 'required|min:4|max:4'
         ];
     }
 }

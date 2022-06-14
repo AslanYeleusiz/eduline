@@ -60,8 +60,8 @@ class SmsService
                 $limitSmsCount = SmsVerification::phoneBy($phone)
                         ->whereDate('created_at', '>=', now()->subMinutes(SmsVerification::LIMIT_SMS_MINUTE))
                         ->count();
-                if ($limitSmsCount >= SmsVerification::LIMIT_SMS) {
-                        throw new \App\Exceptions\ErrorException(__('errors.limited_sms'));
-                }
+//                if ($limitSmsCount >= SmsVerification::LIMIT_SMS) {
+//                        throw new \App\Exceptions\ErrorException(__('errors.limited_sms'));
+//                }
         }
 }
