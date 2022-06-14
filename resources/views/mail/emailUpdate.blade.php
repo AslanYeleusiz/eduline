@@ -10,6 +10,6 @@
 <body>
 
     <h1>Перейдите по ссылке ниже, чтобы изменить почту </h1>
-    <a href="{{route('email.update',['token'=>$token])}}">Изменить почту</a>
+    <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">Изменить почту</a>
 </body>
 </html>

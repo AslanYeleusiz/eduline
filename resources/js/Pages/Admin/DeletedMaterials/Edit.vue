@@ -122,7 +122,6 @@
                                                 :src="
                                                     material.user.avatar
                                                         ? route('index') +
-                                                          '/storage/images/avatars/' +
                                                           material.user.avatar
                                                         : route('index') +
                                                           '/images/user.png'
@@ -207,7 +206,7 @@
                                 >
                                 <textarea
                                     cols="30"
-                                
+
                                     class="form-control"
                                         v-model="material.comment_refusal_delete"
                                     rows="5"

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use App\Models\UserSubscription;
 use App\Models\Material;
+use App\Models\MaterialEdit;
 use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
@@ -36,7 +37,7 @@ class PageController extends Controller
     public function subscription(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $pageName = __('site.Жазылым');
-        $subscriptions = Subscription::query()->where('is_active', 0)->get();
+        $subscriptions = Subscription::query()->where('is_active', 1)->get();
 
         $userSubscription = UserSubscription::query()->where('user_id', auth()->id())
             ->with('subscription')->first();
@@ -44,56 +45,58 @@ class PageController extends Controller
         return view('pages.subscription.index', compact(['pageName', 'subscriptions', 'userSubscription']));
     }
 
-    public function materials(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function ajaxMaterials(Request $request)
     {
-        $materials = Material::where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
+        $materials = new Material();
+        if ($request->ajax()){
+            if($request->pan > 1) $materials = $materials->where('subject_id','=',$request->pan);
+            if($request->bagyt > 1) $materials = $materials->where('direction_id','=',$request->bagyt);
+            if($request->synyp > 1) $materials = $materials->where('class_id','=',$request->synyp);
+            if($request->s != null) $materials = $materials->where('title','like','%'.$request->s.'%');
+        }
+        $materials = $materials->where(function ($query) {
+               $query->where('status_deleted', '=', null)
+                     ->orWhere('status_deleted', '<', 3);
+        });
+        $materialCount = $materials->count();
+        $materials = $materials->orderBy('created_at','desc')->paginate(20);
         $pageName = __('site.Материалдар');
+        $data = '';
+        if ($request->ajax()) {
+            foreach ($materials as $material) {
+                $data.='<div class="m_block"><a target="_blank" href="/materials/'.$material->slug($material->title).'-'.$material->id.'.html" id="m_head" class="m_block_head">'.$material->title.'</a><div id="m_body" class="m_body">'.$material->description.'</div><div class="m_footer"><div class="m_item"><img src="'.asset('images/profile-c.png').'"><span id="name">'.$material->user->full_name.'</span></div><div class="m_item"><img src="'.asset('images/calendar.png').'"><span id="date">'.$material->createdAt($material->created_at).'</span></div><div class="m_item"><img src="'.asset('images/eye.png').'"><span id="views">'.$material->view.'</span></div><div class="m_item"><img src="'.asset('images/re-square.png').'"><span id="downloads">'.$material->download.'</span></div></div></div>';
+            }
+            $data.=$materials->links('vendor.pagination.default');
+            return ['data'=>$data, 'count'=>$materialCount];
+        }
         return view('pages.materials.index', [
-            'materials' => $materials,
-            'materialCount' => $materials->count(),
+            'materialCount' => $materialCount,
             'materialSubject' => MaterialSubject::get(),
             'materialDirection' => MaterialDirection::get(),
             'materialClass' => MaterialClass::get(),
             'pageName' => $pageName
         ]);
-    }
-    public function search(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
-    {
-        $pan = $request->pan;
-        $bagyt = $request->bagyt;
-        $synyp = $request->synyp;
-        $materials = new Material();
-        if($pan>1) $materials = $materials->where('subject_id','=',"{$pan}");
-        if($bagyt>1) $materials = $materials->where('direction_id','=',"{$bagyt}");
-        if($synyp>1) $materials = $materials->where('class_id','=',"{$synyp}");
-        if($request->s!=null) $materials = $materials->where('title','LIKE',"%{$request->s}%");
-        $materialCount = $materials->count();
-        $materials = $materials->orderBy('id','desc')->paginate(5);
 
-        $pageName = __('site.Материалдар');
-        return view('pages.materials.index', [
-            'materials' => $materials,
-            'materialCount' => $materialCount,
-            'materialSubject' => MaterialSubject::get(),
-            'materialDirection' => MaterialDirection::get(),
-            'materialClass' => MaterialClass::get(),
-            'pan' => $pan,
-            'bagyt' => $bagyt,
-            'synyp' => $synyp
-        ], compact('pageName'));
     }
-    public function material($id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+
+    public function material($slug, $id)
     {
         $material = Material::find($id);
-        $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
+        $userSub = null;
+        if(Auth::user()){
+            $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
+        }
         $material->increment('view');
         $pageName = __('site.Материал');
         return view('pages.materials.materialpage', compact('material','pageName','userSub'));
     }
 
-    public function myMaterials(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function myMaterials()
     {
-        $material = Material::where('user_id','=',auth()->user()->id)->where('status_deleted','=',null)->orWhere('status_deleted','<',3)->orderBy('created_at','desc')->paginate(5);
+        $material = Material::where('user_id','=',auth()->user()->id)->where(function ($query) {
+               $query->where('status_deleted', '=', null)
+                     ->orWhere('status_deleted', '<', 3);
+           })->orderBy('created_at','desc')->paginate(20);
         $userSub = UserSubscription::where('user_id','=',auth()->user()->id)->where('to_date','>',Carbon::now())->first();
         $pageName = __('site.Менің материалдарым');
         return view('pages.materials.my-materials',compact('pageName','material','userSub'));
@@ -111,17 +114,32 @@ class PageController extends Controller
     }
     public function changed(Request $request)
     {
-        $material = Material::find($request->material_id);
-        if($material->created_at == $material->updated_at){
-            $material -> title = $request -> name;
-            $material -> description = $request -> text;
-            $material -> subject_id = $request -> subject;
-            $material -> direction_id = $request -> direction;
-            $material -> class_id = $request -> class;
-            $material -> save();
-        }else return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
-
-        return __('site.Материал сәтті өзгертілді');
+        $material = MaterialEdit::where('material_id','=',$request->material_id)->first();
+        if($material == null){
+            $edit = new MaterialEdit();
+            $edit -> user_id = auth()->user()->id;
+            $edit -> material_id = $request->material_id;
+            $edit -> title = $request -> name;
+            $edit -> description = $request -> text;
+            $edit -> subject_id = $request -> subject;
+            $edit -> direction_id = $request -> direction;
+            $edit -> class_id = $request -> class;
+            $edit -> status_edited = 1;
+            $edit -> save();
+            return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң өзгертіледі');
+        }
+        switch($material->status_edited) {
+            case 1: {
+                return __('site.Сіздің сұранысыңыз тексеру барысында. Сайт әкімшілігі тексерген соң өзгертіледі');
+                break;
+            }case 2: {
+                return __('site.Өкінішке орай сайт әкімшілігі сіздің сұранысыңызды өзгертуден бас тартты.');
+                break;
+            }case 3: {
+                return __('site.Сіз материады тек бір рет қана өзгерте аласыз. Сіз материалды соңғы рет өзгерткен мерзім:').'<br/>'.$material->updated_at;
+                break;
+            }
+        }
     }
 
     public function delete(Request $request)

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 
 class News extends Model
 {
@@ -25,6 +26,11 @@ class News extends Model
     public function comments()
     {
         return $this->hasMany(NewsComment::class, 'news_id', 'id');
+    }
+
+    public function slug($date)
+    {
+        return Str::slug($date, '_');
     }
 
     public function thisUserSaved()

@@ -31,7 +31,7 @@ return new class extends Migration
             $table->foreignId('role_id')->default(Role::DEFAULT_ROLE);
             $table->rememberToken();
             $table->text('email_token')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('/images/avatar_default.png');
             $table->timestamps();
         });
     }

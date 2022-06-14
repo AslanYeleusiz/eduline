@@ -22,51 +22,41 @@ use App\Http\Controllers\CommentsController;
 */
 
 
+Route::get('/Announcement', [NewsController::class, 'announcement'])->name('news.announcement');
+Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/news/save', [NewsController::class, 'save'])->name('news.save');
+    Route::get('/Saves', [NewsController::class, 'news_saves'])->name('news.saves');
+    Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('index.comments.store');
+    Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
+    Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
+});
 
-        Route::get('/Announcement', [NewsController::class, 'announcement']);
-        Route::get('/Popular', [NewsController::class, 'popular'])->name('news.popular');
-        Route::group(['middleware' => 'auth'], function () {
-            Route::get('/news/save', [NewsController::class, 'save'])->name('.save');
-            Route::get('/Saves', [NewsController::class, 'news_saves'])->name('.saves');
-            Route::get('/news/comments/store', [CommentsController::class, 'store'])->name('.comments.store');
-            Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('.comments.answer');
-            Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('.comments.likes');
-        });
-        Route::get('/news/id={id}', [NewsController::class, 'newspage'])->name('news.show');
-        Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
-        Route::get('/', [NewsController::class, 'index'])->name('index');
 
+
+Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
+Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
+Route::get('/', [NewsController::class, 'index'])->name('index');
 Route::view('/attestation', 'pages.attestation')->name('attestation');
-
 Route::post('/attestation', [MainController::class, 'attestation'])->name('attestation.store');
-
 Route::view('/calculator', 'pages.calculator')->name('calculator');
-
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator.store');
 
 
 
 
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
-
 Route::get('/consultation/{id?}', [MainController::class, 'consultation'], ['id' => 'id'])->name('consultation');
-
 Route::post('/consultation/{id?}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone']);
-
-
-
-
-
-
 
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 
-
-
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
-
 Route::view('admin/login', 'auth.login')->name('adminLoginShow');
 Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
+
+
+
 
 Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
@@ -76,21 +66,29 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
 
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::prefix('profile')->name('profile')->group(function () {
         Route::get('/', [PageController::class, 'profile']);
         Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
+        Route::get('/link/confirm-email/', [UserController::class, 'linkToConfirmEmail'])->name('.link.confirm.email');
+        Route::get('/confirm-email/{email}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
         Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
-//        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsPhone'])->name('.ajax.checkSendSmsPhone');
+        Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
+        Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('.ajax.checkSendSmsPhone');
     });
-    Route::prefix('materials')->name('materials')->group(function () {
-        Route::get('/', [PageController::class, 'materials']);
+});
+
+Route::prefix('materials')->name('materials')->group(function () {
+        Route::get('/', [PageController::class, 'ajaxMaterials']);
         Route::get('/search', [PageController::class, 'search'])->name('.search');
-        Route::get('/item-{id}', [PageController::class, 'material'])->name('.material');
+        Route::get('/{slug}-{id}.html', [PageController::class, 'material'])->name('.material');
         Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
         Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
         Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
@@ -107,4 +105,3 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
     });
-});

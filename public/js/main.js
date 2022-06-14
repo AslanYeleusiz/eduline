@@ -69,8 +69,17 @@ $(document).ready(function () {
     });
 });
 
-//PHOME MASK JQUERY
+//PHOME MASK JQUERY Erdaulet
 $(".phone_mask").mask("+7 (000) 000-00-00");
+$(".phone_mask").on('focus', function(){
+    if($(this).val()=='')
+        $(this).val('+7 (');
+})
+$(".phone_mask").on('focusout', function(){
+    if($(this).val()=='+7 (')
+        $(this).val('');
+})
+
 
 var $speed_pp = 400;
 // POPUP script
@@ -153,6 +162,7 @@ $.ajaxSetup({
 
 $('.drop-zone__input').on('change', e => {
     e.preventDefault();
+    $('.help-block').html('');
     $('.expectations').removeClass("active");
     $('.successmode').removeClass("active");
     $('.loadedmode').addClass("active");
@@ -169,9 +179,9 @@ $('.drop-zone__input').on('change', e => {
         processData: false,
         data: formData,
         dataType: 'json',
-        success: function () {
+        success: function (data) {
             //Дейстиве при успешности
-            console.log(dataName);
+            console.log(data);
             $('.lineload2').width('100%');
             $('#procofp').text('100');
             validate(dataName);
@@ -179,6 +189,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
+                data==0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
             }, 1000);
         },
         error: function (data) {
@@ -193,13 +204,22 @@ $('.drop-zone__input').on('change', e => {
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
                 $('#file_name').text(dataName.name);
+                data==0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
             }, 1000);
         }
     });
 });
 
+function openMobileSlideMenu() {
+    const menu = document.querySelector(".mb_menu-slide");
+    $('.mb_menu-slide').toggleClass('active');
+
+    // $('.mb_menu-slide').toggleClass("active", 2000);
+    $('.mb_menu-slide + .overlay').toggleClass('active')
+}
+
 function validate(file) {
-    const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf"];
+    const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf", 'application/msword', 'application/vnd.ms-powerpoint'];
     // console.log(array[0]);
     // console.log(file.type);
     for (let n = 0; n < array.length; n++) {
@@ -207,22 +227,24 @@ function validate(file) {
     }
     if (!success) {
         $('.help-block').text('Разрешена загрузка файлов только со следующими расширениями: pdf, pptx, ppt, docx, doc.');
-    } else if (file.size > 10485760) {
+    }
+    if (file.size > 10485760) {
         $('.help-block').text('Сіздің файлыңыз 10 мб жоғары');
     }
     return $('.help-block').show();
 }
 
-function openLogin() {
+function openLogin(routeName) {
     $('.modal').modal('hide');
+    $('.endRoute').val(routeName);
     setTimeout(() => {
         $('#loginPopup').modal('show');
     }, 500)
 }
 
 function openRegister() {
-    $('.modal').modal('hide')
-    $('.only-register').css('display', 'block')
+    $('.modal').modal('hide');
+    $('.only-register').css('display', 'block');
 
     setTimeout(() => {
         $('#registerPopup').modal('show');
@@ -344,6 +366,7 @@ $(function () {
         let phone = $('#login-phone').val();
         let password = $('#password').val();
         let _token = $('meta[name="csrf-token"]').attr('content');
+        let endRoute = $('.endRoute').val();
 
         $(".loader").addClass("loading");
 
@@ -355,12 +378,14 @@ $(function () {
             data: {
                 'phone': phone,
                 'password': password,
-                '_token': _token
+                '_token': _token,
+                'endRoute': endRoute
             },
             success: function (res) {
                 $(".loader").removeClass("loading");
                 if (res.data && res.data.success) {
-                    window.location.reload();
+                    if(res.data.endRoute != null) window.location.href = '/'+res.data.endRoute;
+                    else window.location.reload();
                 }
             },
             error: function (err) {

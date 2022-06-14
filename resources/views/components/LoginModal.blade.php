@@ -8,6 +8,9 @@
             <div class="modal-body">
                 <form id="loginForm" class="modal-form" action="{{ route('ajax.login') }}" method="POST">
                     @csrf
+
+                    <input type="hidden" name="endRoute" class="endRoute" value="">
+
                     <div class="form-input-block">
                         <label class="modal-form-label" for="login-phone">@lang('validation.attributes.phone'):</label>
                         <input id="login-phone" name="phone" class="modal-form-input phone phone_mask" type="tel" placeholder="+7 (___) ___-__-__">

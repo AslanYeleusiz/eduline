@@ -3,7 +3,7 @@
         <div class="cst_pd">
             <div class="m_center">
                 <a href="{{ route('materials') }}"
-                   class="my_materials  @if(request()->routeIs('materials')) active @endif">
+                   class="my_materials  @if(request()->routeIs('materials') || request()->routeIs('materials.search')) active @endif">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.4"
                               d="M15.7201 2H8.28008C7.90008 2 7.58008 2.32 7.58008 2.7C7.58008 3.08 7.90008 3.4 8.28008 3.4H11.5401L12.9401 5.26C13.2501 5.67 13.2901 5.73 13.8701 5.73H17.5901C17.9701 5.73 18.3401 5.78 18.7001 5.88C18.7401 6.06 18.7601 6.24 18.7601 6.43V6.78C18.7601 7.16 19.0801 7.48 19.4601 7.48C19.8401 7.48 20.1601 7.16 20.1601 6.78V6.42C20.1401 3.98 18.1601 2 15.7201 2Z"
@@ -14,8 +14,8 @@
                     </svg>
                     <span>@lang('site.Материалдар')</span>
                 </a>
-                <a href="{{ route('materials.myMaterials') }}"
-                   class="my_materials @if(request()->routeIs('materials.myMaterials')) active @endif">
+                <a
+                   class="my_materials @if(request()->routeIs('materials.myMaterials')) active @endif" @guest onclick="openLogin('materials/my-materials')" @endguest @auth href="{{ route('materials.myMaterials') }}" @endauth>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path opacity="0.4"
                               d="M21.9902 10.84C21.9702 10.36 21.8902 9.88999 21.7402 9.43999C21.0502 7.27999 19.0303 5.71999 16.6503 5.71999H13.8602C13.2802 5.71999 13.2402 5.65998 12.9302 5.24998L11.5303 3.38998C10.8803 2.51998 10.3702 1.98999 8.74023 1.98999H6.41022C3.97022 1.98999 1.99023 3.96999 1.99023 6.40999V9.42998V16.64C1.99023 19.59 4.39027 21.99 7.34027 21.99H16.6403C19.5903 21.99 21.9902 19.59 21.9902 16.64V11.06C22.0002 11 22.0002 10.91 21.9902 10.84Z"

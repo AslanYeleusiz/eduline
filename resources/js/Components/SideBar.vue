@@ -181,7 +181,7 @@ export default {
                     menu_active: ["admin.promoCodes"],
                 },
 
-              
+
                 {
                     name: "Жинақ материалдар",
                     font: "fa-book",
@@ -193,6 +193,8 @@ export default {
                     font: "fa-list",
                     menu_active: [
                         "admin.materials",
+                        "admin.deletedMaterials",
+                        "admin.editedMaterials",
                         "admin.materialClasses",
                         "admin.materialDirections",
                         "admin.materialSubjects",
@@ -212,19 +214,24 @@ export default {
                             menu_active: ["admin.deletedMaterials"],
                         },
                         {
+                            name: "Өзгертілген материалдар",
+                            font: "fa-file",
+                            route_name: "admin.editedMaterials.index",
+                            menu_active: ["admin.editedMaterials"],
+                        },
+
+                        {
                             name: "Материалдар Сыныбы",
                             font: "fa-file",
                             route_name: "admin.materialClasses.index",
                             menu_active: ["admin.materialClasses"],
                         },
-
                         {
                             name: "Материалдар Бағыты",
                             font: "fa-file",
                             route_name: "admin.materialDirections.index",
                             menu_active: ["admin.materialDirections"],
                         },
-
                         {
                             name: "Материалдар Пәні",
                             font: "fa-file",
@@ -282,7 +289,7 @@ export default {
                     font: "fa-newspaper",
                     menu_active: [
                         "admin.test.subjects", "admin.test.directions",
-                        "admin.test.questions", "admin.test.languages", 
+                        "admin.test.questions", "admin.test.languages",
                         "admin.test.classes"
                      ],
                     route_name: "",

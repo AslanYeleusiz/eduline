@@ -1,5 +1,10 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Жаңалықтар | Eduline.kz')
+@section('meta')
+<meta name="description" content="Ұстаздар мен мұғалімдерге арналған жаңалықтар. Аттестация жаңалықтары. Eduline.kz">
+<meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
+<link rel="canonical" href="https://eduline.kz">
+@endsection
 @section('content')
 <section class="news">
     <div class="m_href">
@@ -17,7 +22,7 @@
                     <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Танымал')}}</span>
                 </a>
-                <a href="/Saves" class="my_ls my_materials @if($url=='Saves') active @endif">
+                <a  @auth href="{{ route('news.saves') }}" @endauth @guest onclick="openLogin('Saves')" @endguest class="my_ls my_materials @if($url=='Saves') active @endif">
                     <img class="img-svg" src="{{asset('images/zhan-3.svg')}}">
                     <span>{{__('site.Сақталғандар')}}</span>
                 </a>

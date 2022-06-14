@@ -8,6 +8,9 @@ use App\Models\Material;
 use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 
 class AjaxUploadController extends Controller
@@ -22,11 +25,22 @@ class AjaxUploadController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('file');
-        return 'path';
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file|mimes:ppt,pptx,doc,docx,pdf|max:10485760'
+        ]);
+        if($validator->fails()){
+            return 0;
+        };
+        $file = $request->file('file');
+        $fileName = time() . "_" . Str::random(5) .'.' . $file->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs('uploads/file', $file, $fileName);
+        return $fileName;
     }
     public function store(Request $request)
     {
+        if($request->fileName == 0){
+            return redirect()->back()->withErrors(__('site.Файл не был соответствован требованию сайта. Пожалуйста проверьте правильность файла.'));
+        }
         $material = new Material();
         $material -> title = $request -> name;
         $material -> description = $request -> text;
@@ -34,10 +48,9 @@ class AjaxUploadController extends Controller
         $material -> subject_id = $request -> subject;
         $material -> direction_id = $request -> direction;
         $material -> class_id = $request -> class;
-        $path = $request->file('file')->store('uploads/file', 'public');
-        $material -> file_name = $path;
+        $material -> file_name = 'uploads/file/'.$request->fileName;
         $material -> save();
-        return redirect()->back()->withSuccess(__('site.Материал сәтті жүктелді'));
+        return redirect()->route('materials.myMaterials')->withSuccess(__('site.Материал сәтті жүктелді'));
     }
 
 }

@@ -7,19 +7,19 @@
                         aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editPhonePopup" class="modal-form" action=""
+                <form id="editPhoneForm" class="modal-form" action="{{ route('profile.ajax.checkSendSmsPhone') }}"
                       method="POST">
                     @csrf
 
                     <div class="modal-body-title">Cіздің расталған номеріңіз</div>
-                    <div class="modal-body-subtitle">+7 (701) 026-95-95</div>
+                    <div class="modal-body-subtitle">{{ $phone }}</div>
 
                     <div class="modal-body-line"></div>
 
                     <div class="form-input-block">
-                        <label class="modal-form-label" for="new-phone">Жаңа номеріңізді жазыңыз::</label>
+                        <label class="modal-form-label" for="new-phone">Жаңа номеріңізді жазыңыз:</label>
                         <input id="new-phone" name="phone"
-                               class="modal-form-input phone" type="tel"
+                               class="modal-form-input phone phone_mask" type="tel"
                                placeholder="+7 (7__) ___-__-__">
                         <span class="invalid error-phone" role="alert" id="error-new-phone"></span>
                     </div>

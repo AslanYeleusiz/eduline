@@ -34,7 +34,7 @@
 
     <ul class="menu-ul">
         <li class="menu-li">
-            <a class="menu-link @if(request()->routeIs('index')) active @endif" href="{{ route('index') }}">
+            <a class="menu-link @if(request()->routeIs('index')||request()->routeIs('news.*')) active @endif" href="{{ route('index') }}">
                 <img class="img-svg" src="{{asset('images/home.svg')}}">
                 @lang('site.Жаңалықтар')
             </a>
