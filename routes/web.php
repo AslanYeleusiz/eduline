@@ -32,41 +32,34 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/news/comments/answer', [CommentsController::class, 'answer'])->name('index.comments.answer');
     Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
 });
+
+
+
 Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
 Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');
 Route::get('/', [NewsController::class, 'index'])->name('index');
-
 Route::view('/attestation', 'pages.attestation')->name('attestation');
-
 Route::post('/attestation', [MainController::class, 'attestation'])->name('attestation.store');
-
 Route::view('/calculator', 'pages.calculator')->name('calculator');
-
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator.store');
 
 
 
 
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
-
 Route::get('/consultation/{id?}', [MainController::class, 'consultation'], ['id' => 'id'])->name('consultation');
-
 Route::post('/consultation/{id?}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone']);
 
 
 
 
-
-
-
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
-
-
-
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
-
 Route::view('admin/login', 'auth.login')->name('adminLoginShow');
 Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
+
+
+
 
 Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
@@ -75,6 +68,9 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
