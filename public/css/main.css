@@ -283,7 +283,7 @@ li.menu-li {
 }
 .mb_menu-slide {
     display: none;
-
+    overflow-y: scroll;
 
     transform: translateX(-100%);
     transform-origin: left;
