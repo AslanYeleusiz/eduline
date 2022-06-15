@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('profile')->name('profile')->group(function () {
         Route::get('/', [PageController::class, 'profile']);
         Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
+        Route::get('/show/subscription', [PageController::class, 'showSubscription'])->name('.show.subscription');
         Route::get('/link/confirm-email/', [UserController::class, 'linkToConfirmEmail'])->name('.link.confirm.email');
         Route::get('/confirm-email/{email}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
         Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');

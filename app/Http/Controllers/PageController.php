@@ -45,6 +45,17 @@ class PageController extends Controller
         return view('pages.subscription.index', compact(['pageName', 'subscriptions', 'userSubscription']));
     }
 
+    public function showSubscription(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        $pageName = __('site.Жазылым');
+        $subscriptions = Subscription::query()->where('is_active', 1)->get();
+
+        $userSubscription = UserSubscription::query()->where('user_id', auth()->id())
+            ->with('subscription')->first();
+
+        return view('pages.subscription.subscription', compact(['pageName', 'subscriptions', 'userSubscription']));
+    }
+
     public function ajaxMaterials(Request $request)
     {
         $materials = new Material();
