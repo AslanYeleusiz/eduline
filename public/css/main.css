@@ -2405,6 +2405,9 @@ textarea.form-control:focus::placeholder{
     width: 50px;
     height: 50px;
     border-radius: 2px;
+    padding: 0;
+    text-align: center;
+    font-size: 30px;
 }
 #smsModal .modal-default-btn {
     width: 190px;
@@ -2415,4 +2418,43 @@ textarea.form-control:focus::placeholder{
 }
 #smsModal .modal-title {
     text-align: center;
+}
+
+#successPromocode .modal-title {
+    font-family: 'Exo2-Bold';
+    text-align: center;
+}
+
+#successPromocode .modal-body-title {
+    color: #03B113;
+    font-size: 19px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#successPromocode .modal-header {
+    display: block;
+}
+#successPromocode tr:first-child {
+    border-bottom: 1px solid #F3F3F3;
+    border-top: 1px solid #F3F3F3;
+}
+#successPromocode tr:last-child {
+    border-bottom: 1px solid #F3F3F3;
+}
+
+#successPromocode tr:first-child td:first-child, #successPromocode tr:last-child td:first-child {
+    color: #8B8B8B;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: left;
+}
+#successPromocode tr:first-child td:last-child, #successPromocode tr:last-child td:last-child {
+    color: #292929;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: right;
+}
+#successPromocode tr td {
+    padding: 20px 0;
 }

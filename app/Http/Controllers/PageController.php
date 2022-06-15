@@ -9,6 +9,7 @@ use App\Models\MaterialEdit;
 use App\Models\MaterialSubject;
 use App\Models\MaterialDirection;
 use App\Models\MaterialClass;
+use App\Models\PromoCode;
 use App\Models\SendingMaterialJournal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+
 
 class PageController extends Controller
 {
@@ -180,5 +182,25 @@ class PageController extends Controller
         return __('site.Сіздің сұранысыңыз сәтті қабылданды. Сайт әкімшілігі тексерген соң сізге хабарласады');
     }
 
+    public function activePromocode(Request $request) {
+        $model = PromoCode::where('is_active', '=', 1)->where('code', '=', $request->code)->first();
+
+        if (!$model) {
+            abort(404, 'Промокод дұрыс емес немесе бұндай промокод жоқ');
+        }
+
+        if ($model->to_date <= now()) {
+            abort(404, 'Сіздің промокодыңыздың уақыты өтіп кеткен');
+        }
+
+        $user_subscriptions =  UserSubscription::where('user_id', '=', auth()->user()->id)->first();
+
+        $date = Carbon::createFromFormat('d.m.Y', $user_subscriptions->to_date);
+        $date = $date->addDays($model->day);
+        $user_subscriptions->to_date = $date;
+        $user_subscriptions->save();
+
+        return $model;
+    }
 
 }

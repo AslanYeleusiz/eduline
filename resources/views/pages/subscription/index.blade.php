@@ -34,7 +34,7 @@
                         <a href="{{ route('profile.show.subscription') }}" class="page-card-button">
                             @lang('site.Жазылымды ұзарту')
                         </a>
-                        <div class="page-card-button">
+                        <div class="page-card-button" onclick="activeCodePopup()">
                             @lang('site.Промокодты енгізу')
                         </div>
                     </div>
@@ -50,6 +50,8 @@
 @endsection
 
 @include('components.SubscriptionModal')
+@include('components.activeCode')
+@include('components.SuccessPromocode')
 
 @section('scripts')
     <script>
@@ -73,7 +75,66 @@
             }, 500)
         }
 
+        function activeCodePopup () {
+            $('.modal').modal('hide');
 
-        
+            setTimeout(() => {
+                $('#activeCodePopup').modal('show');
+            }, 500)
+        }
+
+        function closeActiveCodePopup () {
+            $('.modal').modal('hide');
+
+            if ($("#activeCodePopup").css("display") == "none") {
+                window.location.reload();
+            }
+        }
+
+        $(function () {
+            $('#activeCodeForm').submit(function (e) {
+                e.preventDefault();
+
+                let code = $('#code').val();
+
+                let _token = $('meta[name="csrf-token"]').attr('content');
+
+                $(".loader").addClass("loading");
+
+                clearInvalidFeedback()
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: "POST",
+                    data: {
+                        'code': code,
+                        '_token': _token
+                    },
+                    success: function (res) {
+                        $(".loader").removeClass("loading");
+                        // if (res.data && res.data.success) {
+                        //     window.location.reload();
+                        // }
+
+                        $('.modal').modal('hide')
+
+                        setTimeout(() => {
+                            $('#successPromocode').modal('show');
+                        }, 500)
+
+                        console.log(res)
+
+                    },
+                    error: function (err) {
+                        $(".loader").removeClass("loading");
+
+                        $('.invalid.error-code').text(err.responseJSON.message);
+                        $('.invalid.error-code').css('display', 'block');
+
+                    }
+                });
+            });
+        })
+
     </script>
 @endsection

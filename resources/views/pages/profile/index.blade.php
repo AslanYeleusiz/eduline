@@ -264,6 +264,10 @@
                             $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
                         }, 500)
 
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
+
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
                         // }
@@ -309,6 +313,10 @@
                             $('#successPopup').modal('show');
                             $('#successPopup .modal-title').text('Cіздің почтаңызға растау сілтемесі жіберілді. Сілтемені басқан соң почтаңыз өзгереді');
                         }, 500)
+
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
 
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
@@ -361,6 +369,11 @@
                             $('#successPopup').modal('show');
                             $('#successPopup .modal-title').text('Жеке деректеріңіз сәтті өзгертілді');
                         }, 500)
+
+
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
 
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
@@ -416,6 +429,11 @@
                             $('#successPopup .modal-title').text('Номеріңіз сәтті өзгертілді');
                         }, 500)
 
+
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
+
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
                         // }
@@ -425,8 +443,8 @@
                         let response_text = JSON.parse(err.responseText);
                         if (response_text.errors && typeof response_text.errors == 'object') {
                             Object.entries(response_text.errors).forEach(([key, value]) => {
-                                $('#error-new-' + key).text(value[0]);
-                                $('#error-new-' + key).css('display', 'block');
+                                $('#error-sms-modal').text(value[0]);
+                                $('#error-sms-modal').css('display', 'block');
                             })
                         }
                     }

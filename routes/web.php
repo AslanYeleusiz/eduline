@@ -70,6 +70,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+    Route::post('/promocode', [PageController::class, 'activePromocode'])->name('promocode');
     Route::prefix('profile')->name('profile')->group(function () {
         Route::get('/', [PageController::class, 'profile']);
         Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');

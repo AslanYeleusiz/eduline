@@ -52,7 +52,7 @@
                     <span>@lang('site.Жеке кабинет')</span>
                 </a>
                 <a href="{{ route('profile.subscription') }}"
-                   class="my_materials @if(request()->routeIs('profile.subscription') || route('profile.subscription')) active @endif">
+                   class="my_materials @if(request()->routeIs('profile.subscription') || route('profile.show.subscription')) active @endif">
 
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
