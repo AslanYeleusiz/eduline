@@ -11,19 +11,19 @@
         <div class="cst_pd">
             <div class="cst_container">
                 <a href="/" class="my_materials @if($url=='/') active @endif">
-                    <img class="img-svg" src="{{asset('images/zhan-1.svg')}}">
+                    <img alt="zhan" class="img-svg" src="{{asset('images/zhan-1.svg')}}">
                     <span>{{__('site.Барлығы')}}</span>
                 </a>
                 <a href="/Announcement" class="my_materials @if($url=='Announcement') active @endif">
-                    <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
+                    <img alt="zhan" class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Хабарландыру')}}</span>
                 </a>
                 <a href="/Popular" class="my_materials @if($url=='Popular') active @endif">
-                    <img class="img-svg" src="{{asset('images/zhan-2.svg')}}">
+                    <img alt="zhan" class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Танымал')}}</span>
                 </a>
                 <a  @auth href="{{ route('news.saves') }}" @endauth @guest onclick="openLogin('Saves')" @endguest class="my_ls my_materials @if($url=='Saves') active @endif">
-                    <img class="img-svg" src="{{asset('images/zhan-3.svg')}}">
+                    <img alt="zhan" class="img-svg" src="{{asset('images/zhan-3.svg')}}">
                     <span>{{__('site.Сақталғандар')}}</span>
                 </a>
             </div>
