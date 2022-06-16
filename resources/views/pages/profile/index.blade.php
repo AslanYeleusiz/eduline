@@ -107,7 +107,19 @@
 
 @section('scripts')
     <script>
+        $.datepicker.regional['ru'] = {
+            closeText: 'Chiudi', // set a close button text
+            currentText: 'Oggi', // set today text
+            monthNames: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'], // set month names
+            dayNames: ['Domenica','Luned&#236','Marted&#236','Mercoled&#236','Gioved&#236','Venerd&#236','Sabato'], // set days names
+            dayNamesShort: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'], // set short day names
+            dayNamesMin: ['ПН','ВТ','СР','ЧТ','Пт','СБ','ВС'], // set more short days names
+            dateFormat: 'yy-mm-dd' // set format date
+        };
 
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+        $( "#birthday" ).datepicker();
         $(".smsCode").keyup(function () {
             console.log('ergerg')
             if (this.value.length == this.maxLength) {
