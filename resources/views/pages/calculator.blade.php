@@ -15,7 +15,7 @@
         <span class="t_p_num">
             @lang('site.Телефон номеріңіз'):
         </span>
-        <form action="" method="post" class="needs-validation" novalidate>
+        <form action="" method="post" class="needs-validation">
             @csrf
             <input type="text" class="form-control phone_mask" placeholder="+7 (___) ___-__-__" id="phone" name="phone" required>
             <button class="btn t_pupup_btn">
