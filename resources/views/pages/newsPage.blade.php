@@ -25,7 +25,7 @@
 <div class="m_href mp_href ns_href">
     <div class="cst_pd mp_thref">
         <a href="/" class="btn mp_back">
-            <img src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
+            <img alt="arrow_right" src="{{asset('images/arrow-right.png')}}"><span>@lang('site.Артқа қайту')</span>
         </a>
         <div class="mp_blockhref"><span><a href="/">@lang('site.Жаңалықтар')</a> /</span> {{$material->title}}</div>
     </div>
