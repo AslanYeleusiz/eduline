@@ -11,11 +11,12 @@
                     <tbody>
                         <tr>
                             <td>Жазылым мерзімі:</td>
-                            <td>3 айға жазылу</td>
+                            <td id="table_td_day"></td>
                         </tr>
                         <tr>
                             <td>Уақыты:</td>
-                            <td>12.02.2022 - 04.04.2022</td>
+                            <td>{{ $userSubscription->from_date }}
+                                - {{ $userSubscription->to_date }}</td>
                         </tr>
                     </tbody>
                 </table>

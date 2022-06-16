@@ -708,6 +708,9 @@
     .mb_menu, .mb_header {
         display: flex;
     }
+    .donat .page-card-actions {
+        flex-direction: column;
+    }
     .menubar {
         display: none;
         overflow: scroll;
