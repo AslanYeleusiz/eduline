@@ -940,6 +940,7 @@ textarea.form-control:focus::placeholder{
 .video {
     margin: 0 12px;
     width: 500px;
+    height: 300px ;
 }
 
 .video:hover {

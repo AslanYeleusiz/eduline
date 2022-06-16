@@ -1,7 +1,7 @@
 <div class="modal fade" id="activeCodePopup" tabindex="-1" role="dialog" aria-labelledby="editEmailPopup"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content inner-modal">
+        <div class="modal-content inner-modal" style="min-height: 300px;">
             <div class="modal-header">
                 <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal"
                         aria-label="Close"></button>

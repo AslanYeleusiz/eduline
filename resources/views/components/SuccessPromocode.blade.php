@@ -7,7 +7,7 @@
                 <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body pb-5">
-                <table>
+                <table style="width: 100%">
                     <tbody>
                         <tr>
                             <td>Жазылым мерзімі:</td>
@@ -15,7 +15,10 @@
                         </tr>
                         <tr>
                             <td>Уақыты:</td>
-                            <td id="table_td_time"></td>
+                            @if($userSubscription)
+                            <td id="table_td_time">{{ $userSubscription->from_date }}
+                                - {{ $userSubscription->to_date }}</td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
