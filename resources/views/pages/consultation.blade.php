@@ -64,14 +64,14 @@
                 <div class="com_block">
                     <div class="com_head">
                         <div class="row">
-                            <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
+                            <div class="col-2"><img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы
@@ -117,11 +117,11 @@
                             <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы
@@ -142,11 +142,11 @@
                             <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы

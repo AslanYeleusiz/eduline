@@ -27,7 +27,7 @@
                     </div>
                     <a href="/consultation/{{$value->id}}" class="kp_btn_2">
                         @lang('site.Толығырақ')
-                        <img src="{{asset('images/arrow-right.png')}}">
+                        <img alt="arrow" src="{{asset('images/arrow-right.png')}}">
                     </a>
                 </div>
             </div>
