@@ -15,8 +15,7 @@
                         </tr>
                         <tr>
                             <td>Уақыты:</td>
-                            <td>{{ $userSubscription->from_date }}
-                                - {{ $userSubscription->to_date }}</td>
+                            <td id="table_td_time"></td>
                         </tr>
                     </tbody>
                 </table>
