@@ -23,7 +23,13 @@
                         </div>
                         <div class="information-item">
                             <div class="information-item-label">@lang('site.Жынысы'):</div>
-                            <div class="information-item-result">{{ auth()->user()->sex !== null ? auth()->user()->sex : "Еңгізілмеді" }}</div>
+                            <div class="information-item-result">
+                                @if(auth()->user()->sex !== null)
+                                    {{ auth()->user()->sex == 1 ? "Ер" : "Әйел" }}
+                                @else
+                                    Еңгізілмеді
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="profile-edit" onclick="editProfileInformation()">@lang('site.Өзгерту')</div>
