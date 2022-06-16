@@ -19,7 +19,8 @@
 
                     <div class="form-input-block">
                         <label class="modal-form-label" for="birthday">@lang('site.Туған күні'):</label>
-                        <input id="birthday" name="birthday" class="modal-form-input" type="date" placeholder="@lang('site.Туған күні')" value="{{ auth()->user()->birthday }}">
+                        <input id="birthday" name="birthday" pattern="(?:19|20)\[0-9\]{2}-(?:(?:0\[1-9\]|1\[0-2\])-(?:0\[1-9\]|1\[0-9\]|2\[0-9\])|(?:(?!02)(?:0\[1-9\]|1\[0-2\])-(?:30))|(?:(?:0\[13578\]|1\[02\])-31))"
+                               title="Enter a date in this format YYYY-MM-DD" placeholder="YYYY-MM-DD" class="modal-form-input" type="date" placeholder="@lang('site.Туған күні')" value="{{ auth()->user()->birthday }}">
                         <span class="invalid error-iin" role="alert" id="error-login-birthday"></span>
                     </div>
 

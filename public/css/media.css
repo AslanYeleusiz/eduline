@@ -705,8 +705,20 @@
 }
 
 @media (max-width: 767px) {
+    .page-card-info-name, .page-card-info-title {
+        font-size: 14px;
+    }
     .mb_menu, .mb_header {
         display: flex;
+    }
+    .page-card-title {
+        font-size: 18px;
+    }
+    .page-card-subtitle {
+        font-size: 14px;
+    }
+    .page-card-date {
+        font-size: 18px;
     }
     .donat .page-card-actions {
         flex-direction: column;

@@ -187,21 +187,21 @@ class PageController extends Controller
         $model = PromoCode::where('is_active', '=', 1)->where('code', '=', $request->code)->first();
 
         if (!$model) {
-            abort(404, 'Промокод дұрыс емес немесе бұндай промокод жоқ');
+            abort(404, __('validation.promocode.later'));
         } else {
             $usedPromocodesCount = UsedPromocodes::where('promo_code_id', '=', $model->id)->where('user_id', '=', auth()->user()->id)->count();
         }
 
         if ($model->to_date < now()) {
-            abort(404, 'Сіздің промокодыңыздың уақыты өтіп кеткен');
+            abort(404, __('validation.promocode.later'));
         }
 
         if ($model->from_date > now()) {
-            abort(404, 'Промокод дұрыс емес немесе бұндай промокод жоқ');
+            abort(404, __('validation.promocode.not_found'));
         }
 
         if ($usedPromocodesCount > 0 ) {
-            abort(404, 'Сіз бұл промокодты қолданып қойғансыз!');
+            abort(404, __('validation.promocode.used'));
         }
 
         $user_subscriptions =  UserSubscription::where('user_id', '=', auth()->user()->id)->first();
