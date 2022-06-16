@@ -15,67 +15,7 @@
         <div class="cst_pd">
 
             @if(!$userSubscription)
-                <div class="dt_head">@lang('site.Сайтқа жазылып, барлық мүмкіндіктерді шексіз қолданыңыз')!</div>
-                <div class="dt_advantage">
-                    <div class="dt_adv_list">
-                        <div>
-                            <div class="dt_adv_block">
-                                <img
-                                    src="{{asset('images/success_circle.png')}}"><span>@lang('site.Аттестацияға шексіз тегін қатысу')</span>
-                            </div>
-                            <div class="dt_adv_block">
-                                <img
-                                    src="{{asset('images/success_circle.png')}}"><span>@lang('site.Материал жариялап - сертификат алу')</span>
-                            </div>
-                            <div class="dt_adv_block">
-                                <img
-                                    src="{{asset('images/success_circle.png')}}"><span>@lang('site.Материал жариялап - алғыс хат алу')</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="dt_adv_block">
-                                <img src="{{asset('images/success_circle.png')}}"><span>@lang('site.Материал жариялап - құрмет грамотасын алу')</span>
-                            </div>
-                            <div class="dt_adv_block">
-                                <img src="{{asset('images/success_circle.png')}}"><span>@lang('site.Материалды «Eduline.kz» журналына жариялау')</span>
-                            </div>
-                            <div class="dt_adv_block">
-                                <img src="{{asset('images/success_circle.png')}}"><span>@lang('site.Тренермен жеке кеңеске 15% жеңілдік алу')</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row dt_cards">
-                    @php
-                        $backgrounds = [0 => 'dt_1',1 => 'dt_2', 2 => 'dt_3' , 3 => 'dt_4'];
-                    @endphp
-
-                    @if($subscriptions->count() > 0)
-                        @foreach($subscriptions as $key => $subscription)
-                            <div class="col-md-6 dt_col">
-                                <div class="dt_block {{ $backgrounds[$key] }}">
-                                    <div class="dt_mounth">{{ $subscription->name }}</div>
-                                    <div class="dt_price">{{ number_format($subscription->price, 0, ' ', ' ') }}
-                                        @lang('site.₸/айына')
-                                    </div>
-                                    <div class="dt_list">
-                                        <div><img src="{{asset('images/circle_b.png')}}"><span class="dt_info">@lang('site.30 күн бойы аттестацияға шексіз қатыса аласыз')</span>
-                                        </div>
-                                        <div><img src="{{asset('images/circle_b.png')}}"><span class="dt_info">@lang('site.Материал жариялап сертификат, алғыс хат, грамота аласыз')</span>
-                                        </div>
-                                        <div><img src="{{asset('images/circle_b.png')}}"><span class="dt_info">@lang('site.Материалды айына бір рет жинаққа жібере аласыз')</span>
-                                        </div>
-                                        <div><img src="{{asset('images/circle_b.png')}}"><span class="dt_info">@lang('site.Тренермен жеке кеңеске 15% жеңілдік беріледі')</span>
-                                        </div>
-                                    </div>
-                                    <div class="dt_btn_block">
-                                        <button class="btn dt_btn" onclick="subscriptionModal(this)">@lang('site.Таңдау')</button>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endif
-                </div>
+                @include('components.subscription')
             @else
                 <div class="page-card">
                     <div class="page-card-title">@lang('site.Жазылым уақыты')</div>
@@ -91,10 +31,10 @@
                         </div>
                     </div>
                     <div class="page-card-actions">
-                        <div class="page-card-button">
+                        <a href="{{ route('profile.show.subscription') }}" class="page-card-button">
                             @lang('site.Жазылымды ұзарту')
-                        </div>
-                        <div class="page-card-button">
+                        </a>
+                        <div class="page-card-button" onclick="activeCodePopup()">
                             @lang('site.Промокодты енгізу')
                         </div>
                     </div>
@@ -110,6 +50,10 @@
 @endsection
 
 @include('components.SubscriptionModal')
+@include('components.activeCode')
+@include('components.SuccessPromocode', [
+    'userSubscript' => $userSubscription
+])
 
 @section('scripts')
     <script>
@@ -132,5 +76,67 @@
                 $('#subscriptionPayPopup').modal('show');
             }, 500)
         }
+
+        function activeCodePopup () {
+            $('.modal').modal('hide');
+
+            setTimeout(() => {
+                $('#activeCodePopup').modal('show');
+            }, 500)
+        }
+
+        function closeActiveCodePopup () {
+            $('.modal').modal('hide');
+
+            if ($("#activeCodePopup").css("display") == "none") {
+                window.location.reload();
+            }
+        }
+
+        $(function () {
+            $('#activeCodeForm').submit(function (e) {
+                e.preventDefault();
+
+                let code = $('#code').val();
+
+                let _token = $('meta[name="csrf-token"]').attr('content');
+
+                $(".loader").addClass("loading");
+
+                clearInvalidFeedback()
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: "POST",
+                    data: {
+                        'code': code,
+                        '_token': _token
+                    },
+                    success: function (res) {
+                        $(".loader").removeClass("loading");
+                        // if (res.data && res.data.success) {
+                        //     window.location.reload();
+                        // }
+
+                        $('.modal').modal('hide')
+
+                        setTimeout(() => {
+                            $('#successPromocode').modal('show');
+                        }, 500)
+
+                        $('#table_td_day').text(res.day + ' күн')
+
+                    },
+                    error: function (err) {
+                        $(".loader").removeClass("loading");
+
+                        $('.invalid.error-code').text(err.responseJSON.message);
+                        $('.invalid.error-code').css('display', 'block');
+
+                    }
+                });
+            });
+        })
+
     </script>
 @endsection

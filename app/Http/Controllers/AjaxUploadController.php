@@ -36,6 +36,7 @@ class AjaxUploadController extends Controller
         Storage::disk('public')->putFileAs('uploads/file', $file, $fileName);
         return $fileName;
     }
+
     public function store(Request $request)
     {
         if($request->fileName == 0){

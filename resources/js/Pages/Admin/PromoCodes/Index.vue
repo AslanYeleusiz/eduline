@@ -50,12 +50,12 @@
                                     <tr role="row">
                                         <th>№</th>
                                         <th>Код</th>
-                                        <th>Скидка</th>
+                                        <th>Күн</th>
                                         <th>Жарамдылық уақыты</th>
                                         <th>Қолданылған саны</th>
                                         <th>Белсенді</th>
                                         <th>Әрекет</th>
-                                        <!--       
+                                        <!--
                                             $table->id();
             $table->string('code')->unique();
             $table->integer('discount_percentage');
@@ -80,9 +80,9 @@
                                         <td>
                                             <input
                                                 type="number"
-                                                v-model="filter.discount_percentage"
+                                                v-model="filter.day"
                                                 class="form-control"
-                                                placeholder="Скидка"
+                                                placeholder="күн"
                                                 @keyup.enter="search"
                                             />
                                         </td>
@@ -135,7 +135,7 @@
                                              @click.prevent="search()">
                                                 <i class="fa fa-search"></i>
                                                  Іздеу
-                                            </button>  
+                                            </button>
 
                                         </td>
                                     </tr>
@@ -151,13 +151,13 @@
                                             }}
                                         </td>
                                         <td>{{ promoCode.code }}</td>
-                                        <td>{{ promoCode.discount_percentage }} %</td>
+                                        <td>{{ promoCode.day }}</td>
                                         <td> {{ promoCode.from_date}} - {{ promoCode.to_date }} </td>
                                         <td>
                                             {{
                                                 promoCode.used_counts
                                             }}
-                                           
+
                                         </td>
                                           <td>
                                               <span class="badge"
