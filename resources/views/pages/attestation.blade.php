@@ -208,7 +208,7 @@
     <div class="v-carousel">
         <div class="owl-carousel cst-carousel">
         <div class="v_block">
-           <div class="v_play"></div>
+            <div class="v_play"></div>
             <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
                 <source src="{{asset('videos/v1.mp4')}}">
             </video>

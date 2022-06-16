@@ -51,7 +51,9 @@
 
 @include('components.SubscriptionModal')
 @include('components.activeCode')
-@include('components.SuccessPromocode')
+@include('components.SuccessPromocode', [
+    'userSubscription' => $userSubscription
+])
 
 @section('scripts')
     <script>
@@ -123,7 +125,6 @@
                         }, 500)
 
                         $('#table_td_day').text(res.day + ' күн')
-                        $('#table_td_time').text('')
 
                     },
                     error: function (err) {
