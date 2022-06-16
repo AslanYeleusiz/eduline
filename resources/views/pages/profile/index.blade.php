@@ -319,10 +319,10 @@
                             $('#successPopup').modal('show');
                             $('#successPopup .modal-title').text('Cіздің почтаңызға растау сілтемесі жіберілді. Сілтемені басқан соң почтаңыз өзгереді');
                         }, 500)
-
-                        if ($("#successPopup").css("display") == "none") {
-                            window.location.reload();
-                        }
+                        //
+                        // if ($("#successPopup").css("display") == "none") {
+                        //     window.location.reload();
+                        // }
 
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
