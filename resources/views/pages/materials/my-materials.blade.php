@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $pageName)
+@section('title', $pageName . ' | Eduline.kz')
 @section('content')
 
 <div id="popup1" class="my_popup">
