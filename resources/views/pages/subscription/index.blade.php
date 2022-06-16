@@ -123,7 +123,7 @@
                         }, 500)
 
                         $('#table_td_day').text(res.day + ' күн')
-                        $('#table_td_time').text({{ $userSubscription->from_date - $userSubscription->to_date }})
+                        $('#table_td_time').text('')
 
                     },
                     error: function (err) {
