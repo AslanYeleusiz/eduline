@@ -47,7 +47,8 @@ class UserController extends Controller
             ->where('phone', $request->phone)
             ->statusPending()
             ->firstOr(function () {
-                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
+                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телеф
+                .она']);
             });
         $sms->delete();
 

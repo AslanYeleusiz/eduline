@@ -1122,7 +1122,9 @@
     .video {
         width: 457px;
     }
-
+    .mb_menu-slide{
+        padding: 15px 35px;
+    }
     .k_form_head {
         font-size: 32px;
     }
@@ -1252,7 +1254,9 @@
         line-height: 28px;
         font-size: 24px;
     }
-
+    .mb_menu-slide{
+        padding: 10px 25px;
+    }
     .dl_info {
         font-size: 16px;
         line-height: 19px;
