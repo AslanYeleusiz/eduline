@@ -236,6 +236,8 @@ function validate(file) {
 
 function openLogin(routeName) {
     $('.modal').modal('hide');
+    $('.mb_menu-slide + .overlay').removeClass('active');
+    $('.mb_menu-slide').removeClass('active');
     $('.endRoute').val(routeName);
     setTimeout(() => {
         $('#loginPopup').modal('show');

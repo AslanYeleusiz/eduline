@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $pageName)
+@section('title', 'Жеке кабинет | Eduline.kz')
 @section('content')
 
     @component('components.NavBar')

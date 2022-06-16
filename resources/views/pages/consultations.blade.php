@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Жеке кеңес | Eduline.kz')
 @section('content')
 <section class="kenesPrev">
     <div class="cst_pd">

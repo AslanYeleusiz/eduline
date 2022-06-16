@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Аттестация | Eduline.kz')
 @section('app')
 <div class="mb_dop_info">
     <button class="btn store_button mb_btn">@lang('site.Телефонға орнату')</button>
