@@ -195,7 +195,7 @@ class PageController extends Controller
             abort(404, 'Сіздің промокодыңыздың уақыты өтіп кеткен');
         }
 
-        if ($usedPromocodesCount > 5 ) {
+        if ($usedPromocodesCount > 0 ) {
             abort(404, 'Сіз бұл прокодты қолданып қойғансыз!');
         }
 
