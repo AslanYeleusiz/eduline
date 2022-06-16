@@ -185,18 +185,23 @@ class PageController extends Controller
 
     public function activePromocode(Request $request) {
         $model = PromoCode::where('is_active', '=', 1)->where('code', '=', $request->code)->first();
-        $usedPromocodesCount = UsedPromocodes::where('promo_code_id', '=', $model->id)->where('user_id', '=', auth()->user()->id)->count();
 
         if (!$model) {
             abort(404, 'Промокод дұрыс емес немесе бұндай промокод жоқ');
+        } else {
+            $usedPromocodesCount = UsedPromocodes::where('promo_code_id', '=', $model->id)->where('user_id', '=', auth()->user()->id)->count();
         }
 
-        if ($model->to_date <= now()) {
+        if ($model->to_date < now()) {
             abort(404, 'Сіздің промокодыңыздың уақыты өтіп кеткен');
         }
 
+        if ($model->from_date > now()) {
+            abort(404, 'Промокод дұрыс емес немесе бұндай промокод жоқ');
+        }
+
         if ($usedPromocodesCount > 0 ) {
-            abort(404, 'Сіз бұл прокодты қолданып қойғансыз!');
+            abort(404, 'Сіз бұл промокодты қолданып қойғансыз!');
         }
 
         $user_subscriptions =  UserSubscription::where('user_id', '=', auth()->user()->id)->first();
