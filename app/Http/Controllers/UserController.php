@@ -99,11 +99,13 @@ class UserController extends Controller
         $user->email_token = $token;
         $user->save();
         $message = new EmailConfirm($request->email);
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         mail($request->email, 'Please confirm email address', view('mail.emailUpdate')
                 ->with([
                     'token' => $token,
                     'email' => $request->email,
-                ]), 'Content-type: text/html; charset=iso-8859-1');
+                ]), $headers);
         return;
     }
 
