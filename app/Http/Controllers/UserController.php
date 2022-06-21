@@ -99,7 +99,7 @@ class UserController extends Controller
         $user->email_token = $token;
         $user->save();
 
-        mail($request->email, 'the subject', 'hello');
+        Mail::to($request->email)->send(new EmailConfirm($request->email));
 
         return;
     }
