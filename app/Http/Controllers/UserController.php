@@ -100,7 +100,7 @@ class UserController extends Controller
         $user->save();
         $message = new EmailConfirm($request->email);
         $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=UTF-8';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: Eduline.kz';
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
                 ->with([
@@ -113,7 +113,7 @@ class UserController extends Controller
     public function linkToConfirmEmail(Request $request)
     {
         $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=UTF-8';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: Eduline.kz';
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
                 ->with([
