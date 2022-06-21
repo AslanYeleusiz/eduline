@@ -9,7 +9,10 @@
 </head>
 <body>
 
-    <h1>Перейдите по ссылке ниже, чтобы изменить почту </h1>
-    <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">Изменить почту</a>
+    <h1>@lang('site.Сәлеметсіз бе! Сіз eduline.kz сайтында осы почтаны көрсеттіңіз. Почтаны растау үшін төмендегі сілтемені бастыңыз:') </h1>
+    <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">{{route('email.update',[ 'email' => $email, 'token'=>$token])}}</a>
+    <p>@lang('site.Егер сіз ешқандай өзгеріс жасамасаңыз бұл хатты елемесеңіз болады.')</p>
+    <p>@lang('site.С уважением, Eduline.kz')</p>
+    <p style="margin-top: 15px"><b>@lang('site.Примечание'):</b> @lang('site.Это сообщение отправляется автоматически. Не нужно отвечать на письмо').</p>
 </body>
 </html>

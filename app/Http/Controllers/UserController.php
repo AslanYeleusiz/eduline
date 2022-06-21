@@ -101,7 +101,7 @@ class UserController extends Controller
         $message = new EmailConfirm($request->email);
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        mail($request->email, 'Please confirm email address', view('mail.emailUpdate')
+        mail($request->email, __('message.Почтаңызды растаңыз'), view('mail.emailUpdate')
                 ->with([
                     'token' => $token,
                     'email' => $request->email,
