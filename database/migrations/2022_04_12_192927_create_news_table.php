@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('view')->default('0');
             //admin added user
             $table->foreignId('user_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('news_types_id')->constrained()->cascadeOnDelete();
+
             $table->softDeletes();
             $table->timestamps();
         });

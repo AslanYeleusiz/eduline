@@ -316,7 +316,7 @@
 
                 $.ajax({
                     url: $(this).attr('action'),
-                    type: "GET",
+                    type: $(this).attr('method'),
                     data: {
                         '_token': _token,
                         'email': email,

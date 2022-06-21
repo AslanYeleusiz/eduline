@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <form id="editEmailForm" class="modal-form" action="{{ route('profile.ajax.updateEmail', auth()->user()) }}"
-                      method="POST">
+                      method="GET">
                     @csrf
 
                     <div class="modal-body-title">Cіздің қазіргі поштаңыз</div>
