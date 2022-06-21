@@ -99,26 +99,26 @@ class UserController extends Controller
         $user->email_token = $token;
         $user->save();
         $message = new EmailConfirm($request->email);
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-        $headers[] = 'From: Eduline.kz';
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Eduline.kz' . "\r\n";
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
                 ->with([
                     'token' => $token,
                     'email' => $request->email,
-                ]), implode("\r\n", $headers));
+                ]), $headers);
         return;
     }
 
     public function linkToConfirmEmail(Request $request)
     {
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-        $headers[] = 'From: Eduline.kz';
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: Eduline.kz' . "\r\n";
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
                 ->with([
                     'email' => $request->email
-                ]), implode("\r\n", $headers));
+                ]), $headers);
 
         return $request->email;
     }
