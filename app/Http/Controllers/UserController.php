@@ -101,11 +101,12 @@ class UserController extends Controller
         $message = new EmailConfirm($request->email);
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= "From: eduline.kz";
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
                 ->with([
                     'token' => $token,
                     'email' => $request->email,
-                ]), $headers, '-f eduline.kz');
+                ]), $headers);
         return;
     }
 
@@ -113,10 +114,11 @@ class UserController extends Controller
     {
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= "From: eduline.kz";
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
                 ->with([
                     'email' => $request->email
-                ]), $headers, '-f eduline.kz');
+                ]), $headers);
 
         return $request->email;
     }
