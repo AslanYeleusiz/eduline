@@ -99,7 +99,11 @@ class UserController extends Controller
         $user->email_token = $token;
         $user->save();
         $message = new EmailConfirm($request->email);
-        mail($request->email, 'Please confirm email address', view('mail.emailConfirm')->with(['email' => $request->email,]));
+        mail($request->email, 'Please confirm email address', view('mail.emailUpdate')
+                ->with([
+                    'token' => $token,
+                    'email' => $request->email,
+                ]));
         return;
     }
 
