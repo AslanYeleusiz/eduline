@@ -4,12 +4,6 @@
     <title>@lang('site.Изменить почту')</title>
 </head>
 <body>
-    <style>
-        p, a{
-            font-size: 16px;
-            font-weight: 400;
-        }
-    </style>
     <p>@lang('site.Сәлеметсіз бе! Сіз eduline.kz сайтында осы почтаны көрсеттіңіз. Почтаны растау үшін төмендегі сілтемені бастыңыз:') </p>
     <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">@lang('site.Сілтеме')</a>
     <p>@lang('site.Егер сіз ешқандай өзгеріс жасамасаңыз бұл хатты елемесеңіз болады.')</p>
