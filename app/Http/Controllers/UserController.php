@@ -111,7 +111,12 @@ class UserController extends Controller
 
     public function linkToConfirmEmail(Request $request)
     {
-        Mail::to($request->email)->send(new EmailConfirm($request->email));
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        mail($request->email, 'Please confirm email address', view('mail.emailConfirm')
+                ->with([
+                    'email' => $request->email
+                ]), $headers);
 
         return $request->email;
     }
