@@ -98,9 +98,8 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-
-        mail($request->email, 'Please confirm email address', 'new EmailConfirm($request->email)');
-
+        $message = new EmailConfirm($request->email);
+        mail($request->email, 'Please confirm email address', view('mail.emailConfirm')->with(['email' => $request->email,]));
         return;
     }
 
