@@ -103,7 +103,7 @@ class UserController extends Controller
                 ->with([
                     'token' => $token,
                     'email' => $request->email,
-                ]));
+                ]), 'Content-type: text/html; charset=iso-8859-1');
         return;
     }
 
