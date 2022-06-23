@@ -39,10 +39,10 @@
                     /> -->
                 </div>
                 <div class="info">
-                    <a :href="route('index')" class="d-block">
+                    <Link :href="route('admin.users.index')" class="d-block">
 <!--                       {{$page.props.user.full_name}}-->
                        Әкімшілік панелі
-                    </a>
+                    </Link>
                 </div>
             </div>
 
@@ -131,7 +131,7 @@
                     </template>
 
                     <li class="nav-item">
-                        <a class="nav-link" @click.prevent="logout">
+                        <a class="nav-link" :href="route('logout')">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Шығу</p>
                         </a>
@@ -150,7 +150,7 @@ export default {
     },
     methods: {
         logout() {
-            this.$inertia.post(route("logout"));
+            this.$inertia.get(route("logout"));
         },
     },
     data() {
