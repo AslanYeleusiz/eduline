@@ -21,7 +21,7 @@
                             width: 2em;
                             height: 2em;
                             vertical-align: middle;
-                            fill: currentColor;
+                            fill: #c2c7d0;
                             overflow: hidden;
                         "
                         viewBox="0 0 1024 1024"
@@ -39,9 +39,10 @@
                     /> -->
                 </div>
                 <div class="info">
-                    <a :href="route('index')" class="d-block">{{
-                        $page.props.user.full_name
-                    }}</a>
+                    <a :href="route('index')" class="d-block">
+<!--                       {{$page.props.user.full_name}}-->
+                       Әкімшілік панелі
+                    </a>
                 </div>
             </div>
 
