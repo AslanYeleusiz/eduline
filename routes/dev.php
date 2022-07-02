@@ -3,14 +3,40 @@
 use App\Models\Material;
 use App\Models\News;
 use App\Models\Role;
+use App\Models\TestClass;
+use App\Models\TestSubject;
 use App\Models\TestSubjectOption;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Services\V1\SalaryCalculationService;
 use Faker\Generator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
+    return view('pdf.salary');
+    $test = SalaryCalculationService::getCoefficent('b4', 1,2, 2022, 6);
+    var_dump($test);
+    return view('welcome');
+    dd($test);
+    $subject = TestSubject::with('preparations.childs')->findOrFail(1);
+    dd($subject);
+    $testClassItems = TestClass::withCount(['preparations' => function($query) {
+            return $query->where('test_subject_preparations.subject_id', 1)->whereNotNull('test_subject_preparations.parent_id');
+        }])->whereHas('preparations', function($query) {
+            return $query->where('test_subject_preparations.subject_id', 1)->whereNotNull('test_subject_preparations.parent_id');
+        })->get();
+    dd($testClassItems);
+    $testClassItems = TestClass::whereHas('preparations', function($query){
+        return $query->where('subject_id', 1);
+    })->with(['preparations' => function($query) {
+        return $query->where('subject_id',1)->whereNotNull('parent_id');
+    }])->get();
+    dd($testClassItems);
+             $subject = TestSubject::with(['classItems' => function($query) {
+             return $query;
+         }])->findOrFail(1);
+         dd($subject);
     $option = TestSubjectOption::with('questions')->get();
     dd($option);
     $user = User::with('subscription')->first();
@@ -41,7 +67,7 @@ Route::prefix('commands')->group(function() {
         Artisan::call('optimize:clear');
         dd('clear');
     });
-    
+
     Route::get('storage-link', function() {
         Artisan::call('storage:link');
         dd('link');

@@ -17,7 +17,7 @@ return [
     'forbidden' => 'forbidden',
     'model_not_found' => ':model model_not_found',
     'not_found' => 'Page Not Found',
-   
+
     'limited_sms' => 'Біраздан соң қайталап көріңіз',
      'user' => [
         'old_phone_incorrect' => 'The old number doesnt match',
@@ -29,6 +29,7 @@ return [
         'sms_not_found' => 'Sms not found',
         'email_code_not_found' => 'code not found',
     ],
+    'the_code_or_number_incorrect' => 'The code or number is incorrect',
     'file' => [
         'max_size' => 'РThe file size must be less than :size MB.',
     ],

@@ -17,7 +17,8 @@ return [
     'forbidden' => 'Кіруге тиым салынған',
     'model_not_found' => ':model табылмады',
     'not_found' => 'Бет табылмады',
-  
+    'the_code_or_number_incorrect' => 'Код немесе нөмір қате',
+
     'limited_sms' => 'Біраздан соң қайталап көріңіз',
       'user' => [
         'old_phone_incorrect' => 'Ескі нөмір сәйкес келмейді',

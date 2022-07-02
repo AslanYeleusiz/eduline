@@ -60,6 +60,11 @@ class User extends Authenticatable
         // ->whereBetween(now(), ['from_date', 'to_date']);
     }
 
+    public function scopePhoneBy($query,$phone)
+    {
+        return $query->where('phone', $phone);
+    }
+
     /**
      * The attributes that should be cast.
      *

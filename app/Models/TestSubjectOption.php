@@ -16,6 +16,11 @@ class TestSubjectOption extends Model
         return $query->where('subject_id', $id);
     }
 
+    public function subject()
+    {
+        return $this->belongsTo(TestSubject::class, 'subject_id');
+    }
+
     public function questions()
     {
         return $this->belongsToMany( TestQuestion::class, TestSubjectOptionQuestion::class, 'option_id','question_id')->withPivot('id','number');

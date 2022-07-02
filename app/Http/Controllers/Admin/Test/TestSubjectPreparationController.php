@@ -28,10 +28,11 @@ class TestSubjectPreparationController extends Controller
             ->isParent()
             ->subjectBy($subject->id)  
             ->get();
-            $testClasses = TestClass::with(['preparations' =>  fn($query) => $query->where('subject_id', $subject->id)])
-            ->withCount(['preparations' => fn($query) => fn($query) => $query->where('subject_id', $subject->id)])
+        $testClasses = TestClass::with(['preparations' =>  fn($query) => $query->where('test_subject_preparations.subject_id', $subject->id)])
+            ->withCount(['preparations' => fn($query) => fn($query) => $query->where('test_subject_preparations.subject_id', $subject->id)])
             ->get(); 
-        return Inertia::render(
+          
+            return Inertia::render(
             'Admin/Test/Subjects/Preparations/Index',
             compact('preparations', 'subject', 'testClasses')
         );

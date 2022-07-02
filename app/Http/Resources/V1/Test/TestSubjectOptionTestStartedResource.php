@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1\Test;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TestSubjectOptionsResource extends JsonResource
+class TestSubjectOptionTestStartedResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,12 @@ class TestSubjectOptionsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            // 'questions' => $this->whenLoaded('questions'),
-            'questions' => TestQuestionsResource::collection($this->whenLoaded('questions')),
-            'questions_count' => $this->when(isset($this->questions_count), $this->questions_count)
+            'time' => $this->time,
+            'is_started' => $this->is_started,
+            'is_finished' => $this->is_finished,
+            'option' => new TestSubjectOptionResource($this->whenLoaded('option')),
+            'subject' => new TestSubjectResource($this->whenLoaded('subject')),
+            'user_answers' => FullTestUserAnswersResource::collection($this->whenLoaded('userAnswers'))
         ];
     }
 

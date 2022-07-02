@@ -12,12 +12,12 @@ class SmsController extends Controller
 {
     public function __construct(public SmsService $smsService)
     {
-        
+
     }
     public function store(SendSmsRequest $request)
     {
         $phone = $request->phone;
-        
+
         $this->smsService->checkLimitSms($phone);
             $code = $this->smsService->generateCode();
 
@@ -33,6 +33,5 @@ class SmsController extends Controller
             'phone' => $phone
         ]);
         return new MessageResource(__('message.success.sent'));
-        // return new UserSendSmsResource(compact('smsVerification', 'result'));
     }
 }

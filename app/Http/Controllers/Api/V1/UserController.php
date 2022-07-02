@@ -12,6 +12,8 @@ use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
 use App\Mail\EmailUpdate;
 use App\Models\SmsVerification;
+use App\Models\User;
+use App\Services\FileService;
 use App\Services\V1\SmsService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -39,6 +41,9 @@ class UserController extends Controller
         $user->place_work = $request->place_work;
         $user->sex = $request->sex;
         $user->birthday = $request->birthday;
+        if ($request->hasFile('avatar')) {
+            $user->avatar = FileService::saveFile($request->file('avatar'), User::IMAGE_PATH, $user->avatar);
+        }
         $user->save();
         return new UserProfileResource($user);
     }
