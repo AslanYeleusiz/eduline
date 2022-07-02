@@ -559,7 +559,7 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->working_pensioner  =$request->input('working_pensioner', false);
         $salaryCalculator->exempt_from_paying_individual_income_tax  = $request->input('exempt_from_paying_individual_income_tax', false);
         $salaryCalculator->category  = $request->input('category', 4);
-        $salaryCalculator->save()
+        $salaryCalculator->save();
     }
 
 
