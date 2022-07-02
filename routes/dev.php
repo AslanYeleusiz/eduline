@@ -76,6 +76,6 @@ Route::prefix('commands')->group(function() {
 
     Route::get('migrate', function() {
         Artisan::call('migrate');
-        dd('link');
+        dd('migrate');
     });
 });
