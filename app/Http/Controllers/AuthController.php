@@ -12,13 +12,20 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function adminLoginForm(AdminLoginRequest $request): \Illuminate\Http\RedirectResponse
+    public function adminLoginForm(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
-        if (Auth::attempt($request->only(['email', 'password']), $request->get('remember'))) {
-            return redirect()->route('admin.users.index');
+        $user = User::query()->where('phone', $request->phone)->firstOr(function () {
+            throw ValidationException::withMessages([
+                'phone' => [__('auth.Phone number not found')]
+            ]);
+        });
+        if (!Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'password' => [__('auth.Phone or password is incorrect')]
+            ]);
         }
-
-        return redirect()->back()->withErrors(['login' => 'Неправилный логин или пароль']);
+        Auth::login($user);
+        return redirect()->route('admin.users.index');
     }
 
     /**

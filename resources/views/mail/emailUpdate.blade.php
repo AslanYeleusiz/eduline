@@ -1,15 +1,13 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Изменить почту</title>
+    <title>@lang('site.Изменить почту')</title>
 </head>
 <body>
-
-    <h1>Перейдите по ссылке ниже, чтобы изменить почту </h1>
-    <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">Изменить почту</a>
+    <p>@lang('site.Сәлеметсіз бе! Сіз eduline.kz сайтында осы почтаны көрсеттіңіз. Почтаны растау үшін төмендегі сілтемені бастыңыз:') </p>
+    <a href="{{route('email.update',[ 'email' => $email, 'token'=>$token])}}">@lang('site.Сілтеме')</a>
+    <p>@lang('site.Егер сіз ешқандай өзгеріс жасамасаңыз бұл хатты елемесеңіз болады.')</p>
+    <p>@lang('site.С уважением, Eduline.kz')</p>
+    <p style="margin-top: 15px">@lang('site.Примечание'): @lang('site.Это сообщение отправляется автоматически. Не нужно отвечать на письмо').</p>
 </body>
 </html>

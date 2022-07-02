@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $pageName)
+@section('title', 'Жеке кабинет | Eduline.kz')
 @section('content')
 
     @component('components.NavBar')
@@ -23,7 +23,13 @@
                         </div>
                         <div class="information-item">
                             <div class="information-item-label">@lang('site.Жынысы'):</div>
-                            <div class="information-item-result">{{ auth()->user()->sex !== null ? auth()->user()->sex : "Еңгізілмеді" }}</div>
+                            <div class="information-item-result">
+                                @if(auth()->user()->sex !== null)
+                                    {{ auth()->user()->sex == 1 ? "Ер" : "Әйел" }}
+                                @else
+                                    Еңгізілмеді
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="profile-edit" onclick="editProfileInformation()">@lang('site.Өзгерту')</div>
@@ -101,7 +107,19 @@
 
 @section('scripts')
     <script>
+        $.datepicker.regional['ru'] = {
+            closeText: 'Chiudi', // set a close button text
+            currentText: 'Oggi', // set today text
+            monthNames: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'], // set month names
+            dayNames: ['Domenica','Luned&#236','Marted&#236','Mercoled&#236','Gioved&#236','Venerd&#236','Sabato'], // set days names
+            dayNamesShort: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'], // set short day names
+            dayNamesMin: ['ПН','ВТ','СР','ЧТ','Пт','СБ','ВС'], // set more short days names
+            dateFormat: 'yy-mm-dd' // set format date
+        };
 
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+
+        $( "#birthday" ).datepicker();
         $(".smsCode").keyup(function () {
             console.log('ergerg')
             if (this.value.length == this.maxLength) {
@@ -264,6 +282,10 @@
                             $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
                         }, 500)
 
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
+
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
                         // }
@@ -294,7 +316,7 @@
 
                 $.ajax({
                     url: $(this).attr('action'),
-                    type: "GET",
+                    type: $(this).attr('method'),
                     data: {
                         '_token': _token,
                         'email': email,
@@ -309,6 +331,10 @@
                             $('#successPopup').modal('show');
                             $('#successPopup .modal-title').text('Cіздің почтаңызға растау сілтемесі жіберілді. Сілтемені басқан соң почтаңыз өзгереді');
                         }, 500)
+                        //
+                        // if ($("#successPopup").css("display") == "none") {
+                        //     window.location.reload();
+                        // }
 
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
@@ -361,6 +387,11 @@
                             $('#successPopup').modal('show');
                             $('#successPopup .modal-title').text('Жеке деректеріңіз сәтті өзгертілді');
                         }, 500)
+
+
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
 
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
@@ -416,6 +447,11 @@
                             $('#successPopup .modal-title').text('Номеріңіз сәтті өзгертілді');
                         }, 500)
 
+
+                        if ($("#successPopup").css("display") == "none") {
+                            window.location.reload();
+                        }
+
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
                         // }
@@ -425,8 +461,8 @@
                         let response_text = JSON.parse(err.responseText);
                         if (response_text.errors && typeof response_text.errors == 'object') {
                             Object.entries(response_text.errors).forEach(([key, value]) => {
-                                $('#error-new-' + key).text(value[0]);
-                                $('#error-new-' + key).css('display', 'block');
+                                $('#error-sms-modal').text(value[0]);
+                                $('#error-sms-modal').css('display', 'block');
                             })
                         }
                     }

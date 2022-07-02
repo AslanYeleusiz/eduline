@@ -211,12 +211,17 @@ $('.drop-zone__input').on('change', e => {
 });
 
 function openMobileSlideMenu() {
-    const menu = document.querySelector(".mb_menu-slide");
-    $('.mb_menu-slide').toggleClass('active');
-
+    $('.mb_menu-slide').addClass('active');
     // $('.mb_menu-slide').toggleClass("active", 2000);
-    $('.mb_menu-slide + .overlay').toggleClass('active')
+    $('.mb_menu-slide + .overlay').addClass('active')
 }
+
+function closeMobileSlideMenu() {
+    $('.mb_menu-slide').removeClass('active');
+    $('.mb_menu-slide + .overlay').removeClass('active')
+}
+
+
 
 function validate(file) {
     const array = ["application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/pdf", 'application/msword', 'application/vnd.ms-powerpoint'];
@@ -236,6 +241,8 @@ function validate(file) {
 
 function openLogin(routeName) {
     $('.modal').modal('hide');
+    $('.mb_menu-slide + .overlay').removeClass('active');
+    $('.mb_menu-slide').removeClass('active');
     $('.endRoute').val(routeName);
     setTimeout(() => {
         $('#loginPopup').modal('show');

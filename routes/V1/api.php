@@ -65,7 +65,7 @@ Route::prefix('test')->name('test.')->group(function () {
     //  Route::post('subjects/{id}/options/{option_id}', [TestSubjectOptionController::class, 'store'])->name('subjects.options.store');
     //  Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');
 
-    Route::prefix('subjects')->group(function() {
+    Route::prefix('subjects')->group(function () {
         Route::get('/{id}/preparations', [TestSubjectPreparationController::class, 'preparationsByTitle'])->name('subjects.options.preparationsByTitle');
         Route::get('/{id}/preparations/{preparation_id}', [TestSubjectPreparationController::class, 'preparation'])->name('subjects.options.preparation');
         Route::post('/{id}/preparations/order', [TestSubjectPreparationController::class, 'preparationOrderStore'])->name('subjects.options.preparationOrderStore');
@@ -82,7 +82,7 @@ Route::prefix('test')->name('test.')->group(function () {
         Route::post('/{id}/test-finish', [TestSubjectController::class, 'testFinish'])->name('subjects.testFinish');
     });
 
-    Route::prefix('option-test')->group(function() {
+    Route::prefix('option-test')->group(function () {
         Route::get('/results', [TestSubjectOptionTestController::class, 'results'])->name('subjectOptionTest.results');
         Route::get('/{id}', [TestSubjectOptionTestController::class, 'show'])->name('subjectOptionTest.show');
         Route::post('/{id}/answer', [TestSubjectOptionTestController::class, 'saveUserAnswer'])->name('subjectOptionTest.saveUserAnswer');
@@ -121,10 +121,13 @@ Route::middleware('auth:api')->group(function () {
 Route::get('salary-calculator', [SalaryCalculatorController::class, 'index']);
 Route::get('salary-calculator/downloadPDF', [SalaryCalculatorController::class, 'downloadPDF']);
 
-Route::get('materials/{id}/download',            [MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('materials.download');
-Route::get('materials/{id}/certificate',         [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('materials.getCertificate');
-Route::get('materials/{id}/thank-letter',        [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('materials.getCertificateThankLetter');
-Route::get('materials/{id}/certificate-honor',   [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('materials.getCertificateHonor');
+Route::prefix('materials')->name('materials.')->group(function () {
+    Route::get('/{id}/download', [MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('.download');
+    Route::get('/{id}/certificate', [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate');
+    Route::get('/{id}/thank-letter', [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThankLetter');
+    Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
+});
+
 
 Route::apiResource('materials',  MaterialController::class)->names('materials.')->only(['index', 'show']);
 
@@ -133,8 +136,12 @@ Route::middleware('guest')->group(function () {
     Route::post('register/send-code', [AuthController::class, 'registerSendSmsCode'])->name('register.send_sms');
     Route::post('register', [AuthController::class, 'register'])->name('register');
 
-    Route::post('reset-password/send-code', [AuthController::class, 'resetPasswordSendSmsCode'])->name('register.send_sms');
-    Route::post('reset-password/verify-code', [AuthController::class, 'resetPasswordVerifyCode'])->name('register.verify_hash');
-    Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset_password.send_sms');
-
+    //2022_05_31_112258_create_news_comment_answers_table
+    //2022_06_11_120740_create_material_edits_table
+    //2022_06_14_123756_change_users_table
+    //2022_06_14_170746_change_promo_codes_table
+    //2022_06_16_151950_create_used_promocodes_table
+    Route::post('reset-password/send-code', [AuthController::class, 'resetPasswordSendSmsCode'])->name('reset_password.send_sms');
+    Route::post('reset-password/verify-code', [AuthController::class, 'resetPasswordVerifyCode'])->name('reset_password.verify_hash');
+    Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset_password');
 });

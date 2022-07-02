@@ -17,6 +17,7 @@
                         <input name="code" class="modal-form-input smsCode smsCode3" maxlength="1" type="tel">
                         <input name="code" class="modal-form-input smsCode smsCode4" maxlength="1" type="tel">
                     </div>
+                    <span class="invalid text-center" role="alert" id="error-sms-modal"></span>
 
                     <div style="display: flex; justify-content: center">
                         <button class="modal-default-btn">Жіберу</button>

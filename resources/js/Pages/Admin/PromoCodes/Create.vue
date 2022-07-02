@@ -46,16 +46,16 @@
                             <validation-error :field="'code'" />
                         </div>
                         <div class="form-group">
-                            <label for="">Скидка (0-100%)</label>
+                            <label for="">Күн</label>
                             <input
                                 type="number"
                                 class="form-control"
-                                v-model="promoCode.discount_percentage"
-                                name="discount_percentage"
-                                placeholder="Скидка (%)"
+                                v-model="promoCode.day"
+                                name="day"
+                                placeholder="Күн"
                                 required
                             />
-                            <validation-error :field="'discount_percentage'" />
+                            <validation-error :field="'day'" />
                         </div>
                         <div class="form-group">
                             <label for="">Жарамдылық уақыты</label>
@@ -134,7 +134,7 @@ export default {
             promoCode: {
                 code: null,
                 discount_percentage: null,
-                from_date: null, 
+                from_date: null,
                 to_date: null,
                 is_active: false,
             }
