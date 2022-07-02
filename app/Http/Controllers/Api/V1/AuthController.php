@@ -127,6 +127,7 @@ class AuthController extends Controller
         }
         $user = User::phoneBy($request->phone)->firstOrFail();
         $user->password = Hash::make($request->password);
+        $user->save();
         return new MessageResource(__('message.success.saved'));
     }
 
