@@ -72,4 +72,10 @@ Route::prefix('commands')->group(function() {
         Artisan::call('storage:link');
         dd('link');
     });
+
+
+    Route::get('migrate', function() {
+        Artisan::call('migrate');
+        dd('link');
+    });
 });
