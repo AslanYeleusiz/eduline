@@ -55,7 +55,7 @@ Route::prefix('test')->name('test.')->group(function() {
      Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
      Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
      Route::get('subjects/{id}/options/{option_id}/start', [TestSubjectOptionController::class, 'start'])->name('subjects.options.start');
-     
+
 });
 
 Route::middleware('auth:api')->group(function () {
@@ -75,11 +75,13 @@ Route::middleware('auth:api')->group(function () {
      Route::post('materials/{id}/comment', [MaterialController::class, 'materialCommentSave'])->name('materials.commentSave');
 
 });
+    Route::prefix('materials')->name('materials.')->group(function(){
+        Route::get('/{id}/download',[MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('.download');
+        Route::get('/{id}/certificate',[MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate');
+        Route::get('/{id}/thank-letter',[MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThankLetter');
+        Route::get('/{id}/certificate-honor',[MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
+    });
 
-Route::get('materials/{id}/download',            [MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('materials.download');
-Route::get('materials/{id}/certificate',         [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('materials.getCertificate');
-Route::get('materials/{id}/thank-letter',        [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('materials.getCertificateThankLetter');
-Route::get('materials/{id}/certificate-honor',   [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('materials.getCertificateHonor');
 
 Route::apiResource('materials',  MaterialController::class)->names('materials.')->only(['index', 'show']);
 

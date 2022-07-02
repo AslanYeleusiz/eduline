@@ -10,7 +10,7 @@ class PromoCodeSaveRequest extends FormRequest
     {
         return [
             'code' => 'required',
-            'discount_percentage' => 'required',
+            'day' => 'required',
             'from_date' => 'required',
             'to_date' => 'required',
         ];

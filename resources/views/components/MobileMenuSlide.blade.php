@@ -121,4 +121,4 @@
     </div>
 </div>
 
-<div class="overlay" onclick="openMobileSlideMenu()"></div>
+<div class="overlay" onclick="closeMobileSlideMenu()"></div>

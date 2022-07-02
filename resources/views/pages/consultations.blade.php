@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Жеке кеңес | Eduline.kz')
 @section('content')
 <section class="kenesPrev">
     <div class="cst_pd">
@@ -10,7 +10,7 @@
             @lang('site.Құрметті әріптестер, Қазақстанның ең үздік тренерлерінен жеке кеңес алыңыз')
         </div>
 
-        <?php 
+        <?php
         if(count($consultations) != 0)
         {
         foreach ($consultations as $key => $value) { ?>
@@ -27,11 +27,11 @@
                     </div>
                     <a href="/consultation/{{$value->id}}" class="kp_btn_2">
                         @lang('site.Толығырақ')
-                        <img src="{{asset('images/arrow-right.png')}}">
+                        <img alt="arrow" src="{{asset('images/arrow-right.png')}}">
                     </a>
                 </div>
             </div>
-        <?php } 
+        <?php }
         } else { ?>
             <div class="kp_block">
                 <div class="kp_b_info">
@@ -41,7 +41,7 @@
                 </div>
             </div>
         <?php } ?>
-        
+
         <!--Пагинация қосу керек-->
 
     </div>

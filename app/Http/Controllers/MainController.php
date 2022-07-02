@@ -21,7 +21,7 @@ class MainController extends Controller
     {
         return view('welcome');
     }
-    
+
     // public function calc()
     // {
         // $news = News::with('newsType')
@@ -40,6 +40,7 @@ class MainController extends Controller
         }
         $user = User::where('email_token', $token)->firstOrFail();
         $user->email = $email;
+        $user->is_email_verified = 1;
         $user->save();
         return redirect()->route('index')->withSuccess('Успешно изменено');
     }
@@ -67,7 +68,7 @@ class MainController extends Controller
             $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
             if($this->smsService->send($msg, $phone))
                 return redirect()->route('calculator')->withSuccess(__('site.SMS жіберілді'));
-            else 
+            else
                 return redirect()->route('calculator')->withErrors(__('site.Қате! SMS жіберілмеді.'));
         }
         else
@@ -78,7 +79,7 @@ class MainController extends Controller
     {
         $consultations = PersonalAdvice::where('is_active', true)->get();
         return view('pages.consultations', ['consultations' => $consultations]);
-    }    
+    }
 
     public function consultation($id)
     {

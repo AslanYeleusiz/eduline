@@ -158,5 +158,10 @@ return [
     */
 
     'attributes' => [],
+    'promocode' => [
+        'not_found' => 'The promo code is incorrect or there is no such promo code',
+        'later' => 'Your promo code has expired',
+        'used' => 'You have already used this promo code'
+    ]
 
 ];

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $pageName)
+@section('title', $pageName . ' | Eduline.kz')
 @section('meta')
 <meta name="description" content="{{$material->description}}">
 <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">

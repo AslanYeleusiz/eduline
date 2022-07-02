@@ -14,7 +14,7 @@ class PromoCodeController extends Controller
     public function index(Request $request)
     {
         $code = $request->code;
-        $discountPercentage = $request->discount_percentage;
+        $day = $request->day;
         $usedCounts = $request->used_counts;
         $fromDate = $request->from_date;
         $toDate = $request->to_date;
@@ -23,7 +23,7 @@ class PromoCodeController extends Controller
         $promoCodes = PromoCode::when($code, fn ($query) => $query->where('code', 'like', "%$code%"))
             ->when($fromDate, fn ($query) => $query->whereDate('from_date', '<=', $fromDate))
             ->when($toDate, fn ($query) => $query->whereDate('to_date', '>=', $toDate))
-            ->when($discountPercentage, fn ($query) => $query->where('discount_percentage', $discountPercentage))
+            ->when($day, fn ($query) => $query->where('day', $day))
             ->when($usedCounts, fn ($query) => $query->where('used_counts', $usedCounts))
             ->when($isActive, fn ($query) => $query->where('is_active', ($isActive == 'true') ? 1 : 0))
             ->orderByDesc('id')
@@ -44,8 +44,8 @@ class PromoCodeController extends Controller
         $request->validate([
             'code' => 'unique:promo_codes,code,' . $promoCode->id
         ]);
-        $discountPercentage = ($request->discount_percentage  > 0)  && ($request->discount_percentage < 101 ) 
-        ? $request->discount_percentage 
+        $discountPercentage = ($request->discount_percentage  > 0)  && ($request->discount_percentage < 101 )
+        ? $request->discount_percentage
         : 0;
         $promoCode->code = $request->code;
         $promoCode->discount_percentage = $discountPercentage;
@@ -67,12 +67,9 @@ class PromoCodeController extends Controller
         $request->validate([
             'code' => 'unique:promo_codes,code'
         ]);
-        $discountPercentage = ($request->discount_percentage  > 0)  && ($request->discount_percentage < 101 ) 
-        ? $request->discount_percentage 
-        : 0;
         $promoCode = new PromoCode();
         $promoCode->code = $request->code;
-        $promoCode->discount_percentage = $discountPercentage;
+        $promoCode->day = $request->day;
         $promoCode->from_date = $request->from_date;
         $promoCode->to_date = $request->to_date;
         $promoCode->is_active = $request->is_active == 'true';

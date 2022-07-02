@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Жеке кеңес | Eduline.kz')
 @section('app')
     <div class="mb_dop_info">
         <button class="btn store_button mb_btn">@lang('site.Телефонға орнату')</button>
@@ -33,7 +33,7 @@
             <div class="cst_pd">
                 <div class="k_form_head">@lang('site.Консультация бағасы') - {{$consultation->price}} ₸</div>
 
-                <form method="post" action="/consultation/{{ $consultation->id }}" class="k_form needs-validation forma-ajax" novalidate>
+                <form method="post" action="/consultation/{{ $consultation->id }}" class="k_form needs-validation forma-ajax">
                     @csrf
                     <div class="row">
                         <div class="col-md">
@@ -64,14 +64,14 @@
                 <div class="com_block">
                     <div class="com_head">
                         <div class="row">
-                            <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
+                            <div class="col-2"><img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы
@@ -117,11 +117,11 @@
                             <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы
@@ -142,11 +142,11 @@
                             <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
                             <div class="col">
                                 <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
+                                    <img alt="star" src="{{asset('images/star.png')}}">
                                 </div>
                                 <div class="com_user_nm">
                                     Сембиев Нартай Аманғалиұлы

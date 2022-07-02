@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Eduline.kz')
+@section('title', 'Материал жариялау | Eduline.kz')
 @section('content')
 
 <style>

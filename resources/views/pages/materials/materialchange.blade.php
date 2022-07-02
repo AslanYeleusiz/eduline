@@ -13,6 +13,7 @@
     }
 
 </style>
+
 <div id="popup2" class="my_popup">
     <div class="send_block my_send_block">
         <div class="esc_btn"><img class="my_esc_icon" src="{{asset('images/escape.png')}}"></div>

@@ -98,15 +98,27 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-
-        Mail::to($request->email)->send(new EmailUpdate($token, $request->email));
-
+        $message = new EmailConfirm($request->email);
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $headers[] = 'From: Eduline.kz';
+        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
+                ->with([
+                    'token' => $token,
+                    'email' => $request->email,
+                ]), implode("\r\n", $headers));
         return;
     }
 
     public function linkToConfirmEmail(Request $request)
     {
-        Mail::to($request->email)->send(new EmailConfirm($request->email));
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $headers[] = 'From: Eduline.kz';
+        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
+                ->with([
+                    'email' => $request->email
+                ]), implode("\r\n", $headers));
 
         return $request->email;
     }

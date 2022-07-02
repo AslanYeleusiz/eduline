@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', $pageName)
+@section('title', $pageName . ' | Eduline.kz')
 @section('content')
 
 <div id="popup1" class="my_popup">
@@ -156,7 +156,12 @@
             datatype: "html",
             data: data.serialize(),
             beforeSend: function() {
+                $('.popup_body').hide();
                 $('.my_send_block').show();
+
+                // if ($('.my_send_block').css("display") == "none") {
+                //     window.location.reload();
+                // }
             },
             success: function(response) {
                 $('.success_message').html(response);

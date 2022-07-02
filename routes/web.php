@@ -48,9 +48,7 @@ Route::post('/calculator', [MainController::class, 'calculator'])->name('calcula
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
 Route::get('/consultation/{id?}', [MainController::class, 'consultation'], ['id' => 'id'])->name('consultation');
 Route::post('/consultation/{id?}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone']);
-
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
-
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
 Route::view('admin/login', 'auth.login')->name('adminLoginShow');
 Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
@@ -61,7 +59,6 @@ Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adm
 Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
     Route::view('register', 'pages.home')->name('register');
-
     Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
@@ -71,10 +68,11 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-
+    Route::post('/promocode', [PageController::class, 'activePromocode'])->name('promocode');
     Route::prefix('profile')->name('profile')->group(function () {
         Route::get('/', [PageController::class, 'profile']);
         Route::get('/subscription', [PageController::class, 'subscription'])->name('.subscription');
+        Route::get('/show/subscription', [PageController::class, 'showSubscription'])->name('.show.subscription');
         Route::get('/link/confirm-email/', [UserController::class, 'linkToConfirmEmail'])->name('.link.confirm.email');
         Route::get('/confirm-email/{email}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
         Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
@@ -89,19 +87,18 @@ Route::prefix('materials')->name('materials')->group(function () {
         Route::get('/', [PageController::class, 'ajaxMaterials']);
         Route::get('/search', [PageController::class, 'search'])->name('.search');
         Route::get('/{slug}-{id}.html', [PageController::class, 'material'])->name('.material');
-        Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
-        Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
-        Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
-        Route::get('/my-materials/publication', [AjaxUploadController::class, 'index'])->name('.publication');
-        Route::get('/my-materials/change/id-{id}', [PageController::class, 'change'])->name('.myMaterials.change');
-        Route::get('/my-materials/changed', [PageController::class, 'changed'])->name('.myMaterials.changed');
-        Route::post('/my-materials/delete', [PageController::class, 'delete'])->name('.myMaterials.delete');
-        Route::get('/my-materials/send/journal', [PageController::class, 'journal'])->name('.myMaterials.journal');
         Route::get('/{id}/download', [MaterialController::class, 'download'])->name('.download');
-
-        Route::get('/{id}/certificate', [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate');
-
-        Route::get('/{id}/thank-letter', [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThank_letter');
-
-        Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
+        Route::middleware('auth')->group(function (){
+            Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+            Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
+            Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
+            Route::get('/my-materials/publication', [AjaxUploadController::class, 'index'])->name('.publication');
+            Route::get('/my-materials/change/id-{id}', [PageController::class, 'change'])->name('.myMaterials.change');
+            Route::get('/my-materials/changed', [PageController::class, 'changed'])->name('.myMaterials.changed');
+            Route::post('/my-materials/delete', [PageController::class, 'delete'])->name('.myMaterials.delete');
+            Route::get('/my-materials/send/journal', [PageController::class, 'journal'])->name('.myMaterials.journal');
+            Route::get('/{id}/certificate', [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate')->middleware('auth');
+            Route::get('/{id}/thank-letter', [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThank_letter');
+            Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
+        });
     });

@@ -19,7 +19,7 @@
 
                     <div class="form-input-block">
                         <label class="modal-form-label" for="birthday">@lang('site.Туған күні'):</label>
-                        <input id="birthday" name="birthday" class="modal-form-input" type="date" placeholder="@lang('site.Туған күні')" value="{{ auth()->user()->birthday }}">
+                        <input id="birthday" name="birthday" class="modal-form-input" type="text" placeholder="@lang('site.Туған күні')" value="{{ auth()->user()->birthday }}">
                         <span class="invalid error-iin" role="alert" id="error-login-birthday"></span>
                     </div>
 

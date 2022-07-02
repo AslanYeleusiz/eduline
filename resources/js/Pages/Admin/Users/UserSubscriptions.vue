@@ -144,12 +144,12 @@
                                             }}
                                         </td>
                                         <td>
-                                            
+
                                             <Link :href="route('admin.subscriptions.edit',userSubscription.subscription
                                                     .id )">
                                             {{
                                                 userSubscription.subscription
-                                                    .name
+                                                    .name.kk
                                             }}
                                              </Link>
                                             <hr />
@@ -217,7 +217,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <h3 class="card-title">Жазылымға тіркеу</h3>
-                 
+
                 </div>
 
                 <div class="card-body">
@@ -234,7 +234,7 @@
                                         Таңдаңыз
                                     </option>
                                     <option :value="subscription.id" v-for="subscription in subscriptions" :key="'ss' + subscription.id">
-                                        {{ subscription.name }} - {{ subscription.price }}тг.
+                                        {{ subscription.name.kk }} - {{ subscription.price }}тг.
                                     </option>
                                     </select>
                             </div>
