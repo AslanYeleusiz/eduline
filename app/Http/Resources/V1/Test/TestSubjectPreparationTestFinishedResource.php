@@ -17,7 +17,7 @@ class TestSubjectPreparationTestFinishedResource extends JsonResource
     {
         return [
             'id' => $this->resource['preparation']->id,
-            'name' => $this->resource['preparation']->name,
+            'title' => $this->resource['preparation']->title,
             'total_time' => FullTest::OPTION_TEST_TIME - $this->resource['time'] ?? 0,
             'score' => $this->resource['result']['score'],
             'correct_answers_count' => $this->resource['result']['correctAnswerCount'],

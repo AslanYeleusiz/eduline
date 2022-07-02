@@ -17,10 +17,11 @@ class FullTestFinishedSubjectsResource extends JsonResource
         return [
             'id' =>  $this->id,
             'name' => $this->name,
-            'user_answers' => FullTestFinishedUserAnswersResource::collection($this->userAnswers)
+            'is_pedagogy' => $this->is_pedagogy,
+            'user_answers' => FullTestFinishedUserAnswersResource::collection($this->whenLoaded('userAnswers'))
             ];
     }
-    
+
     public function with($request)
     {
         return ['status' => true];

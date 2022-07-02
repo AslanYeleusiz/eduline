@@ -19,6 +19,7 @@ return [
     'not_found' => 'страница не найдена',
     'limited_sms' => 'Попробуйте по позже',
     'sms_not_sent' => 'sms не отправлено',
+    'the_code_or_number_incorrect' => 'Неверный код или номер',
     'user' => [
         'old_phone_incorrect' => 'Старый номер не совпадает',
         'not_found' => 'Пользователь не найден',

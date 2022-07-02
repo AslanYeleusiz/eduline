@@ -16,7 +16,7 @@ class FullTest extends Model
     {
         return $this->belongsToMany(TestSubject::class, FullTestSubject::class, 'test_id', 'subject_id');
     }
-    
+
     public function scopeIsFinished($query)
     {
         return $query->where('is_finished', 1);
@@ -34,7 +34,7 @@ class FullTest extends Model
                 'userAnswers' => fn($query) => $query->where('test_id', $id)->with('question')
             ])
         ])
-        ->findOrFail($id);
+        ->withCount('subjects')->findOrFail($id);
     }
 
     protected $casts = [

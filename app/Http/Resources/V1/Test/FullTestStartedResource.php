@@ -22,7 +22,7 @@ class FullTestStartedResource extends JsonResource
             'subjects' => FullTestSubjectsResource::collection($this->whenLoaded('subjects'))
         ];
     }
-    
+
     public function with($request)
     {
         return ['status' => true];

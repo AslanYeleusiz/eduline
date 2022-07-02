@@ -18,6 +18,7 @@ use App\Models\TestQuestion;
 use App\Models\TestSubject;
 use App\Models\TestSubjectPreparation;
 use App\Models\TestSubjectPreparationAppeal;
+use App\Models\TestSubjectPreparationOrder;
 use Illuminate\Http\Request;
 
 class TestSubjectPreparationController extends Controller
@@ -66,6 +67,16 @@ class TestSubjectPreparationController extends Controller
         return new TestSubjectPreparationResource($preparation);
     }
 
+    public function preparationOrderStore($subjectId)
+    {
+        $subject = TestSubject::findOrFail($subjectId);
+        $order = new TestSubjectPreparationOrder();
+        $order->subject_id = $subject->id;
+        $order->user_id = auth()->guard('api')->user()->id;
+        $order->save();
+        return new MessageResource(__('message.success.saved'));
+    }
+
     public function preparationAppeal($subjectId, $preparationId, Request $request)
     {
         $subject = TestSubject::findOrFail($subjectId);
@@ -90,7 +101,6 @@ class TestSubjectPreparationController extends Controller
             return $query->where('test_subject_preparations.id', $preparationId);
         })->inRandomOrder()->limit(20)->get();
         return new TestSubjectPreparationTestStartResource(compact('preparation', 'questions'));
-        return new TestSubjectOptionsResource(compact('subject', 'option'));
     }
 
     public function preparationTestFinish($subjectId, $preparationId, Request $request)
@@ -111,7 +121,6 @@ class TestSubjectPreparationController extends Controller
 
     protected function getScoreTestOption($questions, $userQuestionAnswers)
     {
-
         $score = 0;
         $correctAnswerCount = 0;
         $incorrectAnswerCount = 0;
