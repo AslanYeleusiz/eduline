@@ -1,12 +1,12 @@
 <template>
     <head>
-        <title>Админ панель | Жеке кеңеске тапсырыстар</title>
+        <title>Админ панель | Тест апеляция</title>
     </head>
     <AdminLayout>
         <template #breadcrumbs>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Жеке кеңеске тапсырыстар</h1>
+                    <h1 class="m-0">Тест апеляция тізімі</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -17,7 +17,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active">
-                            Жеке кеңеске тапсырыстар
+                            Тест апеляция тізімі
                         </li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
             <div class="buttons">
                 <Link
                     class="btn btn-danger"
-                    :href="route('admin.personalAdviceOrders.index')"
+                    :href="route('admin.test.questionAppeals.index')"
                 >
                     <i class="fa fa-trash"></i> Фильтрді тазалау
                 </Link>
@@ -35,7 +35,7 @@
         </template>
         <div class="container-fluid">
             <div class="card">
-                <div class="card-body" style="overflow:auto">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
                             <table
@@ -45,121 +45,92 @@
                                     <tr role="row">
                                         <th>№</th>
                                         <th>Аты-жөні</th>
-                                        <th>Телефон</th>
-                                        <th>Жеке кеңес</th>
-                                        <th>Комментария(заметка)</th>
-                                        <th>Уақыты</th>
+                                        <th>Тест</th>
+                                        <th>Сұрақ</th>
+                                        <th>Қате түрі</th>
+                                        <th>Комментария</th>
                                         <th>Әрекет</th>
                                     </tr>
                                     <tr class="filters">
                                         <td></td>
                                         <td>
                                             <input
-                                                v-model="filter.full_name"
+                                                v-model="filter.user_name"
                                                 class="form-control"
                                                 placeholder="Аты-жөні"
-                                                type="text"
                                                 @keyup.enter="search"
                                             />
                                         </td>
+                                        <td></td>
                                         <td>
                                             <input
-                                                type="text"
-                                                v-model="filter.phone"
+                                                v-model="filter.question_text"
                                                 class="form-control"
-                                                placeholder="Телефон"
+                                                placeholder="Сұрақ"
                                                 @keyup.enter="search"
                                             />
                                         </td>
                                         <td>
                                             <select
-                                                placeholder="Скидка"
-                                                v-model="filter.personal_advice_id"
-                                                @change="search"
+                                                v-model="filter.appeal_type"
                                                 class="form-control"
+                                                @change.prevent="search"
+
                                             >
-                                                <option :value="null">
-                                                    Барлығы
-                                                </option>
-                                                <option
-                                                    :key="
-                                                        'personalAdvicesItems' + index
-                                                    "
-                                                    :value="personalAdviceItem.id"
-                                                    v-for="(
-                                                        personalAdviceItem, index
-                                                    ) in personalAdvices"
-                                                >
-                                                    {{ personalAdviceItem.title.kk }}
-                                                </option>
+                                            <option :value="null" selected> Барлығы</option>
+                                            <option
+                                            :value="appeal_type_item.id"
+                                             v-for=" (appeal_type_item, index) in appeal_types" :key="'appeal_types' + index ">
+                                                {{ appeal_type_item.name }}
+                                            </option>
                                             </select>
                                         </td>
-
-                                        <td>
+                                           <td>
                                             <input
-                                                v-model="filter.comment_for_note"
+                                                v-model="filter.comment"
                                                 class="form-control"
                                                 placeholder="Комментария"
-                                                type="text"
                                                 @keyup.enter="search"
                                             />
                                         </td>
-                                        <td></td>
                                         <td></td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
                                         class="odd"
-                                        v-for="(
-                                            personalAdviceOrder, index
-                                        ) in personalAdviceOrders.data"
-                                        :key="'personalAdviceOrder' + personalAdviceOrder.id"
+                                        v-for="(appeal, index) in appeals.data"
+                                        :key="'appeal' + appeal.id"
                                     >
                                         <td>
-                                            {{
-                                                personalAdviceOrders.from
-                                                    ? personalAdviceOrders.from + index
+                                         {{
+                                                appeals.from
+                                                    ? appeals.from + index
                                                     : index + 1
                                             }}
                                         </td>
-                                        <td>{{ personalAdviceOrder.full_name }}</td>
-                                        <td>{{ personalAdviceOrder.phone }}</td>
-                                        <td>{{ personalAdviceOrder.personal_advice.title.kk }}</td>
-                                      <td>
-                                           {{ personalAdviceOrder.comment_for_note }}
-                                        </td>
+                                        <td>{{ appeal.user?.full_name }}</td>
+                                        <td>{{ appeal.test.id }}</td>
+                                        <td>{{ appeal.question.text }}</td>
                                         <td>
-                                           {{ personalAdviceOrder.created_at ?  (new Date(personalAdviceOrder.created_at).toLocaleDateString()): 'Анықталмады'  }}
+                                            <template
+                                             v-for="(appeal_type_foreach, indexForeach ) in appeal_types" :key="'appeal_foreach' + indexForeach">
+                                                <template v-if="appeal_type_foreach.id == appeal.type">
+                                            {{ appeal_type_foreach.name }}
+                                                    </template>
+                                            </template>
                                         </td>
-
+                                        <td>{{ appeal.comment }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                <Link
-                                                    :href="
-                                                        route(
-                                                            'admin.personalAdviceOrders.edit',
-                                                            personalAdviceOrder
-                                                        )
-                                                    "
-                                                    class="btn btn-primary"
-                                                    title="Изменить"
-                                                >
-                                                    <i class="fas fa-edit"></i>
-                                                </Link>
-
                                                 <button
                                                     @click.prevent="
-                                                        deleteData(
-                                                            personalAdviceOrder.id
-                                                        )
+                                                        deleteData(appeal.id)
                                                     "
                                                     class="btn btn-danger"
                                                     title="Жою"
                                                 >
-                                                    <i
-                                                        class="fas fa-times"
-                                                    ></i>
+                                                    <i class="fas fa-times"></i>
                                                 </button>
                                             </div>
                                         </td>
@@ -168,37 +139,39 @@
                             </table>
                         </div>
                     </div>
-                    <Pagination :links="personalAdviceOrders.links" />
+                <Pagination :links="appeals.links" />
+
                 </div>
             </div>
         </div>
     </AdminLayout>
 </template>
 <script>
-import AdminLayout from "../../../Layouts/AdminLayout.vue";
+import AdminLayout from "../../../../Layouts/AdminLayout.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
-import Pagination from "../../../Components/Pagination.vue";
+import Pagination from "../../../../Components/Pagination.vue";
+
 export default {
     components: {
         AdminLayout,
         Link,
-        Pagination,
         Head,
+        Pagination
     },
-    props: ["personalAdviceOrders", "personalAdvices"],
+    props: ["appeals", "appeal_types"],
     data() {
         return {
             filter: {
-                full_name: route().params.full_name ? route().params.full_name : null,
-                phone: route().params.phone ? route().params.phone : null,
-                personal_advice_id: route().params.personal_advice_id ? route().params.personal_advice_id : null,
-                 comment_for_note: route().params.comment_for_note ? route().params.comment_for_note : null,
+                user_name: route().params.user_name ?? null,
+                question_text: route().params.question_text ?? null,
+                appeal_type: route().params.appeal_type ?? null,
+                comment: route().params.comment ?? null,
             },
         };
     },
     methods: {
         deleteData(id) {
-                   Swal.fire({
+            Swal.fire({
                 title: "Жоюға сенімдісіз бе?",
                 text: "Қайтып қалпына келмеуі мүмкін!",
                 icon: "warning",
@@ -209,14 +182,15 @@ export default {
                 cancelButtonText: "Жоқ",
             }).then((result) => {
                 if (result.isConfirmed) {
-                 this.$inertia.delete(route("admin.personalAdviceOrders.destroy", id));
+                    this.$inertia.delete(
+                        route("admin.test.questionAppeals.destroy", id)
+                    );
                 }
             });
-
         },
         search() {
             const params = this.clearParams(this.filter);
-            this.$inertia.get(route("admin.personalAdviceOrders.index"), params);
+            this.$inertia.get(route("admin.test.questionAppeals.index"), params);
         },
     },
 };

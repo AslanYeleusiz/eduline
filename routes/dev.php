@@ -64,7 +64,7 @@ Route::prefix('commands')->group(function() {
         dd('install');
     });
     Route::get('optimize-clear', function() {
-        Artisan::call('optimize:clear');
+        Artisan::call('optimize');
         dd('clear');
     });
 

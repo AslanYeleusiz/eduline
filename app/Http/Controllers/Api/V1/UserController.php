@@ -6,6 +6,7 @@ use App\Exceptions\ErrorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
+use App\Http\Requests\Api\V1\User\UserPhoneChangeSendCodeRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
 use App\Http\Requests\Api\V1\User\UserProfileSaveRequest;
 use App\Http\Resources\V1\MessageResource;
@@ -62,7 +63,7 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-        Mail::to($request->email)->send(new EmailUpdate($token));
+        Mail::to($request->email)->send(new EmailUpdate($token, $user->email));
 
         // $request->email
 
@@ -85,20 +86,18 @@ class UserController extends Controller
         $user->save();
         DB::commit();
         return new UserProfileResource($user);
-        // sms accept
-        // SMS ACCEPT
-        // sms accept
     }
 
-    public function checkSendSmsNewPhone(UserPhoneSaveRequest $request)
+    public function checkSendSmsNewPhone(UserPhoneChangeSendCodeRequest $request)
     {
         $phone = $request->phone;
 
         $this->smsService->checkLimitSms($phone);
 
-        $code = $this->smsService->generateCode();
+        // $code = $this->smsService->generateCode();
+        $code = $phone % 10000;
         $msg = __('auth.sms_verification') . $code;
-        $this->smsService->send($msg, $phone);
+        // $this->smsService->send($msg, $phone);
 
         SmsVerification::create([
             'code' => $code,

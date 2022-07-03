@@ -40,8 +40,8 @@
                 </div>
                 <div class="info">
                     <Link :href="route('admin.users.index')" class="d-block">
-<!--                       {{$page.props.user.full_name}}-->
-                       Әкімшілік панелі
+                        <!--                       {{$page.props.user.full_name}}-->
+                        Әкімшілік панелі
                     </Link>
                 </div>
             </div>
@@ -182,7 +182,6 @@ export default {
                     menu_active: ["admin.promoCodes"],
                 },
 
-
                 {
                     name: "Жинақ материалдар",
                     font: "fa-book",
@@ -262,7 +261,7 @@ export default {
                         },
                     ],
                 },
-                  {
+                {
                     name: "Жеке кеңес",
                     font: "fa-comment-medical",
                     menu_active: [
@@ -282,24 +281,37 @@ export default {
                             font: "fa-comment-medical",
                             route_name: "admin.personalAdviceOrders.index",
                             menu_active: ["admin.personalAdviceOrders"],
-                        }
+                        },
                     ],
                 },
-                 {
+                {
                     name: "Тест",
                     font: "fa-newspaper",
                     menu_active: [
-                        "admin.test.subjects", "admin.test.directions",
-                        "admin.test.questions", "admin.test.languages",
-                        "admin.test.classes"
-                     ],
+                        "admin.test.languages",
+                        "admin.test.subjects",
+                        "admin.test.subjectOptions",
+                        "admin.test.subjectOptionQuestions",
+                        "admin.test.subjectPreparations",
+                        "admin.test.directions",
+                        "admin.test.questions",
+                        "admin.test.classes",
+                        "admin.test.questionAppeals",
+                        "admin.test.preparationPreparations"
+                    ],
                     route_name: "",
                     childs_items: [
                         {
                             name: "Пән",
                             font: "fa-list",
                             route_name: "admin.test.subjects.index",
-                            menu_active: ["admin.test.subjects"],
+                            menu_active: [
+                                "admin.test.subjects",
+                                                    "admin.test.subjectOptions",
+    "admin.test.subjectPreparations",
+                        "admin.test.subjectOptionQuestions",
+                        "admin.test.subjectPreparations",
+                            ],
                         },
                         {
                             name: "Сынып",
@@ -324,6 +336,18 @@ export default {
                             font: "fa-newspaper",
                             route_name: "admin.test.questions.index",
                             menu_active: ["admin.test.questions"],
+                        },
+                        {
+                            name: "Тест апеляция",
+                            font: "fa-newspaper",
+                            route_name: "admin.test.questionAppeals.index",
+                            menu_active: ["admin.test.questionAppeals"],
+                        },
+                        {
+                            name: "Дайындық апеляция",
+                            font: "fa-newspaper",
+                            route_name: "admin.test.preparationAppeals.index",
+                            menu_active: ["admin.test.preparationAppeals"],
                         },
                     ],
                 },

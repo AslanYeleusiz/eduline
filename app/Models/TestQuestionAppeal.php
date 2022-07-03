@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TestQuestionAppeal extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = [];
 
     const TYPES = [
@@ -33,4 +33,18 @@ class TestQuestionAppeal extends Model
             'name' => 'Басқа қателер'
          ]
     ];
+    public function question()
+    {
+        return $this->belongsTo(TestQuestion::class, 'question_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function test()
+    {
+        return $this->belongsTo(FullTest::class, 'test_id');
+    }
 }

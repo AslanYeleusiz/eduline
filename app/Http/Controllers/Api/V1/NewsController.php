@@ -16,8 +16,20 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
+        $newsType = $request->input('news_type');
+
         $news = News::with('newsType')
             ->withCount('comments')
+            ->when($newsType, function($query) use ($newsType){
+                if ($newsType == 'popular') {
+                     $query->orderByDesc('view');
+                } else if ($newsType == 'notify') {
+                    $announcementNewsTypeName = 'хабарландыру';
+                       $query->whereHas('newsType', fn($query) => $query->where('name->kk', 'like', "%$announcementNewsTypeName%"));
+                } else if($newsType == 'saved') {
+                   $query->has('thisUserSaved');
+                }
+            })
             ->withExists('thisUserSaved as is_saved')
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
@@ -38,6 +50,7 @@ class NewsController extends Controller
 
     public function savedNews(Request $request)
     {
+
         $news = News::with('newsType')
             ->has('thisUserSaved')
             ->withCount('comments')
@@ -63,7 +76,7 @@ class NewsController extends Controller
     {
         $news = News::with('newsType')
             ->with('comments', fn ($query) => $query->withExists('thisUserLiked as is_liked')
-                ->with('user:id,full_name,avatar'))
+            ->with('user:id,full_name,avatar'))
             ->withCount('comments')
             ->withExists('thisUserSaved as is_saved')
             ->findOrFail($id);
