@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\SalaryCalculatorHistoryResource;
 use App\Models\SalaryCalculator;
 use App\Models\SalaryCalculatorHistory;
 use App\Services\V1\SalaryCalculationService;
@@ -12,6 +13,12 @@ use PDF;
 class SalaryCalculatorController extends Controller
 {
     public function index(Request $request)
+    {
+        $salaryCalculators = SalaryCalculatorHistory::select('id', 'created_at')->get();
+        return SalaryCalculatorHistoryResource::collection($salaryCalculators);
+    }
+
+    public function store(Request $request)
     {
         // int -- select --- 2019-2026 арасы
         //За период (год)
@@ -208,7 +215,9 @@ class SalaryCalculatorController extends Controller
         if (empty($salaryCalculatorData)) {
             return 0;
         }
-        $experience = floatval($experienceYear . '.' . $experienceMonth);
+        $experience = round($experienceYear + $experienceMonth / 12 + $experienceDay / 365, 2);
+        // dd(,floatval($experienceYear . '.' . $experienceMonth));
+        // $experience = floatval($experienceYear . '.' . $experienceMonth);
         $coefficient = SalaryCalculationService::getCoefficent($education, $category, $experience, $year, $month);
         $mrp = $salaryCalculatorData->mrp;
         $bdo = $salaryCalculatorData->bdo;
@@ -522,19 +531,19 @@ class SalaryCalculatorController extends Controller
 
         $salaryCalculator->experience_month = $request->input('experience_month', 0);
         $salaryCalculator->experience_day = $request->input('experience_day', 0);
-        $salaryCalculator->work_in_village =  $request->input('work_in_village', false);
-        $salaryCalculator->special_working_conditions =   $request->input('special_working_conditions', false);
+        $salaryCalculator->work_in_village =  $request->input('work_in_village', false) == 'true';
+        $salaryCalculator->special_working_conditions =   $request->input('special_working_conditions', false) =='true';
         $salaryCalculator->work_in_env_disaster_zone = $request->input('work_in_env_disaster_zone', 1);
         $salaryCalculator->work_in_radiation_risk_zone =$request->input('work_in_radiation_risk_zone', 1);
         $salaryCalculator->teaching_in_english = $request->input('teaching_in_english', 1);
-        $salaryCalculator->magister_degree = $request->input('magister_degree', false);
-        $salaryCalculator->mentoring = $request->input('mentoring', false);
+        $salaryCalculator->magister_degree = $request->input('magister_degree', false) =='true';
+        $salaryCalculator->mentoring = $request->input('mentoring', false) =='true';
         $salaryCalculator->ped_skill  = $request->input('ped_skill', 1);
-        $salaryCalculator->class_guide  = $request->input('class_guide', false);
-        $salaryCalculator->class_guide_elementary_grade  = $request->input('class_guide_elementary_grade', false);
+        $salaryCalculator->class_guide  = $request->input('class_guide', false) =='true';
+        $salaryCalculator->class_guide_elementary_grade  = $request->input('class_guide_elementary_grade', false) =='true';
         $salaryCalculator->class_occupancy  = $request->input('class_occupancy', 0);
         $salaryCalculator->for_managing_office  = $request->input('for_managing_office', 1);
-        $salaryCalculator->for_running_workshop  = $request->input('for_running_workshop', false);
+        $salaryCalculator->for_running_workshop  = $request->input('for_running_workshop', false) =='true';
         $salaryCalculator->for_checking_notebook  = $request->input('for_checking_notebook', 1);
         $salaryCalculator->for_checking_notebooks_full_classes  =$request->input('for_checking_notebooks_full_classes', 0);
         $salaryCalculator->for_checking_notebooks_half_classes  =$request->input('for_checking_notebooks_half_classes', 0);
@@ -554,12 +563,17 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->replace_classroom_management_elementary_grade_full_classes  = $request->input('replace_classroom_management_elementary_grade_full_classes', 0);
         $salaryCalculator->replace_classroom_management_senior_grade_half_classes  = $request->input('replace_classroom_management_senior_grade_half_classes', 0);
         $salaryCalculator->replace_classroom_management_senior_grade_full_classes  = $request->input('replace_classroom_management_senior_grade_full_classes', 0);
-        $salaryCalculator->app_withholding_union_dues  = $request->input('app_withholding_union_dues', false);
-        $salaryCalculator->app_withholding_party_contributions  = $request->input('app_withholding_party_contributions', false);
-        $salaryCalculator->working_pensioner  =$request->input('working_pensioner', false);
-        $salaryCalculator->exempt_from_paying_individual_income_tax  = $request->input('exempt_from_paying_individual_income_tax', false);
+        $salaryCalculator->app_withholding_union_dues  = $request->input('app_withholding_union_dues', false) =='true';
+        $salaryCalculator->app_withholding_party_contributions  = $request->input('app_withholding_party_contributions', false) =='true';
+        $salaryCalculator->working_pensioner  =$request->input('working_pensioner', false) =='true';
+        $salaryCalculator->exempt_from_paying_individual_income_tax  = $request->input('exempt_from_paying_individual_income_tax', false) =='true';
         $salaryCalculator->category  = $request->input('category', 4);
         $salaryCalculator->save();
+    }
+
+    private function calculateSalary()
+    {
+
     }
 
 
@@ -568,6 +582,7 @@ class SalaryCalculatorController extends Controller
         // $pdf = PDF::loadView('pdf/salary', compact('user'));
         PDF::setOptions(['defaultFont' => 'arail_uni.ttf']);
 
+        $salaryHistory = SalaryCalculatorHistory::firstOrFail();
         $pdf = PDF::loadView('pdf/salary');
         return $pdf->download('invoice.pdf');
     }

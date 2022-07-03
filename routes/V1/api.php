@@ -36,21 +36,21 @@ Route::get('/', function (Request $request) {
 });
 
 // newsAnouncements
-Route::get('news/anouncements', [NewsController::class, 'newsAnouncements'])->name('news.anouncements');
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
 
 Route::apiResource('personal-advices', PersonalAdviceController::class)->only(['index', 'show'])->names('personalAdvices.');
 Route::post('personal-advices/{id}', [PersonalAdviceController::class, 'store'])->name('personalAdvices.store');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('news/saveds', [NewsController::class, 'savedNews'])->name('news.saveds');
-    Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
+// Route::get('news/anouncements', [NewsController::class, 'newsAnouncements'])->name('news.anouncements');
+    // Route::get('news/saveds', [NewsController::class, 'savedNews'])->name('news.saveds');
+// Route::get('news/populars', [NewsController::class, 'popularNews'])->name('news.populars');
+Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
     Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
+
+Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 });
 Route::get('roles', RolesController::class)->name('roles');
-
-Route::get('news/populars', [NewsController::class, 'popularNews'])->name('news.populars');
-Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('send-sms', [SmsController::class, 'store'])->name('sms.send');
@@ -119,6 +119,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('materials/{id}/comment', [MaterialController::class, 'materialCommentSave'])->name('materials.commentSave');
 });
 Route::get('salary-calculator', [SalaryCalculatorController::class, 'index']);
+
+Route::post('salary-calculator', [SalaryCalculatorController::class, 'store']);
 Route::get('salary-calculator/downloadPDF', [SalaryCalculatorController::class, 'downloadPDF']);
 
 Route::prefix('materials')->name('materials.')->group(function () {

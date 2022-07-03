@@ -16,9 +16,12 @@ use App\Http\Controllers\Admin\PersonalAdviceController;
 use App\Http\Controllers\Admin\PersonalAdviceOrderController;
 use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\Test\TestAppealController;
 use App\Http\Controllers\Admin\Test\TestClassController;
 use App\Http\Controllers\Admin\Test\TestDirectionController;
 use App\Http\Controllers\Admin\Test\TestLanguageController;
+use App\Http\Controllers\Admin\Test\TestPreparationAppealController;
+use App\Http\Controllers\Admin\Test\TestQuestionAppealController;
 use App\Http\Controllers\Admin\Test\TestQuestionController;
 use App\Http\Controllers\Admin\Test\TestSubjectController;
 use App\Http\Controllers\Admin\Test\TestSubjectOptionController;
@@ -89,4 +92,7 @@ Route::name('test.')->group(function () {
     Route::resource('directions', TestDirectionController::class)->except(['show'])->names('directions');
     Route::resource('questions', TestQuestionController::class)->except(['show'])->names('questions');
     Route::resource('classes', TestClassController::class)->except(['show'])->names('classes');
+    Route::resource('question-appeals', TestQuestionAppealController::class)->only(['index', 'destroy'])->names('questionAppeals');
+    Route::resource('preparation-appeals', TestPreparationAppealController::class)->only(['index', 'destroy'])->names('preparationAppeals');
+
 });

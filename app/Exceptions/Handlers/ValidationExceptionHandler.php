@@ -4,6 +4,7 @@ namespace App\Exceptions\Handlers;
 
 use App\Http\Resources\V1\Errors\ErrorResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 final class ValidationExceptionHandler extends Handler
