@@ -241,6 +241,12 @@ export default {
                     ],
                 },
                 {
+                    name: "Жиі қойылатын сұрақтар",
+                    font: "fa-question",
+                    route_name: "admin.faqs.index",
+                    menu_active: ["admin.faqs"],
+                },
+                {
                     name: "Жаңалықтар",
                     font: "fa-newspaper",
                     menu_active: ["admin.newsTypes", "admin.news"],
