@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\FaqController;
 use App\Http\Controllers\Api\V1\MaterialController;
 use App\Http\Controllers\Api\V1\MyMaterialController;
 use App\Http\Controllers\Api\V1\NewsController;
@@ -34,6 +35,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function (Request $request) {
     return 'asdsd';
 });
+
+Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index');
+
 
 // newsAnouncements
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');

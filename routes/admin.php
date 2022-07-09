@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PersonalAdviceController;
 use App\Http\Controllers\Admin\PersonalAdviceOrderController;
 use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\Test\TestAppealController;
 use App\Http\Controllers\Admin\Test\TestClassController;
 use App\Http\Controllers\Admin\Test\TestDirectionController;
@@ -48,6 +49,7 @@ Route::get('users/{user}/subscriptions', [UserController::class, 'userSubscripti
 Route::post('users/{user}/subscriptions/{subscription}', [UserController::class, 'userSubscriptionStore'])->name('users.subscriptions.store');
 
 Route::delete('users/{user}/subscriptions/{subscription}', [UserController::class, 'userSubscriptionDelete'])->name('users.subscriptions.delete');
+Route::resource('faqs', FaqController::class)->except(['show'])->names('faqs');
 
 Route::resource('users', UserController::class)->except(['show'])->names('users');
 Route::resource('roles', RoleController::class)->except(['show'])->names('roles');
