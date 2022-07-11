@@ -15,9 +15,10 @@ class UserProfileSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'iin' => 'required|min:3|max:255',
-            'birthday' => 'required',
-            'sex' => 'required',
+            'full_name' => 'required',
+            // 'iin' => 'required|min:3|max:255',
+            // 'birthday' => 'required',
+            // 'sex' => 'required',
         ];
     }
 }

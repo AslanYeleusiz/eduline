@@ -39,9 +39,15 @@ class UserController extends Controller
     {
         $user = auth()->guard('api')->user();
         $user->full_name = $request->full_name;
-        $user->place_work = $request->place_work;
-        $user->sex = $request->sex;
-        $user->birthday = $request->birthday;
+        if($request->has('place_work')) {
+            $user->place_work = $request->place_work;
+        }
+        if($request->has('birthday')) {
+            $user->birthday = $request->birthday;
+        }
+        if($request->has('sex')) {
+            $user->sex = $request->sex;
+        }
         if ($request->hasFile('avatar')) {
             $user->avatar = FileService::saveFile($request->file('avatar'), User::IMAGE_PATH, $user->avatar);
         }
@@ -63,11 +69,21 @@ class UserController extends Controller
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
-        Mail::to($request->email)->send(new EmailUpdate($token, $user->email));
+        // Mail::to($request->email)->send(new EmailUpdate($token, $user->email));
 
-        // $request->email
 
-        return new UserProfileResource($user);
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $headers[] = 'From: Eduline.kz';
+        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
+        ->with([
+            'token' => $token,
+            'email' => $user->email,
+        ]), implode("\r\n", $headers));
+
+        return new MessageResource(__('message.success.check_your_email'));
+
+        // return new UserProfileResource($user);
     }
 
     public function updatePhone(UserPhoneSaveRequest $request)
