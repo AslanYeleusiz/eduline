@@ -16,7 +16,8 @@ return [
         'saved' =>'Saved successfully',
         'updated' =>'Successfully changed',
         'deleted' =>'Successfully deleted',
-        'sent' =>'Sent successfully',
+        'sent' => 'Sent successfully',
+        'check_your_email' => 'Check your email.',
     ],
     'failed' => [
         'yes_relations_table' => 'There are connected tables',
