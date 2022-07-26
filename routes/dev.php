@@ -68,9 +68,14 @@ Route::prefix('commands')->group(function() {
         dd('clear');
     });
 
+
     Route::get('storage-link', function() {
         Artisan::call('storage:link');
         dd('link');
+    });
+Route::get('seed', function() {
+        Artisan::call('db:seed');
+        dd('clear');
     });
 
 
