@@ -11,7 +11,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $faqs = Faq::latest()->all();
+        $faqs = Faq::latest()->get();
         return FaqResource::collection($faqs)->additional([
             'status' => true
         ]);
