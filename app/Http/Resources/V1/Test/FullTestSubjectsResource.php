@@ -17,6 +17,7 @@ class FullTestSubjectsResource extends JsonResource
         return [
             'id' =>  $this->id,
             'name' => $this->name,
+            'is_pedagogy' => $this->is_pedagogy,
             'user_answers' => FullTestUserAnswersResource::collection($this->userAnswers)
         ];
     }
