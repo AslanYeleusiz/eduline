@@ -21,6 +21,7 @@ class TestQuestionController extends Controller
         $subjectId = $request->subject_id;
         $questions = TestQuestion::with('subject')
         ->latest()
+        ->when($subjectId,  fn ($query) => $query->where('subject_id', $subjectId))
         ->paginate($request->input('per_page', 20))
         ->appends($request->except('page'));
         $subjects = TestSubject::orderBy('name')->get();
