@@ -18,6 +18,9 @@ class FullTestFinishedSubjectsResource extends JsonResource
             'id' =>  $this->id,
             'name' => $this->name,
             'is_pedagogy' => $this->is_pedagogy,
+            'questions_count' => $this->when(isset($this->questions_count), function() {
+                return $this->questions_count;
+            }),
             'user_answers' => FullTestFinishedUserAnswersResource::collection($this->whenLoaded('userAnswers'))
             ];
     }

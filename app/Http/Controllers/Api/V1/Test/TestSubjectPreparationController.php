@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Api\V1\Test;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\MessageResource;
-use App\Http\Resources\V1\Test\FullTestSubjectsResource;
-use App\Http\Resources\V1\Test\TestSubjectOptionFinishedResource;
-use App\Http\Resources\V1\Test\TestSubjectOptionsResource;
 use App\Http\Resources\V1\Test\TestSubjectPreparationByTitleResource;
 use App\Http\Resources\V1\Test\TestSubjectPreparationClassesResource;
 use App\Http\Resources\V1\Test\TestSubjectPreparationClassResource;

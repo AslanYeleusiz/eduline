@@ -80,7 +80,7 @@ class FullTestController extends Controller
 
     public function show($testId)
     {
-        $test = FullTest::findWithSubjectsAndUserAnswers($testId);
+        $test = FullTest::findWithSubjects($testId);
         if ($test->is_finished) {
             return new FullTestFinishedResource($test);
         }
@@ -89,6 +89,24 @@ class FullTestController extends Controller
         }
         $test = $this->testService->start($test);
         return new FullTestStartedResource($test);
+    }
+
+    public function showTestSubject($testId, $subjectId)
+    {
+        $test = FullTest::with(['subject' => fn($query) => $query->with(
+            [
+                'userAnswers' => fn($query) => $query->where('test_id', $testId)->with('question')->withCount('userAnswers as questions_count')
+            ])->where('id', $subjectId)
+        ])->findOrFail($testId);
+        if ($test->is_finished) {
+            return new FullTestFinishedResource($test);
+        }
+        if ($test->is_started) {
+            return new FullTestStartedResource($test);
+        }
+
+        return new FullTestStartedResource($test);
+
     }
 
     public function testQuestionAppeal($testId, Request $request)
