@@ -49,6 +49,7 @@ class FullTestService
     {
         foreach ($test->subjects as $key => $subject) {
             $question = TestQuestion::limitSubjectQuestions($subject->id, $subject->questions_count);
+			
             if ($key === 0) {
                 $query = clone $question;
             } else {
@@ -58,9 +59,6 @@ class FullTestService
 
         $questions = $query->get();
 
-        // if($test->subjects->sum('questions_count') != $questions->count()) {
-        //     throw new  ErrorException('Сұрақтар толық жүктелмеген.');
-        // }
 
         foreach ($test->subjects as $subject) {
             $questionCount = $questions->filter(fn ($question) => $question->subject_id == $subject->id)->count();

@@ -30,7 +30,8 @@ class TestSubjectOptionTestFinishedResource extends JsonResource
             'option' => new TestSubjectOptionResource($this->whenLoaded('option')),
             'subject' => new TestSubjectResource($this->whenLoaded('subject')),
             'user_answers' => FullTestFinishedUserAnswersResource::collection($this->whenLoaded('userAnswers'))
-
+			'questions_count' => $this->when(isset($this->questions_count), $this->questions_count),
+			'questions_answered_count' => $this->when(isset($this->questions_answered_count), $this->questions_answered_count),
 
             // 'id' => $this->resource['subject']->id,
             // 'name' => $this->resource['subject']->name,

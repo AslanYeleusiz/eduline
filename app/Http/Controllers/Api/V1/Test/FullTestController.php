@@ -28,7 +28,12 @@ class FullTestController extends Controller
     {
         $questionId = $request->question_id;
         $answerNumber = $request->answer_number;
-
+		$request->validate([
+		'question_id' => 'required',
+			'answer_number' => 'required',
+			'time' => 'required'
+		]);
+		
         $userAnswer = FullTestUserAnswer::where('question_id', $questionId)
             ->where('test_id', $testId)
             ->firstOrFail();
@@ -81,6 +86,7 @@ class FullTestController extends Controller
     public function show($testId)
     {
         $test = FullTest::findWithSubjects($testId);
+	
         if ($test->is_finished) {
             return new FullTestFinishedResource($test);
         }
@@ -93,18 +99,18 @@ class FullTestController extends Controller
 
     public function showTestSubject($testId, $subjectId)
     {
-        $test = FullTest::with(['subject' => fn($query) => $query->with(
-            [
-                'userAnswers' => fn($query) => $query->where('test_id', $testId)->with('question')->withCount('userAnswers as questions_count')
-            ])->where('id', $subjectId)
-        ])->findOrFail($testId);
-        if ($test->is_finished) {
+ 
+		$test = FullTest::FindWithSubjectsAndUserAnswers($testId);
+		$test->subject = $test->subjects->where('id', $subjectId)->first();
+		unset($test->subjects);
+		if ($test->is_finished) {
             return new FullTestFinishedResource($test);
         }
+	
         if ($test->is_started) {
             return new FullTestStartedResource($test);
         }
-
+       $test = $this->testService->start($test);
         return new FullTestStartedResource($test);
 
     }

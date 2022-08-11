@@ -89,6 +89,8 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::prefix('option-test')->group(function () {
         Route::get('/results', [TestSubjectOptionTestController::class, 'results'])->name('subjectOptionTest.results');
         Route::get('/{id}', [TestSubjectOptionTestController::class, 'show'])->name('subjectOptionTest.show');
+		
+        Route::get('/{id}/questions', [TestSubjectOptionTestController::class, 'showWithUserAnswers'])->name('subjectOptionTest.showWithUserAnswers');
         Route::post('/{id}/answer', [TestSubjectOptionTestController::class, 'saveUserAnswer'])->name('subjectOptionTest.saveUserAnswer');
         Route::post('/{id}/finish', [TestSubjectOptionTestController::class, 'finish'])->name('subjectOptionTest.finish');
         Route::post('/{subject_id}/{option_id}/create', [TestSubjectOptionTestController::class, 'store'])->name('subjectOptionTest.store');

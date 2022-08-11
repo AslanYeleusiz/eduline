@@ -26,6 +26,24 @@ class TestSubjectOptionTestController extends Controller
 
     public function show($testId)
     {
+        $test = TestSubjectOptionTest::findWithOption($testId);
+        if ($test->is_finished) {
+            return new TestSubjectOptionTestFinishedResource($test);
+        }
+        if ($test->is_started) {
+            return new TestSubjectOptionTestStartedResource($test);
+            return new FullTestStartedResource($test);
+        }
+        $test = $this->testService->start($test);
+		$test->loadCount(['userAnswers as questions_answered_count' => function($query) {
+			$query->whereNotNull('answer');
+		}, 'userAnswers as questions_count']);
+        return new TestSubjectOptionTestStartedResource($test);
+    }
+	
+	
+    public function showWithUserAnswers($testId)
+    {
         $test = TestSubjectOptionTest::findWithOptionAndUserAnswers($testId);
         if ($test->is_finished) {
             return new TestSubjectOptionTestFinishedResource($test);
@@ -61,7 +79,11 @@ class TestSubjectOptionTestController extends Controller
     {
         $questionId = $request->question_id;
         $answerNumber = $request->answer_number;
-
+		$request->validate([
+		'question_id' => 'required',
+			'answer_number' => 'required',
+			'time' => 'required'
+		]);
         $userAnswer = TestSubjectOptionTestUserAnswer::where('question_id', $questionId)
             ->where('test_id', $testId)
             ->firstOrFail();

@@ -20,7 +20,7 @@ class FullTestStartedResource extends JsonResource
             'is_started' => $this->is_started,
             'is_finished' => $this->is_finished,
             'subjects' => FullTestSubjectsResource::collection($this->whenLoaded('subjects')),
-            'subject' => new FullTestSubjectsResource($this->whenLoaded('subject'))
+            'subject' => new FullTestSubjectsResource($this->when(isset($this->subject), $this->subject))
         ];
     }
 
