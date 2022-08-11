@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 
 class TestByOptionService
 {
+
     public function create($subjectId, $optionId)
     {
         $user = auth()->guard('api')->user();
@@ -79,7 +80,7 @@ class TestByOptionService
     public function saveFinish($test)
     {
         //        $test = UbtTest::findWithSubjectsAndUserAnswers($id);
-        $result = $this->getScoreAndAnswersCount($test);
+        $result = TestService::getScoreAndAnswersCount($test->userAnswers->toArray());
         $test->is_finished = true;
         $test->score = $result['score'];
         $test->correct_answers_count = $result['correctAnswerCount'];
@@ -87,34 +88,5 @@ class TestByOptionService
         $test->end_date = now();
         $test->save();
         return $test;
-    }
-
-
-    public function getScoreAndAnswersCount($test): array
-    {
-        //        $id = '11625915148i';
-        //        $test = UbtTest::findWithSubjectsAndUserAnswers($id);
-        $userAnswers = $test->userAnswers->toArray();
-        $score = 0;
-        $correctAnswerCount = 0;
-        $incorrectAnswerCount = 0;
-        foreach ($userAnswers as $userAnswer) {
-            $correctAnswer = null;
-            foreach ($userAnswer['question']['answers'] as $answer) {
-                if ($answer['is_correct']) {
-                    $correctAnswer = $answer;
-                }
-            }
-            if (
-                !empty($userAnswer['answer']) && !empty($correctAnswer)
-                && ($correctAnswer['number'] == $userAnswer['answer'])
-            ) {
-                $score++;
-                $correctAnswerCount++;
-            } else {
-                $incorrectAnswerCount++;
-            }
-        }
-        return compact('score', 'correctAnswerCount', 'incorrectAnswerCount');
     }
 }

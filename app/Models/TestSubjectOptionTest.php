@@ -42,9 +42,18 @@ class TestSubjectOptionTest extends Model
     {
         return $query->with(['option','subject',
          'userAnswers' => fn($query) => $query->with('question')
-        ])->findOrFail($id);
+        ])->withCount(['userAnswers as questions_answered_count' => function($query) use ($id) {
+			$query->whereNotNull('answer');
+		}, 'userAnswers as questions_count'])->findOrFail($id);
     }
 
+    public function scopeFindWithOption($query, $id)
+    {
+        return $query->with(['option','subject'])
+			->withCount(['userAnswers as questions_answered_count' => function($query) use ($id) {
+			$query->whereNotNull('answer');
+		}, 'userAnswers as questions_count'])->findOrFail($id);
+    }
     protected $casts = [
         'is_started' => 'boolean',
         'is_finished' => 'boolean',

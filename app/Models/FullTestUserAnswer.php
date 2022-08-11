@@ -14,6 +14,10 @@ class FullTestUserAnswer extends Model
     {
         return $this->belongsTo(TestQuestion::class, 'question_id','id');
     }
+    public function test()
+    {
+        return $this->belongsTo(FullTest::class, 'test_id','id');
+    }
 
     protected $casts = [
         'answers' => 'array'

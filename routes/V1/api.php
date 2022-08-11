@@ -89,6 +89,9 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::prefix('option-test')->group(function () {
         Route::get('/results', [TestSubjectOptionTestController::class, 'results'])->name('subjectOptionTest.results');
         Route::get('/{id}', [TestSubjectOptionTestController::class, 'show'])->name('subjectOptionTest.show');
+
+        Route::get('/{id}/questions', [TestSubjectOptionTestController::class, 'showWithUserAnswers'])->name('subjectOptionTest.showWithUserAnswers');
+        Route::get('/{id}/result', [TestSubjectOptionTestController::class, 'result'])->name('subjectOptionTest.result');
         Route::post('/{id}/answer', [TestSubjectOptionTestController::class, 'saveUserAnswer'])->name('subjectOptionTest.saveUserAnswer');
         Route::post('/{id}/finish', [TestSubjectOptionTestController::class, 'finish'])->name('subjectOptionTest.finish');
         Route::post('/{subject_id}/{option_id}/create', [TestSubjectOptionTestController::class, 'store'])->name('subjectOptionTest.store');
@@ -98,6 +101,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
         Route::get('/results', [FullTestController::class, 'results'])->name('full.results');
 
         Route::get('/{id}', [FullTestController::class, 'show'])->name('full.show');
+        Route::get('/{id}/result', [FullTestController::class, 'result'])->name('full.result');
         Route::get('/{id}/{subject_id}', [FullTestController::class, 'showTestSubject'])->name('full.showTestSubject');
 
         // Route::get('full/{id}/result', [FullTestController::class, 'result']);

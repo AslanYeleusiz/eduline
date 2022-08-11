@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Test;
 
+use App\Exceptions\Handlers\ModelNotFoundExceptionHandler;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\Test\FullTestResource;
@@ -11,7 +12,9 @@ use App\Http\Resources\V1\Test\TestSubjectOptionTestStartedResource;
 use App\Models\TestSubjectOptionTest;
 use App\Models\TestSubjectOptionTestUserAnswer;
 use App\Services\V1\TestByOptionService;
+use App\Services\V1\TestService;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,6 +28,45 @@ class TestSubjectOptionTestController extends Controller
     }
 
     public function show($testId)
+    {
+        $test = TestSubjectOptionTest::findWithOption($testId);
+        if ($test->is_finished) {
+
+            return new TestSubjectOptionTestFinishedResource($test);
+        }
+        if ($test->is_started) {
+            return new TestSubjectOptionTestStartedResource($test);
+        }
+        $test = $this->testService->start($test);
+		$test->loadCount(['userAnswers as questions_answered_count' => function($query) {
+			$query->whereNotNull('answer');
+		}, 'userAnswers as questions_count']);
+        return new TestSubjectOptionTestStartedResource($test);
+    }
+
+    public function result($testId)
+    {
+        $test = TestSubjectOptionTest::findWithOptionAndUserAnswers($testId);
+    if (!$test->is_finished) {
+        return throw new ModelNotFoundException();
+    }
+        $test->topic_know_well = [
+            'Қысқаша көбейту формулалары',
+            'Зат есім',
+            'ЕКОЕ'
+        ];
+        $test->topic_prepare_for = [
+            'Есімдік',
+            'Анықтауыш',
+            'Септіктер'
+        ];
+        $test->result = TestService::getScoreAndAnswersCount($test->userAnswers->toArray());
+        unset($test->userAnswers);
+        return new TestSubjectOptionTestFinishedResource($test);
+    }
+
+
+    public function showWithUserAnswers($testId)
     {
         $test = TestSubjectOptionTest::findWithOptionAndUserAnswers($testId);
         if ($test->is_finished) {
@@ -61,7 +103,11 @@ class TestSubjectOptionTestController extends Controller
     {
         $questionId = $request->question_id;
         $answerNumber = $request->answer_number;
-
+		$request->validate([
+		'question_id' => 'required',
+			'answer_number' => 'required',
+			'time' => 'required'
+		]);
         $userAnswer = TestSubjectOptionTestUserAnswer::where('question_id', $questionId)
             ->where('test_id', $testId)
             ->firstOrFail();
