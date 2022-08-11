@@ -10,8 +10,8 @@ use App\Http\Resources\V1\Test\FullTestStartedResource;
 use App\Models\FullTest;
 use App\Models\FullTestUserAnswer;
 use App\Models\TestQuestionAppeal;
-use App\Models\TestSubject;
 use App\Services\V1\FullTestService;
+use App\Services\V1\TestService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 class FullTestController extends Controller
 {
     public $testService;
+
     public function __construct(FullTestService $testService)
     {
         $this->testService = $testService;
@@ -28,14 +29,15 @@ class FullTestController extends Controller
     {
         $questionId = $request->question_id;
         $answerNumber = $request->answer_number;
-		$request->validate([
-		'question_id' => 'required',
-			'answer_number' => 'required',
-			'time' => 'required'
-		]);
-		
+        $request->validate([
+            'question_id' => 'required',
+            'answer_number' => 'required',
+            'time' => 'required'
+        ]);
+
         $userAnswer = FullTestUserAnswer::where('question_id', $questionId)
             ->where('test_id', $testId)
+            ->whereHas('test', fn($query) => $query->isNotFinished())
             ->firstOrFail();
 
         DB::beginTransaction();
@@ -53,40 +55,47 @@ class FullTestController extends Controller
         return new MessageResource(__('message.success.saved'));
     }
 
+    public function result($testId)
+    {
+        $test = FullTest::findWithSubjectsAndUserAnswers($testId);
+        foreach ($test->subjects as $subject) {
+            $subject->topic_know_well = [
+                'Қысқаша көбейту формулалары',
+                'Зат есім',
+                'ЕКОЕ'
+            ];
+            $subject->topic_prepare_for = [
+                'Есімдік',
+                'Анықтауыш',
+                'Септіктер'
+            ];
+            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
+            unset($subject->userAnswers);
+        }
+
+        return new FullTestFinishedResource($test);
+    }
+
     public function results(Request $request)
     {
-        // $subjectId = $request->subject_id;
-
-        // $subject = TestSubject::findOrFail($subjectId);
         $fromDate = $request->input('from_date');
         $toDate = $request->input('to_date');
         $tests = FullTest::withCount('subjects')
-        ->isFinished()
-        ->with('subjects', function($query) {
-            return $query->where('is_pedagogy', 0);
-        })
-        // ->whereHas('subjects', function($query) use ($subject) {
-        //     return $query->where('test_subjects.id', $subject->id);
-        // })
-        ->when($fromDate, fn ($query) => $query->whereDate('start_date', '>=', Carbon::create($fromDate)))
-        ->when($toDate, fn ($query) => $query->whereDate('start_date', '<=', Carbon::create($toDate)))
-        ->paginate($request->input('per_page', 20))
-        ->appends($request->except('page'));
+            ->isFinished()
+            ->with('subjects', function ($query) {
+                return $query->where('is_pedagogy', 0);
+            })
+            ->when($fromDate, fn($query) => $query->whereDate('start_date', '>=', Carbon::create($fromDate)))
+            ->when($toDate, fn($query) => $query->whereDate('start_date', '<=', Carbon::create($toDate)))
+            ->paginate($request->input('per_page', 20))
+            ->appends($request->except('page'));
         return FullTestFinishedResource::collection($tests)->additional(['status' => true]);
     }
-
-    // public function result($testId)
-    // {
-    //     $test = FullTest::with('subjects')->withCount('subjects')
-    //     ->isFinished()
-    //     ->findOrFail($testId);
-    //     return new FullTestFinishedResource($test);
-    // }
 
     public function show($testId)
     {
         $test = FullTest::findWithSubjects($testId);
-	
+
         if ($test->is_finished) {
             return new FullTestFinishedResource($test);
         }
@@ -99,20 +108,19 @@ class FullTestController extends Controller
 
     public function showTestSubject($testId, $subjectId)
     {
- 
-		$test = FullTest::FindWithSubjectsAndUserAnswers($testId);
-		$test->subject = $test->subjects->where('id', $subjectId)->first();
-		unset($test->subjects);
-		if ($test->is_finished) {
+
+        $test = FullTest::FindWithSubjectsAndUserAnswers($testId);
+        $test->subject = $test->subjects->where('id', $subjectId)->first();
+        unset($test->subjects);
+        if ($test->is_finished) {
             return new FullTestFinishedResource($test);
         }
-	
+
         if ($test->is_started) {
             return new FullTestStartedResource($test);
         }
-       $test = $this->testService->start($test);
+        $test = $this->testService->start($test);
         return new FullTestStartedResource($test);
-
     }
 
     public function testQuestionAppeal($testId, Request $request)
@@ -124,7 +132,7 @@ class FullTestController extends Controller
         $questionAppeal->type = $request->type;
         $questionAppeal->comment = $request->comment;
         $user = auth()->guard('api')->user();
-        if(!empty($user)) {
+        if (!empty($user)) {
             $questionAppeal->user_id = $user->id;
         }
         $questionAppeal->save();

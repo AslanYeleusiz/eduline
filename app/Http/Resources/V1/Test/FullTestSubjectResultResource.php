@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\V1\Test;
 
-use App\Models\TestSubjectPreparation;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TestSubjectResource extends JsonResource
+class FullTestSubjectResultResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +14,6 @@ class TestSubjectResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name
-        ];
-    }
-
-    public function with($request)
-    {
-        return ['status' => true];
+        return parent::toArray($request);
     }
 }
