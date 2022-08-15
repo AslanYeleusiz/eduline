@@ -1061,7 +1061,6 @@ class SalaryCalculatorController extends Controller
         $data['total_accured'] = $do + $sumAdditionalSurcharges ;
         $data['total_withheld'] = array_sum($data['withheld']) ;
         $data['amount_hand'] = $data['total_accured']  - $data['total_withheld'];
-
     }
 
 
