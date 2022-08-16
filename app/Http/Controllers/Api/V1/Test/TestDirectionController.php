@@ -21,13 +21,13 @@ class TestDirectionController extends Controller
         ->with(['subjects' => fn($query)=>$query->where('language_id', $languageId)])
         ->get();
 
-        if($languageId == 1)
-            foreach($directions as $direction)
+        foreach($directions as $direction){
+            if($languageId == 1)
                 $direction->name = $direction->name['kk'];
-
-        else if($languageId == 2)
-            foreach($directions as $direction)
+            else if($languageId == 2)
                 $direction->name = $direction->name['ru'];
+        }
+
 
         return TestDirectionsResource::collection($directions)
         ->additional(['status' => true]);;
