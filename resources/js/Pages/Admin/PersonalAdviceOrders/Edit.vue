@@ -58,7 +58,7 @@
                             <validation-error :field="'phone'" />
                         </div>
                         <div class="form-group">
-                            <label for="">Уақыты : {{ personalAdviceOrder.created_at ?? 'Анықталмады'}}</label>
+                            <label for="">Уақыты : {{ personalAdviceOrder.created_at ? (new Date(personalAdviceOrder.created_at).toLocaleString()) : 'Анықталмады'}}</label>
                         </div>
                         <div class="form-group">
                             <label for="">Комментария (заметка)</label>

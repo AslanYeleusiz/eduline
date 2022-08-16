@@ -29,6 +29,14 @@
             </div>
         </div>
     </div>
+    <div class="slider owl-stage-outer">
+        <div class="cst-main-carousel owl-carousel">
+            <img src="{{asset('images/slider/testSlide.png')}}" alt="">
+            <img src="{{asset('images/slider/testSlide.png')}}" alt="">
+            <img src="{{asset('images/slider/testSlide.png')}}" alt="">
+            <img src="{{asset('images/slider/testSlide.png')}}" alt="">
+        </div>
+    </div>
     <div class="cst_pd">
         <div class="cst_container ns_list" id="results"></div>
         <div class="cst_container ns_list">

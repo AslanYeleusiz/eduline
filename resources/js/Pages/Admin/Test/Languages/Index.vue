@@ -60,7 +60,7 @@
                                                 @keyup.enter="search"
                                             />
                                         </td>
-                                        
+
                                         <td>
                                             <input
                                                 v-model="filter.code"

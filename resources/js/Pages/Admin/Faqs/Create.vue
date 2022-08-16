@@ -34,29 +34,55 @@
                 <form method="post" @submit.prevent="submit">
                    <div class="card-body">
                         <div class="form-group">
-                            <label for="">Сұрақ</label>
+                            <label for="">Сұрақ(қазақша)</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="faq.question"
-                                name="question"
+                                v-model="faq.question.kk"
+                                name="question_kk"
                                 placeholder="Сұрақ"
                             />
                             <validation-error :field="'question'" />
                         </div>
                         <div class="form-group">
-                            <label for="">Жауап</label>
+                            <label for="">Сұрақ(орысша)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="faq.question.ru"
+                                name="question_ru"
+                                placeholder="Вопрос"
+                            />
+                            <validation-error :field="'question'" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Жауап(қазақша)</label>
                             <textarea
                                 class="form-control"
-                                v-model="faq.answer"
+                                v-model="faq.answer.kk"
                                 placeholder="Жауап"
-                                name="answer"
+                                name="answer_kk"
                                 cols="30"
                                 rows="5"
                             >
                             </textarea>
                             <validation-error :field="'answer'" />
                         </div>
+                        <div class="form-group">
+                            <label for="">Жауап(орысша)</label>
+                            <textarea
+                                class="form-control"
+                                v-model="faq.answer.ru"
+                                placeholder="Жауап"
+                                name="answer_ru"
+                                cols="30"
+                                rows="5"
+                            >
+                            </textarea>
+                            <validation-error :field="'answer'" />
+                        </div>
+
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mr-1">
@@ -93,8 +119,14 @@ export default {
     data() {
         return {
             faq: {
-                question: '',
-                answer: '',
+                question: {
+                    kk: '',
+                    ru: ''
+                },
+                answer: {
+                    kk: '',
+                    ru: ''
+                }
             },
         };
     },

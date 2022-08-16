@@ -64,7 +64,7 @@
                             <validation-error :field="'parent_id'" />
                         </div>
                         <div class="form-group">
-                            <label for="">{{ !preparation.parent_id ? 'Тақырыпша' : 'Тақырып'}}</label>
+                            <label for="">{{ !preparation.parent_id ? 'Тақырып' : 'Тақырыпша'}}</label>
                             <input
                                 type="text"
                                 class="form-control"
@@ -101,7 +101,7 @@
                             <validation-error :field="'description'" />
                         </div>
                         <div class="form-group">
-                            <label>Сыныптар</label>   
+                            <label>Сыныптар</label>
                             <ul class="ul-li-no-style">
                                 <li>
                                     <input
@@ -129,7 +129,7 @@
                                 </li>
                             </ul>
                         </div>
-                            </template>    
+                            </template>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mr-1">

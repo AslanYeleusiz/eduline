@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/loader.css?v=1') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css?v=1') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=1.12">
@@ -27,7 +28,6 @@
     @yield('styles')
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-v5.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
@@ -58,6 +58,7 @@
 @endguest
 
 <script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}?v=1"></script>
 
 @yield('scripts')

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TestLanguage extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['name', 'code'];
 }

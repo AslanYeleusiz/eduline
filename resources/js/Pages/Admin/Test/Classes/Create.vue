@@ -32,16 +32,28 @@
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Аты</label>
+                            <label for="">Аты (қазақша)</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="classItem.name"
-                                name="name"
+                                v-model="classItem.name.kk"
+                                name="name_kk"
                                 placeholder="Аты"
                             />
                             <validation-error :field="'name'" />
                         </div>
+                        <div class="form-group">
+                            <label for="">Аты (орысша)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="classItem.name.ru"
+                                name="name_ru"
+                                placeholder="Названия"
+                            />
+                            <validation-error :field="'name'" />
+                        </div>
+
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mr-1">
@@ -72,7 +84,12 @@ export default {
     },
     data() {
         return {
-            classItem: {}
+            classItem: {
+                name: {
+                    kk: '',
+                    ru: '',
+                }
+            },
         }
     },
     methods: {

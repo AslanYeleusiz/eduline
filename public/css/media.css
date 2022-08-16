@@ -711,6 +711,12 @@
     .mb_menu, .mb_header {
         display: flex;
     }
+    .slider{
+        display: block;
+    }
+    .news .m_block {
+        margin: 20px 0 0;
+    }
     .page-card-title {
         font-size: 18px;
     }
@@ -1139,6 +1145,9 @@
 
     .kp_b_info .kp_b_head {
         font-size: 16px;
+    }
+    .news .m_block {
+        padding: 20px;
     }
 
     .m_head {

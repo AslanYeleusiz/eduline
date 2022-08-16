@@ -88,8 +88,8 @@
                                                     : index + 1
                                             }}
                                         </td>
-                                        <td>{{ faq.question }}</td>
-                                        <td>{{ faq.answer }}</td>
+                                        <td>{{ faq.question.kk }}</td>
+                                        <td>{{ faq.answer.kk }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
                                                 <Link

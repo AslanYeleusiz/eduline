@@ -17,7 +17,11 @@ class TestClass extends Model
         return $this->belongsToMany(TestSubjectPreparation::class,
          TestSubjectPreparationClass::class, 'class_id', 'preparation_id');
     }
-    
+
+    protected $casts = [
+        'name' => 'json',
+    ];
+
 
 
 }

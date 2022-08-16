@@ -37,6 +37,7 @@ function setActive(a) {
 $(document).ready(function () {
     const slider = $(".cst-carousel").owlCarousel({
         margin: 20,
+        items: 1,
         autoWidth: true,
         responsive: {
             0: {
@@ -47,6 +48,17 @@ $(document).ready(function () {
             }
         }
     });
+    const main_slider = $(".cst-main-carousel").owlCarousel({
+        margin: 5,
+        autoWidth: true,
+        startPosition: 1,
+        stagePadding: 20,
+        center: true,
+        nav: false,
+        dots: false,
+
+    });
+
     const slider2 = $(".cst_com_slider").owlCarousel({
         loop: true,
         nav: true,
