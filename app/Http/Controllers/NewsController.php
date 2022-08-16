@@ -74,7 +74,7 @@ class NewsController extends Controller
         ]);
     }
     public function news_saves(Request $request){
-        $uns = UserNewsSaved::orderBy('created_at','desc')->paginate(2);
+        $uns = UserNewsSaved::where('user_id', auth()->user()->id)->orderBy('created_at','desc')->paginate(2);
         $data = '';
         $now = Carbon::now();
         if ($request->ajax()) {

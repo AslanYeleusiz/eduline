@@ -12,7 +12,6 @@
     <meta name="description" content="Ұстаздар мен тәрбиешілерге арналған материалдар, файлдар. Eduline.kz">
     <meta name="keywords" content="eduline, ұстаздар, мұғалімдер, аттестация, материалдар, білім беру, мектеп">
     <link rel="canonical" href="{{ route('index') }}"/>
-
     <link rel="shortcut icon" href="{{ asset('favicon.png')}}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
