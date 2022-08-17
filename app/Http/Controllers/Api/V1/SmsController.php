@@ -17,7 +17,7 @@ class SmsController extends Controller
     public function store(SendSmsRequest $request)
     {
         $phone = $request->phone;
-        $phoneWithCode = "7$phone";
+        $phoneWithCode = "77755498911";
 
         $this->smsService->checkLimitSms($phone);
         $code = $this->smsService->generateCode();
