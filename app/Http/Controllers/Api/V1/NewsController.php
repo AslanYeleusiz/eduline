@@ -20,6 +20,7 @@ class NewsController extends Controller
 
         $news = News::with('newsType')
             ->withCount('comments')
+            ->$query->orderByDesc('created_at')
             ->when($newsType, function($query) use ($newsType){
                 if ($newsType == 'popular') {
                      $query->orderByDesc('view');
