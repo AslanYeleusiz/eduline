@@ -47,7 +47,7 @@
                         @else
                             <form action="{{ route('profile.ajax.checkSendSmsPhone') }}" method="POST" id="confirmEmail">
                                @csrf
-                               <input type="hidden" name="phone" value="{{ $user->phone }}">
+                               <input type="tel" style="display:none;" name="phone" value="{{ $user->phone }}">
                                 <button class="profile-info-action" style="background: none; border: none">@lang('site.Растау')</button>
                             </form>
                         @endif
