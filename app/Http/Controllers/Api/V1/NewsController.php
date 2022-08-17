@@ -29,7 +29,7 @@ class NewsController extends Controller
                     $query->whereHas('newsType', fn($query) => $query->where('name->kk', 'like', "%$announcementNewsTypeName%"));
                     $query->orderByDesc('created_at');
                 } else if($newsType == 'saved') {
-                    $query->has('thisUserSaved')->orderByDesc('created_at');
+                    $query->has('thisUserSaved');
                 } else {
                     $query->orderByDesc('created_at');
                 }
