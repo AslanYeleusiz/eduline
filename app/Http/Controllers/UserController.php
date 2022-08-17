@@ -54,6 +54,7 @@ class UserController extends Controller
 
         $user = auth()->user();
         $user->phone = $request->phone;
+        $user->is_phone_verification = 1;
         $user->save();
         DB::commit();
 
