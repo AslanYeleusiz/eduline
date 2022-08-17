@@ -2,13 +2,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
+                <div></div>
+                <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <div style="display: flex; flex-direction: column">
                     <h2 class="modal-title">SMS арқылы алынған кодты енгізіңіз:</h2>
                     <h2 class="modal-phone" style="color: #03B113; font-size: 24px; font-weight: 800; text-align: center; font-family: 'Exo2-Bold'"></h2>
                 </div>
-                <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
                 <form id="smsForm" class="modal-form" action="{{ route('profile.ajax.updatePhone') }}" method="POST">
                     @csrf
                     <div class="form-input-block">
@@ -22,6 +23,8 @@
                     <div style="display: flex; justify-content: center">
                         <button class="modal-default-btn">Жіберу</button>
                     </div>
+                    <div class="modal-info">SMS-ті 00:<span id="timer"></span> кейін қайта жіберуге болады</div>
+                    <a href="#" id="refreshConfirmPhone" class="modal-retry-btn">Қайта жіберу</a>
                 </form>
             </div>
 

@@ -140,7 +140,7 @@
                 $(this).next('input').focus();
             }
         });
-
+        let timer;
         function comingSoon() {
             $('.modal').modal('hide');
 
@@ -168,9 +168,6 @@
         function editEmailPopup(event) {
             $('.modal').modal('hide');
 
-            let userEmail = $.trim($(event).closest('.profile-info-phone').find('.profile-info-description').text())
-            let emailInModal = $("#editEmailPopup").find('.modal-body-subtitle').text(userEmail);
-
             setTimeout(() => {
                 $('#editEmailPopup').modal('show');
             }, 500)
@@ -179,13 +176,27 @@
         function editPasswordPopup(event) {
             $('.modal').modal('hide');
 
-            let userEmail = $.trim($(event).closest('.profile-info-phone').find('.profile-info-description').text())
-            let emailInModal = $("#editEmailPopup").find('.modal-body-subtitle').text(userEmail);
-
             setTimeout(() => {
                 $('#editPasswordPopup').modal('show');
             }, 500)
         }
+
+        function startTimer() {
+            let time = 15;
+            time < 10 ? $('#timer').text('0'+time):$('#timer').text(time);
+            timer = setInterval(()=>{
+                time < 10 ? $('#timer').text('0'+time):$('#timer').text(time);
+                if(time < 1) {
+                    stopTimer();
+                    $('.modal-retry-btn').addClass('active');
+                } else time--;
+            },1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
+
 
         $(function () {
             $('#editPhoneForm').submit(function (e) {
@@ -234,7 +245,59 @@
             });
             $('#confirmPhone').submit(function (e) {
                 e.preventDefault();
-
+                setTimeout(() => {
+                    $('#smsModal').modal('show');
+                    stopTimer();
+                    startTimer();
+                }, 500)
+//                let phone = $('#phone').val();
+//
+//                let _token = $('meta[name="csrf-token"]').attr('content');
+//
+//                $(".loader").addClass("loading");
+//
+//                clearInvalidFeedback()
+//
+//                $.ajax({
+//                    url: $(this).attr('action'),
+//                    type: "POST",
+//                    data: {
+//                        'phone': phone,
+//                        '_token': _token
+//                    },
+//                    success: function (res) {
+//                        $(".loader").removeClass("loading");
+//                        // if (res.data && res.data.success) {
+//                        //     window.location.reload();
+//                        // }
+//
+//                        $("#smsModal .modal-phone").text(phone);
+//
+//                        $('.modal').modal('hide');
+//
+//                        setTimeout(() => {
+//                            $('#smsModal').modal('show');
+//                        }, 500)
+//                    },
+//                    error: function (err) {
+//                        $(".loader").removeClass("loading");
+//                        let response_text = JSON.parse(err.responseText);
+//                        if (response_text.errors && typeof response_text.errors == 'object') {
+//                            Object.entries(response_text.errors).forEach(([key, value]) => {
+//                                $('#error-new-' + key).text(value[0]);
+//                                $('#error-new-' + key).css('display', 'block');
+//                            })
+//                        }
+//                    }
+//                });
+            });
+            $('body').on('click','.modal-retry-btn.active', function (e) {
+                e.preventDefault();
+                $('.modal-retry-btn').removeClass('active');
+                setTimeout(() => {
+                    stopTimer();
+                    startTimer();
+                }, 500)
                 let phone = $('#phone').val();
 
                 let _token = $('meta[name="csrf-token"]').attr('content');
@@ -255,14 +318,7 @@
                         // if (res.data && res.data.success) {
                         //     window.location.reload();
                         // }
-
                         $("#smsModal .modal-phone").text(phone);
-
-                        $('.modal').modal('hide');
-
-                        setTimeout(() => {
-                            $('#smsModal').modal('show');
-                        }, 500)
                     },
                     error: function (err) {
                         $(".loader").removeClass("loading");
@@ -276,7 +332,6 @@
                     }
                 });
             });
-
             $('#confirmEmail').submit(function (e) {
                 e.preventDefault();
                 $('.modal').modal('hide');
@@ -304,7 +359,6 @@
                     }
                 });
             })
-
             $('#editPasswordForm').submit(function (e) {
                 e.preventDefault();
 
@@ -360,7 +414,6 @@
                     }
                 });
             });
-
             $('#editEmailForm').submit(function (e) {
                 e.preventDefault();
 
@@ -410,7 +463,6 @@
                     }
                 });
             });
-
             $('#profileEditInformation').submit(function (e) {
                 e.preventDefault();
 
@@ -467,7 +519,6 @@
                     }
                 });
             });
-
             $('#smsForm').submit(function (e) {
                 e.preventDefault();
 
@@ -526,6 +577,7 @@
                     }
                 });
             });
+            $('.modal-retry-btn')
         })
 
     </script>
