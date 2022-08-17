@@ -16,14 +16,16 @@ class SmsController extends Controller
     }
     public function store(SendSmsRequest $request)
     {
-        $phone = "7"+$request->phone;
+        $phone = $request->phone;
+        $phoneWithCode = '7'.$phone;
+
         $this->smsService->checkLimitSms($phone);
         $code = $this->smsService->generateCode();
 
         $msg = __('auth.sms_verification') . $code;
 
         // $result =
-        $this->smsService->send($msg, $phone);
+        $this->smsService->send($msg, $phoneWithCode);
 
         // $smsVerification =
          SmsVerification::create([
