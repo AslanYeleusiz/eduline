@@ -26,10 +26,11 @@ class NewsController extends Controller
                     $query->orderByDesc('view');
                 } else if ($newsType == 'notify') {
                     $announcementNewsTypeName = 'хабарландыру';
-                       $query->whereHas('newsType', fn($query) => $query->where('name->kk', 'like', "%$announcementNewsTypeName%"));
+                    $query->whereHas('newsType', fn($query) => $query->where('name->kk', 'like', "%$announcementNewsTypeName%"));
+                    $query->orderByDesc('created_at');
                 } else if($newsType == 'saved') {
                     $query->has('thisUserSaved');
-                } else if($newsType || $newsType == 'notify'){
+                } else {
                     $query->orderByDesc('created_at');
                 }
             })
