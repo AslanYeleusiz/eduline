@@ -23,7 +23,7 @@ class NewsController extends Controller
             ->orderBy('created_at', 'desc')
             ->when($newsType, function($query) use ($newsType){
 
-                else if ($newsType == 'popular') {
+                if ($newsType == 'popular') {
                      $query->orderByDesc('view');
                 } else if ($newsType == 'notify') {
                     $announcementNewsTypeName = 'хабарландыру';
