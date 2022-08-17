@@ -109,6 +109,7 @@
     </section>
 @endsection
 
+@section('modals')
 @include('components.EditPhoneModal', ['phone' => $user->phone])
 @include('components.ComingSoonModal')
 @include('components.EditEmailModal', ['email' => "admin@admin.com"])
@@ -116,7 +117,7 @@
 @include('components.SmsModal')
 @include('components.ProfileUpdateInformation')
 @include('components.SuccessPopup')
-
+@endsection
 
 @section('scripts')
     <script>

@@ -37,6 +37,7 @@
 </head>
 
 <body>
+@yield('modals')
 @include('components.MobileHeader')
 @include('components.MobileMenuSlide')
 @include('components.MobileMenu')

@@ -49,12 +49,13 @@
     </section>
 @endsection
 
+@section('modals')
 @include('components.SubscriptionModal')
 @include('components.activeCode')
 @include('components.SuccessPromocode', [
     'userSubscription' => $userSubscription
 ])
-
+@endsection
 @section('scripts')
     <script>
         function subscriptionModal(event) {
