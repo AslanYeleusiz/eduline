@@ -41,7 +41,14 @@
                         <div class="profile-info-title">@lang('validation.attributes.phone')</div>
                         <div class="profile-info-description">{{ $user->phone }}</div>
                     </div>
-                    <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
+                    <div class="profile-info-actions-group">
+                        @if($user->is_phone_verification)
+                            <div class="profile-info-action">Расталған</div>
+                        @else
+                        <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
+                    </div>
+
+
                 </div>
                 <div class="profile-info profile-info-email">
                     <div class="profile-info-header">
