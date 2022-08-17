@@ -139,7 +139,7 @@ class AuthController extends Controller
         $msg = __('auth.sms_verification') . $code;
 
         // $result =
-//        $this->smsService->send($msg, $phone);
+        $this->smsService->send($msg, $phone);
 
         // $smsVerification =
         SmsVerification::create([
