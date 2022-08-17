@@ -253,7 +253,7 @@
             <div class="col-md-4">
                 <p>@lang('site.Редакциямен байланыс')</p>
                 <span class="num">8(701)-026-95-95</span>
-                <a href="#"><button class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
+                <a href="#"><button onclick="open('https://api.whatsapp.com/send?text=https://eduline.kz/materials/dadada-22.html&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
             </div>
         </div>
     </div>
