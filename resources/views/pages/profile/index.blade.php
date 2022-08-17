@@ -45,6 +45,12 @@
                         @if($user->is_phone_verification)
                             <div class="profile-info-action">Расталған</div>
                         @else
+                            <form action="{{ route('profile.ajax.checkSendSmsPhone') }}" method="POST" id="confirmEmail">
+                               @csrf
+                               <input type="hidden" name="phone" value="{{ $user->phone }}">
+                                <button class="profile-info-action" style="background: none; border: none">@lang('site.Растау')</button>
+                            </form>
+                        @endif
                         <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
                     </div>
 
