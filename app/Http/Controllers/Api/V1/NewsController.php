@@ -21,7 +21,7 @@ class NewsController extends Controller
         $news = News::with('newsType')
             ->withCount('comments')
             ->when($newsType, function($query) use ($newsType){
-                if ($newsType == 'total') {
+                if ($newsType == 'all') {
                     $query->orderByDesc('created_at');
                 }
                 else if ($newsType == 'popular') {
