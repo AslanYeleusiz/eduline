@@ -20,16 +20,17 @@ class NewsController extends Controller
 
         $news = News::with('newsType')
             ->withCount('comments')
-            ->orderBy('created_at', 'desc')
             ->when($newsType, function($query) use ($newsType){
 
                 if ($newsType == 'popular') {
-                     $query->orderByDesc('view');
+                    $query->orderByDesc('view');
                 } else if ($newsType == 'notify') {
                     $announcementNewsTypeName = 'хабарландыру';
                        $query->whereHas('newsType', fn($query) => $query->where('name->kk', 'like', "%$announcementNewsTypeName%"));
                 } else if($newsType == 'saved') {
-                   $query->has('thisUserSaved');
+                    $query->has('thisUserSaved');
+                } else if($newsType || $newsType == 'notify'){
+                    $query->orderByDesc('created_at');
                 }
             })
             ->withExists('thisUserSaved as is_saved')
