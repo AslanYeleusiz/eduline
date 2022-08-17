@@ -253,7 +253,7 @@
             </div>
             <div class="col-md-4">
                 <p>@lang('site.Редакциямен байланыс')</p>
-                <span class="num">8(701)-026-95-95</span>
+                <span class="num">8(778)-389-92-92</span>
                 <a href="#"><button class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
             </div>
         </div>
