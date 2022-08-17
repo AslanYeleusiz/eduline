@@ -15,7 +15,7 @@ class SmsService
         $login = config('services.smsc.login');
         $password = config('services.smsc.password');
         try {
-            $link = "https://smsc.kz/sys/send.php?login=".$login.'&psw='.$password.'&phones='.$phone.'&mes='.$msg.'&sender=Eduline.kz'; #$subdomain уже объявляли выше
+            $link = "https://smsc.kz/sys/send.php?login=".$login.'&psw='.$password.'&phones='.$phone.'&mes='.$msg; #$subdomain уже объявляли выше
             $curl = curl_init(); #Сохраняем дескриптор сеанса cURL
             #Устанавливаем необходимые опции для сеанса cURL
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
