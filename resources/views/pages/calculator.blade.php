@@ -254,7 +254,7 @@
             <div class="col-md-4">
                 <p>@lang('site.Редакциямен байланыс')</p>
                 <span class="num">8(778)-389-92-92</span>
-                <a href="#"><button class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
+                <a href="#"><button onclick="open('https://api.whatsapp.com/send?phone=+77783899292&text=Сәлеметсіз%20бе!%20Тегін%20консультацияға%20жазылғым%20келеді!&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)"  class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
             </div>
         </div>
     </div>
