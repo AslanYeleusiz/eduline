@@ -24,7 +24,7 @@
                         <button class="modal-default-btn">Жіберу</button>
                     </div>
                     <div class="modal-info">SMS-ті 00:<span id="timer"></span> кейін қайта жіберуге болады</div>
-                    <a href="#" id="refreshConfirmPhone" class="modal-retry-btn">Қайта жіберу</a>
+                    <a type="submit" href="#" id="refreshConfirmPhone" class="modal-retry-btn">Қайта жіберу</a>
                 </form>
             </div>
 

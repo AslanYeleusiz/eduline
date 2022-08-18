@@ -297,40 +297,42 @@
                 setTimeout(() => {
                     stopTimer();
                     startTimer();
+                    console.log($(this).attr('action'));
                 }, 500)
-                let phone = $('#phone').val();
 
-                let _token = $('meta[name="csrf-token"]').attr('content');
-
-                $(".loader").addClass("loading");
-
-                clearInvalidFeedback()
-
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: "POST",
-                    data: {
-                        'phone': phone,
-                        '_token': _token
-                    },
-                    success: function (res) {
-                        $(".loader").removeClass("loading");
-                        // if (res.data && res.data.success) {
-                        //     window.location.reload();
-                        // }
-                        $("#smsModal .modal-phone").text(phone);
-                    },
-                    error: function (err) {
-                        $(".loader").removeClass("loading");
-                        let response_text = JSON.parse(err.responseText);
-                        if (response_text.errors && typeof response_text.errors == 'object') {
-                            Object.entries(response_text.errors).forEach(([key, value]) => {
-                                $('#error-new-' + key).text(value[0]);
-                                $('#error-new-' + key).css('display', 'block');
-                            })
-                        }
-                    }
-                });
+//                let phone = $('#phone').val();
+//
+//                let _token = $('meta[name="csrf-token"]').attr('content');
+//
+//                $(".loader").addClass("loading");
+//
+//                clearInvalidFeedback()
+//
+//                $.ajax({
+//                    url: $(this).attr('action'),
+//                    type: "POST",
+//                    data: {
+//                        'phone': phone,
+//                        '_token': _token
+//                    },
+//                    success: function (res) {
+//                        $(".loader").removeClass("loading");
+//                        // if (res.data && res.data.success) {
+//                        //     window.location.reload();
+//                        // }
+//                        $("#smsModal .modal-phone").text(phone);
+//                    },
+//                    error: function (err) {
+//                        $(".loader").removeClass("loading");
+//                        let response_text = JSON.parse(err.responseText);
+//                        if (response_text.errors && typeof response_text.errors == 'object') {
+//                            Object.entries(response_text.errors).forEach(([key, value]) => {
+//                                $('#error-new-' + key).text(value[0]);
+//                                $('#error-new-' + key).css('display', 'block');
+//                            })
+//                        }
+//                    }
+//                });
             });
             $('#confirmEmail').submit(function (e) {
                 e.preventDefault();
