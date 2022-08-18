@@ -18,6 +18,7 @@
                         <input name="code" class="modal-form-input smsCode smsCode3" maxlength="1" type="tel">
                         <input name="code" class="modal-form-input smsCode smsCode4" maxlength="1" type="tel">
                     </div>
+                    <input type="tel" id="thisPhone" style="display:none;" name="thisPhone">
                     <span class="invalid text-center" role="alert" id="error-sms-modal"></span>
 
                     <div style="display: flex; justify-content: center">
