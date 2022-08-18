@@ -297,7 +297,7 @@
                 setTimeout(() => {
                     stopTimer();
                     startTimer();
-                    console.log($(this).attr('action'));
+                    console.log({{ route('profile.ajax.checkSendSmsPhone') }});
                 }, 500)
 
 //                let phone = $('#phone').val();
