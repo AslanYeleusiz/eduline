@@ -183,7 +183,7 @@
     }
 
     function startTimer() {
-        let time = 15;
+        let time = 59;
         time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
         timer = setInterval(() => {
             time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
