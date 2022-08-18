@@ -3,9 +3,11 @@
 
 body {
     margin: 0;
+    padding: 0;
     font-family: "Gilroy-Regular";
     font-size: 18px;
     line-height: 21.6px;
+    box-sizing: border-box;
     color: #292929;
     text-align: left;
     background-color: #F3F6FF;
@@ -698,7 +700,7 @@ textarea.form-control:focus::placeholder{
 .calculate {
     display: block;
     width: 100vw;
-    height: 770px;
+    padding-bottom: 130px;
     background: #ffffff;
     border-bottom-left-radius: 50% 20px;
     border-bottom-right-radius: 50% 20px;
@@ -712,7 +714,8 @@ textarea.form-control:focus::placeholder{
     padding-top: 60px;
     width: 100%;
     text-align: center;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 48px;
     line-height: 58px;
     text-transform: uppercase;
@@ -785,7 +788,8 @@ textarea.form-control:focus::placeholder{
 
 .com_info {
     width: 100%;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 30px;
     letter-spacing: 0em;
     text-align: center;
@@ -808,20 +812,35 @@ textarea.form-control:focus::placeholder{
 }
 
 .com_avatar {
-    padding-top: 19px;
+    width: 60px;
+    height: 60px;
+}
+
+.owl-stage-outer-wrap{
+    width: 100vw;
+    margin-top: 70px;
+}
+.news .owl-stage-outer-wrap{
+    width: 100vw;
+    margin-top: 0;
 }
 
 .com_block {
     width: 445px;
-    height: 280px;
+    height: 320px;
     background: #ffffff;
     border-radius: 6px;
-    margin: 0 10px;
     flex: 0 0 445px;
     padding: 25px;
     color: #292929;
     box-shadow: 0px 14px 50px rgba(0, 0, 0, 0.08);
 }
+.com_block .com_head .wrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 .com_user_nm {
     margin-top: 10px;
@@ -841,6 +860,11 @@ textarea.form-control:focus::placeholder{
     margin-top: 12px;
     font-size: 17px;
     line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
 }
 
 .owl-nav,
@@ -855,7 +879,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .owl-stage {
-    height: 350px;
+    height: 364px;
 }
 
 .owl-carousel button.owl-dot {
@@ -924,8 +948,47 @@ textarea.form-control:focus::placeholder{
 
 .cns_info {
     color: #8B8B8B;
+    max-width: 260px;
+    margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
+}
+
+
+/*VIDEO REVIEW SECTION*/
+/*
+.video_review {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.v_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.v_play {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url(/public/images/playB.png) center/auto 100% no-repeat;
+}
+
+.video {
+    margin: 0 12px;
+    width: 500px;
+    height: 300px ;
+}
+
+.video:hover {
+    cursor: pointer;
+}
+
+.v-carousel {
+    width: 100vw;
+    overflow: hidden;
+    padding-left: 280px;
 }
 
 .owl-stage-outer {
@@ -933,6 +996,33 @@ textarea.form-control:focus::placeholder{
     width: 100vw;
     overflow: hidden;
 }
+
+.owl-carousel .owl-video-wrapper {
+    height: 350px;
+}
+
+.owl-carousel .owl-video-play-icon {
+    background: url(owl.video.play.png) center/auto 100% no-repeat;
+}
+
+.owl-carousel .owl-video-tn {
+    background-size: 100%;
+}
+*/
+
+/*
+@keyframes slide {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-225px, 0);
+         The image width
+    }
+}
+*/
+
 
 /*Footer*/
 .free_cns {
@@ -1110,7 +1200,8 @@ textarea.form-control:focus::placeholder{
 }
 
 .k_form_head {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 36px;
     line-height: 52px;
     color: #FFFFFF;
@@ -1208,6 +1299,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .t_img {
+    position: absolute;
     float: left;
     transform: translate(-80px, -76px);
 }
@@ -1224,9 +1316,11 @@ textarea.form-control:focus::placeholder{
 }
 
 .t_store_info {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
     font-size: 20px;
+    font-weight: 600;
     line-height: 24px;
+    color: #000000;
 
 }
 
@@ -2290,7 +2384,8 @@ textarea.form-control:focus::placeholder{
 
 .help-block {
     display: none;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     margin-top: 30px;
     text-align: center;
     color: #a94442;
@@ -2374,7 +2469,8 @@ textarea.form-control:focus::placeholder{
 }
 
 #successPromocode .modal-title {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     text-align: center;
 }
 

@@ -51,18 +51,20 @@ $(document).ready(function () {
     const main_slider = $(".cst-main-carousel").owlCarousel({
         margin: 5,
         autoWidth: true,
+        loop: true,
         startPosition: 1,
         stagePadding: 20,
         center: true,
         nav: false,
         dots: false,
-
     });
 
     const slider2 = $(".cst_com_slider").owlCarousel({
         loop: true,
         nav: true,
         dots: true,
+        items: 4,
+        margin: 20,
         autoplay: true,
         autoplayHoverPause: true,
         autoWidth: true,

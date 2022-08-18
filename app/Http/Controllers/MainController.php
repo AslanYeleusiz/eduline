@@ -78,11 +78,15 @@ class MainController extends Controller
     public function consultations()
     {
         $consultations = PersonalAdvice::where('is_active', true)->get();
+        foreach ($consultations as $con) {
+            $con->lat_title = $con->slug($con->title);
+        }
         return view('pages.consultations', ['consultations' => $consultations]);
     }
 
-    public function consultation($id)
+    public function consultation($slug, Request $request)
     {
+        $id = $request->id;
         $consultation = PersonalAdvice::where('id',$id)->where('is_active',true)->firstOrFail();
         return view('pages.consultation', ['consultation' => $consultation]);
     }

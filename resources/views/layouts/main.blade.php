@@ -31,6 +31,8 @@
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-v5.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
     <title>@yield('title')</title>
@@ -58,8 +60,7 @@
     @include('components.RegisterModal')
 @endguest
 
-<script src="{{ asset('js/sweetalert2.min.js?v=1') }}"></script>
-<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+
 <script src="{{ asset('js/main.js') }}?v=1"></script>
 
 @yield('scripts')
