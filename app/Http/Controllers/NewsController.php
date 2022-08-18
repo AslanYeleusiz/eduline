@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\NewsComment;
 use App\Models\UserNewsSaved;
+use App\Models\Slider;
 use Carbon\Carbon;
 
 class NewsController extends Controller
 {
     public function index(Request $request){
+        $slider = Slider::orderByDesc('id')->get();
         $news = News::orderBy('created_at','desc')->paginate(2);
         $data = '';
         $now = Carbon::now();
@@ -28,6 +30,7 @@ class NewsController extends Controller
         }
         return view('pages.home',[
             'news' => $news,
+            'slider' => $slider,
             'url' => '/'
         ]);
     }

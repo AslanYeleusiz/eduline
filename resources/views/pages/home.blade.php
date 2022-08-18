@@ -32,10 +32,13 @@
     <div class="owl-stage-outer-wrap">
         <div class="slider owl-stage-outer">
             <div class="cst-main-carousel owl-carousel">
-                <img src="{{asset('images/slider/testSlide.png')}}" alt="">
-                <img src="{{asset('images/slider/testSlide.png')}}" alt="">
-                <img src="{{asset('images/slider/testSlide.png')}}" alt="">
-                <img src="{{asset('images/slider/testSlide.png')}}" alt="">
+                @foreach($slider as $slide)
+                <div class="img_wrap">
+                    <a href="#">
+                        <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
+                    </a>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>

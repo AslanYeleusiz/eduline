@@ -54,6 +54,7 @@ Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news
 
 Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 });
+
 Route::get('roles', RolesController::class)->name('roles');
 
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');

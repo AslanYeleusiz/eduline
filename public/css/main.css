@@ -815,7 +815,16 @@ textarea.form-control:focus::placeholder{
     width: 60px;
     height: 60px;
 }
-
+.img_wrap{
+    width: 85vw;
+}
+.mainSliderImage{
+    width: 100%;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .owl-stage-outer-wrap{
     width: 100vw;
     margin-top: 70px;

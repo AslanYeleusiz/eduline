@@ -53,7 +53,6 @@ $(document).ready(function () {
         autoWidth: true,
         loop: true,
         startPosition: 1,
-        stagePadding: 20,
         center: true,
         nav: false,
         dots: false,
