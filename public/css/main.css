@@ -904,7 +904,7 @@ textarea.form-control:focus::placeholder{
 
 /*CONSULTATION SECTION*/
 .consult_res {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .cns {
@@ -928,76 +928,15 @@ textarea.form-control:focus::placeholder{
     line-height: 17px;
 }
 
-
-/*VIDEO REVIEW SECTION*/
-.video_review {
-    padding-top: 100px;
-    padding-bottom: 100px;
-}
-
-.v_block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.v_play {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: url(/public/images/playB.png) center/auto 100% no-repeat;
-}
-
-.video {
-    margin: 0 12px;
-    width: 500px;
-    height: 300px ;
-}
-
-.video:hover {
-    cursor: pointer;
-}
-
-.v-carousel {
-    width: 100vw;
-    overflow: hidden;
-    padding-left: 280px;
-}
-
 .owl-stage-outer {
     margin-top: 30px;
     width: 100vw;
     overflow: hidden;
 }
 
-.owl-carousel .owl-video-wrapper {
-    height: 350px;
-}
-
-.owl-carousel .owl-video-play-icon {
-    background: url(owl.video.play.png) center/auto 100% no-repeat;
-}
-
-.owl-carousel .owl-video-tn {
-    background-size: 100%;
-}
-
-/*
-@keyframes slide {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    100% {
-        transform: translate(-225px, 0);
-         The image width
-    }
-}
-*/
-
-
 /*Footer*/
 .free_cns {
+    margin-top: 100px;
     padding-bottom: 100px;
     padding-left: 150px;
     display: flex;

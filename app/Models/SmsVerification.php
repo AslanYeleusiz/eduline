@@ -14,7 +14,7 @@ class SmsVerification extends Model
     const STATUS_VERIFIED = 'verified';
     const STATUS_PENDING = 'pending';
     const LIMIT_SMS = 3;
-    const LIMIT_SMS_MINUTE = 1;
+    const LIMIT_SMS_MINUTE = 30;
 
     public function scopeStatusPending($query)
     {

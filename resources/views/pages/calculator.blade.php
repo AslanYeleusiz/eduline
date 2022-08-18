@@ -200,42 +200,6 @@
         </div>
     </div>
 </section>
-<section class="video_review">
-    <div class="cst_pd">
-        <div class="com_info">
-            @lang('site.Видео пікірлер')
-        </div>
-    </div>
-    <div class="v-carousel">
-        <div class="owl-carousel cst-carousel">
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-    </div>
-    </div>
-
-</section>
 <section class="free_cns">
     <div class="cns_bg_block"></div>
     <div class="cns_free_block">

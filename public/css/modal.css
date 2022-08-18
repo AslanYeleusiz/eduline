@@ -772,6 +772,10 @@ a.desc-info-link {
     padding: 40px 50px;
 }
 
+.modal-success-padding {
+    padding: 40px 50px 0;
+}
+
 .modal-title.modal-title-second {
     font-family: "Gilroy-Semibold";
     font-style: normal;
