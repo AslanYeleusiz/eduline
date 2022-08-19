@@ -35,7 +35,9 @@
                @if($slider != null)
                     @foreach($slider as $slide)
                     <div class="img_wrap">
-                        <a href="#">
+                        <a href="{{
+                           $slide->linkToAdvice ? '/consultation/'.$slide->slug($slide->advice->title).'?id='.$slide->advice->id : $slide->link
+                           }}">
                             <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
                         </a>
                     </div>

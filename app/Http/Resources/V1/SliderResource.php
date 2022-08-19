@@ -19,9 +19,9 @@ class SliderResource extends JsonResource
             'image' => $this->image,
             //https://eduline.kz/public/storage/images/sliders/{{image}}
             'link' => $this->link,
-            // link -> personal_advice  жеке кенестің базадағы id-сі
-            'link_lat' => $this->slug($this->advice->title),
-            // Ссылканын полный сілтемесі https://eduline.kz/{{link_lat}}-{{id}}
+            //cілтеме
+            'linkToAdvice' => $this->linkToAdvice,
+            // linkToAdvice -> personal_advice  жеке кенестің id-сі
             'in_app' => $this->in_app,
             // false or true
             'created_at' => $this->created_at,

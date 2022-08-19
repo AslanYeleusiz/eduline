@@ -62,14 +62,33 @@
                             <validation-error :field="'image.kk'" />
                             <validation-error :field="'image.ru'" />
                         </div>
-                        <div class="form-group">
-                            <label for="">Сілтеме</label>
-                            <select class="form-control" v-model="slider.link" name="slider" required>
+                        <div class="form-group mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="setLink" value=0>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Сілтеме
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="setLink" value=1>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Жеке кеңес сілтеме
+                                </label>
+                            </div>
+                        </div>
+                        <div v-if="setLink==1" class="form-group">
+                            <label for="">Сілтемені таңдаңыз</label>
+                            <select class="form-control" v-model="slider.linkToAdvice" name="slider" required>
                                 <option :value="null">Сілтемені таңдаңыз</option>
-                                <option v-for="advice in personalAdvice" :value="advice.id"  :key="'advice' + advice.id">
+                                <option v-for="advice in personalAdvice" :value="advice.id" :key="'advice' + advice.id">
                                     {{ advice.title.kk }}
                                 </option>
                             </select>
+                            <validation-error :field="'linkToAdvice'" />
+                        </div>
+                        <div v-else class="form-group">
+                            <label for="">Сілтемені енгізіңіз</label>
+                            <input v-model="slider.link" type="text" class="form-control">
                             <validation-error :field="'link'" />
                         </div>
                         <div class="form-group">
@@ -121,8 +140,10 @@
                 editorConfig: {
                     // The configuration of the editor.
                 },
+                setLink: 0,
                 slider: {
                     link: null,
+                    linkToAdvice: null,
                     image: {
                         kk: null,
                         ru: null,

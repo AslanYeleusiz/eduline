@@ -58,7 +58,11 @@
                                             }}
                                         </td>
                                         <td>{{ slider.image.kk }}</td>
-                                        <td>{{ slider.advice.title.kk }}</td>
+                                        <td>{{
+                                           slider.linkToAdvice ?
+                                            slider.advice.title.kk :
+                                             slider.link
+                                        }}</td>
                                         <td>{{ slider.in_app == 1 ? 'Сайт' : 'Приложение' }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">

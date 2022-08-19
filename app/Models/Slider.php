@@ -15,7 +15,7 @@ class Slider extends Model
 
     public function advice()
     {
-        return $this->belongsTo(PersonalAdvice::class, 'link');
+        return $this->belongsTo(PersonalAdvice::class, 'linkToAdvice');
     }
     public $translatable = ['image'];
     public $casts = [

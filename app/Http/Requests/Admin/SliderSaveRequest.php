@@ -18,7 +18,8 @@ class SliderSaveRequest extends FormRequest
         return [
             'image.kk' => 'required',
             'image.ru' => 'required',
-            'link' => 'required',
+            'link' => 'required_without:linkToAdvice',
+            'linkToAdvice' => 'required_without:link',
             'in_app' => 'required',
         ];
     }
