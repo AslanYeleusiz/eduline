@@ -963,6 +963,9 @@ textarea.form-control:focus::placeholder{
     line-height: 17px;
 }
 
+.owl-carousel .owl-stage-outer {
+    overflow: visible;
+}
 
 /*VIDEO REVIEW SECTION*/
 /*
@@ -1000,11 +1003,7 @@ textarea.form-control:focus::placeholder{
     padding-left: 280px;
 }
 
-.owl-stage-outer {
-    margin-top: 30px;
-    width: 100vw;
-    overflow: hidden;
-}
+
 
 .owl-carousel .owl-video-wrapper {
     height: 350px;
