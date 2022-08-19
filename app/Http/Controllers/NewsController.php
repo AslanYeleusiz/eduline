@@ -12,7 +12,7 @@ use Carbon\Carbon;
 class NewsController extends Controller
 {
     public function index(Request $request){
-        $slider = Slider::orderByDesc('id')->get();
+        $slider = Slider::where('in_app', 1)->get();
         $news = News::orderBy('created_at','desc')->paginate(2);
         $data = '';
         $now = Carbon::now();

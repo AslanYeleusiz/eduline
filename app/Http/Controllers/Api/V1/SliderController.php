@@ -17,7 +17,7 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $slider = Slider::get();
+        $slider = Slider::where('in_app', 2)->get();
         return SliderResource::collection($slider)->additional(['status' => true]);
     }
 
