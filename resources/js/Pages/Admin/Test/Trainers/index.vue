@@ -88,12 +88,12 @@
     </AdminLayout>
 </template>
 <script>
-    import AdminLayout from "../../../Layouts/AdminLayout.vue";
+    import AdminLayout from "../../../../Layouts/AdminLayout.vue";
     import {
         Link,
         Head
     } from "@inertiajs/inertia-vue3";
-    import Pagination from "../../../Components/Pagination.vue";
+    import Pagination from "../../../../Components/Pagination.vue";
     export default {
         components: {
             AdminLayout,

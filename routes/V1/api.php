@@ -154,11 +154,6 @@ Route::middleware('guest')->group(function () {
     Route::post('register/send-code', [AuthController::class, 'registerSendSmsCode'])->name('register.send_sms');
     Route::post('register', [AuthController::class, 'register'])->name('register');
 
-    //2022_05_31_112258_create_news_comment_answers_table
-    //2022_06_11_120740_create_material_edits_table
-    //2022_06_14_123756_change_users_table
-    //2022_06_14_170746_change_promo_codes_table
-    //2022_06_16_151950_create_used_promocodes_table
     Route::post('reset-password/send-code', [AuthController::class, 'resetPasswordSendSmsCode'])->name('reset_password.send_sms');
     Route::post('reset-password/verify-code', [AuthController::class, 'resetPasswordVerifyCode'])->name('reset_password.verify_hash');
     Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset_password');

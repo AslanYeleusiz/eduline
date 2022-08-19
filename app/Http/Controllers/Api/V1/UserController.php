@@ -39,13 +39,13 @@ class UserController extends Controller
     {
         $user = auth()->guard('api')->user();
         $user->full_name = $request->full_name;
-        if($request->has('place_work')) {
+        if ($request->has('place_work')) {
             $user->place_work = $request->place_work;
         }
-        if($request->has('birthday')) {
+        if ($request->has('birthday')) {
             $user->birthday = $request->birthday;
         }
-        if($request->has('sex')) {
+        if ($request->has('sex')) {
             $user->sex = $request->sex;
         }
         if ($request->hasFile('avatar')) {
@@ -76,10 +76,10 @@ class UserController extends Controller
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: Eduline.kz';
         mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
-        ->with([
-            'token' => $token,
-            'email' => $user->email,
-        ]), implode("\r\n", $headers));
+            ->with([
+                'token' => $token,
+                'email' => $user->email,
+            ]), implode("\r\n", $headers));
 
         return new MessageResource(__('message.success.check_your_email'));
 
@@ -110,10 +110,9 @@ class UserController extends Controller
 
         $this->smsService->checkLimitSms($phone);
 
-        // $code = $this->smsService->generateCode();
-        $code = $phone % 10000;
+         $code = $this->smsService->generateCode();
         $msg = __('auth.sms_verification') . $code;
-        // $this->smsService->send($msg, $phone);
+        $this->smsService->send($msg, $phone);
 
         SmsVerification::create([
             'code' => $code,
