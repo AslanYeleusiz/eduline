@@ -66,23 +66,23 @@ class TestTrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Request $request, $id)
     {
         $languageId = $request->language_id ?? TestLanguage::first()->id;
         if (!isset($languageId)) {
             return new ErrorException('Язык не выбрано');
         }
-        $trainers = TestTrainer::firstOrFail($request->id);
+        $trainers = TestTrainer::findOrFail($id);
 
         if($languageId == 1){
-            $trainer->subject = $trainer->subject['kk'];
-            $trainer->description = $trainer->description['kk'];
+            $trainers->subject = $trainers->subject['kk'];
+            $trainers->description = $trainers->description['kk'];
         }
         else if($languageId == 2){
-            $trainer->subject = $trainer->subject['ru'];
-            $trainer->description = $trainer->description['ru'];
+            $trainers->subject = $trainers->subject['ru'];
+            $trainers->description = $trainers->description['ru'];
         }
-        return TrainerResource::collection($trainers)->additional(['status' => true]);
+        return new TrainerResource($trainers);
     }
 
     /**
