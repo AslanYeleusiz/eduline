@@ -18,7 +18,7 @@ class NewsController extends Controller
     {
         $newsType = $request->input('news_type');
 
-        $news = News::with(['newsType', 'slug'])
+        $news = News::with(['newsType'])
             ->withCount('comments')
             ->when($newsType, function($query) use ($newsType){
 
@@ -78,7 +78,7 @@ class NewsController extends Controller
 
     public  function show($id)
     {
-        $news = News::with(['newsType', 'slug'])
+        $news = News::with(['newsType'])
             ->with('comments', fn ($query) => $query->withExists('thisUserLiked as is_liked')
             ->with('user:id,full_name,avatar'))
             ->withCount('comments')
