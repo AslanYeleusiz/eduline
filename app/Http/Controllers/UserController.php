@@ -43,7 +43,11 @@ class UserController extends Controller
     public function updatePhone(Request $request): \Illuminate\Http\JsonResponse
     {
         DB::beginTransaction();
-        $phone = Helper::clearPhoneMask($request->phone);
+        if(strlen($request->phone) > 10){
+            $phone = Helper::clearPhoneMask($request->phone);
+        }else{
+            $phone = $request->phone;
+        }
         $sms = SmsVerification::where('code', $request->code)
             ->where('phone', $phone)
             ->statusPending()
