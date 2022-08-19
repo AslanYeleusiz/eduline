@@ -72,11 +72,8 @@ Route::resource('news-types', NewsTypeController::class)->except(['show'])->name
 Route::resource('news', NewsController::class)->except(['show'])->names('news');
 Route::get('news/{id}/comments', [NewsController::class, 'comments'])->name('news.comments');
 Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commentDelete'])->name('news.commentsDelete');
-
 Route::resource('slider', SliderController::class)->except(['show'])->names('slider');
-Route::get('Ziggy', function () {
-    return Ziggy.routes;
-});
+
 Route::name('test.')->group(function () {
     Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
     Route::resource('subjects', TestSubjectController::class)->except(['show'])->names('subjects');
