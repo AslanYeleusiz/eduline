@@ -702,6 +702,7 @@ textarea.form-control:focus::placeholder{
     width: 100vw;
     padding-bottom: 130px;
     background: #ffffff;
+    position: relative;
     border-bottom-left-radius: 50% 20px;
     border-bottom-right-radius: 50% 20px;
 }
@@ -827,7 +828,7 @@ textarea.form-control:focus::placeholder{
 }
 .owl-stage-outer-wrap{
     width: 100vw;
-    margin-top: 70px;
+    margin-top: 40px;
 }
 .news .owl-stage-outer-wrap{
     width: 100vw;
@@ -964,7 +965,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .owl-carousel .owl-stage-outer {
-    overflow: visible;
+    padding-top: 30px;
 }
 
 /*VIDEO REVIEW SECTION*/

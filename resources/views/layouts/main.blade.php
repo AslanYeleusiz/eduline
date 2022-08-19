@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/loader.css?v=1') }}">
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css?v=1') }}">
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=1.14">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}?v=1.15">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}?v=1.1">
     <link rel="stylesheet" href="{{ asset('css/media.css') }}?v=1.1">
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}?v=1.1">
