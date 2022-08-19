@@ -152,11 +152,6 @@ export default {
                     this.$inertia.delete(route("admin.test.classes.destroy", id));
                 }
             });
-
-        },
-        search() {
-            const params = this.clearParams(this.filter);
-            this.$inertia.get(route("admin.test.classes.index"), params);
         },
     },
 };

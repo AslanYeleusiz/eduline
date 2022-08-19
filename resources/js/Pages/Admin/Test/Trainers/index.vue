@@ -7,7 +7,7 @@
         <template #breadcrumbs>
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Слайдер</h1>
+                    <h1 class="m-0">Тренерлермен дайындық</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -18,7 +18,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item active">
-                            Слайдер тізімі
+                            Тренерлермен дайындық тізімі
                         </li>
                     </ol>
                 </div>
@@ -26,7 +26,7 @@
         </template>
         <template #header>
             <div class="buttons">
-                <Link class="btn btn-primary mr-2" :href="route('admin.slider.create')">
+                <Link class="btn btn-primary mr-2" :href="route('admin.test.trainers.create')">
                 <i class="fa fa-plus"></i> Қосу
                 </Link>
             </div>
@@ -40,38 +40,37 @@
                                 <thead>
                                     <tr role="row">
                                         <th>№</th>
-                                        <th>Сурет</th>
-                                        <th>Сілтеме</th>
-                                        <th>in_app</th>
+                                        <th>Пән</th>
+                                        <th>Бағасы</th>
+                                        <th>Артықшылықтары</th>
+                                        <th>Бөліп төлеу (ай)</th>
+                                        <th>Белсенді</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd" v-for="(slider, index) in sliders.data" :key="'slider' + slider.id">
+                                    <tr class="odd" v-for="(trainer, index) in trainers.data" :key="'trainer' + trainer.id">
                                         <td>
                                             {{
                                                 index + 1
                                             }}
                                         </td>
-                                        <td>{{ slider.image.kk }}</td>
-                                        <td>{{
-                                           slider.linkToAdvice ?
-                                            slider.advice.title.kk :
-                                             slider.link
-                                        }}</td>
-                                        <td>{{ slider.in_app == 1 ? 'Сайт' : 'Приложение' }}</td>
+                                        <td>{{ trainer.subject.kk }}</td>
+                                        <td>{{ trainer.price }}</td>
+                                        <td>{{ trainer.description.kk }}</td>
+                                        <td>{{ trainer.installments }}</td>
+                                        <td>{{ trainer.is_active }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-
                                                 <Link :href="
                                                         route(
-                                                            'admin.slider.edit',
-                                                            {'slider':slider}
+                                                            'admin.test.trainers.edit',
+                                                            {'trainer':trainer}
                                                         )
                                                     " class="btn btn-primary" title="Изменить">
                                                 <i class="fas fa-edit"></i>
                                                 </Link>
 
-                                                <button @click.prevent="deleteData(slider.id)" class="btn btn-danger" title="Жою">
+                                                <button @click.prevent="deleteData(trainer.id)" class="btn btn-danger" title="Жою">
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             </div>
@@ -81,19 +80,19 @@
                             </table>
                         </div>
                     </div>
-                    <Pagination :links="sliders.links" />
+                    <Pagination :links="trainers.links" />
                 </div>
             </div>
         </div>
     </AdminLayout>
 </template>
 <script>
-    import AdminLayout from "../../../Layouts/AdminLayout.vue";
+    import AdminLayout from "../../../../Layouts/AdminLayout.vue";
     import {
         Link,
         Head
     } from "@inertiajs/inertia-vue3";
-    import Pagination from "../../../Components/Pagination.vue";
+    import Pagination from "../../../../Components/Pagination.vue";
     export default {
         components: {
             AdminLayout,
@@ -101,7 +100,7 @@
             Pagination,
             Head
         },
-        props: ["sliders"],
+        props: ["trainers"],
         methods: {
             deleteData(id) {
                 Swal.fire({
@@ -115,7 +114,7 @@
                     cancelButtonText: "Жоқ",
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        this.$inertia.delete(route('admin.slider.destroy', id))
+                        this.$inertia.delete(route('admin.test.trainers.destroy', id))
                     }
                 });
             },

@@ -3,17 +3,26 @@
 namespace App\Http\Controllers\Admin\Test;
 
 use App\Http\Controllers\Controller;
+use App\Services\Admin\TestTrainerService;
 use App\Models\TestTrainer;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\TrainerRequest;
+use Inertia\Inertia;
 
 class TestTrainerController extends Controller
 {
+    public $trainerService;
+    public function __construct(TestTrainerService $trainerService)
+    {
+        $this->trainerService = $trainerService;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $trainers = TestTrainer::paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
@@ -29,7 +38,7 @@ class TestTrainerController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Admin/Test/Trainers/create');
     }
 
     /**
@@ -38,9 +47,11 @@ class TestTrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TrainerRequest $request)
     {
-        //
+        $trainer = new TestTrainer();
+        $this->trainerService->save($trainer, $request);
+        return redirect()->route('admin.test.trainers.index')->withSuccess('Успешно добавлено');
     }
 
     /**
@@ -83,8 +94,10 @@ class TestTrainerController extends Controller
      * @param  \App\Models\TestTrainer  $testTrainer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TestTrainer $testTrainer)
+    public function destroy($id)
     {
-        //
+        $testTrainer = TestTrainer::findOrFail($id);
+        $testTrainer->delete();
+        return redirect()->route('admin.test.trainers.index')->withSuccess('Успешно удалено');
     }
 }

@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\Test\TestSubjectController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectOptionController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectOptionTestController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectPreparationController;
+use App\Http\Controllers\Api\V1\Test\TestTrainerController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -64,10 +65,14 @@ Route::get('roles', RolesController::class)->name('roles');
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('send-sms', [SmsController::class, 'store'])->name('sms.send');
 
+Route::apiResource('trainer', TestTrainerController::class)->names('trainer');
+
 Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () {
     Route::get('languages', [TestLanguageController::class, 'index'])->name('languages.index');
     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
     Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
+
+
 
 
 
