@@ -52,6 +52,7 @@ class NewsController extends Controller
         }
         return view('pages.home',[
             'news' => $news,
+            'slider' => null,
             'url' => 'Announcement'
         ]);
     }
@@ -73,6 +74,7 @@ class NewsController extends Controller
         }
         return view('pages.home',[
             'news' => $news,
+            'slider' => null,
             'url' => 'Popular'
         ]);
     }
@@ -94,6 +96,7 @@ class NewsController extends Controller
         }
         return view('pages.home',[
             'news' => $uns,
+            'slider' => null,
             'url' => 'Saves'
         ]);
     }
