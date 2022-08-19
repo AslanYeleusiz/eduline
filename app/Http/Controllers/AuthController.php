@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\AdminLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use App\Helpers\Helper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -14,7 +15,8 @@ class AuthController extends Controller
 {
     public function adminLoginForm(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $user = User::query()->where('phone', $request->phone)->firstOr(function () {
+        $phone = Helper::clearPhoneMask($request->phone);
+        $user = User::query()->where('phone', $phone)->firstOr(function () {
             throw ValidationException::withMessages([
                 'phone' => [__('auth.Phone number not found')]
             ]);
@@ -33,7 +35,8 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        $user = User::query()->where('phone', $request->phone)->firstOr(function () {
+        $phone = Helper::clearPhoneMask($request->phone);
+        $user = User::query()->where('phone', $phone)->firstOr(function () {
             throw ValidationException::withMessages([
                 'phone' => [__('auth.Phone number not found')]
             ]);
@@ -58,8 +61,9 @@ class AuthController extends Controller
      */
     public function register(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
+        $phone = Helper::clearPhoneMask($request->phone);
         $user = User::create([
-            'phone' => $request->phone,
+            'phone' => $phone,
             'full_name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password)

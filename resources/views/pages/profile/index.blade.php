@@ -39,7 +39,7 @@
             <div class="profile-info profile-info-phone">
                 <div class="profile-info-header">
                     <div class="profile-info-title">@lang('validation.attributes.phone')</div>
-                    <div class="profile-info-description">{{ $user->phone }}</div>
+                    <div class="profile-info-description">{{ $phone }}</div>
                 </div>
                 <div class="profile-info-actions-group">
                     @if($user->is_phone_verification)

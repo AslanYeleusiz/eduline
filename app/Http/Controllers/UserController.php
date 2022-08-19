@@ -13,6 +13,7 @@ use App\Mail\EmailUpdate;
 use App\Models\SmsVerification;
 use App\Models\User;
 use App\Services\V1\SmsService;
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -42,18 +43,17 @@ class UserController extends Controller
     public function updatePhone(Request $request): \Illuminate\Http\JsonResponse
     {
         DB::beginTransaction();
-
+        $phone = Helper::clearPhoneMask($request->phone);
         $sms = SmsVerification::where('code', $request->code)
-            ->where('phone', $request->phone)
+            ->where('phone', $phone)
             ->statusPending()
             ->firstOr(function () {
-                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телеф
-                .она']);
+                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
             });
         $sms->delete();
 
         $user = auth()->user();
-        $user->phone = $request->phone;
+        $user->phone = $phone;
         $user->is_phone_verification = 1;
         $user->save();
         DB::commit();
@@ -65,7 +65,7 @@ class UserController extends Controller
 
     public function checkSendSmsNewPhone(\App\Http\Requests\UserPhoneSaveRequest $request): \Illuminate\Http\JsonResponse
     {
-        $phone = $request->phone;
+        $phone = Helper::clearPhoneMask($request->phone);
 
         $this->smsService->checkLimitSms($phone);
 
