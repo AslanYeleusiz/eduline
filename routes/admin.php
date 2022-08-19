@@ -73,7 +73,7 @@ Route::resource('news', NewsController::class)->except(['show'])->names('news');
 Route::get('news/{id}/comments', [NewsController::class, 'comments'])->name('news.comments');
 Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commentDelete'])->name('news.commentsDelete');
 
-Route::resource('slider', SliderController::class)->except(['show'])->names('slider');
+Route::resource('slider', SliderController::class)->except(['show']);
 
 Route::name('test.')->group(function () {
     Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
