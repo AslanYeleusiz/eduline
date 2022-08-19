@@ -204,7 +204,7 @@
                     {
                         name: "Жаңалықтар",
                         font: "fa-newspaper",
-                        menu_active: ["admin.newsTypes", "admin.news"],
+                        menu_active: ["admin.newsTypes", "admin.news", "admin.slider"],
                         route_name: "",
                         childs_items: [{
                                 name: "Жаңалықтар",
@@ -217,6 +217,12 @@
                                 font: "fa-newspaper",
                                 route_name: "admin.newsTypes.index",
                                 menu_active: ["admin.newsTypes"],
+                            },
+                            {
+                                name: "Слайдер",
+                                font: "fa-newspaper",
+                                route_name: "admin.slider.index",
+                                menu_active: ["admin.slider"],
                             },
                         ],
                     },
@@ -307,12 +313,6 @@
                                 menu_active: ["admin.test.preparationAppeals"],
                             },
                         ],
-                    },
-                    {
-                        name: "Слайдер",
-                        font: "fa-newspaper",
-                        route_name: "admin.slider.index",
-                        menu_active: ["admin.slider"],
                     },
                 ],
             };

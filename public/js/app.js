@@ -22210,7 +22210,7 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         name: "Жаңалықтар",
         font: "fa-newspaper",
-        menu_active: ["admin.newsTypes", "admin.news"],
+        menu_active: ["admin.newsTypes", "admin.news", "admin.slider"],
         route_name: "",
         childs_items: [{
           name: "Жаңалықтар",
@@ -22222,6 +22222,11 @@ __webpack_require__.r(__webpack_exports__);
           font: "fa-newspaper",
           route_name: "admin.newsTypes.index",
           menu_active: ["admin.newsTypes"]
+        }, {
+          name: "Слайдер",
+          font: "fa-newspaper",
+          route_name: "admin.slider.index",
+          menu_active: ["admin.slider"]
         }]
       }, {
         name: "Жеке кеңес",
@@ -22280,11 +22285,6 @@ __webpack_require__.r(__webpack_exports__);
           route_name: "admin.test.preparationAppeals.index",
           menu_active: ["admin.test.preparationAppeals"]
         }]
-      }, {
-        name: "Слайдер",
-        font: "fa-newspaper",
-        route_name: "admin.slider.index",
-        menu_active: ["admin.slider"]
       }]
     };
   },
