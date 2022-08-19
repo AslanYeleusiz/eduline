@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 
 class Slider extends Model
 {
@@ -20,5 +21,9 @@ class Slider extends Model
     public $casts = [
         'image' => 'json'
     ];
+    public function slug($date)
+    {
+        return Str::slug($date, '_');
+    }
 
 }
