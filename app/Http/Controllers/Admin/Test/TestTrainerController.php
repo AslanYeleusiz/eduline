@@ -71,9 +71,11 @@ class TestTrainerController extends Controller
      * @param  \App\Models\TestTrainer  $testTrainer
      * @return \Illuminate\Http\Response
      */
-    public function edit(TestTrainer $testTrainer)
+    public function edit($id)
     {
-        //
+        return Inertia::render('Admin/Test/Trainers/edit', [
+            'trainerItem' => TestTrainer::findOrFail($id)
+        ]);
     }
 
     /**
@@ -83,9 +85,11 @@ class TestTrainerController extends Controller
      * @param  \App\Models\TestTrainer  $testTrainer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TestTrainer $testTrainer)
+    public function update(Request $request, $id)
     {
-        //
+        $testTrainer = TestTrainer::findOrFail($id);
+        $this->trainerService->save($testTrainer, $request);
+        return redirect()->route('admin.test.trainers.index')->withSuccess('Успешно добавлено');
     }
 
     /**
