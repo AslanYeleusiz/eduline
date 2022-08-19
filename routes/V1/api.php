@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\RolesController;
 use App\Http\Controllers\Api\V1\SalaryCalculatorController;
 use App\Http\Controllers\Api\V1\SmsController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
+use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\Test\FullTestController;
 use App\Http\Controllers\Api\V1\Test\TestDirectionController;
 use App\Http\Controllers\Api\V1\Test\TestLanguageController;
@@ -43,6 +44,9 @@ Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index');
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
 
 Route::apiResource('personal-advices', PersonalAdviceController::class)->only(['index', 'show'])->names('personalAdvices.');
+
+Route::apiResource('slider', SliderController::class)->only(['index'])->names('slider.');
+
 Route::post('personal-advices/{id}', [PersonalAdviceController::class, 'store'])->name('personalAdvices.store');
 
 Route::middleware('auth:api')->group(function () {
