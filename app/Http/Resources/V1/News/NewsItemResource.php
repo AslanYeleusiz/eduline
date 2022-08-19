@@ -22,6 +22,9 @@ class NewsItemResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'lat_title' => $this->slug($this->title),
+            // https://eduline.kz/news/{{lat_title}}-{{id}}.html -- path
+
             'description' => $this->description,
             'image' => $this->image ? Storage::disk('public')->url(News::IMAGE_PATH . $this->image) : null,
             'view' => $this->view,
@@ -33,7 +36,7 @@ class NewsItemResource extends JsonResource
         ];
     }
 
-    
+
     public function with($request)
     {
         return ['status' => true];

@@ -75,6 +75,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     //  Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');
 
     Route::prefix('subjects')->group(function () {
+        Route::get('/', [TestSubjectController::class, 'index'])->name('subjects.index');
         Route::get('/{id}/preparations', [TestSubjectPreparationController::class, 'preparationsByTitle'])->name('subjects.options.preparationsByTitle');
         Route::get('/{id}/preparations/{preparation_id}', [TestSubjectPreparationController::class, 'preparation'])->name('subjects.options.preparation');
         Route::post('/{id}/preparations/order', [TestSubjectPreparationController::class, 'preparationOrderStore'])->name('subjects.options.preparationOrderStore');
