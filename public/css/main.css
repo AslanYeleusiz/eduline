@@ -410,7 +410,6 @@ li.menu-li {
 }
 .slider{
     display: none;
-    margin-top: 20px;
 }
 .slider .owl-stage{
     height: auto;
@@ -828,7 +827,7 @@ textarea.form-control:focus::placeholder{
 }
 .owl-stage-outer-wrap{
     width: 100vw;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 .news .owl-stage-outer-wrap{
     width: 100vw;
@@ -965,7 +964,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .owl-carousel .owl-stage-outer {
-    padding-top: 30px;
+    padding-top: 20px;
 }
 
 /*VIDEO REVIEW SECTION*/
