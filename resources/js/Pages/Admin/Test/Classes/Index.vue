@@ -78,7 +78,7 @@
                                         <td>
                                             {{ index + 1 }}
                                         </td>
-                                        <td>{{ classItem.name }}</td>
+                                        <td>{{ classItem.name.kk }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
                                                 <Link

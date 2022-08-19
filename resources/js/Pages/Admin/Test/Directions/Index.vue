@@ -90,7 +90,7 @@
                                         <td>
                                             {{ index + 1 }}
                                         </td>
-                                        <td>{{ direction.name }}</td>
+                                        <td>{{ direction.name.kk }}</td>
                                         <td>
                                             {{ direction.is_active ? "Иә" : "Жоқ" }}
                                         </td>

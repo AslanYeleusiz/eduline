@@ -17,9 +17,9 @@
         </div>
     </section>
 @endsection
-
+@section('modals')
 @include('components.SubscriptionModal')
-
+@endsection
 @section('scripts')
     <script>
         function subscriptionModal(event) {

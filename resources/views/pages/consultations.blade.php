@@ -25,7 +25,7 @@
                     <div class="kp_btn_1">
                         {{$value->price}} ₸
                     </div>
-                    <a href="/consultation/{{$value->id}}" class="kp_btn_2">
+                    <a href="/consultation/{{$value->lat_title}}?id={{$value->id}}" class="kp_btn_2">
                         @lang('site.Толығырақ')
                         <img alt="arrow" src="{{asset('images/arrow-right.png')}}">
                     </a>

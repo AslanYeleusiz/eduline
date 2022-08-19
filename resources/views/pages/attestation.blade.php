@@ -61,13 +61,13 @@
             @lang('site.Біздің бағдарлама жайлы ұстаздардың пікірлері')
         </div>
     </div>
-    <div class="owl-stage-outer">
+    <div class="owl-stage-outer-wrap">
         <div class="cst_com_slider owl-carousel com_cst_pd">
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip1.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -76,23 +76,23 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Қарабаева Дана
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Алматы қаласы, №35 ЖОМ бастауыш сынып мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Едулайн ұжымы сіздерге рақмет. Сіздердің арқаларыңызда педагог-сарапшы санатына сәтті өттім. Алдағы уақытта зерттеушіге тапсырғым келеді. Менде доступ бір жылға алып тұрақты дайындаламын
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip2.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -101,23 +101,23 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Молбаева Динара
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Ақтау қаласы, №85 ЖОМ химия пәні мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Рақмет айналайын, тесттен сәтті өттім. Енді портфолио тапсырамын. Сіздердің мынау бағдарламаны телефонға орнатып алып күнде дайындалдым. Педагогикадан сұрақтар жақсы екен. Оңай тапсырдым
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img alt="avatar" class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img alt="avatar" class="com_avatar" src="{{asset('images/comment/Icon_trip3.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -126,23 +126,23 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Утепбергенова Акнур
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Шымкент қаласы, №54 ЖОМ қазақ тілі мен әдебиеті мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Қайырлы күн. Сіздер ұсынған тестпен дайындалып, 14.07.2022 жылы қазақ тілі пен әдебиеті пәнінен 57, ал педагогикадан 15 балл алып, жалпы 72 балмен өттім. Істеріңізге сәттілік тілеймін. Ұстаздарға көмектеріңіз тие берсін
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -151,15 +151,40 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Оспанова Жанар
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Семей қаласы, №21 ЖОМ бастауыш сынып мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Сәлеметсіздерме! Мер бүгін сіздердің тесттеріңіздің арқасында жақсы балл жинап өттім, рақмет сіздерге. Алла разы болсын, еңбектеріңіздің жемісін көре беріңіздер. 2 сағатта барлық сұрақтарға жауап беріп өтіп кеттім. Ең бастысы тестті қайталай берген дұрыс екен. Барлығы сіздердің берген тесттен келді рақмет көп көп!
+                    </div>
+                </div>
+            </div>
+            <div class="com_block">
+                <div class="com_head">
+                    <div class="wrap">
+                        <img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar_default.png')}}">
+                        <div>
+                            <div class="com_stars">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                            </div>
+                            <div class="com_user_nm">
+                                Мулдиярова Мадина
+                            </div>
+                            <div class="com_user_info">
+                                Семей қаласы, №21 ЖОМ бастауыш сынып мұғалімі
+                            </div>
+                        </div>
+                    </div>
+                    <div class="com_body">
+                        Қайырлы күн, мен 2 апта бұрын сіздердің приложениені жүктеп тестке жазылғанмын. Шынымды айтсам маған қатты ұнады. Дайындалу өте оңай. Рақмет сіздердің осындай түсінікті қылып дацындалдырып жатқандарыңызға. Кеше күйемді де тіркедім. Оған да ұнаған секілді. Енді кез келген уақытта дайындаламын деп жүр
                     </div>
                 </div>
             </div>
@@ -174,7 +199,7 @@
         <div class="cns row">
             <div class="col-md-4">
                 <div class="cns_block">
-                    <div class="cns_val">556 @lang('site.ұстаз')</div>
+                    <div class="cns_val">5 566 @lang('site.ұстаз')</div>
                     <div class="cns_info">
                         @lang('site.Біздің бағдарламаны орнатқан ұстаздар саны')
                     </div>
@@ -199,6 +224,7 @@
         </div>
     </div>
 </section>
+<!--
 <section class="video_review">
     <div class="cst_pd">
         <div class="com_info">
@@ -235,6 +261,7 @@
     </div>
 
 </section>
+-->
 <section class="free_cns">
     <div class="cns_bg_block"></div>
     <div class="cns_free_block">
@@ -252,8 +279,8 @@
             </div>
             <div class="col-md-4">
                 <p>@lang('site.Редакциямен байланыс')</p>
-                <span class="num">8(701)-026-95-95</span>
-                <a href="#"><button class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
+                <span class="num">8(778)-389-92-92</span>
+                <a href="#"><button onclick="open('https://api.whatsapp.com/send?phone=+77783899292&text=Сәлеметсіз%20бе!%20Тегін%20консультацияға%20жазылғым%20келеді!&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
             </div>
         </div>
     </div>

@@ -12,7 +12,7 @@
                     @csrf
 
                     <div class="modal-body-title">Cіздің қазіргі поштаңыз</div>
-                    <div>{{ auth()->user()->email }}</div>
+                    <div class="modal-body-subtitle">{{ auth()->user()->email }}</div>
 
                     <div class="modal-body-line"></div>
 

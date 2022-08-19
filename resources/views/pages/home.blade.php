@@ -22,13 +22,31 @@
                     <img alt="zhan" class="img-svg" src="{{asset('images/zhan-2.svg')}}">
                     <span>{{__('site.Танымал')}}</span>
                 </a>
-                <a  @auth href="{{ route('news.saves') }}" @endauth @guest onclick="openLogin('Saves')" @endguest class="my_ls my_materials @if($url=='Saves') active @endif">
+                <a @auth href="{{ route('news.saves') }}" @endauth @guest onclick="openLogin('Saves')" @endguest class="my_ls my_materials @if($url=='Saves') active @endif">
                     <img alt="zhan" class="img-svg" src="{{asset('images/zhan-3.svg')}}">
                     <span>{{__('site.Сақталғандар')}}</span>
                 </a>
             </div>
         </div>
     </div>
+    <div class="owl-stage-outer-wrap">
+        <div class="slider owl-stage-outer">
+            <div class="cst-main-carousel owl-carousel">
+               @if($slider != null)
+                    @foreach($slider as $slide)
+                    <div class="img_wrap">
+                        <a href="{{
+                           $slide->linkToAdvice ? '/consultation/'.$slide->slug($slide->advice->title).'?id='.$slide->advice->id : $slide->link
+                           }}">
+                            <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
+                        </a>
+                    </div>
+                    @endforeach
+                @endif
+            </div>
+        </div>
+    </div>
+
     <div class="cst_pd">
         <div class="cst_container ns_list" id="results"></div>
         <div class="cst_container ns_list">
@@ -43,6 +61,7 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -55,7 +74,7 @@
 
         $(window).scroll(function() {
 
-            if ($(window).scrollTop() + $(window).height() >= $(document).height()-100) {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
                 page++;
                 load_more(page);
             }
@@ -85,23 +104,24 @@
 
 
     });
-$(document).on('click touchstart', '#ajax-form .btn.ns_savebut', function() {
-            let data = $(this).closest('#ajax-form');
-            let btn = data.find('.btn.ns_savebut');
-            $.ajax({
-                url: '/news/save',
-                type: "GET", //метод отправки
-                dataType: "html", //формат данных
-                data: data.serialize(), // Сеарилизуем объект
-                success: function(response) { //Данные отправлены успешно
-                    btn.hasClass('active') ?
-                        btn.removeClass('active') : btn.addClass('active');
+    $(document).on('click touchstart', '#ajax-form .btn.ns_savebut', function() {
+        let data = $(this).closest('#ajax-form');
+        let btn = data.find('.btn.ns_savebut');
+        $.ajax({
+            url: '/news/save',
+            type: "GET", //метод отправки
+            dataType: "html", //формат данных
+            data: data.serialize(), // Сеарилизуем объект
+            success: function(response) { //Данные отправлены успешно
+                btn.hasClass('active') ?
+                    btn.removeClass('active') : btn.addClass('active');
 
-                },
-                error: function(response) { // Данные не отправлены
-                    console.log('fail');
-                }
-            });
+            },
+            error: function(response) { // Данные не отправлены
+                console.log('fail');
+            }
         });
+    });
+
 </script>
 @endsection

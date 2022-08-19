@@ -9,8 +9,10 @@ class FaqSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required',
-            'answer' => 'required'
+            'question.kk' => 'required',
+            'question.ru' => 'required',
+            'answer.kk' => 'required',
+            'answer.ru' => 'required',
         ];
     }
 }

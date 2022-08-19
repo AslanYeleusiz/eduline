@@ -19,7 +19,7 @@ class SmsController extends Controller
         $phone = $request->phone;
 
         $this->smsService->checkLimitSms($phone);
-            $code = $this->smsService->generateCode();
+        $code = $this->smsService->generateCode();
 
         $msg = __('auth.sms_verification') . $code;
 

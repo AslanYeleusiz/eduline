@@ -53,117 +53,92 @@
         </div>
     </section>
     <section class="calc_comments">
-        <!--owl-stage-->
-        <div class="cst_pd">
-            <div class="com_info">
-                @lang('site.Біздің бағдарлама жайлы ұстаздардың пікірлері')
-            </div>
+<!--owl-stage-->
+    <div class="cst_pd">
+        <div class="com_info">
+            @lang('site.Біздің бағдарлама жайлы ұстаздардың пікірлері')
         </div>
-        <div class="owl-stage-outer">
-            <div class="cst_com_slider owl-carousel com_cst_pd">
-                <div class="com_block">
-                    <div class="com_head">
-                        <div class="row">
-                            <div class="col-2"><img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                            <div class="col">
-                                <div class="com_stars">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                </div>
-                                <div class="com_user_nm">
-                                    Сембиев Нартай Аманғалиұлы
-                                </div>
-                                <div class="com_user_info">
-                                    @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
-                                </div>
+    </div>
+    <div class="owl-stage-outer-wrap">
+        <div class="cst_com_slider owl-carousel com_cst_pd">
+            <div class="com_block">
+                <div class="com_head">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip1.png')}}">
+                        <div>
+                            <div class="com_stars">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
-                        </div>
-                        <div class="com_body">
-                            @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                            <div class="com_user_nm">
+                                Жасағанберген Жанар
+                            </div>
+                            <div class="com_user_info">
+                                Алматы қаласы, №11 ЖОМ бастауыш сынып мұғалімі
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="com_block">
-                    <div class="com_head">
-                        <div class="row">
-                            <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                            <div class="col">
-                                <div class="com_stars">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                    <img src="{{asset('images/star.png')}}">
-                                </div>
-                                <div class="com_user_nm">
-                                    Сембиев Нартай Аманғалиұлы
-                                </div>
-                                <div class="com_user_info">
-                                    @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
-                                </div>
-                            </div>
-                        </div>
-                        <div class="com_body">
-                            @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
-                        </div>
+                    <div class="com_body">
+                        Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін
                     </div>
                 </div>
-                <div class="com_block">
-                    <div class="com_head">
-                        <div class="row">
-                            <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                            <div class="col">
-                                <div class="com_stars">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                </div>
-                                <div class="com_user_nm">
-                                    Сембиев Нартай Аманғалиұлы
-                                </div>
-                                <div class="com_user_info">
-                                    @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
-                                </div>
+            </div>
+            <div class="com_block">
+                <div class="com_head">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip2.png')}}">
+                        <div>
+                            <div class="com_stars">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
-                        </div>
-                        <div class="com_body">
-                            @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                            <div class="com_user_nm">
+                                Сабырбекова Назгул
+                            </div>
+                            <div class="com_user_info">
+                                Шымкент қаласы, №55 ЖОМ химия пәні мұғалімі
+                            </div>
                         </div>
                     </div>
+                    <div class="com_body">
+                        Консултация маған ұнады. Химия пәнінен ғылыми жобаны қалай жазуды толықтай үйреніп шықтым. Алдағы уақытта ҚМЖ бойынша да кеңес алғым келеді. Біз сияқты жас педагогтарға керек екен
+                    </div>
                 </div>
-                <div class="com_block">
-                    <div class="com_head">
-                        <div class="row">
-                            <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                            <div class="col">
-                                <div class="com_stars">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                    <img alt="star" src="{{asset('images/star.png')}}">
-                                </div>
-                                <div class="com_user_nm">
-                                    Сембиев Нартай Аманғалиұлы
-                                </div>
-                                <div class="com_user_info">
-                                    @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
-                                </div>
+            </div>
+            <div class="com_block">
+                <div class="com_head">
+                    <div class="wrap">
+                        <img alt="avatar" class="com_avatar" src="{{asset('images/comment/Icon_trip3.png')}}">
+                        <div>
+                            <div class="com_stars">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                                <img alt="star" src="{{asset('images/star.png')}}">
+                            </div>
+                            <div class="com_user_nm">
+                                Калбанова Перизат
+                            </div>
+                            <div class="com_user_info">
+                                Нұр-сұлтан қаласы, №2 ағылшын тілі мұғалімі
                             </div>
                         </div>
-                        <div class="com_body">
-                            @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
-                        </div>
+                    </div>
+                    <div class="com_body">
+                        Сіздерге рақмет. Көп көмеген тигізді. Приложение де керемет екен. ҚМЖ жасау бойынша біраз ақпарат алып алдым. Ағылшын тілінен бұрын интернет көп іздеп таба алмайтын едім. Енді өзім жасай беретін болдым
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <section class="consult_res">
         <div class="cst_pd">
             <div class="com_info">
@@ -197,42 +172,6 @@
             </div>
         </div>
     </section>
-    <section class="video_review">
-        <div class="cst_pd">
-            <div class="com_info">
-                @lang('site.Видео пікірлер')
-            </div>
-        </div>
-        <div class="v-carousel">
-            <div class="owl-carousel cst-carousel">
-                <div class="v_block">
-                    <div class="v_play"></div>
-                    <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                        <source src="{{asset('videos/v1.mp4')}}">
-                    </video>
-                </div>
-                <div class="v_block">
-                    <div class="v_play"></div>
-                    <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                        <source src="{{asset('videos/v1.mp4')}}">
-                    </video>
-                </div>
-                <div class="v_block">
-                    <div class="v_play"></div>
-                    <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                        <source src="{{asset('videos/v1.mp4')}}">
-                    </video>
-                </div>
-                <div class="v_block">
-                    <div class="v_play"></div>
-                    <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                        <source src="{{asset('videos/v1.mp4')}}">
-                    </video>
-                </div>
-            </div>
-        </div>
-
-    </section>
     <section class="free_cns">
         <div class="cns_bg_block"></div>
         <div class="cns_free_block">
@@ -250,9 +189,9 @@
                 </div>
                 <div class="col-md-4">
                     <p>@lang('site.Редакциямен байланыс')</p>
-                    <span class="num">+7 701 026 95 95</span>
+                    <span class="num">8(778)-389-92-92</span>
                     <a href="#">
-                        <button class="btn chat-btn">@lang('site.Чатқа қосылу')</button>
+                        <button onclick="open('https://api.whatsapp.com/send?phone=+77783899292&text=Сәлеметсіз%20бе!%20Тегін%20консультацияға%20жазылғым%20келеді!&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)" class="btn chat-btn">@lang('site.Чатқа қосылу')</button>
                     </a>
                 </div>
             </div>

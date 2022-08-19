@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\PersonalAdviceController;
 use App\Http\Controllers\Admin\PersonalAdviceOrderController;
 use App\Http\Controllers\Admin\PromoCodeController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\Test\TestAppealController;
 use App\Http\Controllers\Admin\Test\TestClassController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Admin\Test\TestQuestionController;
 use App\Http\Controllers\Admin\Test\TestSubjectController;
 use App\Http\Controllers\Admin\Test\TestSubjectOptionController;
 use App\Http\Controllers\Admin\Test\TestSubjectPreparationController;
+use App\Http\Controllers\Admin\Test\TestTrainerController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
@@ -71,9 +73,13 @@ Route::resource('news-types', NewsTypeController::class)->except(['show'])->name
 Route::resource('news', NewsController::class)->except(['show'])->names('news');
 Route::get('news/{id}/comments', [NewsController::class, 'comments'])->name('news.comments');
 Route::delete('news/{id}/comments/{comment_id}', [NewsController::class, 'commentDelete'])->name('news.commentsDelete');
+Route::resource('slider', SliderController::class)->except(['show'])->names('slider');
+
 Route::name('test.')->group(function () {
     Route::resource('languages', TestLanguageController::class)->except(['show'])->names('languages');
     Route::resource('subjects', TestSubjectController::class)->except(['show'])->names('subjects');
+    Route::resource('trainers', TestTrainerController::class)->except(['show'])->names('trainers');
+
 
     // -- options//
     // test_subject_preparation_classes delete //

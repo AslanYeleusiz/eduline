@@ -133,12 +133,13 @@ class AuthController extends Controller
 
     private function sendSms($phone)
     {
-        $code = $phone % 10000;
+//        $code = $phone % 10000;
+        $code = $this->smsService->generateCode();
 
         $msg = __('auth.sms_verification') . $code;
 
         // $result =
-        // $this->smsService->send($msg, $phone);
+        $this->smsService->send($msg, $phone);
 
         // $smsVerification =
         SmsVerification::create([

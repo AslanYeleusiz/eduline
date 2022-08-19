@@ -33,8 +33,9 @@ class PageController extends Controller
     {
         $pageName = __('site.Профиль');
         $user = Auth::user();
+        $phone = '+7('.substr($user->phone, 0, 3).') '.substr($user->phone, 3, 3).' '.substr($user->phone, 6, 2).'-'.substr($user->phone, 8, 2);
 
-        return view('pages.profile.index', compact(['pageName', 'user']));
+        return view('pages.profile.index', compact(['pageName', 'user', 'phone']));
     }
 
     public function subscription(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

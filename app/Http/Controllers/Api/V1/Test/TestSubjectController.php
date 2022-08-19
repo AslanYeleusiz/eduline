@@ -7,12 +7,21 @@ use App\Http\Resources\V1\Test\TestSubjectPreparationTestFinishedResource;
 use App\Http\Resources\V1\Test\TestSubjectPreparationTestStartResource;
 use App\Http\Resources\V1\Test\TestSubjectTestFinishedResource;
 use App\Http\Resources\V1\Test\TestSubjectTestStartResource;
+use App\Http\Resources\V1\Test\TestSubjectResource;
 use App\Models\TestQuestion;
 use App\Models\TestSubject;
+use App\Models\TestLanguage;
 use Illuminate\Http\Request;
 
 class TestSubjectController extends Controller
 {
+    public function index(Request $request)
+    {
+        $languageId = $request->language_id ?? TestLanguage::first()->id;
+        $subjects = TestSubject::where('language_id', $languageId)->get();
+        return TestSubjectResource::collection($subjects);
+    }
+
     public function testStart($subjectId)
     {
         $subject = TestSubject::findOrFail($subjectId);

@@ -35,10 +35,10 @@
             <div class="col-md-6">
                 <div class="dl_block">
                     <div class="dl_info">
-                        @lang('site.Педагогтар мен білім беру ұйымдарының басқа да қызметкерлеріне арналған жалақы калькуляторы – ауылдық жерлерде жұмыс істегені үшін жалақының өсуін ескере отырып, жылдық түзету коэффициентін ескере отырып, біліктілік санатын және мамандығы бойынша жұмыс өтілін ескере отырып, лауазымдық жалақыны есептеуге көмектеседі. , аптасына стандартты оқу жүктемесіне байланысты 2021 жылдың 1 қыркүйегінен бастап белгіленген.')
+                        @lang('site.Құрметті педагогтер eduline.kz сайтында сіздер өз еңбекақыңызды есептей аласыздар. Калькулятор облыстық, қалалық және аудандық деңгейдегі жалпы білім беретін мектептер қызметкерлерінің жалақысын есептеуге арналған.')
                     </div>
                     <div class="add_info">
-                        @lang('site.Сондай-ақ калькулятор мұғалімдердің лауазымдық жалақысына негізгі қосымша ақылар мен үстемеақыларды есептеуге көмектеседі.')
+                        @lang('site.eduline.kz сайтында арнайы форманы толтырған соң автоматты түрде нақты жалақы сомасы шығады. Сосын оны pdf форматта сақтап алуға болады. Онлайн калькулятор есебін қағазға шығарып, бухгалтерге қайта санатып алыңыз. Еңбек кодексіне сәйкес, бухгалтер сізге ай сайынғы еңбекақыңыз бен ондағы төлемдер, аударымдар жайлы анықтама беруге міндетті.')
                     </div>
                     <div class="store_info">
                         @lang('site.Калькуляторды қолдану үшін біздің бағдарламаны телефонға орнатыңыз')
@@ -62,13 +62,13 @@
             @lang('site.Біздің бағдарлама жайлы ұстаздардың пікірлері')
         </div>
     </div>
-    <div class="owl-stage-outer">
+    <div class="owl-stage-outer-wrap">
         <div class="cst_com_slider owl-carousel com_cst_pd">
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip1.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -80,20 +80,20 @@
                                 Сембиев Нартай Аманғалиұлы
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Талдықорған қаласы, №35 ЖОМ бастауыш сынып мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Алматы облысы, Талдықорған қаласы бүгін 25 пайыздық үстемені алдық. Сіздердің калькулятормен толықтай ұқсас екен. Қазақ тілде тамаша калькулятор. Көп әріптестерім өзінің еңбекақысын есептеп көздері ашылып қалды. Барлығы әділ заң бойынша беріп жатыр. Сіздерге рақмет
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img class="com_avatar" src="{{asset('images/comment/Icon_trip2.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -102,23 +102,23 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Адилшиева Гаухар
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Шұбарсу ауылы, №11 ЖОМ орыс тілі мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Доплата за особые условия труда деген Барлық мұғалімге қатысы бар екен. Мен ауылда сабақ беремін. Осы уақытқа дейін біздің бухгалтер қате есептеп берген. Осы калькулятор арқасында біліп отырмыз. Енді білім бөлімдеріне арыз жазып барлық ақшамызды қайтарып алуға тырысамыз. Сіздерге рақмет, қаншама педагогтарға көмектеріңіз тиіп жатыр
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img alt="avatar" class="com_avatar" src="{{asset('images/comment/Icon_trip3.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -127,23 +127,23 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Медетова Мейрамгуль
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Ақсу қаласы, №15 ЖОМ АӘД мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Құрметті әріптестер сіздерге үлкен алғысымды айтқым келеді. Нұржамал ханым сізге де рақмет. Менің сұрағымды жерде қалдырмай калькуляторды түсіндіріп бердіңіз. Мен айлығым калькултор көрсеткен суммадан аз шығып не істерімді білмей жүр едім. Сіздердің арқаларыңызда бәрін шешім жетпеген ақшаны маған кеше аударып берді.
                     </div>
                 </div>
             </div>
             <div class="com_block">
                 <div class="com_head">
-                    <div class="row">
-                        <div class="col-2"><img class="com_avatar" src="{{asset('images/avatar.png')}}"></div>
-                        <div class="col">
+                    <div class="wrap">
+                        <img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar.png')}}">
+                        <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
                                 <img alt="star" src="{{asset('images/star.png')}}">
@@ -152,15 +152,15 @@
                                 <img alt="star" src="{{asset('images/star.png')}}">
                             </div>
                             <div class="com_user_nm">
-                                Сембиев Нартай Аманғалиұлы
+                                Оспанова Жанар
                             </div>
                             <div class="com_user_info">
-                                @lang('site.Алматы қаласы, №25 ЖОМ бастауыш сынып мұғалімі')
+                                Семей қаласы, №21 ЖОМ бастауыш сынып мұғалімі
                             </div>
                         </div>
                     </div>
                     <div class="com_body">
-                        @lang('site.Нұржамал ханымнан консультация алып, бір ай аралығында авторлық бағларламамды қорғап шықтым. Қазір педагог шебер болдым. Сіздерге үлкен рақмет. Бұрын қиын деп жүрген көп жұмыстарымды оңай бітіріп берді. Сіздерге шығармашылық табыс тілеймін')
+                        Сәлеметсіздерме! Мер бүгін сіздердің тесттеріңіздің арқасында жақсы балл жинап өттім, рақмет сіздерге. Алла разы болсын, еңбектеріңіздің жемісін көре беріңіздер. 2 сағатта барлық сұрақтарға жауап беріп өтіп кеттім. Ең бастысы тестті қайталай берген дұрыс екен. Барлығы сіздердің берген тесттен келді рақмет көп көп!
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
         <div class="cns row">
             <div class="col-md-4">
                 <div class="cns_block">
-                    <div class="cns_val">556 569</div>
+                    <div class="cns_val">425 569</div>
                     <div class="cns_info">
                         @lang('site.Біздің калькуляторды қолданған жалпы ұстаздар саны')
                     </div>
@@ -183,7 +183,7 @@
             </div>
             <div class="col-md-4">
                 <div class="cns_block">
-                    <div class="cns_val">355 965</div>
+                    <div class="cns_val">25 965</div>
                     <div class="cns_info">
                         @lang('site.Соңғы 30 күнде калькуляторды қолданған ұстаздар саны')
                     </div>
@@ -199,42 +199,6 @@
             </div>
         </div>
     </div>
-</section>
-<section class="video_review">
-    <div class="cst_pd">
-        <div class="com_info">
-            @lang('site.Видео пікірлер')
-        </div>
-    </div>
-    <div class="v-carousel">
-        <div class="owl-carousel cst-carousel">
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-        <div class="v_block">
-           <div class="v_play"></div>
-            <video class="video" controls="controls" poster="{{asset('images/banners/v1.png')}}">
-                <source src="{{asset('videos/v1.mp4')}}">
-            </video>
-        </div>
-    </div>
-    </div>
-
 </section>
 <section class="free_cns">
     <div class="cns_bg_block"></div>
@@ -253,8 +217,8 @@
             </div>
             <div class="col-md-4">
                 <p>@lang('site.Редакциямен байланыс')</p>
-                <span class="num">8(701)-026-95-95</span>
-                <a href="#"><button class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
+                <span class="num">8(778)-389-92-92</span>
+                <a href="#"><button onclick="open('https://api.whatsapp.com/send?phone=+77783899292&text=Сәлеметсіз%20бе!%20Тегін%20консультацияға%20жазылғым%20келеді!&amp;utm_source=share2','send',`scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=0,height=0,left=-1000,top=-1000`)"  class="btn chat-btn">@lang('site.Чатқа қосылу')</button></a>
             </div>
         </div>
     </div>

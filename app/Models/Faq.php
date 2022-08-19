@@ -9,4 +9,9 @@ class Faq extends Model
 {
     use HasFactory;
     protected $fillable = ['question', 'answer'];
+
+    public $casts = [
+        'answer' => 'json',
+        'question' => 'json',
+    ];
 }

@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TestDirection extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['name'];
+
 
     public function subjects()
     {
@@ -22,6 +23,7 @@ class TestDirection extends Model
     }
 
     protected $casts = [
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
+        'name' => 'json',
     ];
 }

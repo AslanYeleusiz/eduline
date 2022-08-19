@@ -20,6 +20,9 @@ class NewsItemsResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'lat_title' => $this->slug($this->title),
+            // https://eduline.kz/news/{{lat_title}}-{{id}}.html
+
             'short_description' => $this->short_description,
             'image' => $this->image ? Storage::disk('public')->url( News::IMAGE_PATH . $this->image) : null,
             'comments_count' => $this->when(isset($this->comments_count), $this->comments_count),
@@ -27,9 +30,10 @@ class NewsItemsResource extends JsonResource
             'news_type' =>  new NewsTypeResource($this->whenLoaded('newsType')),
             'is_saved' => $this->when(isset($this->is_saved),(bool) $this->is_saved),
             'created_at' => $this->created_at?->diffForHumans()
+
         ];
     }
-    
+
     public function with($request)
     {
         return ['status' => true];

@@ -3,9 +3,11 @@
 
 body {
     margin: 0;
+    padding: 0;
     font-family: "Gilroy-Regular";
     font-size: 18px;
     line-height: 21.6px;
+    box-sizing: border-box;
     color: #292929;
     text-align: left;
     background-color: #F3F6FF;
@@ -46,7 +48,6 @@ body {
     position: fixed;
     z-index: 20;
 }
-
 .aregistration {
     font-family: "Gilroy-Medium";
     font-size: 16px;
@@ -407,6 +408,18 @@ li.menu-li {
 .news{
     padding-bottom: 100px;
 }
+.slider{
+    display: none;
+}
+.slider .owl-stage{
+    height: auto;
+}
+.slider .owl-carousel .owl-item img{
+    width: 100%;
+}
+.slider .owl-stage-outer{
+    margin-top: 0;
+}
 .news .m_block{
     margin: 30px 0 0;
     padding: 20px 30px 30px;
@@ -686,8 +699,9 @@ textarea.form-control:focus::placeholder{
 .calculate {
     display: block;
     width: 100vw;
-    height: 770px;
+    padding-bottom: 130px;
     background: #ffffff;
+    position: relative;
     border-bottom-left-radius: 50% 20px;
     border-bottom-right-radius: 50% 20px;
 }
@@ -700,7 +714,8 @@ textarea.form-control:focus::placeholder{
     padding-top: 60px;
     width: 100%;
     text-align: center;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 48px;
     line-height: 58px;
     text-transform: uppercase;
@@ -773,7 +788,8 @@ textarea.form-control:focus::placeholder{
 
 .com_info {
     width: 100%;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 30px;
     letter-spacing: 0em;
     text-align: center;
@@ -796,20 +812,44 @@ textarea.form-control:focus::placeholder{
 }
 
 .com_avatar {
-    padding-top: 19px;
+    width: 60px;
+    height: 60px;
+}
+.img_wrap{
+    width: 85vw;
+}
+.mainSliderImage{
+    width: 100%;
+    padding-top: 56.25%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.owl-stage-outer-wrap{
+    width: 100vw;
+    margin-top: 50px;
+}
+.news .owl-stage-outer-wrap{
+    width: 100vw;
+    margin-top: 0;
 }
 
 .com_block {
     width: 445px;
-    height: 280px;
+    height: 320px;
     background: #ffffff;
     border-radius: 6px;
-    margin: 0 10px;
     flex: 0 0 445px;
     padding: 25px;
     color: #292929;
     box-shadow: 0px 14px 50px rgba(0, 0, 0, 0.08);
 }
+.com_block .com_head .wrap{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 .com_user_nm {
     margin-top: 10px;
@@ -829,6 +869,11 @@ textarea.form-control:focus::placeholder{
     margin-top: 12px;
     font-size: 17px;
     line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
 }
 
 .owl-nav,
@@ -843,7 +888,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .owl-stage {
-    height: 350px;
+    height: 364px;
 }
 
 .owl-carousel button.owl-dot {
@@ -892,7 +937,7 @@ textarea.form-control:focus::placeholder{
 
 /*CONSULTATION SECTION*/
 .consult_res {
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 .cns {
@@ -912,12 +957,18 @@ textarea.form-control:focus::placeholder{
 
 .cns_info {
     color: #8B8B8B;
+    max-width: 260px;
+    margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
 }
 
+.owl-carousel .owl-stage-outer {
+    padding-top: 20px;
+}
 
 /*VIDEO REVIEW SECTION*/
+/*
 .video_review {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -952,11 +1003,7 @@ textarea.form-control:focus::placeholder{
     padding-left: 280px;
 }
 
-.owl-stage-outer {
-    margin-top: 30px;
-    width: 100vw;
-    overflow: hidden;
-}
+
 
 .owl-carousel .owl-video-wrapper {
     height: 350px;
@@ -969,6 +1016,7 @@ textarea.form-control:focus::placeholder{
 .owl-carousel .owl-video-tn {
     background-size: 100%;
 }
+*/
 
 /*
 @keyframes slide {
@@ -986,6 +1034,7 @@ textarea.form-control:focus::placeholder{
 
 /*Footer*/
 .free_cns {
+    margin-top: 100px;
     padding-bottom: 100px;
     padding-left: 150px;
     display: flex;
@@ -1159,7 +1208,8 @@ textarea.form-control:focus::placeholder{
 }
 
 .k_form_head {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     font-size: 36px;
     line-height: 52px;
     color: #FFFFFF;
@@ -1257,6 +1307,7 @@ textarea.form-control:focus::placeholder{
 }
 
 .t_img {
+    position: absolute;
     float: left;
     transform: translate(-80px, -76px);
 }
@@ -1273,9 +1324,11 @@ textarea.form-control:focus::placeholder{
 }
 
 .t_store_info {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
     font-size: 20px;
+    font-weight: 600;
     line-height: 24px;
+    color: #000000;
 
 }
 
@@ -2339,7 +2392,8 @@ textarea.form-control:focus::placeholder{
 
 .help-block {
     display: none;
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     margin-top: 30px;
     text-align: center;
     color: #a94442;
@@ -2423,7 +2477,8 @@ textarea.form-control:focus::placeholder{
 }
 
 #successPromocode .modal-title {
-    font-family: 'Exo2-Bold';
+    font-family: 'Exo2-Medium';
+    font-weight: 600;
     text-align: center;
 }
 

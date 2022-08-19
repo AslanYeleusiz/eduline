@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\RolesController;
 use App\Http\Controllers\Api\V1\SalaryCalculatorController;
 use App\Http\Controllers\Api\V1\SmsController;
 use App\Http\Controllers\Api\V1\SubscriptionController;
+use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\Test\FullTestController;
 use App\Http\Controllers\Api\V1\Test\TestDirectionController;
 use App\Http\Controllers\Api\V1\Test\TestLanguageController;
@@ -43,6 +44,9 @@ Route::get('faqs', [FaqController::class, 'index'])->name('faqs.index');
 Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
 
 Route::apiResource('personal-advices', PersonalAdviceController::class)->only(['index', 'show'])->names('personalAdvices.');
+
+Route::apiResource('slider', SliderController::class)->only(['index'])->names('slider.');
+
 Route::post('personal-advices/{id}', [PersonalAdviceController::class, 'store'])->name('personalAdvices.store');
 
 Route::middleware('auth:api')->group(function () {
@@ -54,6 +58,7 @@ Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news
 
 Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
 });
+
 Route::get('roles', RolesController::class)->name('roles');
 
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
@@ -70,6 +75,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     //  Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');
 
     Route::prefix('subjects')->group(function () {
+        Route::get('/', [TestSubjectController::class, 'index'])->name('subjects.index');
         Route::get('/{id}/preparations', [TestSubjectPreparationController::class, 'preparationsByTitle'])->name('subjects.options.preparationsByTitle');
         Route::get('/{id}/preparations/{preparation_id}', [TestSubjectPreparationController::class, 'preparation'])->name('subjects.options.preparation');
         Route::post('/{id}/preparations/order', [TestSubjectPreparationController::class, 'preparationOrderStore'])->name('subjects.options.preparationOrderStore');

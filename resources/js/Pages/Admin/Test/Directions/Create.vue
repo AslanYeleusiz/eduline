@@ -34,18 +34,30 @@
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Аты</label>
+                            <label for="">Аты (Қазақша)</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="direction.name"
-                                name="name"
+                                v-model="direction.name.kk"
+                                name="name_kk"
                                 placeholder="Аты"
                             />
                             <validation-error :field="'name'" />
                         </div>
                         <div class="form-group">
-                            <label for="description">Пәднер</label>
+                            <label for="">Аты (Орысша)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="direction.name.ru"
+                                name="name_ru"
+                                placeholder="Аты"
+                            />
+                            <validation-error :field="'name'" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Пәндер</label>
                             <div class="input-group mb-3">
                                 <input
                                     class="form-control"
@@ -156,7 +168,12 @@ export default {
 
     data() {
         return {
-            direction: {},
+            direction: {
+                name: {
+                    kk: '',
+                    ru: '',
+                }
+            },
             subject_search: "",
             selectAllSubjects: false,
             subject_ids: []
