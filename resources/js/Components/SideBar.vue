@@ -308,12 +308,6 @@
                             },
                         ],
                     },
-                    {
-                        name: "Слайдер",
-                        font: "fa-newspaper",
-                        route_name: "admin.slider.index",
-                        menu_active: ["admin.slider"],
-                    },
                 ],
             };
         },

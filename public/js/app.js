@@ -22280,11 +22280,6 @@ __webpack_require__.r(__webpack_exports__);
           route_name: "admin.test.preparationAppeals.index",
           menu_active: ["admin.test.preparationAppeals"]
         }]
-      }, {
-        name: "Слайдер",
-        font: "fa-newspaper",
-        route_name: "admin.slider.index",
-        menu_active: ["admin.slider"]
       }]
     };
   },
