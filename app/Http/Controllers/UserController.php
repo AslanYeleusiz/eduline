@@ -65,8 +65,11 @@ class UserController extends Controller
 
     public function checkSendSmsNewPhone(\App\Http\Requests\UserPhoneSaveRequest $request): \Illuminate\Http\JsonResponse
     {
-        $phone = Helper::clearPhoneMask($request->phone);
-
+        if(strlen($request->phone) > 10){
+            $phone = Helper::clearPhoneMask($request->phone);
+        }else{
+            $phone = $request->phone;
+        }
         $this->smsService->checkLimitSms($phone);
 
         $code = $this->smsService->generateCode();
