@@ -31,6 +31,7 @@ class FullTestFinishedResource extends JsonResource
             'subject' => new FullTestFinishedSubjectsResource($this->when(isset($this->subject), $this->subject))
         ];
     }
+
     public function with($request)
     {
         return ['status' => true];
