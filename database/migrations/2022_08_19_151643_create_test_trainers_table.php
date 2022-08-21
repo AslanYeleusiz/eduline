@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('test_trainers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('test_subject_id')->constrained()->cascadeOnDelete();
+            $table->text('subject');
             $table->integer('price')->default(0);
             $table->text('description');
             $table->integer('installments');

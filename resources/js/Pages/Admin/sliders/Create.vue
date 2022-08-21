@@ -95,7 +95,7 @@
                             <label for="">Платформа</label>
                             <select class="form-control" v-model="slider.in_app" name="slider" required>
                                 <option :value="null">Жүктеу платформасын таңдаңыз</option>
-                                <option value="1">Сайтқы</option>
+                                <option value="1">Сайтқа</option>
                                 <option value="2">Мобильді қосымшаға</option>
                             </select>
                             <validation-error :field="'in_app'" />
