@@ -7,26 +7,22 @@ use App\Models\News;
 use App\Models\NewsComment;
 use App\Models\UserNewsSaved;
 use App\Models\Slider;
+use App\Services\NewsService;
 use Carbon\Carbon;
 
 class NewsController extends Controller
 {
+    private $newsService;
+    public function __construct(NewsService $newsService)
+    {
+        $this->newsService = $newsService;
+    }
     public function index(Request $request){
         $slider = Slider::where('in_app', 1)->get();
         $news = News::orderBy('created_at','desc')->paginate(2);
-        $data = '';
         $now = Carbon::now();
         if ($request->ajax()) {
-            foreach ($news as $new) {
-                $date = Carbon::parse($new->created_at)->diffForHumans();
-                $data.='<div class="m_block"><div class="ns_pre"><div class="ns_cat">'.$new->newsType->name.'</div>
-                <div class="ns_time">'.$date.'</div></div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="mp_head">'.$new->title.'</div></a><div class="mp_info">'.$new->short_description.'</div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="ns_img" style="background-image:url('.asset("/storage/images/news").'/'.$new->image.')"></div></a><div class="ns_pre">
-                <div class="ns_likes"><div class="ns_views"></div>'.$new->view.'<div class="ns_comments"></div>'.$new->comments->count().'
-                </div><form method="get" action="" id="ajax-form">'.csrf_field().'<input type="hidden" name="id_news" value="'.$new->id.'"><button type="button" class="btn ns_savebut';
-                if($new->thisUserSaved) $data .= ' active';
-                $data .= '"></button></form></div></div>';
-            }
-            return $data;
+            return $this->newsService->craft($news);
         }
         return view('pages.home',[
             'news' => $news,
@@ -36,19 +32,9 @@ class NewsController extends Controller
     }
     public function announcement(Request $request){
         $news = News::where('news_types_id','=','8')->orderBy('created_at','desc')->paginate(2);
-        $data = '';
         $now = Carbon::now();
         if ($request->ajax()) {
-            foreach ($news as $new) {
-                $date = Carbon::parse($new->created_at)->diffForHumans();
-                $data.='<div class="m_block"><div class="ns_pre"><div class="ns_cat">'.$new->newsType->name.'</div>
-                <div class="ns_time">'.$date.'</div></div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="mp_head">'.$new->title.'</div></a><div class="mp_info">'.$new->short_description.'</div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="ns_img" style="background-image:url('.asset("/storage/images/news").'/'.$new->image.')"></div></a><div class="ns_pre">
-                <div class="ns_likes"><div class="ns_views"></div>'.$new->view.'<div class="ns_comments"></div>'.$new->comments->count().'
-                </div><form method="get" action="" id="ajax-form">'.csrf_field().'<input type="hidden" name="id_news" value="'.$new->id.'"><button type="button" class="btn ns_savebut';
-                if($new->thisUserSaved) $data .= ' active';
-                $data .= '"></button></form></div></div>';
-            }
-            return $data;
+            return $this->newsService->craft($news);
         }
         return view('pages.home',[
             'news' => $news,
@@ -58,19 +44,9 @@ class NewsController extends Controller
     }
     public function popular(Request $request){
         $news = News::orderBy('view','desc')->paginate(2);
-        $data = '';
         $now = Carbon::now();
         if ($request->ajax()) {
-            foreach ($news as $new) {
-                $date = Carbon::parse($new->created_at)->diffForHumans();
-                $data.='<div class="m_block"><div class="ns_pre"><div class="ns_cat">'.$new->newsType->name.'</div>
-                <div class="ns_time">'.$date.'</div></div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="mp_head">'.$new->title.'</div></a><div class="mp_info">'.$new->short_description.'</div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="ns_img" style="background-image:url('.asset("/storage/images/news").'/'.$new->image.')"></div></a><div class="ns_pre">
-                <div class="ns_likes"><div class="ns_views"></div>'.$new->view.'<div class="ns_comments"></div>'.$new->comments->count().'
-                </div><form method="get" action="" id="ajax-form">'.csrf_field().'<input type="hidden" name="id_news" value="'.$new->id.'"><button type="button" class="btn ns_savebut';
-                if($new->thisUserSaved) $data .= ' active';
-                $data .= '"></button></form></div></div>';
-            }
-            return $data;
+            return $this->newsService->craft($news);
         }
         return view('pages.home',[
             'news' => $news,
@@ -80,19 +56,9 @@ class NewsController extends Controller
     }
     public function news_saves(Request $request){
         $uns = UserNewsSaved::where('user_id', auth()->user()->id)->orderBy('created_at','desc')->paginate(2);
-        $data = '';
         $now = Carbon::now();
         if ($request->ajax()) {
-            foreach ($uns as $news) {
-                $new = $news -> newsSaves;
-                if($new->thisUserSaved){
-                $date = Carbon::parse($new->created_at)->diffForHumans();
-                $data.='<div class="m_block"><div class="ns_pre"><div class="ns_cat">'.$new->newsType->name.'</div>
-                <div class="ns_time">'.$date.'</div></div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="mp_head">'.$new->title.'</div></a><div class="mp_info">'.$new->short_description.'</div><a href="/news/'.$new->slug($new->title).'-'.$new->id.'.html"><div class="ns_img" style="background-image:url('.asset("/storage/images/news").'/'.$new->image.')"></div></a><div class="ns_pre">
-                <div class="ns_likes"><div class="ns_views"></div>'.$new->view.'<div class="ns_comments"></div>'.$new->comments->count().'
-                </div><form method="get" action="" id="ajax-form">'.csrf_field().'<input type="hidden" name="id_news" value="'.$new->id.'"><button type="button" class="btn ns_savebut active"></button></form></div></div>';}
-            }
-            return $data;
+            return $this->newsService->craft($news);
         }
         return view('pages.home',[
             'news' => $uns,
