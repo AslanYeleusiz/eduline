@@ -215,9 +215,9 @@
                     $(".loader").removeClass("loading");
                     $('.modal').modal('hide');
 
-//                    setTimeout(() => {
-//                        window.location.reload();
-//                    }, 500);
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 500);
                 },
                 error: function(err) {
                     $(".loader").removeClass("loading");
