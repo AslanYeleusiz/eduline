@@ -192,6 +192,7 @@
 
             $.ajax({
                 url: "/register",
+                method: "POST",
                 type: "POST",
                 data: {
                     '_token': _token,
@@ -206,9 +207,9 @@
                     $(".loader").removeClass("loading");
                     $('.modal').modal('hide');
 
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 500);
+//                    setTimeout(() => {
+//                        window.location.reload();
+//                    }, 500);
                 },
                 error: function(err) {
                     $(".loader").removeClass("loading");
