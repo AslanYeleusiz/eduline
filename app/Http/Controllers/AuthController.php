@@ -85,7 +85,7 @@ class AuthController extends Controller
             'role_id' => $request->role_id
         ]);
         Auth::login($user);
-        return response()->json(['data' => ['successere' => true]]);
+        return response()->json(['data' => ['success' => true]]);
     }
 
     public function checkSendSmsNewPhone(RegisterRequest $request): \Illuminate\Http\JsonResponse
