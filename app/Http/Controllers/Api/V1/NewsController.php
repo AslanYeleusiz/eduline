@@ -16,7 +16,7 @@ class NewsController extends Controller
 {
     public function index(Request $request)
     {
-        $newsType = $request->input('news_type');
+        $newsType = $request->news_type;
 
         $news = News::with(['newsType'])
             ->withCount('comments')
