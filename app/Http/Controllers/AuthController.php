@@ -97,10 +97,10 @@ class AuthController extends Controller
         }
         $this->smsService->checkLimitSms($phone);
 
-        $code = '9999';
-//        $code = $this->smsService->generateCode();
-//        $msg = __('auth.sms_verification') . $code;
-//        $this->smsService->send($msg, $phone);
+//        $code = '9999';
+        $code = $this->smsService->generateCode();
+        $msg = __('auth.sms_verification') . $code;
+        $this->smsService->send($msg, $phone);
 
         SmsVerification::create([
             'code' => $code,
