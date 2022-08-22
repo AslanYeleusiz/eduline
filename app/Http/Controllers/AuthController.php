@@ -82,7 +82,8 @@ class AuthController extends Controller
             'phone' => $phone,
             'full_name' => $request->full_name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id
         ]);
         Auth::login($user);
         return response()->json(['data' => ['success' => true]]);
@@ -97,7 +98,7 @@ class AuthController extends Controller
         }
         $this->smsService->checkLimitSms($phone);
 
-        $code = 9999;
+        $code = '9999';
 //        $code = $this->smsService->generateCode();
 //        $msg = __('auth.sms_verification') . $code;
 //        $this->smsService->send($msg, $phone);
