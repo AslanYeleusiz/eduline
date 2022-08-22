@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\SmsVerification;
 use App\Helpers\Helper;
 use App\Services\V1\SmsService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
