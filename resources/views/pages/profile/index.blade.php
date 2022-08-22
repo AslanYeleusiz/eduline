@@ -9,7 +9,7 @@
 <section class="materials">
     <div class="cst_pd">
         <div class="profile-header">
-            <div class="profile-header-image" style=""></div>
+            <div class="profile-header-image" style="background-image: url({{asset('storage/images/avatars/'.$user->avatar)}})"></div>
             <div class="profile-header-info">
                 <div class="profile-username">{{ $user->full_name }}</div>
                 <div class="profile-information">
