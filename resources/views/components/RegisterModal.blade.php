@@ -10,7 +10,7 @@
                 <form id="registerForm" class="modal-form register-form" action="{{ route('ajax.register') }}"
                       method="POST">
                     @csrf
-                    <h2 class="modal-title">Тіркелу</h2>
+                    <h2 class="modal-title">@lang('site.Тіркелу')</h2>
                     <div class="inner-form">
                         <div class="inner-form-left">
                             <div class="form-input-block">
@@ -19,14 +19,14 @@
                                 <span class="invalid" role="alert" id="error-register-phone"></span>
                             </div>
                             <div class="form-input-block">
-                                <label class="modal-form-label" for="full_name">Есіміңіз:</label>
+                                <label class="modal-form-label" for="full_name">@lang('site.Есіміңіз'):</label>
                                 <input id="full_name" name="full_name"
                                        class="modal-form-input" type="text"
                                        placeholder="Есіміңізді енгізіңіз">
                                 <span class="invalid" role="alert" id="error-register-full_name"></span>
                             </div>
                             <div class="form-input-block">
-                                <label class="modal-form-label" for="register-email">Email Почтаңыз:</label>
+                                <label class="modal-form-label" for="register-email">@lang('site.Email почтаңыз'):</label>
                                 <input id="register-email" name="email"
                                        class="modal-form-input" type="email"
                                        placeholder="Email почтаңызды енгізіңіз">
@@ -37,7 +37,7 @@
                         <div class="inner-form-right">
                             <div class="form-input-block">
                                 <i class="form-input-icon icon-eye" onclick="iconEye(this)"></i>
-                                <label class="modal-form-label" for="register-password">Құпиясөз:</label>
+                                <label class="modal-form-label" for="register-password">@lang('site.Құпиясөз'):</label>
                                 <input id="register-password" name="password"
                                        class="modal-form-input password-input" type="password"
                                        placeholder="Құпия сөзді енгізіңіз">
@@ -46,8 +46,7 @@
                             </div>
                             <div class="form-input-block">
                                 <i class="form-input-icon icon-eye" onclick="iconEye(this)"></i>
-                                <label class="modal-form-label" for="register-password_confirmation">Құпия сөзді қайта
-                                    енгізіңіз:</label>
+                                <label class="modal-form-label" for="register-password_confirmation">@lang('site.Құпия сөзді қайта енгізіңіз'):</label>
                                 <input id="register-password_confirmation" name="password_confirmation"
                                        class="modal-form-input password-input" type="password"
                                        placeholder="Құпия сөзді қайта енгізіңіз">
@@ -64,18 +63,18 @@
                         <div class="checkbox">
                             <input class="default-checkbox-input custom-checkbox" type="radio" id="register-teacher"
                                    name="role_id" value="2">
-                            <label for="register-teacher">Мұғалім</label>
+                            <label for="register-teacher">@lang('site.Мұғалім')</label>
                         </div>
                         <div class="checkbox">
                             <input class="default-checkbox-input custom-checkbox" type="radio" id="register-pupil"
                                    name="role_id" value="3">
-                            <label for="register-pupil">Оқушы</label>
+                            <label for="register-pupil">@lang('site.Оқушы')</label>
                         </div>
                         <div class="checkbox">
                             <input class="default-checkbox-input custom-checkbox" type="radio"
                                    id="register-educator"
                                    name="role_id" value="4">
-                            <label for="register-educator">Тәрбиеші</label>
+                            <label for="register-educator">@lang('site.Тәрбиеші')</label>
                         </div>
                         <div class="checkbox">
                             <input class="default-checkbox-input custom-checkbox" type="radio" id="register-student"
@@ -88,13 +87,12 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="modal-default-btn">Тіркелу</button>
+                    <button type="submit" class="modal-default-btn">@lang('site.Тіркелу')</button>
                 </form>
             </div>
 
             <div class="modal-footer register-modal-footer">
-                <p class="modal-description">«Тіркелу» батырмасын басу арқылы сіз пайдаланушы келісімінде көрсетілген
-                    шарттармен келісесіз</p>
+                <p class="modal-description">@lang('site.«Тіркелу» батырмасын басу арқылы сіз пайдаланушы келісімінде көрсетілген шарттармен келісесіз')</p>
             </div>
         </div>
     </div>

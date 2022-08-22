@@ -87,7 +87,7 @@
 
             $.ajax({
                 url: "/register/sms-send",
-                method: $(this).attr('method'),
+                method: "POST",
                 type: "POST",
                 data: {
                     '_token': _token,
