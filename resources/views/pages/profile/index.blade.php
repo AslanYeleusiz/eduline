@@ -141,6 +141,9 @@
         }
     });
     let timer;
+    let current_password;
+    let password;
+    let password_confirmation;
 
     function comingSoon() {
         $('.modal').modal('hide');
@@ -362,9 +365,9 @@
         $('#editPasswordForm').submit(function(e) {
             e.preventDefault();
 
-            let current_password = $('#current_password').val();
-            let password = $('#password').val();
-            let password_confirmation = $('#password_confirmation').val();
+            current_password = $('#current_password').val();
+            password = $('#password').val();
+            password_confirmation = $('#password_confirmation').val();
 
 
             console.log(current_password + '<br/> ' + password + '<br/> ' + password_confirmation)
@@ -393,14 +396,6 @@
                         $('#successPopup').modal('show');
                         $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
                     }, 500)
-
-                    if ($("#successPopup").css("display") == "none") {
-                        window.location.reload();
-                    }
-
-                    // if (res.data && res.data.success) {
-                    //     window.location.reload();
-                    // }
                 },
                 error: function(err) {
                     $(".loader").removeClass("loading");
