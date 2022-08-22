@@ -166,7 +166,7 @@
             <div class="com_block">
                 <div class="com_head">
                     <div class="wrap">
-                        <img alt="com_avatar" class="com_avatar" src="{{asset('images/avatar_default.png')}}">
+                        <img alt="com_avatar" class="com_avatar" src="{{asset('images/comment/Icon_trip5.png')}}">
                         <div>
                             <div class="com_stars">
                                 <img alt="star" src="{{asset('images/star.png')}}">
