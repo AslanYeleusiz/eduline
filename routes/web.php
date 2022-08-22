@@ -103,3 +103,16 @@ Route::prefix('materials')->name('materials')->group(function () {
             Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
         });
     });
+
+
+//Clear route cache:
+ Route::get('/route-cache', function() {
+     $exitCode = Artisan::call('route:cache');
+     return 'Routes cache has been cleared';
+ });
+
+ //Clear config cache:
+ Route::get('/config-cache', function() {
+     $exitCode = Artisan::call('config:cache');
+     return 'Config cache has been cleared';
+ });
