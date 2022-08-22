@@ -69,6 +69,22 @@
 
         let roleId;
         let _token;
+        let timer;
+        function startTimer() {
+            let time = 59;
+            time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
+            timer = setInterval(() => {
+                time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
+                if (time < 1) {
+                    stopTimer();
+                    $('.modal-retry-btn').addClass('active');
+                } else time--;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timer);
+        }
 
         $(".smsCode").keyup(function() {
             console.log('ergerg')
