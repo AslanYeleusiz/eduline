@@ -69,13 +69,12 @@ class AuthController extends Controller
      */
     public function register(Request $request): \Illuminate\Http\JsonResponse
     {
-        DB::beginTransaction();
         $phone = Helper::clearPhoneMask($request->phone);
         $sms = SmsVerification::where('code', $request->code)
             ->where('phone', $phone)
             ->statusPending()
             ->firstOr(function () {
-                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
+                throw ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
             });
         $sms->delete();
         $user = User::create([
