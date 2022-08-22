@@ -17,11 +17,10 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $newsType = $request->news_type;
-
         $news = News::with(['newsType'])
             ->withCount('comments')
-            ->when($newsType, function($query) use ($newsType){
-                if ($newsType == null) $query->orderByDesc('created_at');
+            ->when(function($query) use ($newsType){
+                if ($newsType == null) $query->orderByDesc('id');
                 else if ($newsType == 'popular') {
                     $query->orderByDesc('view');
                 } else if ($newsType == 'notify') {
