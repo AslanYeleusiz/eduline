@@ -2,12 +2,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Құпия сөзді жаңарту</h2>
-                <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+               <div></div>
+                <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editPasswordForm" class="modal-form" action="{{ route('profile.ajax.updatePassword', auth()->user()) }}" method="GET">
+                <form id="editPasswordForm" class="modal-form" style="gap:20px;" action="{{ route('profile.ajax.updatePassword', auth()->user()) }}" method="GET">
                     @csrf
+                    <h2 class="modal-title">Құпия сөзді жаңарту</h2>
                     <input type="hidden" name="current_password" id="current_password" value="{{ auth()->user()->password }}">
 
                     <div class="form-input-block">

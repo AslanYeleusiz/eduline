@@ -31,7 +31,7 @@ class NewsController extends Controller
                 } else if($newsType == 'saved') {
                     $query->has('thisUserSaved');
                 } else {
-                    $query->orderByDesc('created_at');
+                    $query->orderBy('created_at');
                 }
             })
             ->withExists('thisUserSaved as is_saved')

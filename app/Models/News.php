@@ -44,7 +44,7 @@ class News extends Model
 //            ->where('user_id', $userId);
         return $this->hasOne(UserNewsSaved::class)
             ->where('user_id', auth()->check() ? auth()->user()->id : 0)
-            ->orderByDesc('created_at');
+            ->orderBy('created_at');
     }
 
     public $casts = [
