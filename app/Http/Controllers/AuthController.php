@@ -15,6 +15,10 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    public function __construct(public SmsService $smsService)
+    {
+    }
+
     public function adminLoginForm(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         $phone = Helper::clearPhoneMask($request->phone);
