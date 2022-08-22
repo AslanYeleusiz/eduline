@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal register-inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">Тіркелу</h2>
-                <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                <div></div>
+                <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="registerForm" class="modal-form register-form" action="{{ route('ajax.register') }}"
                       method="POST">
                     @csrf
+                    <h2 class="modal-title">Тіркелу</h2>
                     <div class="inner-form">
                         <div class="inner-form-left">
                             <div class="form-input-block">

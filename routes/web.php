@@ -59,7 +59,8 @@ Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adm
 Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
     Route::view('register', 'pages.home')->name('register');
-    Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
+    Route::post('register/sms-send', [AuthController::class, 'checkSendSmsNewPhone'])->name('ajax.register');
+    Route::post('register', [AuthController::class, 'register'])->name('ajax.checkSendSmsNewPhone');
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
 

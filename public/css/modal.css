@@ -122,6 +122,29 @@
     gap: 5px;
 }
 
+#loginPopup #loginForm{
+    gap: 15px;
+}
+#loginPopup .modal-title{
+    padding-bottom: 15px;
+}
+#loginPopup .modal-default-btn{
+    margin-top: 5px;
+}
+#loginPopup .modal-footer{
+    padding-bottom: 0;
+}
+#loginPopup .modal-header{
+    padding-bottom: 20px;
+}
+#registerPopup .modal-footer{
+    padding-bottom: 0;
+}
+#registerPopup .modal-header{
+    padding-bottom: 20px;
+}
+
+
 .modal-form-label {
     font-family: "Gilroy-Regular";
     font-style: normal;
