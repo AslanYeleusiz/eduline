@@ -83,7 +83,11 @@
             fullName = $('#full_name').val();
             email = $('#register-email').val();
             phone = $('#register-phone').val();
-
+            phone = phone.split(' ').join('');
+            phone = phone.split('(').join('');
+            phone = phone.split(')').join('');
+            phone = phone.split('-').join('');
+            phone = phone.split('+7').join('');
             password = $('#register-password').val();
             password_confirmation = $('#register-password_confirmation').val();
 
@@ -93,6 +97,7 @@
             clearInvalidFeedback()
 
             $(".loader").addClass("loading");
+            console.log(phone);
 
             $.ajax({
                 url: "/register/sms-send",
