@@ -57,8 +57,9 @@
     @guest
     @include('components.LoginModal')
     @include('components.RegisterModal')
-    @include('components.SmsModal')
+    @include('components.SmsRegisterModal')
     <script>
+
         let fullName;
         let email;
         let phone;
@@ -68,6 +69,14 @@
 
         let roleId;
         let _token;
+
+        $(".smsCode").keyup(function() {
+            console.log('ergerg')
+            if (this.value.length == this.maxLength) {
+                $(this).next('input').focus();
+            }
+        });
+
         $("#registerForm").submit(function(e) {
             e.preventDefault();
 
@@ -170,7 +179,7 @@
             });
         });
 
-        $('#smsForm').submit(function(e) {
+        $('#smsRegisterForm').submit(function(e) {
             e.preventDefault();
 
             let code1 = $('.smsCode1').val();
@@ -191,8 +200,7 @@
             clearInvalidFeedback()
 
             $.ajax({
-                url: "/register",
-                method: "POST",
+                url: $(this).attr('action'),
                 type: "POST",
                 data: {
                     '_token': _token,
