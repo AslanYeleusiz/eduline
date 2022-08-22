@@ -259,6 +259,7 @@
             let phone = $('#phone').val();
             $("#smsModal .modal-phone").text(phone);
             $("#smsModal #thisPhone").val(phone);
+            sendUrl = "/profile/phone/update";
             setTimeout(() => {
                 $('#smsModal').modal('show');
                 stopTimer();
@@ -553,16 +554,20 @@
                 success: function(res) {
                     $(".loader").removeClass("loading");
                     $('.modal').modal('hide');
-
                     setTimeout(() => {
                         $('#successPopup').modal('show');
-                        $('#successPopup .modal-title').text('Номеріңіз сәтті өзгертілді');
-                    }, 500)
+                        $('#successPopup .modal-title').text(res.message);
+                    }, 500);
 
-
-                    if ($("#successPopup").css("display") == "none") {
+                    setTimeout(() => {
                         window.location.reload();
-                    }
+                    }, 2000);
+
+
+
+//                    if ($("#successPopup").css("display") == "none") {
+//                        window.location.reload();
+//                    }
 
                     // if (res.data && res.data.success) {
                     //     window.location.reload();

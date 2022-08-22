@@ -62,9 +62,7 @@ class UserController extends Controller
         $user->save();
         DB::commit();
 
-        return response()->json(['data' => [
-            'success' => true,
-        ]]);
+        return response()->json(new MessageResource(__('message.success.updatedPhone')));
     }
 
     public function checkSendSmsNewPhone(\App\Http\Requests\UserPhoneSaveRequest $request): \Illuminate\Http\JsonResponse
@@ -75,7 +73,7 @@ class UserController extends Controller
             $phone = $request->phone;
         }
         $this->smsService->checkLimitSms($phone);
-
+//        $code = 9999;
         $code = $this->smsService->generateCode();
         $msg = __('auth.sms_verification') . $code;
         $this->smsService->send($msg, $phone);
@@ -125,7 +123,7 @@ class UserController extends Controller
 
         $user->password = Hash::make($request->password);
         $user->save();
-        return new MessageResource(__('message.success.saved'));
+        return response()->json(new MessageResource(__('message.success.updatedPassword')));
     }
 
     public function updateEmail(UserEmailSaveRequest $request)

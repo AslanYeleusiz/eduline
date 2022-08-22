@@ -796,7 +796,8 @@ a.desc-info-link {
 }
 
 .modal-success-padding {
-    padding: 40px 50px 0;
+    padding: 0px 50px 5px;
+    text-align: center;
 }
 
 .modal-title.modal-title-second {

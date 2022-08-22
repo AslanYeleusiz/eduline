@@ -80,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/password/send-sms', [UserController::class, 'checkSendSmsNewPassword'])->name('.ajax.smsSendPassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
-        Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
+        Route::post('/phone/update', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
         Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('.ajax.checkSendSmsPhone');
     });
 });
