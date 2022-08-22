@@ -76,8 +76,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/show/subscription', [PageController::class, 'showSubscription'])->name('.show.subscription');
         Route::get('/link/confirm-email/', [UserController::class, 'linkToConfirmEmail'])->name('.link.confirm.email');
         Route::get('/confirm-email/{email}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
-        Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
-        Route::get('/password/send-sms', [UserController::class, 'checkSendSmsNewPassword'])->name('.ajax.updatePassword');
+        Route::post('/password/update', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
+        Route::get('/password/send-sms', [UserController::class, 'checkSendSmsNewPassword'])->name('.ajax.smsSendPassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
         Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');

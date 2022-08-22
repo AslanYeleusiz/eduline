@@ -49,7 +49,7 @@ class UserController extends Controller
             $user->sex = $request->sex;
         }
         if ($request->hasFile('avatar')) {
-            $user->avatar = FileService::saveFile($request->file('avatar'), User::IMAGE_PATH);
+            $user->avatar = FileService::saveFile($request->file('avatar'), User::IMAGE_PATH, $user->avatar);
         }
         $user->save();
         return new UserProfileResource($user);

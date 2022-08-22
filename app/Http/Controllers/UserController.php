@@ -91,9 +91,38 @@ class UserController extends Controller
         ]]);
     }
 
+    public function checkSendSmsNewPassword(\App\Http\Requests\UserPassSendCodeRequest $request)
+    {
+        $user = auth()->user();
+        $phone = $user->phone;
+
+        $this->smsService->checkLimitSms($phone);
+
+//        $code = 9999;
+         $code = $this->smsService->generateCode();
+        $msg = __('auth.sms_verification') . $code;
+        $this->smsService->send($msg, $phone);
+
+        SmsVerification::create([
+            'code' => $code,
+            'status' => SmsVerification::STATUS_PENDING,
+            'phone' => $phone
+        ]);
+        return new MessageResource(__('message.success.sent'));
+    }
+
     public function updatePassword(Request $request)
     {
         $user = auth()->user();
+        $phone = $user->phone;
+        $sms = SmsVerification::where('code', $request->code)
+            ->where('phone', $phone)
+            ->statusPending()
+            ->firstOr(function () {
+                throw  ValidationException::withMessages(['code' => 'Неверный код или номер телефона']);
+            });
+        $sms->delete();
+
         $user->password = Hash::make($request->password);
         $user->save();
         return new MessageResource(__('message.success.saved'));
