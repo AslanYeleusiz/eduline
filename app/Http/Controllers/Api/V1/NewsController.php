@@ -21,7 +21,8 @@ class NewsController extends Controller
         $news = News::with(['newsType'])
             ->withCount('comments')
             ->when($newsType, function($query) use ($newsType){
-                if ($newsType == 'popular') {
+                if ($newsType == null) $query->orderByDesc('created_at');
+                else if ($newsType == 'popular') {
                     $query->orderByDesc('view');
                 } else if ($newsType == 'notify') {
                     $announcementNewsTypeName = 'хабарландыру';
