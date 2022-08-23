@@ -50,7 +50,7 @@ class TestByOptionService
     public function getRandQuestionsAndInsertUserAnswer($test)
     {
         $test->option->load(['questions' => fn ($query) => $query->isActive()->limit($test->subject->questions_count)]);
-        $questions = $test->option->orderBy('number', 'desc')->questions;
+        $questions = $test->option->questions;
         $userAnswers = $this->insertRandQuestions($test, $questions);
 
         $userAnswers = collect($userAnswers);
