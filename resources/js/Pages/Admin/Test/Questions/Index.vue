@@ -61,7 +61,7 @@
                                                 @keyup.enter="search"
                                             />
                                         </td>
-                                        
+
                                         <td>
                                             <select
                                                 v-model="filter.subject_id"
@@ -75,7 +75,7 @@
                                                 <option v-for="subject in subjects"
                                                 :value="subject.id"
                                                 :key="'subject' + subject.id">
-                                                    {{ subject.name }} 
+                                                    {{ subject.name }}
                                                     {{ subject.description ? ` (${subject.description})` : ''}}
                                                 </option>
                                             </select>
@@ -90,10 +90,10 @@
                                                 <option :value="null">
                                                     Барлығы
                                                 </option>
-                                                <option value="false">
+                                                <option value="true">
                                                     Иә
                                                 </option>
-                                                <option value="true">
+                                                <option value="false">
                                                     Жоқ
                                                 </option>
                                             </select>
