@@ -49,7 +49,8 @@ class TestByOptionService
 
     public function getRandQuestionsAndInsertUserAnswer($test)
     {
-        $test->option->load(['questions' => fn ($query) => $query->orderByPivot('number')-> $query->isActive()->limit($test->subject->questions_count)]);
+        $test->option->load(['questions' => fn ($query) => $query->orderByPivot('number')->isActive()->limit($test->subject->questions_count)]);
+
         $questions = $test->option->questions;
         $userAnswers = $this->insertRandQuestions($test, $questions);
 
