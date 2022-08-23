@@ -49,7 +49,7 @@ class TestByOptionService
 
     public function getRandQuestionsAndInsertUserAnswer($test)
     {
-        $test->option->load(['questions' => fn ($query) => $query->isActive()->limit($test->subject->questions_count)]);
+        $test->option->load(['questions' => fn ($query) => $query->isActive()->limit($test->subject->questions_count-5)]);
         $questions = $test->option->questions;
         $userAnswers = $this->insertRandQuestions($test, $questions);
 
