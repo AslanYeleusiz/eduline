@@ -27,7 +27,7 @@ class TestSubjectController extends Controller
         $subject = TestSubject::findOrFail($subjectId);
         $questions = TestQuestion::isActive()
         ->subjectBy($subject->id)
-        ->inRandomOrder()->limit($subject->questions_count)->get();
+        ->limit($subject->questions_count)->get();
         return new TestSubjectTestStartResource(compact('subject', 'questions'));
     }
 
