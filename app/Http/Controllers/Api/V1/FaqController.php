@@ -11,11 +11,7 @@ class FaqController extends Controller
 {
     public function index(Request $request)
     {
-
         $language = $request->header('Accept-Language');
-        if (!$language) {
-            return new ErrorException('Язык не выбрано');
-        }
 
         $faqs = Faq::latest()->get();
         foreach($faqs as $faq){

@@ -17,9 +17,7 @@ class TestSubjectController extends Controller
 {
     public function index(Request $request)
     {
-        $language = $request->header('Accept-Language');
-        if($language == 'kk')       $languageId = 1;
-        else if($language == 'ru')  $languageId = 2;
+        $languageId = $request->language_id ?? TestLanguage::first()->id;
         $subjects = TestSubject::where('language_id', $languageId)->get();
         return TestSubjectResource::collection($subjects);
     }
