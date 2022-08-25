@@ -13,23 +13,16 @@ class TestDirectionController extends Controller
 {
     public function index(Request $request)
     {
-        $languageId = $request->language_id ?? TestLanguage::first()->id;
-        if (!$languageId) {
-            return new ErrorException('Язык не выбрано');
-        }
+        $language = $request->header('Accept-Language');
+        if($language == 'kk')       $languageId = 1;
+        else if($language == 'ru')  $languageId = 2;
         $directions = TestDirection::isActive()
         ->with(['subjects' => fn($query)=>$query->where('language_id', $languageId)])
         ->get();
-
         foreach($directions as $direction){
-            if($languageId == 1)
-                $direction->name = $direction->name['kk'];
-            else if($languageId == 2)
-                $direction->name = $direction->name['ru'];
+            $direction->name = $direction->name[$language];
         }
-
-
         return TestDirectionsResource::collection($directions)
-        ->additional(['status' => true]);;
+        ->additional(['status' => true]);
     }
 }
