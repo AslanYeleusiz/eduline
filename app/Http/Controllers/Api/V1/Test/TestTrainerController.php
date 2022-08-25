@@ -20,7 +20,7 @@ class TestTrainerController extends Controller
     public function index(Request $request)
     {
         $languageId = $request->language_id ?? TestLanguage::first()->id;
-        if (!isset($languageId)) {
+        if (!$languageId) {
             return new ErrorException('Язык не выбрано');
         }
         $trainers = TestTrainer::isActive()->get();
