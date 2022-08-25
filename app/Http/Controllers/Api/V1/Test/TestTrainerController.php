@@ -19,21 +19,15 @@ class TestTrainerController extends Controller
      */
     public function index(Request $request)
     {
-        $languageId = $request->language_id ?? TestLanguage::first()->id;
-        if (!$languageId) {
+        $language = $request->header('Accept-Language');
+        if (!$language) {
             return new ErrorException('Язык не выбрано');
         }
         $trainers = TestTrainer::isActive()->get();
 
         foreach($trainers as $trainer){
-            if($languageId == 1){
-                $trainer->subject = $trainer->subject['kk'];
-                $trainer->description = $trainer->description['kk'];
-            }
-            else if($languageId == 2){
-                $trainer->subject = $trainer->subject['ru'];
-                $trainer->description = $trainer->description['ru'];
-            }
+            $trainer->subject = $trainer->subject[$language];
+            $trainer->description = $trainer->description[$language];
         }
 
         return TrainerResource::collection($trainers)->additional(['status' => true]);
@@ -68,20 +62,15 @@ class TestTrainerController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $languageId = $request->language_id ?? TestLanguage::first()->id;
-        if (!$languageId) {
+        $language = $request->header('Accept-Language');
+        if (!$language) {
             return new ErrorException('Язык не выбрано');
         }
         $trainers = TestTrainer::findOrFail($id);
 
-        if($languageId == 1){
-            $trainers->subject = $trainers->subject['kk'];
-            $trainers->description = $trainers->description['kk'];
-        }
-        else if($languageId == 2){
-            $trainers->subject = $trainers->subject['ru'];
-            $trainers->description = $trainers->description['ru'];
-        }
+        $trainers->subject = $trainers->subject[$language];
+        $trainers->description = $trainers->description[$language];
+
         return new TrainerResource($trainers);
     }
 
