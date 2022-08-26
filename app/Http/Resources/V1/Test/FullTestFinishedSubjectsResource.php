@@ -17,6 +17,8 @@ class FullTestFinishedSubjectsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'correct_answers_count' => $this->pivot->correct_answers_count,
+            'incorrect_answers_count' => $this->pivot->incorrect_answers_count,
             'is_pedagogy' => $this->is_pedagogy,
             'questions_count' => $this->when(isset($this->questions_count), function () {
                 return $this->questions_count;

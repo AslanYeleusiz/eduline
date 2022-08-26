@@ -61,7 +61,7 @@ class FullTestService
 
 
         foreach ($test->subjects as $subject) {
-            $questionCount = $questions->filter(fn ($question) => $question->subject_id == $subject->id)->count();
+            $questionCount = $questions->filter(fn($question) => $question->subject_id == $subject->id)->count();
             if ($questionCount < $subject->questions_count) {
                 $insufficientQuestions = TestQuestion::limitSubjectQuestions($subject->id, $subject->questions_count - $questionCount)->get();
                 $questions = $questions->merge($insufficientQuestions);
@@ -71,7 +71,7 @@ class FullTestService
         $userAnswers = $this->insertRandQuestions($test, $questions);
 
         foreach ($test->subjects as $subject) {
-            $subject->userAnswers = collect($userAnswers)->filter(fn ($userAnswer) => $userAnswer['subject_id'] == $subject->id);
+            $subject->userAnswers = collect($userAnswers)->filter(fn($userAnswer) => $userAnswer['subject_id'] == $subject->id);
         }
         return $test;
     }
@@ -100,6 +100,14 @@ class FullTestService
 
     public function saveFinish($test)
     {
+        DB::beginTransaction();
+        foreach ($test->subjects as $subject) {
+            $subjectResult = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
+            $subject->pivot->correct_answers_count = $subjectResult['correctAnswerCount'];
+            $subject->pivot->incorrect_answers_count = $subjectResult['incorrectAnswerCount'];
+            $subject->pivot->save();
+        }
+
         $result = TestService::getScoreAndAnswersCount(array_merge_recursive(...$test->subjects->pluck('userAnswers')->toArray()));
         $test->is_finished = true;
         $test->score = $result['score'];
@@ -107,6 +115,8 @@ class FullTestService
         $test->incorrect_answers_count = $result['incorrectAnswerCount'];
         $test->end_date = now();
         $test->save();
+
+        DB::commit();
         return $test;
     }
 }
