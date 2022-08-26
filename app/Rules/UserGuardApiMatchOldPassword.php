@@ -19,7 +19,7 @@ class UserGuardApiMatchOldPassword implements Rule
     {
         return Hash::check($value, auth()->guard('api')->user()->password);
     }
-   
+
     /**
      * Get the validation error message.
      *
@@ -27,6 +27,6 @@ class UserGuardApiMatchOldPassword implements Rule
      */
     public function message()
     {
-        return 'The :attribute is match with old password.';
+        return __('message.pass.doesNotMatch');
     }
 }

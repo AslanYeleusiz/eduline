@@ -11,21 +11,12 @@ class FaqController extends Controller
 {
     public function index(Request $request)
     {
-
-        $languageId = $request->language_id ? $request->language_id : 1;
+        $language = $request->header('Accept-Language');
 
         $faqs = Faq::latest()->get();
         foreach($faqs as $faq){
-            if($languageId == 1){
-                $faq->question = $faq->question['kk'];
-                $faq->answer = $faq->answer['kk'];
-            }
-
-            else if($languageId == 2){
-                $faq->question = $faq->question['ru'];
-                $faq->answer = $faq->answer['ru'];
-            }
-
+            $faq->question = $faq->question[$language];
+            $faq->answer = $faq->answer[$language];
         }
         return FaqResource::collection($faqs)->additional([
             'status' => true

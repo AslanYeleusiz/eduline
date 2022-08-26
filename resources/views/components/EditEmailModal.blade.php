@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+               <div></div>
+                <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="editEmailForm" class="modal-form" action="{{ route('profile.ajax.updateEmail', auth()->user()) }}"

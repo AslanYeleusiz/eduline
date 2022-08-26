@@ -59,7 +59,8 @@ Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adm
 Route::middleware('guest')->group(function () {
     Route::view('login', 'pages.home')->name('login');
     Route::view('register', 'pages.home')->name('register');
-    Route::post('register', [AuthController::class, 'register'])->name('ajax.register');
+    Route::post('register/sms-send', [AuthController::class, 'checkSendSmsNewPhone'])->name('ajax.register');
+    Route::post('register', [AuthController::class, 'register'])->name('ajax.checkSendSmsNewPhone');
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
 });
 
@@ -75,10 +76,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/show/subscription', [PageController::class, 'showSubscription'])->name('.show.subscription');
         Route::get('/link/confirm-email/', [UserController::class, 'linkToConfirmEmail'])->name('.link.confirm.email');
         Route::get('/confirm-email/{email}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
-        Route::get('/password/update/{user}', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
+        Route::post('/password/update', [UserController::class, 'updatePassword'])->name('.ajax.updatePassword');
+        Route::get('/password/send-sms', [UserController::class, 'checkSendSmsNewPassword'])->name('.ajax.smsSendPassword');
         Route::get('/email/update/{user}', [UserController::class, 'updateEmail'])->name('.ajax.updateEmail');
         Route::get('/update/{user}', [UserController::class, 'updateProfile'])->name('.ajax.updateProfile');
-        Route::post('/phone/update/', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
+        Route::post('/phone/update', [UserController::class, 'updatePhone'])->name('.ajax.updatePhone');
         Route::post('/phone/send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('.ajax.checkSendSmsPhone');
     });
 });
@@ -102,3 +104,16 @@ Route::prefix('materials')->name('materials')->group(function () {
             Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
         });
     });
+
+
+//Clear route cache:
+ Route::get('/route-cache', function() {
+     $exitCode = Artisan::call('route:cache');
+     return 'Routes cache has been cleared';
+ });
+
+ //Clear config cache:
+ Route::get('/config-cache', function() {
+     $exitCode = Artisan::call('config:cache');
+     return 'Config cache has been cleared';
+ });

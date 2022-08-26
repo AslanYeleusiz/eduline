@@ -261,7 +261,8 @@
                             "admin.test.questions",
                             "admin.test.classes",
                             "admin.test.questionAppeals",
-                            "admin.test.preparationPreparations"
+                            "admin.test.preparationPreparations",
+                            "admin.test.trainers"
                         ],
                         route_name: "",
                         childs_items: [{
@@ -311,6 +312,12 @@
                                 font: "fa-newspaper",
                                 route_name: "admin.test.preparationAppeals.index",
                                 menu_active: ["admin.test.preparationAppeals"],
+                            },
+                            {
+                                name: "Тренермен дайындық",
+                                font: "fa-newspaper",
+                                route_name: "admin.test.trainers.index",
+                                menu_active: ["admin.test.trainers"],
                             },
                         ],
                     },

@@ -13,6 +13,7 @@ class TestDirectionController extends Controller
 {
     public function index(Request $request)
     {
+        $language = $request->header('Accept-Language');
         $languageId = $request->language_id ?? TestLanguage::first()->id;
         if (!$languageId) {
             return new ErrorException('Язык не выбрано');
@@ -20,16 +21,10 @@ class TestDirectionController extends Controller
         $directions = TestDirection::isActive()
         ->with(['subjects' => fn($query)=>$query->where('language_id', $languageId)])
         ->get();
-
         foreach($directions as $direction){
-            if($languageId == 1)
-                $direction->name = $direction->name['kk'];
-            else if($languageId == 2)
-                $direction->name = $direction->name['ru'];
+            $direction->name = $direction->name[$language];
         }
-
-
         return TestDirectionsResource::collection($directions)
-        ->additional(['status' => true]);;
+        ->additional(['status' => true]);
     }
 }

@@ -2,12 +2,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content inner-modal">
             <div class="modal-header">
-                <h2 class="modal-title">@lang('site.Кабинетке кіру')</h2>
-                <button type="button" class="close modal-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div></div>
+                <button type="button" class="close btn-close" data-dismiss="modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="loginForm" class="modal-form" action="{{ route('ajax.login') }}" method="POST">
                     @csrf
+                    <h2 class="modal-title">@lang('site.Кабинетке кіру')</h2>
 
                     <input type="hidden" name="endRoute" class="endRoute" value="">
 

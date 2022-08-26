@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\Test\TestSubjectController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectOptionController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectOptionTestController;
 use App\Http\Controllers\Api\V1\Test\TestSubjectPreparationController;
+use App\Http\Controllers\Api\V1\Test\TestTrainerController;
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,7 +70,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
     Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
 
-
+    Route::apiResource('trainer', TestTrainerController::class)->names('trainer');
 
     //  Route::post('subjects/{id}/options/{option_id}', [TestSubjectOptionController::class, 'store'])->name('subjects.options.store');
     //  Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');

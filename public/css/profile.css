@@ -12,9 +12,10 @@
 .profile-header-image {
     height: 150px;
     width: 130px;
-    background-size: contain;
-    background: #3E6CED url('/public/images/profile-icons/profile-default-image.svg') no-repeat center;
-
+    background-size: cover;
+    background-color: #3E6CED;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }

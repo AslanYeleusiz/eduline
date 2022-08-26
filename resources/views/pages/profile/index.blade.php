@@ -9,7 +9,7 @@
 <section class="materials">
     <div class="cst_pd">
         <div class="profile-header">
-            <div class="profile-header-image" style=""></div>
+            <div class="profile-header-image" style="background-image: url({{asset('storage/images/avatars/'.$user->avatar)}})"></div>
             <div class="profile-header-info">
                 <div class="profile-username">{{ $user->full_name }}</div>
                 <div class="profile-information">
@@ -141,6 +141,10 @@
         }
     });
     let timer;
+    let current_password;
+    let password;
+    let password_confirmation;
+    let sendUrl;
 
     function comingSoon() {
         $('.modal').modal('hide');
@@ -207,6 +211,9 @@
 
             let _token = $('meta[name="csrf-token"]').attr('content');
 
+            sendUrl = "/profile/phone/update/";
+
+
             $(".loader").addClass("loading");
 
             clearInvalidFeedback()
@@ -252,6 +259,7 @@
             let phone = $('#phone').val();
             $("#smsModal .modal-phone").text(phone);
             $("#smsModal #thisPhone").val(phone);
+            sendUrl = "/profile/phone/update";
             setTimeout(() => {
                 $('#smsModal').modal('show');
                 stopTimer();
@@ -362,13 +370,10 @@
         $('#editPasswordForm').submit(function(e) {
             e.preventDefault();
 
-            let current_password = $('#current_password').val();
-            let password = $('#password').val();
-            let password_confirmation = $('#password_confirmation').val();
-
-
-            console.log(current_password + '<br/> ' + password + '<br/> ' + password_confirmation)
-
+            current_password = $('#current_password').val();
+            password = $('#password').val();
+            password_confirmation = $('#password_confirmation').val();
+            sendUrl = "/profile/password/update";
             let _token = $('meta[name="csrf-token"]').attr('content');
 
             $(".loader").addClass("loading");
@@ -376,7 +381,7 @@
             clearInvalidFeedback()
 
             $.ajax({
-                url: $(this).attr('action'),
+                url: "/profile/password/send-sms",
                 type: "GET",
                 data: {
                     '_token': _token,
@@ -388,19 +393,17 @@
                     $(".loader").removeClass("loading");
 
                     $('.modal').modal('hide');
+                    $("#smsModal .modal-phone").text({!! json_encode((array)auth()->user()->phone) !!});
 
+//                    setTimeout(() => {
+//                        $('#successPopup').modal('show');
+//                        $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
+//                    }, 500)
                     setTimeout(() => {
-                        $('#successPopup').modal('show');
-                        $('#successPopup .modal-title').text('Құпия сөз сәтті өзгертілді');
+                        $('#smsModal').modal('show');
+                        stopTimer();
+                        startTimer();
                     }, 500)
-
-                    if ($("#successPopup").css("display") == "none") {
-                        window.location.reload();
-                    }
-
-                    // if (res.data && res.data.success) {
-                    //     window.location.reload();
-                    // }
                 },
                 error: function(err) {
                     $(".loader").removeClass("loading");
@@ -540,26 +543,31 @@
             clearInvalidFeedback()
 
             $.ajax({
-                url: $(this).attr('action'),
+                url: sendUrl,
                 type: "POST",
                 data: {
                     '_token': _token,
                     'code': code,
                     'phone': phone,
+                    'password': password,
                 },
                 success: function(res) {
                     $(".loader").removeClass("loading");
                     $('.modal').modal('hide');
-
                     setTimeout(() => {
                         $('#successPopup').modal('show');
-                        $('#successPopup .modal-title').text('Номеріңіз сәтті өзгертілді');
-                    }, 500)
+                        $('#successPopup .modal-title').text(res.message);
+                    }, 500);
 
-
-                    if ($("#successPopup").css("display") == "none") {
+                    setTimeout(() => {
                         window.location.reload();
-                    }
+                    }, 2000);
+
+
+
+//                    if ($("#successPopup").css("display") == "none") {
+//                        window.location.reload();
+//                    }
 
                     // if (res.data && res.data.success) {
                     //     window.location.reload();
