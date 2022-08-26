@@ -14,9 +14,10 @@ class FullTest extends Model
 
     public function subjects()
     {
-        return $this->belongsToMany(TestSubject::class, FullTestSubject::class, 'test_id', 'subject_id');
+        return $this->belongsToMany(TestSubject::class, FullTestSubject::class,
+            'test_id', 'subject_id')->withPivot('correct_answers_count', 'incorrect_answers_count');
     }
-	
+
 
 
     public function scopeIsFinished($query)
