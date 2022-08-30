@@ -59,7 +59,13 @@ class TestSubjectPreparationController extends Controller
     public function preparation($subjectId, $preparationId)
     {
         $subject = TestSubject::findOrFail($subjectId);
-        $preparation = TestSubjectPreparation::subjectBy($subject->id)->findOrFail($preparationId);
+        $preparation = TestSubjectPreparation::subjectBy($subject->id)->withCount(['questions' => fn ($query) => $query->isActive()])->findOrFail($preparationId);
+//        dd($preparation->questions_count);
+
+//        $preparation = TestSubjectPreparation::subjectBy($subjectId)->findOrFail($preparationId);
+//        $questions = TestQuestion::isActive()->whereHas('preparations', function ($query) use ($preparationId) {
+//            return $query->where('test_subject_preparations.id', $preparationId);
+//        })->inRandomOrder()->limit(20)->get();
 
         return new TestSubjectPreparationResource($preparation);
     }
