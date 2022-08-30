@@ -236,7 +236,7 @@ class SalaryCalculationCalculateService
 
         if ($this->replaceHourFullClasses) {
             $sumAdditionalSurcharges += ($do1 + $do2) / 76.2 * $this->replaceHourFullClasses;
-            $data['additional_surcharges']['sum_replacement_hour_full_classes']
+            $data['additional_surcharges']['sum_replace_hour_full_classes']
                 = ($do1 + $do2) / 76.2 * $this->replaceHourFullClasses;
         }
         // int --- Часы замены из них часы замены по новой программе в классах с числом менее 15 учащихся
