@@ -39,6 +39,25 @@ class SalaryCalculator extends Model
             'percent' => 30
         ]
     ];
+
+    const CATEGORIES = [
+        [
+            'number' => 1,
+            'name' => 'Высшая категория'
+        ],
+        [
+            'number' => 2,
+            'name' => '2 категория'
+        ],
+        [
+            'number' => 3,
+            'name' => '1 категория'
+        ],
+        [
+            'number' => 4,
+            'name' => 'Без категории'
+        ],
+    ];
     const WORK_IN_ENVIRONMENTAL_DISASTER_ZONES = [
 
         [

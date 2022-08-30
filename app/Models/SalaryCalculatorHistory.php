@@ -9,6 +9,11 @@ class SalaryCalculatorHistory extends Model
 {
     use HasFactory;
 
+    public function scopeThisUser($query)
+    {
+        return $query->where('user_id', auth()->guard('api')->user()->id);
+    }
+
     protected $casts = [
         'work_in_village' => 'boolean',
         'special_working_conditions' => 'boolean',

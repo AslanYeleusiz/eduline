@@ -19,7 +19,7 @@ class SalaryCalculatorController extends Controller
 
     public function index(Request $request)
     {
-        $salaryCalculators = SalaryCalculatorHistory::select('id', 'created_at')->get();
+        $salaryCalculators = SalaryCalculatorHistory::select('id', 'created_at')->thisUser()->latest()->get();
         return SalaryCalculatorHistoryResource::collection($salaryCalculators);
     }
 
@@ -33,7 +33,7 @@ class SalaryCalculatorController extends Controller
         // Образование string -- select Высшее (B2), Среднее специальное (B4)
 
         $this->calculateService->education = $request->input('education', 'B2');
-        //Стаж (лет)  int -- select
+        //Стаж (лет)  int --
         $this->calculateService->experienceYear = $request->input('experience_year', 0);
         //Стаж (месяцев) int -- select
         $this->calculateService->experienceMonth = $request->input('experience_month', 0);
@@ -137,7 +137,7 @@ class SalaryCalculatorController extends Controller
         // ДО(без селский)*Сағат саны/76,2  --- қосымша қосылады
         // 76,2 коэфицент
         //45
-        $this->calculateService->replaceHourFullClasses =  $request->input('replacement_hour_full_classes',0);
+        $this->calculateService->replaceHourFullClasses =  $request->input('replace_hour_full_classes',0);
         // int --- Часы замены из них часы замены по новой программе в классах с числом менее 15 учащихся
         // Сағат санын жазады
         // 38.1 коэфицент
@@ -186,7 +186,7 @@ class SalaryCalculatorController extends Controller
         $this->calculateService->exemptFromPayingIndividualOncomeTax = $request->input('exempt_from_paying_individual_income_tax', false);
 
 
-        $this->calculateService->category = $request->input('category', 0);
+        $this->calculateService->category = $request->input('category',  last(SalaryCalculator::CATEGORIES)['number']);
         $data = $this->calculateService->calculateSalary();
 
         $this->storeSalaryCalculatorHistory($request);
@@ -231,7 +231,7 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->hours_updated_content  = $request->input('hours_updated_content', 0);
         $salaryCalculator->hours_specialized_subjects  =$request->input('hours_specialized_subjects',0);
         $salaryCalculator->replace_hours_half_classes  = $request->input('replace_hours_half_classes',0);
-        $salaryCalculator->replace_hour_full_classes  = $request->input('replacement_hour_full_classes',0);
+        $salaryCalculator->replace_hour_full_classes  = $request->input('replace_hour_full_classes',0);
         $salaryCalculator->replace_hours_new_program_half_classes  = $request->input('replace_hours_new_program_half_classes',0);
         $salaryCalculator->replace_hours_new_program_full_classes  = $request->input('replace_hours_new_program_full_classes',0);
         $salaryCalculator->replace_hours_lyceum_classes_half_classes  =  $request->input('replace_hours_lyceum_classes_half_classes', 0);
@@ -244,7 +244,8 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->app_withholding_party_contributions  = $request->input('app_withholding_party_contributions', false) =='true';
         $salaryCalculator->working_pensioner  =$request->input('working_pensioner', false) =='true';
         $salaryCalculator->exempt_from_paying_individual_income_tax  = $request->input('exempt_from_paying_individual_income_tax', false) =='true';
-        $salaryCalculator->category  = $request->input('category', 4);
+        $salaryCalculator->category  = $request->input('category', last(SalaryCalculator::CATEGORIES)['number']);
+        $salaryCalculator->user_id  = auth()->guard('api')->user()->id;
         $salaryCalculator->save();
     }
 
