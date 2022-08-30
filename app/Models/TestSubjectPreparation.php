@@ -23,7 +23,12 @@ class TestSubjectPreparation extends Model
     {
         return $query->where('subject_id', $subjectId);
     }
-    
+    public function questions()
+    {
+        return $this->belongsToMany(TestQuestion::class,
+            TestSubjectPreparationQuestion::class,  'preparation_id', 'question_id');
+    }
+
     public function scopeIsParent($query)
     {
         return $query->whereNull('parent_id');

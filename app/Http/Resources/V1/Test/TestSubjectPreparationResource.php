@@ -19,9 +19,10 @@ class TestSubjectPreparationResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'video_link' => $this->video_link,
+            'questions_count' => $this->when(isset($this->questions_count), $this->questions_count),
         ];
     }
-     
+
     public function with($request)
     {
         return ['status' => true];

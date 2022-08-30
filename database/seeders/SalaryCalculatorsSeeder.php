@@ -21,6 +21,8 @@ class SalaryCalculatorsSeeder extends Seeder
         $salaryCalculator->pv = 297.50;
         $salaryCalculator->snv = 44550;
         $salaryCalculator->dpop = 54816;
+        $salaryCalculator->year = 2022;
+        $salaryCalculator->month = 2;
         $salaryCalculator->save();
     }
 }

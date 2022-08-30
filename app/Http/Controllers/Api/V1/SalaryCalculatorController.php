@@ -248,13 +248,14 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->save();
     }
 
-    public function downloadPDF()
+    public function downloadPDF($id)
     {
         // $pdf = PDF::loadView('pdf/salary', compact('user'));
         PDF::setOptions(['defaultFont' => 'arail_uni.ttf']);
 
-        $salaryHistory = SalaryCalculatorHistory::firstOrFail();
+        $salaryHistory = SalaryCalculatorHistory::findOrFail($id);
         $pdf = PDF::loadView('pdf/salary');
-        return $pdf->download('invoice.pdf');
+        $name = 'invoice_' . $salaryHistory->created_at;
+        return $pdf->download("$name.pdf");
     }
 }

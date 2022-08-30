@@ -3,6 +3,7 @@
 use App\Models\Material;
 use App\Models\News;
 use App\Models\Role;
+use App\Models\SalaryCalculatorHistory;
 use App\Models\TestClass;
 use App\Models\TestSubject;
 use App\Models\TestSubjectOption;
@@ -12,8 +13,17 @@ use App\Services\V1\SalaryCalculationService;
 use Faker\Generator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
+//use PDF;
 
 Route::get('/', function () {
+    // $pdf = PDF::loadView('pdf/salary', compact('user'));
+    PDF::setOptions(['defaultFont' => 'arail_uni.ttf']);
+
+    $salaryHistory = SalaryCalculatorHistory::firstOrFail();
+    $pdf = PDF::loadView('pdf/salary');
+    $name = 'invoice_' . $salaryHistory->created_at;
+    return $pdf->download("$name.pdf");
+    return $pdf->download('invoice.pdf');
     return view('pdf.salary');
     $test = SalaryCalculationService::getCoefficent('b4', 1,2, 2022, 6);
     var_dump($test);
