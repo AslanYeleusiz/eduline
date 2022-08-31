@@ -19,8 +19,9 @@ class TestSubjectPreparationTestStartResource extends JsonResource
             'id' => $this->resource['preparation']->id,
             'title' => $this->resource['preparation']->title,
             'time' => FullTest::OPTION_TEST_TIME,
-            'questions_count' => $this->resource['questions']->count(),
-            'questions' => TestQuestionsResource::collection($this->resource['questions']),
+            'questions_count' => count($this->resource['userAnswers']),
+            'user_answers' => TestFinishedUserAnswersResource::collection($this->resource['userAnswers']),
+//            'questions' => TestQuestionsResource::collection($this->resource['questions']),
         ];
     }
 

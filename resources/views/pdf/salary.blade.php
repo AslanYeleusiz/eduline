@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -6,6 +6,15 @@
     <link href="{{ asset('css/pdf-salary.css') }}" rel="stylesheet" />
 
   </head>
+  <style>
+      @font-face {
+          src: url("/fonts/DejaVuSans.ttf") format('opentype');
+          font-family: DejaVuSans sans-serif ;
+          font-style: normal;
+          font-weight: normal;
+      }
+      body, body*, tr, td, table, p, H1 { font-family: DejaVuSans !important; }
+  </style>
   <body>
     <p
       class="s1"

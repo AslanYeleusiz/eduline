@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     // $pdf = PDF::loadView('pdf/salary', compact('user'));
-    PDF::setOptions(['defaultFont' => 'arail_uni.ttf']);
+    return view('pdf.salary');
+    PDF::setOptions(['defaultFont' => 'DejaVuSans.ttf']);
 
     $salaryHistory = SalaryCalculatorHistory::firstOrFail();
     $pdf = PDF::loadView('pdf/salary');

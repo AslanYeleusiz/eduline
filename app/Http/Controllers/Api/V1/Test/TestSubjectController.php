@@ -11,6 +11,7 @@ use App\Http\Resources\V1\Test\TestSubjectResource;
 use App\Models\TestQuestion;
 use App\Models\TestSubject;
 use App\Models\TestLanguage;
+use App\Services\V1\TestService;
 use Illuminate\Http\Request;
 
 class TestSubjectController extends Controller
@@ -42,6 +43,7 @@ class TestSubjectController extends Controller
             $questionIds[] = $userQuestionAnswer['question_id'];
         }
         $questions = TestQuestion::subjectBy($subject->id)->whereIn('id', $questionIds)->get();
+
         $result = $this->getScoreTestOption($questions, $request->questions);
         return new TestSubjectTestFinishedResource(compact('result',
         'subject', 'time'));

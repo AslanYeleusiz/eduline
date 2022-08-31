@@ -140,3 +140,10 @@ tr, td {
 .table-td-2-column-text-2 {
 
 }
+@font-face {
+    src: url("/fonts/DejaVuSans.ttf") format('opentype');
+    font-family: DejaVuSans sans-serif ;
+    font-style: normal;
+    font-weight: normal;
+}
+body, body*, tr, td, table, p, H1 { font-family: DejaVuSans !important; }
