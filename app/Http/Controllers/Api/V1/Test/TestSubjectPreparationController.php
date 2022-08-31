@@ -103,7 +103,15 @@ class TestSubjectPreparationController extends Controller
         $questions = TestQuestion::isActive()->whereHas('preparations', function ($query) use ($preparationId) {
             return $query->where('test_subject_preparations.id', $preparationId);
         })->inRandomOrder()->limit(20)->get();
-        return new TestSubjectPreparationTestStartResource(compact('preparation', 'questions'));
+        $userAnswers = [];
+        foreach ($questions as $question) {
+            $userAnswers[] = [
+                'answer' => null,
+                'question' => $question,
+            ];
+        }
+
+        return new TestSubjectPreparationTestStartResource(compact('preparation', 'userAnswers'));
     }
 
     public function preparationTestFinish($subjectId, $preparationId, Request $request)
@@ -141,19 +149,16 @@ class TestSubjectPreparationController extends Controller
             } else {
                 foreach ($userQuestionAnswers as $userQuestionAnswer) {
                     if ($question->id == $userQuestionAnswer['question_id']) {
+                        $userAnswer = $userQuestionAnswer['answer'];
                         if (
                             !empty($userQuestionAnswer['answer']) && !empty($correctAnswer)
                             && ($correctAnswer['number'] == $userQuestionAnswer['answer'])
                         ) {
-                            $userAnswer = $userQuestionAnswer['answer'];
                             $score++;
                             $correctAnswerCount++;
                         } else {
                             $incorrectAnswerCount++;
                         }
-                    } else {
-                        $question['answer'] = null;
-                        $incorrectAnswerCount++;
                     }
                 }
             }
