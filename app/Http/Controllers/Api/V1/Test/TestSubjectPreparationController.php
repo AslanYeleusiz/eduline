@@ -16,6 +16,7 @@ use App\Models\TestSubject;
 use App\Models\TestSubjectPreparation;
 use App\Models\TestSubjectPreparationAppeal;
 use App\Models\TestSubjectPreparationOrder;
+use App\Services\V1\TestService;
 use Illuminate\Http\Request;
 
 class TestSubjectPreparationController extends Controller
@@ -125,48 +126,7 @@ class TestSubjectPreparationController extends Controller
             $questionIds[] = $userQuestionAnswer['question_id'];
         }
         $questions = TestQuestion::whereIn('id', $questionIds)->get();
-        $result = $this->getScoreTestOption($questions, $request->questions);
+        $result = TestService::getScoreTestNotSaved($questions, $request->questions);
         return new TestSubjectPreparationTestFinishedResource(compact('result', 'preparation', 'time'));
-    }
-
-
-    protected function getScoreTestOption($questions, $userQuestionAnswers)
-    {
-        $score = 0;
-        $correctAnswerCount = 0;
-        $incorrectAnswerCount = 0;
-        $userAnswers = [];
-        foreach ($questions as $question) {
-            $correctAnswer = null;
-            $userAnswer = null;
-            foreach ($question['answers'] as $answer) {
-                if ($answer['is_correct']) {
-                    $correctAnswer = $answer;
-                }
-            }
-            if (empty($correctAnswer)) {
-                $incorrectAnswerCount++;
-            } else {
-                foreach ($userQuestionAnswers as $userQuestionAnswer) {
-                    if ($question->id == $userQuestionAnswer['question_id']) {
-                        $userAnswer = $userQuestionAnswer['answer'];
-                        if (
-                            !empty($userQuestionAnswer['answer']) && !empty($correctAnswer)
-                            && ($correctAnswer['number'] == $userQuestionAnswer['answer'])
-                        ) {
-                            $score++;
-                            $correctAnswerCount++;
-                        } else {
-                            $incorrectAnswerCount++;
-                        }
-                    }
-                }
-            }
-            $userAnswers[] = [
-                'answer' => $userAnswer,
-                'question' => $question,
-            ];
-        }
-        return compact('score', 'correctAnswerCount', 'incorrectAnswerCount',  'userAnswers');
     }
 }
