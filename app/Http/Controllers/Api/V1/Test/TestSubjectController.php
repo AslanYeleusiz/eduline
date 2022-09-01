@@ -29,7 +29,16 @@ class TestSubjectController extends Controller
         $questions = TestQuestion::isActive()
         ->subjectBy($subject->id)
         ->inRandomOrder()->limit($subject->questions_count)->get();
-        return new TestSubjectTestStartResource(compact('subject', 'questions'));
+
+        $userAnswers = [];
+        foreach ($questions as $question) {
+            $userAnswers[] = [
+                'answer' => null,
+                'question' => $question,
+            ];
+        }
+
+        return new TestSubjectTestStartResource(compact('subject', 'userAnswers'));
     }
 
     public function testFinish($subjectId, Request $request)
