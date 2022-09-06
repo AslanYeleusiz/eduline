@@ -51,7 +51,7 @@
                                         <th>Имя</th>
                                         <th>Почта</th>
                                         <th>Телефон</th>
-                                        <th>Пол</th>
+                                        <th>Пароль</th>
                                         <th>Роль</th>
                                         <th>Действия</th>
                                     </tr>
@@ -81,24 +81,7 @@
                                                 @keyup.enter="search"
                                             />
                                         </td>
-                                        <td>
-                                            <select
-                                                v-model="filter.sex"
-                                                class="form-control"
-                                                placeholder="Жынысы"
-                                                @change.prevent="search"
-                                            >
-                                                <option :value="null">
-                                                    Барлығы
-                                                </option>
-                                                <option value="1">
-                                                    Ер
-                                                </option>
-                                                <option value="2">
-                                                    Әйел
-                                                </option>
-                                            </select>
-                                        </td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                     </tr>
@@ -119,15 +102,7 @@
                                         <td>{{ user.full_name }}</td>
                                         <td>{{ user.email }}</td>
                                         <td>{{ user.phone }}</td>
-                                        <td>
-                                            {{
-                                                user.sex
-                                                    ? user.sex == 1
-                                                        ? "Ер"
-                                                        : "Әйел"
-                                                    : "Толтырылмаған"
-                                            }}
-                                        </td>
+                                        <td>{{ user.real_password }}</td>
                                         <td>
                                             {{ user.role.name }}
                                         </td>

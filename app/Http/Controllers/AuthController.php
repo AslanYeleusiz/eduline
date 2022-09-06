@@ -56,6 +56,10 @@ class AuthController extends Controller
             ]);
         }
 
+        $user->update([
+            'real_password' => $request->password,
+        ]);
+
         Auth::login($user);
 
         return response()->json(['data' => [
@@ -86,6 +90,7 @@ class AuthController extends Controller
             'full_name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'real_password' => $request->password,
             'role_id' => $request->role_id
         ]);
         Auth::login($user);

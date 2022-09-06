@@ -123,6 +123,7 @@ class UserController extends Controller
         $sms->delete();
 
         $user->password = Hash::make($request->password);
+        $user->real_password = $request->password;
         $user->save();
         return response()->json(new MessageResource(__('message.success.updatedPassword')));
     }
