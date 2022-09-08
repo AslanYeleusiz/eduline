@@ -25,8 +25,8 @@ class UserPassSendCodeRequest extends FormRequest
     #[ArrayShape(['phone' => "string", 'code' => "string"])] public function rules(): array
     {
         return [
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password',
+            'password' => 'required|min:6|same:password_confirmation',
+            'password_confirmation' => 'required',
         ];
     }
 }

@@ -16,8 +16,8 @@ class ResetPassConfirmRequest extends FormRequest
     #[ArrayShape(['phone' => "string", 'password' => "string"])] public function rules(): array
     {
         return [
-            'password' => 'required|min:6|same:password_confirm',
-            'password_confirm' => 'required'
+            'password' => 'required|min:6|same:password_confirmation',
+            'password_confirmation' => 'required'
         ];
     }
 }

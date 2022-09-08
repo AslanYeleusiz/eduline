@@ -231,7 +231,7 @@
                     //     window.location.reload();
                     // }
 
-                    $("#smsModal .modal-phone").text(phone);
+                    $("#smsModal .modal-phone").text('+7'+phone);
                     $("#smsModal #thisPhone").val(phone);
 
                     $('.modal').modal('hide');
@@ -257,7 +257,7 @@
         $('#confirmPhone').submit(function(e) {
             e.preventDefault();
             let phone = $('#phone').val();
-            $("#smsModal .modal-phone").text(phone);
+            $("#smsModal .modal-phone").text('+7'+phone);
             $("#smsModal #thisPhone").val(phone);
             sendUrl = "/profile/phone/update";
             setTimeout(() => {
@@ -393,7 +393,7 @@
                     $(".loader").removeClass("loading");
 
                     $('.modal').modal('hide');
-                    $("#smsModal .modal-phone").text({!! json_encode((array)auth()->user()->phone) !!});
+                    $("#smsModal .modal-phone").text('+7'+{!! json_encode((array)auth()->user()->phone) !!});
 
 //                    setTimeout(() => {
 //                        $('#successPopup').modal('show');
@@ -408,10 +408,8 @@
                 error: function(err) {
                     $(".loader").removeClass("loading");
                     let response_text = JSON.parse(err.responseText);
-                    if (response_text.errors && typeof response_text.errors == 'object') {
-                        $('#editPasswordPopup #error-login-confirm-password').text(response_text.message);
-                        $('#editPasswordPopup #error-login-confirm-password').show();
-                    }
+                    $('#editPasswordPopup #error-login-confirm-password').text(response_text.message);
+                    $('#editPasswordPopup #error-login-confirm-password').show();
                 }
             });
         });

@@ -134,7 +134,7 @@
                 },
                 success: function(res) {
                     $(".loader").removeClass("loading");
-                    $("#smsModal .modal-phone").text(phone);
+                    $("#smsModal .modal-phone").text('+7'+phone);
                     $("#smsModal #thisPhone").val(phone);
 
                     $('.modal').modal('hide');
@@ -274,7 +274,7 @@
                 },
                 success: function(res) {
                     $(".loader").removeClass("loading");
-                    $("#smsPassModal .modal-phone").text(phone);
+                    $("#smsPassModal .modal-phone").text('+7'+phone);
                     $("#smsPassModal #thisPhone").val(phone);
 
                     $('.modal').modal('hide');
@@ -354,7 +354,7 @@
                     '_token': _token,
                     'phone': phone,
                     'password': pass1,
-                    'password_confirm': pass2,
+                    'password_confirmation': pass2,
                 },
                 success: function(res) {
                     $(".loader").removeClass("loading");
