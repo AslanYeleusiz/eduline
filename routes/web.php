@@ -62,6 +62,9 @@ Route::middleware('guest')->group(function () {
     Route::post('register/sms-send', [AuthController::class, 'checkSendSmsNewPhone'])->name('ajax.register');
     Route::post('register', [AuthController::class, 'register'])->name('ajax.checkSendSmsNewPhone');
     Route::post('login', [AuthController::class, 'login'])->name('ajax.login');
+    Route::post('reset/password/sms-send', [AuthController::class, 'resetPassSmsSend'])->name('ajax.resetPassSmsSend');
+    Route::post('reset/password/sms-send/confirmed', [AuthController::class, 'resetPassSmsSendConfirmed'])->name('ajax.resetPassSmsSendConfirmed');
+    Route::post('reset/password', [AuthController::class, 'resetPass'])->name('ajax.resetPass');
 });
 
 

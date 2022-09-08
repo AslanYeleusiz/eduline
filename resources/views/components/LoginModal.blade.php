@@ -33,7 +33,7 @@
             {{--onclick="openResetPasswordLink(this)"--}}
 
             <div class="forgot-password-block">
-                <a href="javascript: void(0)" class="forgot-password-link">@lang('site.Құпия сөзді ұмыттыңыз ба?')</a>
+                <a onclick="openResetPass(this)" class="forgot-password-link">@lang('site.Құпия сөзді ұмыттыңыз ба?')</a>
             </div>
 
             <div class="modal-footer">

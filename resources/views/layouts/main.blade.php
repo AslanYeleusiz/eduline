@@ -58,6 +58,9 @@
     @include('components.LoginModal')
     @include('components.RegisterModal')
     @include('components.SmsRegisterModal')
+    @include('components.ResetPassword')
+    @include('components.SmsResetPassModal')
+    @include('components.ResetConfirmPassword')
     <script>
 
         let fullName;
@@ -72,9 +75,9 @@
         let timer;
         function startTimer() {
             let time = 59;
-            time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
+            time < 10 ? $('.timer').text('0' + time) : $('.timer').text(time);
             timer = setInterval(() => {
-                time < 10 ? $('#timer').text('0' + time) : $('#timer').text(time);
+                time < 10 ? $('.timer').text('0' + time) : $('.timer').text(time);
                 if (time < 1) {
                     stopTimer();
                     $('.modal-retry-btn').addClass('active');
@@ -92,6 +95,7 @@
                 $(this).next('input').focus();
             }
         });
+
 
         $("#registerForm").submit(function(e) {
             e.preventDefault();
@@ -154,9 +158,6 @@
 
                 }
             });
-
-
-
         });
 
         $('#loginForm').submit(function(e) {
@@ -253,6 +254,129 @@
             });
         });
 
+        $('#resetPassForm').submit(function(e) {
+            e.preventDefault();
+            phone = $('#reset-login-phone').val();
+            phone = phone.split(' ').join('');
+            phone = phone.split('(').join('');
+            phone = phone.split(')').join('');
+            phone = phone.split('-').join('');
+            phone = phone.split('+7').join('');
+            $(".loader").addClass("loading");
+            _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/reset/password/sms-send",
+                method: "POST",
+                type: "POST",
+                data: {
+                    '_token': _token,
+                    'phone': phone,
+                },
+                success: function(res) {
+                    $(".loader").removeClass("loading");
+                    $("#smsPassModal .modal-phone").text(phone);
+                    $("#smsPassModal #thisPhone").val(phone);
+
+                    $('.modal').modal('hide');
+
+                    setTimeout(() => {
+                        $('#smsPassModal').modal('show');
+                        stopTimer();
+                        startTimer();
+                    }, 500);
+                },
+                error: function(err) {
+                    $(".loader").removeClass("loading");
+                    let response_text = JSON.parse(err.responseText);
+
+                    if (response_text.errors && typeof response_text.errors == 'object') {
+                        $('#resetLoginPopup #error-register-invalid').text(response_text.message);
+                        $('#resetLoginPopup #error-register-invalid').show();
+                    }
+
+                }
+            });
+
+        })
+
+        $('#smsResetPassForm').submit(function(e) {
+            e.preventDefault();
+
+            let code1 = $('.smsResCode1').val();
+            let code2 = $('.smsResCode2').val();
+            let code3 = $('.smsResCode3').val();
+            let code4 = $('.smsResCode4').val();
+
+            let code = code1 + code2 + code3 + code4;
+
+            let _token = $('meta[name="csrf-token"]').attr('content');
+
+            $(".loader").addClass("loading");
+
+            $.ajax({
+                url: '/reset/password/sms-send/confirmed',
+                type: "POST",
+                data: {
+                    '_token': _token,
+                    'code': code,
+                    'phone': phone
+                },
+                success: function(res) {
+                    $(".loader").removeClass("loading");
+                    $('.modal').modal('hide');
+
+                    setTimeout(()=>{
+                        $('#resetConfirmPopup').modal('show');
+                    },500)
+                },
+                error: function(err) {
+                    $(".loader").removeClass("loading");
+                    let response_text = JSON.parse(err.responseText);
+                    if (response_text.errors && typeof response_text.errors == 'object') {
+                        $('#smsPassModal #error-message-code').text(response_text.message);
+                        $('#smsPassModal #error-message-code').show();
+                    }
+                }
+            });
+        });
+
+        $('#NewPasswordResetForm').submit(function(e) {
+            e.preventDefault();
+            $(".loader").addClass("loading");
+            let pass1 = $('#resetConfirmPopup #password').val();
+            let pass2 = $('#resetConfirmPopup #password_confirmation').val();
+            _token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: "/reset/password",
+                method: "POST",
+                type: "POST",
+                data: {
+                    '_token': _token,
+                    'phone': phone,
+                    'password': pass1,
+                    'password_confirm': pass2,
+                },
+                success: function(res) {
+                    $(".loader").removeClass("loading");
+
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 500);
+                },
+                error: function(err) {
+                    $(".loader").removeClass("loading");
+                    let response_text = JSON.parse(err.responseText);
+
+                    if (response_text.errors && typeof response_text.errors == 'object') {
+                        Object.entries(response_text.errors).forEach(([key, value]) => {
+                            $('#error-register-' + key).text(value[0]);
+                            $('#error-register-' + key).css('display', 'block');
+                        })
+                    }
+
+                }
+            });
+        });
     </script>
     @endguest
 

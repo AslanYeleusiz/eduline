@@ -24,7 +24,7 @@
                     <div style="display: flex; justify-content: center">
                         <button class="modal-default-btn">Жіберу</button>
                     </div>
-                    <div class="modal-info">SMS-ті 00:<span id="timer"></span> кейін қайта жіберуге болады</div>
+                    <div class="modal-info">SMS-ті 00:<span class="timer"></span> кейін қайта жіберуге болады</div>
                     <a type="submit" href="#" id="refreshConfirmPhone" class="modal-retry-btn">Қайта жіберу</a>
                 </form>
             </div>

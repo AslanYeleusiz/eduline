@@ -19,5 +19,7 @@ return [
     'incorrect_code' => 'неверный код',
     'sms_verification' => config('app.name') . '. Ваш код для подтверждения: ',
     'Phone or password is incorrect' => 'Телефон или пароль неверны',
-    'Phone number not found' => 'Номер телефона не найден'
+    'Phone number not found' => 'Номер телефона не найден',
+    'phone_invalid' => 'Такого номера не существует',
+    'incorrect_code' => 'Неверный код или номер телефона',
 ];
