@@ -368,10 +368,8 @@
                     let response_text = JSON.parse(err.responseText);
 
                     if (response_text.errors && typeof response_text.errors == 'object') {
-                        Object.entries(response_text.errors).forEach(([key, value]) => {
-                            $('#error-register-' + key).text(value[0]);
-                            $('#error-register-' + key).css('display', 'block');
-                        })
+                        $('#resetConfirmPopup #error-login-confirm-password').text(response_text.message);
+                        $('#resetConfirmPopup #error-login-confirm-password').show();
                     }
 
                 }
