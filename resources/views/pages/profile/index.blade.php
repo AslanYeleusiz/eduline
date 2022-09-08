@@ -409,10 +409,8 @@
                     $(".loader").removeClass("loading");
                     let response_text = JSON.parse(err.responseText);
                     if (response_text.errors && typeof response_text.errors == 'object') {
-                        Object.entries(response_text.errors).forEach(([key, value]) => {
-                            $('#error-new-' + key).text(value[0]);
-                            $('#error-new-' + key).css('display', 'block');
-                        })
+                        $('#editPasswordPopup #error-login-confirm-password').text(response_text.message);
+                        $('#editPasswordPopup #error-login-confirm-password').show();
                     }
                 }
             });

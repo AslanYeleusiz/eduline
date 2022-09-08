@@ -26,7 +26,7 @@
                         <input id="password_confirmation" name="password_confirmation" class="modal-form-input password-input"
                                type="password" placeholder="@lang('site.Құпия сөзді қайта енгізіңіз')" required>
                         <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
-                        <span class="invalid" role="alert" id="error-login-password"></span>
+                        <span class="invalid" role="alert" id="error-login-confirm-password"></span>
                     </div>
                     <button class="modal-default-btn">@lang('site.Өзгерту')</button>
                 </form>
