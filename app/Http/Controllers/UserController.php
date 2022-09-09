@@ -153,8 +153,8 @@ class UserController extends Controller
 //        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
 //        $headers[] = 'From: Eduline.kz';
         Mail::send('mail.emailConfirm', ['name', 'admin@ust.kz'], function($message){
-            $message->to('askon039@gmail.com', 'tite')->subject('Test email');
-            $message->from('admin@ust.kz', 'web');
+            $message->to('askon039@gmail.com', 'tite')->subject(__('site.Почтаңызды растаңыз'));
+            $message->from('admin@ust.kz', 'Eduline.kz');
         });
 
 //        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
