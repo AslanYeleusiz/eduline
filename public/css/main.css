@@ -640,7 +640,8 @@ line-height: 45px;
 .cm_form .img{
     width: 50px;
     height: 50px;
-    background: 50%/100% no-repeat;
+    border-radius: 50%;
+    background: cover / 50% 50% no-repeat;
 }
 .cm_main .cm_form{
     grid-template-columns: auto 3fr 1fr;
