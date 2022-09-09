@@ -130,6 +130,7 @@ class UserController extends Controller
 
     public function updateEmail(UserEmailSaveRequest $request)
     {
+        $email = $request->email;
         $user = auth()->user();
 
         $token = Str::uuid();
