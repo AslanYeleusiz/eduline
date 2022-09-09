@@ -97,12 +97,15 @@ class MainController extends Controller
         $name = $request->name;
         $phone = $request->phone;
 
+        $consultations = PersonalAdvice::findOrFail($id);
+        $lat_name = $consultations->slug($consultations->title);
+
         PersonalAdviceOrder::create([
             'personal_advice_id' => $id,
             'full_name' => $name,
             'phone' => $phone,
         ]);
 
-        return redirect()->route('consultation', ['id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
+        return redirect()->route('consultation', ['slug' => $lat_name, 'id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
     }
 }

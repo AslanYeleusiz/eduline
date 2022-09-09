@@ -47,7 +47,7 @@ Route::post('/calculator', [MainController::class, 'calculator'])->name('calcula
 
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
 Route::get('/consultation/{slug}', [MainController::class, 'consultation'])->name('consultation');
-Route::post('/consultation/{id?}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone']);
+Route::post('/consultation/store/{id}', [MainController::class, 'send'], ['id' => 'id','name' => 'name','phone' => 'phone'])->name('consultation.store');
 Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name('set_locale');
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
 Route::view('admin/login', 'auth.login')->name('adminLoginShow');
