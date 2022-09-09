@@ -156,7 +156,7 @@ class UserController extends Controller
         Mail::send(['text' => 'mail'],['name' => 'tite'], function($message){
             $message->to('askon039@gmail.com', 'tite')->subject('Test email');
             $message->from('admin@ust.kz', 'web');
-        })
+        });
 
 //        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
 //                ->with([
