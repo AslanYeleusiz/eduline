@@ -46761,7 +46761,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_39), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.classIds]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
           "class": "ml-1",
           "for": 'classItem' + classItem.name
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(classItem.name), 9
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(classItem.name.kk), 9
         /* TEXT, PROPS */
         , _hoisted_40)]);
       }), 128
