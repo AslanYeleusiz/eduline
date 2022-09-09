@@ -149,18 +149,18 @@ class UserController extends Controller
 
     public function linkToConfirmEmail(Request $request)
     {
-//        $headers[] = 'MIME-Version: 1.0';
-//        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-//        $headers[] = 'From: Eduline.kz';
-        Mail::send('mail.emailConfirm', ['name', 'tite'], function($message){
-            $message->to('askon039@gmail.com', 'tite')->subject('Test email');
-            $message->from('admin@ust.kz', 'web');
-        });
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $headers[] = 'From: Eduline.kz';
+//        Mail::send('mail.emailConfirm', ['name', 'tite'], function($message){
+//            $message->to('askon039@gmail.com', 'tite')->subject('Test email');
+//            $message->from('admin@ust.kz', 'web');
+//        });
 
-//        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
-//                ->with([
-//                    'email' => $request->email
-//                ]), implode("\r\n", $headers));
+        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
+                ->with([
+                    'email' => $request->email
+                ]), implode("\r\n", $headers));
 
         return $request->email;
     }
