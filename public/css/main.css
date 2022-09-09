@@ -641,7 +641,7 @@ line-height: 45px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: cover / 50% 50% no-repeat;
+    background: cover no-repeat 50% 50%;
 }
 .cm_main .cm_form{
     grid-template-columns: auto 3fr 1fr;
