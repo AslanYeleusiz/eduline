@@ -68,7 +68,7 @@ Route::middleware('guest')->group(function () {
 });
 
 
-Route::get('/profile/confirm-email/{email}/{token}', [UserController::class, 'confirmEmail'])->name('.confirm.email');
+Route::get('/profile/confirm-email/{email}/{token}', [UserController::class, 'confirmEmail'])->name('profile.confirm.email');
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
