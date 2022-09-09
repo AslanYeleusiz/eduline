@@ -140,7 +140,7 @@ class UserController extends Controller
             'email' => $request->email,
             'token' => $token
         ], function($message) use ($email){
-            $message->to($request->email, '')->subject(__('site.Почтаңызды растаңыз'));
+            $message->to($email)->subject(__('site.Почтаңызды растаңыз'));
             $message->from('admin@ust.kz', 'Eduline.kz');
         });
         return;
