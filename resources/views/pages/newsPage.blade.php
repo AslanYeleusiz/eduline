@@ -36,7 +36,7 @@
         <div class="cst_pd">
             <form class="cm_form ns_block comment_btn">
                 @csrf
-                <div class="img" style="background-image: url(@auth{{asset(Auth::user()->avatar)}}@else{{asset('/images/avatar_default.png')}}@endauth)" alt=""></div>
+                <div class="img" style="background-image: url(/storage/images/avatars/{{Auth::user()->avatar}})" alt=""></div>
                 <input type="text" class="form-control cm_input" name="text" placeholder="@lang('site.Өз пікіріңізді жазыңыз')..." autocomplete="off">
                 <input type="hidden" name="id_news" value="{{$material->id}}">
                 <button type="button" class="btn-primary btn cm_btn">
