@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
-use App\Http\Requests\Api\V1\User\UserProfileSaveRequest;
+use App\Http\Requests\User\UserProfileSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
 use App\Mail\EmailConfirm;
@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Mail;
 
 class UserController extends Controller
 {
@@ -152,10 +153,15 @@ class UserController extends Controller
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: Eduline.kz';
-        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
-                ->with([
-                    'email' => $request->email
-                ]), implode("\r\n", $headers));
+        Mail::send(['text' => 'mail'],['name' => 'tite'], function($message){
+            $message->to('askon039@gmail.com', 'tite')->subject('Test email');
+            $message->from('admin@ust.kz', 'web');
+        })
+
+//        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
+//                ->with([
+//                    'email' => $request->email
+//                ]), implode("\r\n", $headers));
 
         return $request->email;
     }

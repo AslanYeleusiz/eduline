@@ -42,15 +42,6 @@
                     <div class="profile-info-description">{{ $phone }}</div>
                 </div>
                 <div class="profile-info-actions-group">
-                    @if($user->is_phone_verification)
-                    <div class="profile-info-action">Расталған</div>
-                    @else
-                    <form action="{{ route('profile.ajax.checkSendSmsPhone') }}" method="POST" id="confirmPhone">
-                        @csrf
-                        <input id="phone" type="tel" style="display:none;" name="phone" value="{{ $user->phone }}">
-                        <button class="profile-info-action" style="background: none; border: none">@lang('site.Растау')</button>
-                    </form>
-                    @endif
                     <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
                 </div>
 
@@ -254,7 +245,8 @@
                 }
             });
         });
-        $('#confirmPhone').submit(function(e) {
+        /*$('#confirmPhone').submit(function(e)
+        {
             e.preventDefault();
             let phone = $('#phone').val();
             $("#smsModal .modal-phone").text('+7'+phone);
@@ -302,7 +294,7 @@
                     }
                 }
             });
-        });
+        });*/
         $('body').on('click', '.modal-retry-btn.active', function(e) {
             e.preventDefault();
             $('.modal-retry-btn').removeClass('active');
