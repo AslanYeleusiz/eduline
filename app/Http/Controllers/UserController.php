@@ -136,37 +136,35 @@ class UserController extends Controller
         $user->email_token = $token;
         $user->save();
         $message = new EmailConfirm($request->email);
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-        $headers[] = 'From: Eduline.kz';
-        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
-                ->with([
-                    'token' => $token,
-                    'email' => $request->email,
-                ]), implode("\r\n", $headers));
+        Mail::send('mail.emailUpdate', [
+            'email' => $request->email,
+            'token' => $token
+        ], function($message){
+            $message->to($request->email, '')->subject(__('site.Почтаңызды растаңыз'));
+            $message->from('admin@ust.kz', 'Eduline.kz');
+        });
         return;
     }
 
     public function linkToConfirmEmail(Request $request)
     {
-//        $headers[] = 'MIME-Version: 1.0';
-//        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-//        $headers[] = 'From: Eduline.kz';
-        Mail::send('mail.emailConfirm', ['email' => $request->email], function($message){
-            $message->to('askon039@gmail.com', 'tite')->subject(__('site.Почтаңызды растаңыз'));
+        $user = auth()->user();
+
+        $token = Str::uuid();
+        $user->email_token = $token;
+        $user->save();
+        Mail::send('mail.emailConfirm', [
+            'email' => $request->email,
+            'token' => $token
+        ], function($message){
+            $message->to($request->email, '')->subject(__('site.Почтаңызды растаңыз'));
             $message->from('admin@ust.kz', 'Eduline.kz');
         });
-
-//        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
-//                ->with([
-//                    'email' => $request->email
-//                ]), implode("\r\n", $headers));
-
         return $request->email;
     }
 
-    public function confirmEmail($email) {
-        $user = User::where('email', $email)->first();
+    public function confirmEmail($email, $token) {
+        $user = User::where('email', $email)->where('email_token',$token)->firstOrFail();
         $user->is_email_verified = 1;
         $user->save();
 
