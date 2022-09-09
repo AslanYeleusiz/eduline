@@ -139,7 +139,7 @@ class UserController extends Controller
         Mail::send('mail.emailUpdate', [
             'email' => $request->email,
             'token' => $token
-        ], function($message){
+        ], function($message) use ($email){
             $message->to($request->email, '')->subject(__('site.Почтаңызды растаңыз'));
             $message->from('admin@ust.kz', 'Eduline.kz');
         });
