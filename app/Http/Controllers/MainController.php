@@ -49,7 +49,7 @@ class MainController extends Controller
     {
         if($req) {
             $phone = $req->input('phone');
-            $array = ["+","-"," ","(", ")"];
+            $array = ["+7","-"," ","(", ")"];
             $phone = str_replace($array, "", $phone);
             $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
             $this->smsService->send($msg, $phone);
