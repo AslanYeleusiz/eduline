@@ -157,7 +157,7 @@ class UserController extends Controller
             'email' => $request->email,
             'token' => $token
         ], function($message){
-            $message->to($this->$user->email, '')->subject(__('site.Почтаңызды растаңыз'));
+            $message->to($this->user->email, '')->subject(__('site.Почтаңызды растаңыз'));
             $message->from('admin@ust.kz', 'Eduline.kz');
         });
         return $request->email;
