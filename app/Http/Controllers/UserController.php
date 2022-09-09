@@ -152,7 +152,7 @@ class UserController extends Controller
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
         $headers[] = 'From: Eduline.kz';
-        Mail::send(view('mail.emailConfirm')
+        Mail::send('mail.emailConfirm'
                 ->with([
                     'email' => $request->email
                 ]), ['name', 'tite'], function($message){
