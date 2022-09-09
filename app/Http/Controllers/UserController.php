@@ -148,6 +148,7 @@ class UserController extends Controller
 
     public function linkToConfirmEmail(Request $request)
     {
+        $email = $request->email;
         $user = auth()->user();
 
         $token = Str::uuid();
@@ -157,7 +158,7 @@ class UserController extends Controller
             'email' => $request->email,
             'token' => $token
         ], function($message){
-            $message->to($request->email)->subject(__('site.Почтаңызды растаңыз'));
+            $message->to($email)->subject(__('site.Почтаңызды растаңыз'));
             $message->from('admin@ust.kz', 'Eduline.kz');
         });
         return $request->email;
