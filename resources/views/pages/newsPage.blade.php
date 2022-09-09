@@ -180,7 +180,7 @@
             data: data.serialize(),
             success: function(response) {
                 console.log('done');
-                data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url({{asset(Auth::user()->avatar)}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + e.find('.cm_input')[0].value + '</div></div></div>');
+                data.after('<div class="cm_block mini"><div class="cm_avatar" style="background-image: url(/storage/images/avatars/{{Auth::user()->avatar}})"></div><div class="cm_content"><div class="cm_head">@guest @else {{Auth::user()->full_name}}@endguest</div><div class="cm_body">' + e.find('.cm_input')[0].value + '</div></div></div>');
                 e.find('.cm_input')[0].value = '';
             },
             error: function(response) {
