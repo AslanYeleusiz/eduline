@@ -42,7 +42,7 @@ public function show($id, Request $request) {
                     $answer = NewsCommentAnswer::where('news_comment_id','=',$com->id)->get();
                     $data .= '<div id="answer_list" style="display:none">';
                     foreach ($answer as $an){
-                        $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url('.asset($com->user->avatar).')"></div><div class="cm_content"><div class="cm_head">'.$an->user->full_name.'</div><div class="cm_body">'.$an->text.'</div></div></div>';
+                        $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url(/storage/images/avatars/'.$com->user->avatar.')"></div><div class="cm_content"><div class="cm_head">'.$an->user->full_name.'</div><div class="cm_body">'.$an->text.'</div></div></div>';
                     }
                     $data .= '</div>';
                 }
