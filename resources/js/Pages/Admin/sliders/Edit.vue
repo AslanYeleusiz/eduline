@@ -79,7 +79,7 @@
                         </div>
 
                         <div v-if="setLink==1" class="form-group">
-                            <label for="">Сілтеме</label>
+                            <label for="">Сілтемені таңдаңыз</label>
                             <select class="form-control" v-model="slider.linkToAdvice" name="slider" required>
                                 <option :value="null" hidden>Сілтемені таңдаңыз</option>
                                 <option v-for="advice in personalAdvice" :value="advice.id" :key="'advice' + advice.id">
@@ -98,8 +98,8 @@
                             <label for="">Платформа</label>
                             <select class="form-control" v-model="slider.in_app" name="slider" required>
                                 <option :value="null" hidden>Жүктеу платформасын таңдаңыз</option>
-                                <option value="1">Сайтқы</option>
-                                <option value="2">Мобильді қосымшаға</option>
+                                <option value="1">Мобильді қосымшада көрінеді</option>
+                                <option value="2">Сайтта көрінеді</option>
                             </select>
                             <validation-error :field="'in_app'" />
                         </div>
