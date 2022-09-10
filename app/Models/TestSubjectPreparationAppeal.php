@@ -32,4 +32,9 @@ class TestSubjectPreparationAppeal extends Model
    {
        return $this->belongsTo(TestSubjectPreparation::class);
    }
+
+   public function question_id()
+   {
+       return $this->belongsTo(TestQuestion::class);
+   }
 }

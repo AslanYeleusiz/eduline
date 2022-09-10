@@ -183,6 +183,9 @@ export default {
             },
         };
     },
+    mounted() {
+        console.log(this.questions)
+    },
     methods: {
         deleteData(id) {
             Swal.fire({

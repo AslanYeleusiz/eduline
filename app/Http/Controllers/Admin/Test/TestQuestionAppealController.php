@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin\Test;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Test\TestLanguageSaveRequest;
+use App\Http\Requests\Admin\Test\TestQuestionSaveRequest;
+use App\Models\TestSubject;
 use App\Models\TestQuestion;
 use App\Models\TestQuestionAppeal;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -42,6 +46,36 @@ class TestQuestionAppealController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $question = TestQuestion::findOrFail($id);
+        $subjects = TestSubject::with(['language', 'preparationChilds:id,subject_id,title'])->orderBy('name')->get();
+        $question->load('preparations');
+        $preparation_ids = $question->preparations->pluck('id')->toArray();
+        return Inertia::render('Admin/Test/QuestionAppeals/Edit',compact('question', 'subjects', 'preparation_ids'));
+    }
+
+    public function update($id, TestQuestionSaveRequest $request)
+    {
+        $question = TestQuestion::findOrFail($id);
+        $preparationIds = $request->input('preparation_ids', []);
+        $answers = array_map(function ($answer) use ($request) {
+            return [
+                'number' => $answer['number'],
+                'text' => $answer['text'],
+                'is_correct' => $answer['number'] == $request->correct_answer_number
+            ];
+        }, $request->answers);
+        DB::beginTransaction();
+        $question->text = $request->text;
+        $question->answers = $answers;
+        $question->subject_id = $request->subject_id;
+        $question->is_active = $request->is_active == 'true';
+        $question->save();
+        $question->preparations()->sync($preparationIds);
+        DB::commit();
+        return redirect()->route('admin.test.questionAppeals.index')->withSuccess('Успешно сохранено');
+    }
 
     public function destroy($id)
     {

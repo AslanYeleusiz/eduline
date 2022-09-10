@@ -53,7 +53,6 @@ class TestPreparationAppealController extends Controller
         ]);
     }
 
-
     public function destroy($id)
     {
         $appeal = TestSubjectPreparationAppeal::findOrFail($id);
