@@ -62,20 +62,42 @@
                             <validation-error :field="'image.kk'" />
                             <validation-error :field="'image.ru'" />
                         </div>
-                        <div class="form-group">
+
+                        <div class="form-group mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="setLink" value="0" @change="clearSetLink">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Сілтеме
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="setLink" value="1" @change="clearSetLink">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Жеке кеңес сілтеме
+                                </label>
+                            </div>
+                        </div>
+
+                        <div v-if="setLink==1" class="form-group">
                             <label for="">Сілтеме</label>
-                            <select class="form-control" v-model="slider.link" name="slider" required>
-                                <option :value="null">Сілтемені таңдаңыз</option>
+                            <select class="form-control" v-model="slider.linkToAdvice" name="slider" required>
+                                <option :value="null" hidden>Сілтемені таңдаңыз</option>
                                 <option v-for="advice in personalAdvice" :value="advice.id" :key="'advice' + advice.id">
                                     {{ advice.title.kk }}
                                 </option>
                             </select>
                             <validation-error :field="'link'" />
                         </div>
+                        <div v-else class="form-group">
+                            <label for="">Сілтемені енгізіңіз</label>
+                            <input v-model="slider.link" type="text" class="form-control">
+                            <validation-error :field="'link'" />
+                        </div>
+
                         <div class="form-group">
                             <label for="">Платформа</label>
                             <select class="form-control" v-model="slider.in_app" name="slider" required>
-                                <option :value="null">Жүктеу платформасын таңдаңыз</option>
+                                <option :value="null" hidden>Жүктеу платформасын таңдаңыз</option>
                                 <option value="1">Сайтқы</option>
                                 <option value="2">Мобильді қосымшаға</option>
                             </select>
@@ -128,6 +150,7 @@
                     file: "",
                     preview: "",
                 },
+                setLink: 0,
             };
         },
         methods: {
@@ -148,6 +171,10 @@
                         //     console.log("The new contact has been saved"),
                     }
                 );
+            },
+            clearSetLink() {
+                this.slider.link = null
+                this.slider.linkToAdvice = null
             },
             handleImageRuUpload() {
                 this.image_ru.file = this.$refs.image_ru.files[0];
@@ -181,8 +208,12 @@
             },
         },
         mounted() {
+            if(this.slider.link == null) this.setLink = 1;
+            else this.setLink = 0;
             this.$refs.image_kk.value = "";
             this.$refs.image_ru.value = "";
+            console.log(this.slider)
+            console.log(this.personalAdvice)
         },
     };
 
