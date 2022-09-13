@@ -114,6 +114,7 @@ class UserController extends Controller
         $msg = __('auth.sms_verification') . $code;
         $this->smsService->send($msg, $phone);
 
+
         SmsVerification::create([
             'code' => $code,
             'status' => SmsVerification::STATUS_PENDING,
