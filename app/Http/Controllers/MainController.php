@@ -49,7 +49,7 @@ class MainController extends Controller
     {
         if($req) {
             $phone = $req->input('phone');
-            $array = ["+","-"," ","(", ")"];
+            $array = ["+7","-"," ","(", ")"];
             $phone = str_replace($array, "", $phone);
             $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
             $this->smsService->send($msg, $phone);
@@ -97,12 +97,15 @@ class MainController extends Controller
         $name = $request->name;
         $phone = $request->phone;
 
+        $consultations = PersonalAdvice::findOrFail($id);
+        $lat_name = $consultations->slug($consultations->title);
+
         PersonalAdviceOrder::create([
             'personal_advice_id' => $id,
             'full_name' => $name,
             'phone' => $phone,
         ]);
 
-        return redirect()->route('consultation', ['id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
+        return redirect()->route('consultation', ['slug' => $lat_name, 'id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
     }
 }

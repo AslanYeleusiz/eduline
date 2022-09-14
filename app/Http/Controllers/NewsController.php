@@ -19,7 +19,7 @@ class NewsController extends Controller
     }
     public function index(Request $request){
         $slider = Slider::where('in_app', 1)->get();
-        $news = News::orderBy('created_at','desc')->paginate(2);
+        $news = News::orderBy('created_at','desc')->with(['newsType', 'comments', 'thisUserSaved'])->paginate(2);
         $now = Carbon::now();
         if ($request->ajax()) {
             return $this->newsService->craft($news);
@@ -31,7 +31,7 @@ class NewsController extends Controller
         ]);
     }
     public function announcement(Request $request){
-        $news = News::where('news_types_id','=','8')->orderBy('created_at','desc')->paginate(2);
+        $news = News::where('news_types_id','=','8')->orderBy('created_at','desc')->with(['newsType', 'comments', 'thisUserSaved'])->paginate(2);
         $now = Carbon::now();
         if ($request->ajax()) {
             return $this->newsService->craft($news);
@@ -43,7 +43,7 @@ class NewsController extends Controller
         ]);
     }
     public function popular(Request $request){
-        $news = News::orderBy('view','desc')->paginate(2);
+        $news = News::orderBy('view','desc')->with(['newsType', 'comments', 'thisUserSaved'])->paginate(2);
         $now = Carbon::now();
         if ($request->ajax()) {
             return $this->newsService->craft($news);
@@ -55,10 +55,10 @@ class NewsController extends Controller
         ]);
     }
     public function news_saves(Request $request){
-        $uns = UserNewsSaved::where('user_id', auth()->user()->id)->orderBy('created_at','desc')->paginate(2);
+        $uns = UserNewsSaved::where('user_id', auth()->user()->id)->orderBy('created_at','desc')->with('newsSaves')->paginate(2);
         $now = Carbon::now();
         if ($request->ajax()) {
-            return $this->newsService->craft($news);
+            return $this->newsService->craftSave($uns);
         }
         return view('pages.home',[
             'news' => $uns,

@@ -32,16 +32,16 @@
     <div class="owl-stage-outer-wrap">
         <div class="slider owl-stage-outer">
             <div class="cst-main-carousel owl-carousel">
-               @if($slider != null)
-                    @foreach($slider as $slide)
-                    <div class="img_wrap">
-                        <a href="{{
+                @if($slider != null)
+                @foreach($slider as $slide)
+                <div class="img_wrap">
+                    <a href="{{
                            $slide->linkToAdvice ? '/consultation/'.$slide->slug($slide->advice->title).'?id='.$slide->advice->id : $slide->link
                            }}">
-                            <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
-                        </a>
-                    </div>
-                    @endforeach
+                        <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
+                    </a>
+                </div>
+                @endforeach
                 @endif
             </div>
         </div>
@@ -69,15 +69,22 @@
         });
         var site_url = "{{ url($url) }}";
         var page = 1;
+        let end = 0;
+        let timer = 0;
 
         load_more(page);
 
         $(window).scroll(function() {
 
-            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && timer && !end) {
+                timer=0;
                 page++;
                 load_more(page);
+            } else if (end == 1) {
+                $('#ajax-loading').show();
+                end = 2;
             }
+
         });
 
         function load_more(page) {
@@ -92,8 +99,10 @@
                 .done(function(data) {
                     if (data.length == 0) {
                         $('#ajax-loading').html("Жаңалықтар тізімі бітті");
+                        end = 1;
                         return;
                     }
+                    timer=1;
                     $('#ajax-loading').hide();
                     $("#results").append(data);
                 })
@@ -115,7 +124,6 @@
             success: function(response) { //Данные отправлены успешно
                 btn.hasClass('active') ?
                     btn.removeClass('active') : btn.addClass('active');
-
             },
             error: function(response) { // Данные не отправлены
                 console.log('fail');

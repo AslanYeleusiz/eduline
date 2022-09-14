@@ -124,6 +124,7 @@ class SliderController extends Controller
         $slider->update([
             'image' => $images,
             'link' => $request->link,
+            'linkToAdvice' => $request->linkToAdvice,
             'in_app' => $request->in_app,
         ]);
         return redirect()->route('admin.slider.index')->withSuccess('Успешно добавлено');

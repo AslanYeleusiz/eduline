@@ -32,7 +32,7 @@ public function show($id, Request $request) {
         if ($request->ajax()) {
             foreach ($coms as $com) {
 
-                $data .= '<div class="cm_block"><div class="cm_avatar" style="background-image: url('.asset($com->user->avatar).')"></div><div class="cm_content"><div class="cm_head">'.$com->user->full_name.'</div><div class="cm_body">'.$com->text.'</div><div class="cm_footer"><button type="button" class="btn cm_likes';
+                $data .= '<div class="cm_block"><div class="cm_avatar" style="background-image: url(/storage/images/avatars/'.$com->user->avatar.')"></div><div class="cm_content"><div class="cm_head">'.$com->user->full_name.'</div><div class="cm_body">'.$com->text.'</div><div class="cm_footer"><button type="button" class="btn cm_likes';
                 if($com->thisUserLiked) $data .= ' active';
                 $data .= '"><div class="cm_like"></div><span id="like_count">'.$com->thisLikes->count().'</span></button><button class="btn cm_qsts"><div class="cm_qst"></div>'.__('site.Жауап жазу').'</button></div><form action="" id="ajax_form" method="post" class="cm_form a" style="display:none"><input type="text" class="form-control cm_input" name="text" placeholder="';
                 Auth::user() ? $data.=''.__('site.Өз пікіріңізді жазыңыз').'...' : $data.=''.__('site.Пікірді тек тіркелген қолданушылар қалдыра алады').'...'; $data .= '" autocomplete="off"><input type="hidden" name="comment_id" class="comment_id" value="'.$com->id.'"><button type="button" class="btn-primary btn cm_btn">'.__('site.Жіберу').' <img src="/images/news/send.svg" alt=""></button></form>';
@@ -42,7 +42,7 @@ public function show($id, Request $request) {
                     $answer = NewsCommentAnswer::where('news_comment_id','=',$com->id)->get();
                     $data .= '<div id="answer_list" style="display:none">';
                     foreach ($answer as $an){
-                        $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url('.asset($com->user->avatar).')"></div><div class="cm_content"><div class="cm_head">'.$an->user->full_name.'</div><div class="cm_body">'.$an->text.'</div></div></div>';
+                        $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url(/storage/images/avatars/'.$com->user->avatar.')"></div><div class="cm_content"><div class="cm_head">'.$an->user->full_name.'</div><div class="cm_body">'.$an->text.'</div></div></div>';
                     }
                     $data .= '</div>';
                 }
@@ -64,7 +64,7 @@ public function show($id, Request $request) {
         $data = '';
         if ($request->ajax()) {
             foreach ($coms as $com) {
-                $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url('.asset(images/avatar.png).')"></div><div class="cm_content"><div class="cm_head">'.$com->user->full_name.'</div><div class="cm_body">'.$com->text.'</div></div></div>';
+                $data .= '<div class="cm_block mini"><div class="cm_avatar" style="background-image: url(/storage/images/avatars/'.$com->user->avatar.')"></div><div class="cm_content"><div class="cm_head">'.$com->user->full_name.'</div><div class="cm_body">'.$com->text.'</div></div></div>';
             }
             return $data;
         }

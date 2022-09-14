@@ -84,12 +84,12 @@ $(document).ready(function () {
 
 //PHOME MASK JQUERY Erdaulet
 $(".phone_mask").mask("+7 (000) 000-00-00");
-$(".phone_mask").on('focus', function(){
-    if($(this).val()=='')
+$(".phone_mask").on('focus', function () {
+    if ($(this).val() == '')
         $(this).val('+7 (');
 })
-$(".phone_mask").on('focusout', function(){
-    if($(this).val()=='+7 (')
+$(".phone_mask").on('focusout', function () {
+    if ($(this).val() == '+7 (')
         $(this).val('');
 })
 
@@ -202,7 +202,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.loadedmode').removeClass("active");
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
-                data==0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
+                data == 0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
             }, 1000);
         },
         error: function (data) {
@@ -217,7 +217,7 @@ $('.drop-zone__input').on('change', e => {
                 $('.successmode').addClass("active");
                 $('.my_drop').addClass("active");
                 $('#file_name').text(dataName.name);
-                data==0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
+                data == 0 ? $('#fileName').val(data) : $('#fileName').val(data.responseText);
             }, 1000);
         }
     });
@@ -281,6 +281,14 @@ function openRegisterLink(e) {
     openRegister();
 }
 
+
+function openResetPass(e) {
+    $('.modal').modal('hide');
+    setTimeout(() => {
+        $('#resetLoginPopup').modal('show');
+    }, 500);
+}
+
 function openLoginLink(e) {
     closeModal(e)
     openLogin();
@@ -331,13 +339,13 @@ function clearInvalidFeedback() {
 $(function () {
 
 
-//    let input = document.getElementsByClassName('phone_mask')[0];
-//    input.addEventListener('focus', (e, el) => {
-//        $(".phone_mask").val("+7 (___) ___-__-__");
-//        e.preventDefault()
-//    })
-//    input.addEventListener('mouseup', (e, el) => {
-//        e.preventDefault()
-//        console.log(input.setSelectionRange(4, 4))
-//    })
+    //    let input = document.getElementsByClassName('phone_mask')[0];
+    //    input.addEventListener('focus', (e, el) => {
+    //        $(".phone_mask").val("+7 (___) ___-__-__");
+    //        e.preventDefault()
+    //    })
+    //    input.addEventListener('mouseup', (e, el) => {
+    //        e.preventDefault()
+    //        console.log(input.setSelectionRange(4, 4))
+    //    })
 })

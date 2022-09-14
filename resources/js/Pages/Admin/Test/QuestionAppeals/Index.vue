@@ -123,6 +123,18 @@
                                         <td>{{ appeal.comment }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
+                                               <Link
+                                                    :href="
+                                                        route(
+                                                            'admin.test.questionAppeals.edit',
+                                                            appeal.question_id
+                                                        )
+                                                    "
+                                                    class="btn btn-primary"
+                                                    title="Тест сұрағын өзгерту"
+                                                >
+                                                    <i class="fas fa-edit"></i>
+                                                </Link>
                                                 <button
                                                     @click.prevent="
                                                         deleteData(appeal.id)
@@ -168,6 +180,9 @@ export default {
                 comment: route().params.comment ?? null,
             },
         };
+    },
+    mounted() {
+        console.log(this.appeals)
     },
     methods: {
         deleteData(id) {

@@ -102,7 +102,7 @@ return [
     'required_with_all'    => ' :attribute жолы :values болғанда толтырылуы керек.',
     'required_without'     => ' :attribute жолы :values болмағанда толтырылуы керек.',
     'required_without_all' => ' :attribute жолы ешбір :values болмағанда толтырылуы керек.',
-    'same'                 => ' :attribute және :other сәйкес болуы керек.',
+    'same'                 => ' :attribute және :other сәйкес емес.',
     'size'                 => [
         'numeric' => ' :attribute көлемі :size болуы керек.',
         'file'    => ' :attribute көлемі :size килобайт болуы керек.',
@@ -256,7 +256,7 @@ return [
         'first_name' => 'Аты',
         'last_name' => 'Фамилия',
         'password' => 'Құпия сөз',
-        'password_confirmation' => 'Құпиясөзді растау',
+        'password_confirmation' => 'Құпия сөзді растау',
         'new_password_confirmation' => 'Жаңа құпия сөзді растау',
         'country' => 'Ел',
         'phone' => 'Телефон',

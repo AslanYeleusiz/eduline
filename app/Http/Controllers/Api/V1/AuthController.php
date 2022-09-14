@@ -9,8 +9,10 @@ use App\Http\Requests\Api\V1\Auth\RegisterRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterSendSmsCodeRequest;
 use App\Http\Requests\Api\V1\Auth\ResetPasswordSaveRequest;
 use App\Http\Requests\Api\V1\Auth\ResetPasswordVerifyCodeRequest;
+use App\Http\Requests\Api\V1\User\UserAccountDestroyRequest;
 use App\Http\Resources\V1\LoggedInResource;
 use App\Http\Resources\V1\MessageResource;
+use App\Models\RemoteUsers;
 use App\Models\Role;
 use App\Models\SmsVerification;
 use App\Models\User;
@@ -84,6 +86,26 @@ class AuthController extends Controller
         Auth::guard('api')->user()->token()->revoke();
         return new MessageResource(__('message.user.logout'));
     }
+
+
+    public function destroyAccount(UserAccountDestroyRequest $request)
+    {
+        $user = auth()->guard('api')->user();
+//        $user = User::findOrFail($request->user_id);
+        $remote = RemoteUsers::create([
+            'full_name' => $user->full_name,
+            'email' => $user->email,
+            'phone' => $user->phone,
+            'password' => $user->real_password,
+            'role_id' => $user->role_id,
+            'text' => $request->text,
+        ]);
+        Auth::guard('api')->user()->token()->revoke();
+        $user->delete();
+        return new MessageResource(__('message.user.logout'));
+    }
+
+
 
     public function registerSendSmsCode(RegisterSendSmsCodeRequest $request)
     {

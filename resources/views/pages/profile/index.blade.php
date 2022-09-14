@@ -42,15 +42,6 @@
                     <div class="profile-info-description">{{ $phone }}</div>
                 </div>
                 <div class="profile-info-actions-group">
-                    @if($user->is_phone_verification)
-                    <div class="profile-info-action">Расталған</div>
-                    @else
-                    <form action="{{ route('profile.ajax.checkSendSmsPhone') }}" method="POST" id="confirmPhone">
-                        @csrf
-                        <input id="phone" type="tel" style="display:none;" name="phone" value="{{ $user->phone }}">
-                        <button class="profile-info-action" style="background: none; border: none">@lang('site.Растау')</button>
-                    </form>
-                    @endif
                     <div class="profile-info-action" onclick="editPhonePopup(this)">@lang('site.Өзгерту')</div>
                 </div>
 
@@ -231,7 +222,7 @@
                     //     window.location.reload();
                     // }
 
-                    $("#smsModal .modal-phone").text(phone);
+                    $("#smsModal .modal-phone").text('+7'+phone);
                     $("#smsModal #thisPhone").val(phone);
 
                     $('.modal').modal('hide');
@@ -254,10 +245,11 @@
                 }
             });
         });
-        $('#confirmPhone').submit(function(e) {
+        /*$('#confirmPhone').submit(function(e)
+        {
             e.preventDefault();
             let phone = $('#phone').val();
-            $("#smsModal .modal-phone").text(phone);
+            $("#smsModal .modal-phone").text('+7'+phone);
             $("#smsModal #thisPhone").val(phone);
             sendUrl = "/profile/phone/update";
             setTimeout(() => {
@@ -302,7 +294,7 @@
                     }
                 }
             });
-        });
+        });*/
         $('body').on('click', '.modal-retry-btn.active', function(e) {
             e.preventDefault();
             $('.modal-retry-btn').removeClass('active');
@@ -393,7 +385,7 @@
                     $(".loader").removeClass("loading");
 
                     $('.modal').modal('hide');
-                    $("#smsModal .modal-phone").text({!! json_encode((array)auth()->user()->phone) !!});
+                    $("#smsModal .modal-phone").text('+7'+{!! json_encode((array)auth()->user()->phone) !!});
 
 //                    setTimeout(() => {
 //                        $('#successPopup').modal('show');
@@ -408,12 +400,8 @@
                 error: function(err) {
                     $(".loader").removeClass("loading");
                     let response_text = JSON.parse(err.responseText);
-                    if (response_text.errors && typeof response_text.errors == 'object') {
-                        Object.entries(response_text.errors).forEach(([key, value]) => {
-                            $('#error-new-' + key).text(value[0]);
-                            $('#error-new-' + key).css('display', 'block');
-                        })
-                    }
+                    $('#editPasswordPopup #error-login-confirm-password').text(response_text.message);
+                    $('#editPasswordPopup #error-login-confirm-password').show();
                 }
             });
         });

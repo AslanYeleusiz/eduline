@@ -114,7 +114,6 @@
     gap: 5px;
     position: relative;
 }
-
 .modal-form {
     width: 100%;
     display: flex;
@@ -811,9 +810,6 @@ a.desc-info-link {
     color: #000000;
 }
 
-.modal-body.modal-body-second {
-    padding: 0 0 10px;
-}
 
 .modal-content.modal-content-second {
     width: 360px;

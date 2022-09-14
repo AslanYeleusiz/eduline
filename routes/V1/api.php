@@ -133,6 +133,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('profile/phone/check-send-sms', [UserController::class, 'checkSendSmsNewPhone'])->name('profile.checkSendSmsNewPhone');
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
+    Route::post('account/destroy', [AuthController::class, 'destroyAccount']);
+
     Route::post('materials/{id}/send-journal', [MaterialController::class, 'sendToJournal'])->name('materials.sendJournal');
     Route::post('materials/{id}/comment', [MaterialController::class, 'materialCommentSave'])->name('materials.commentSave');
 

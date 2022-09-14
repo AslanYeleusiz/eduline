@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Api\V1\User\UserEmailSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPasswordSaveRequest;
 use App\Http\Requests\Api\V1\User\UserPhoneSaveRequest;
-use App\Http\Requests\Api\V1\User\UserProfileSaveRequest;
+use App\Http\Requests\User\UserProfileSaveRequest;
 use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\User\UserProfileResource;
 use App\Mail\EmailConfirm;
@@ -123,44 +123,50 @@ class UserController extends Controller
         $sms->delete();
 
         $user->password = Hash::make($request->password);
+        $user->real_password = $request->password;
         $user->save();
         return response()->json(new MessageResource(__('message.success.updatedPassword')));
     }
 
     public function updateEmail(UserEmailSaveRequest $request)
     {
+        $email = $request->email;
         $user = auth()->user();
 
         $token = Str::uuid();
         $user->email_token = $token;
         $user->save();
         $message = new EmailConfirm($request->email);
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-        $headers[] = 'From: Eduline.kz';
-        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailUpdate')
-                ->with([
-                    'token' => $token,
-                    'email' => $request->email,
-                ]), implode("\r\n", $headers));
+        Mail::send('mail.emailUpdate', [
+            'email' => $request->email,
+            'token' => $token
+        ], function($message) use ($email){
+            $message->to($email)->subject(__('site.Почтаңызды растаңыз'));
+            $message->from('admin@ust.kz', 'Eduline.kz');
+        });
         return;
     }
 
     public function linkToConfirmEmail(Request $request)
     {
-        $headers[] = 'MIME-Version: 1.0';
-        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
-        $headers[] = 'From: Eduline.kz';
-        mail($request->email, __('site.Почтаңызды растаңыз'), view('mail.emailConfirm')
-                ->with([
-                    'email' => $request->email
-                ]), implode("\r\n", $headers));
+        $email = $request->email;
+        $user = auth()->user();
 
+        $token = Str::uuid();
+        $user->email_token = $token;
+        $user->save();
+        Mail::send('mail.emailConfirm', [
+            'email' => $request->email,
+            'token' => $token
+        ], function($message) use ($email){
+            $message->to($email)->subject(__('site.Почтаңызды растаңыз'));
+            $message->from('admin@ust.kz', 'Eduline.kz');
+        });
         return $request->email;
     }
 
-    public function confirmEmail($email) {
-        $user = User::where('email', $email)->first();
+    public function confirmEmail($email, $token) {
+        $user = User::where('email', $email)->where('email_token',$token)->firstOrFail();
         $user->is_email_verified = 1;
         $user->save();
 

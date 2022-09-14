@@ -35,6 +35,8 @@ class UserController extends Controller
         return new UserProfileResource($user);
     }
 
+
+
     public function updateProfile(UserProfileSaveRequest $request)
     {
         $user = auth()->guard('api')->user();
@@ -113,6 +115,7 @@ class UserController extends Controller
          $code = $this->smsService->generateCode();
         $msg = __('auth.sms_verification') . $code;
         $this->smsService->send($msg, $phone);
+
 
         SmsVerification::create([
             'code' => $code,

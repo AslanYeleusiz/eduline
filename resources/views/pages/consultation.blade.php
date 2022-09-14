@@ -33,7 +33,7 @@
             <div class="cst_pd">
                 <div class="k_form_head">@lang('site.Консультация бағасы') - {{$consultation->price}} ₸</div>
 
-                <form method="post" action="/consultation/{{ $consultation->id }}" class="k_form needs-validation forma-ajax">
+                <form method="post" action="{{route('consultation.store',['id' => $consultation->id])}}" class="k_form needs-validation forma-ajax">
                     @csrf
                     <div class="row">
                         <div class="col-md">

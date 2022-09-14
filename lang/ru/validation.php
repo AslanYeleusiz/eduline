@@ -112,7 +112,7 @@ return [
     'required_with_all'    => 'Поле :attribute обязательно для заполнения, когда :values указано.',
     'required_without'     => 'Поле :attribute обязательно для заполнения, когда :values не указано.',
     'required_without_all' => 'Поле :attribute обязательно для заполнения, когда ни одно из :values не указано.',
-    'same'                 => 'Значения полей :attribute и :other должны совпадать.',
+    'same'                 => 'Значения полей :attribute и :other не совпадают.',
     'size'                 => [
         'array'   => 'Количество элементов в поле :attribute должно быть равным :size.',
         'file'    => 'Размер файла в поле :attribute должен быть равен :size Килобайт(а).',
@@ -154,7 +154,7 @@ return [
         'month'                 => 'Месяц',
         'name'                  => 'Имя',
         'password'              => 'Пароль',
-        'password_confirmation' => 'подтверждение пароля',
+        'password_confirmation' => 'Подтверждение пароля',
         'phone'                 => 'Телефон',
         'second'                => 'Секунда',
         'sex'                   => 'Пол',

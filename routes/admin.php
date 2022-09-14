@@ -100,8 +100,12 @@ Route::name('test.')->group(function () {
     Route::resource('directions', TestDirectionController::class)->except(['show'])->names('directions');
     Route::resource('questions', TestQuestionController::class)->except(['show'])->names('questions');
     Route::resource('classes', TestClassController::class)->except(['show'])->names('classes');
-    Route::resource('question-appeals', TestQuestionAppealController::class)->only(['index', 'destroy'])->names('questionAppeals');
+
     Route::resource('option-question-appeals', TestOptionQuestionAppealController::class)->only(['index', 'destroy'])->names('optionQuestionAppeals');
+
+    Route::resource('question-appeals', TestQuestionAppealController::class)->except(['show'])->names('questionAppeals');
+
     Route::resource('preparation-appeals', TestPreparationAppealController::class)->only(['index', 'destroy'])->names('preparationAppeals');
+
 
 });
