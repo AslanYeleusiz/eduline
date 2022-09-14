@@ -98,7 +98,6 @@ class AuthController extends Controller
             'role_id' => $user->role_id,
             'text' => $request->text,
         ]);
-        Auth::guard('api')->user()->token()->revoke();
         $user->delete();
         return new MessageResource(__('message.user.logout'));
     }

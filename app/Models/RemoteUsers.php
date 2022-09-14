@@ -15,5 +15,5 @@ class RemoteUsers extends Model
      * @var array<int, string>
      */
 
-     public $guarded = [];
+     protected $guarded = [];
 }
