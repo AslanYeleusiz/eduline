@@ -9,6 +9,7 @@ use App\Http\Resources\V1\Test\FullTestResource;
 use App\Http\Resources\V1\Test\FullTestStartedResource;
 use App\Http\Resources\V1\Test\TestSubjectOptionTestFinishedResource;
 use App\Http\Resources\V1\Test\TestSubjectOptionTestStartedResource;
+use App\Models\TestOptionQuestionAppeal;
 use App\Models\TestSubjectOptionTest;
 use App\Models\TestSubjectOptionTestUserAnswer;
 use App\Services\V1\TestByOptionService;
@@ -42,6 +43,22 @@ class TestSubjectOptionTestController extends Controller
 			$query->whereNotNull('answer');
 		}, 'userAnswers as questions_count']);
         return new TestSubjectOptionTestStartedResource($test);
+    }
+
+    public function appeal($testId, Request $request)
+    {
+        $questionId = $request->question_id;
+        $questionAppeal = new TestOptionQuestionAppeal();
+        $questionAppeal->question_id = $questionId;
+        $questionAppeal->test_id = $testId;
+        $questionAppeal->type = $request->type;
+        $questionAppeal->comment = $request->comment;
+        $user = auth()->guard('api')->user();
+        if (!empty($user)) {
+            $questionAppeal->user_id = $user->id;
+        }
+        $questionAppeal->save();
+        return new MessageResource(__('message.success.saved'));
     }
 
     public function result($testId)

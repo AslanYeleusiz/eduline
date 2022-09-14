@@ -261,6 +261,7 @@
                             "admin.test.questions",
                             "admin.test.classes",
                             "admin.test.questionAppeals",
+                            "admin.test.optionQuestionAppeals",
                             "admin.test.preparationPreparations",
                             "admin.test.trainers"
                         ],
@@ -306,6 +307,12 @@
                                 font: "fa-newspaper",
                                 route_name: "admin.test.questionAppeals.index",
                                 menu_active: ["admin.test.questionAppeals"],
+                            },
+                            {
+                                name: "Тест нұсқа б/ша апеляция",
+                                font: "fa-newspaper",
+                                route_name: "admin.test.optionQuestionAppeals.index",
+                                menu_active: ["admin.test.optionQuestionAppeals"],
                             },
                             {
                                 name: "Дайындық апеляция",

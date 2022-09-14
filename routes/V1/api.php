@@ -96,6 +96,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::prefix('option-test')->group(function () {
         Route::get('/results', [TestSubjectOptionTestController::class, 'results'])->name('subjectOptionTest.results');
         Route::get('/{id}', [TestSubjectOptionTestController::class, 'show'])->name('subjectOptionTest.show');
+        Route::post('/{id}/appeal', [TestSubjectOptionTestController::class, 'appeal'])->name('subjectOptionTest.appeal');
 
         Route::get('/{id}/questions', [TestSubjectOptionTestController::class, 'showWithUserAnswers'])->name('subjectOptionTest.showWithUserAnswers');
         Route::get('/{id}/result', [TestSubjectOptionTestController::class, 'result'])->name('subjectOptionTest.result');

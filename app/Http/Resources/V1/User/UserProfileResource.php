@@ -21,13 +21,13 @@ class UserProfileResource extends JsonResource
 
         $this->loadMissing('subscription.subscription');
         $subscription = null;
-        if ($this->subscription) {
+        if ($this->subscription && Carbon::create($this->subscription->to_date)->format('d.m.Y') >= date('d.m.Y')) {
             $subscription = [
                 'id' => $this->subscription->subscription->id,
                 'name' => $this->subscription->subscription->name,
                 'duration' => $this->subscription->subscription->duration,
                 'from_date' => Carbon::create( $this->subscription->from_date)->format('d.m.Y'),
-                'to_date' => Carbon::create( $this->subscription->to_date)->format('d.m.Y'),
+                'to_date' => Carbon::create($this->subscription->to_date)->format('d.m.Y'),
                 'created_at' => $this->subscription->created_at?->format('d.m.Y H:i'),
             ];
         }
