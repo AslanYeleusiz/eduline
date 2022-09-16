@@ -155,8 +155,38 @@
                             <label for="">Сурет</label>
                             <div class="ml-2">
                                 <div class="ml-2">
+                                    <label for="Ru">KK</label>
+                                    <br>
+                                    <img
+                                        v-if="news.image.kk && !image_kk.file"
+                                        :src="route('index')  +'/storage/images/news/' +  news.image.kk"
+                                        height="300"
+                                        alt="image"
+                                        style="padding-bottom: 10px"
+                                    />
+                                    <img
+                                        v-show="image_kk.preview"
+                                        :src="image_kk.preview"
+                                        height="300"
+                                        style="padding-bottom: 10px"
+                                    />
+                                    <div class="file-input" style="margin-right: 10px">
+                                        <input
+                                            type="file"
+                                            hidden
+                                            name="image_kk"
+                                            @change="handleImageKzUpload()"
+                                            ref="image_kk"
+                                            accept="image/jpeg,image/png"
+                                            class="file"
+                                            id="image_kk"
+                                        />
+                                        <label for="image_kk"> Загрузить </label>
+                                    </div>
+                                </div>
+                                <div class="ml-2">
                                     <label for="">RU</label>
-                                    <br>  
+                                    <br>
                                     <img
                                         v-if="news.image && news.image.ru && !image_ru.file"
                                         :src="route('index') +'/storage/images/news/'+ news.image.ru"
@@ -185,36 +215,6 @@
                                             id="image_ru"
                                         />
                                         <label for="image_ru"> Загрузить </label>
-                                    </div>
-                                </div>
-                                <div class="ml-2">
-                                    <label for="Ru">KK</label>
-                                    <br>
-                                    <img
-                                        v-if="news.image.kk && !image_kk.file"
-                                        :src="route('index')  +'/storage/images/news/' +  news.image.kk"
-                                        height="300"
-                                        alt="image"
-                                        style="padding-bottom: 10px"
-                                    />
-                                    <img
-                                        v-show="image_kk.preview"
-                                        :src="image_kk.preview"
-                                        height="300"
-                                        style="padding-bottom: 10px"
-                                    />
-                                    <div class="file-input" style="margin-right: 10px">
-                                        <input
-                                            type="file"
-                                            hidden
-                                            name="image_kk"
-                                            @change="handleImageKzUpload()"
-                                            ref="image_kk"
-                                            accept="image/jpeg,image/png"
-                                            class="file"
-                                            id="image_kk"
-                                        />
-                                        <label for="image_kk"> Загрузить </label>
                                     </div>
                                 </div>
                             </div>
@@ -268,7 +268,7 @@ export default {
     },
     props: ["newsTypes"],
     data() {
-        return { 
+        return {
             editor: ClassicEditor,
             editorConfig: {
                 // The configuration of the editor.
@@ -366,7 +366,7 @@ export default {
         },
     },
     mounted() {
-        this.$refs.image_kk.value = "";    
+        this.$refs.image_kk.value = "";
         this.$refs.image_ru.value = "";
 
     },

@@ -34,15 +34,28 @@
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Аты</label>
+                            <label for="">KK</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="newsType.name"
-                                name="name"
+                                v-model="newsType.name.kk"
+                                name="name.kk"
                                 placeholder="Аты"
+                                required
                             />
-                            <validation-error :field="'name'" />
+                            <validation-error :field="'name.kk'" />
+                        </div>
+                         <div class="form-group">
+                            <label for="">RU</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="newsType.name.ru"
+                                name="name.ru"
+                                placeholder="Аты"
+                                required
+                            />
+                            <validation-error :field="'name.ru'" />
                         </div>
 
                         <div class="form-group">
@@ -96,7 +109,10 @@ export default {
     data() {
         return {
             newsType: {
-                name: null,
+                name: {
+                    kk: '',
+                    ru: '',
+                },
                 is_main: false,
             },
         };

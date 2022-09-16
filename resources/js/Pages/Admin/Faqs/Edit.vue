@@ -58,28 +58,22 @@
 
                         <div class="form-group">
                             <label for="">Жауап(қазақша)</label>
-                            <textarea
-                                class="form-control"
+                            <ckeditor
+                                :editor="editor"
                                 v-model="faq.answer.kk"
-                                placeholder="Жауап"
-                                name="answer_kk"
-                                cols="30"
-                                rows="5"
+                                :config="editorConfig"
                             >
-                            </textarea>
+                            </ckeditor>
                             <validation-error :field="'answer'" />
                         </div>
                         <div class="form-group">
                             <label for="">Жауап(орысша)</label>
-                            <textarea
-                                class="form-control"
+                            <ckeditor
+                                :editor="editor"
                                 v-model="faq.answer.ru"
-                                placeholder="Ответ"
-                                name="answer"
-                                cols="30"
-                                rows="5"
+                                :config="editorConfig"
                             >
-                            </textarea>
+                            </ckeditor>
                             <validation-error :field="'answer'" />
                         </div>
 
@@ -106,6 +100,7 @@ import AdminLayout from "../../../Layouts/AdminLayout.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../Components/Pagination.vue";
 import ValidationError from "../../../Components/ValidationError.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
     components: {
@@ -118,6 +113,15 @@ export default {
     props: [
         "faq",
     ],
+    data() {
+        return {
+            editor: ClassicEditor,
+            editorConfig: {
+                // The configuration of the editor.
+            },
+        }
+    },
+
     methods: {
         submit() {
             this.faq["_method"] = "put";
