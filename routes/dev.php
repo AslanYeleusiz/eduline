@@ -14,14 +14,16 @@ use Faker\Generator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 //use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 Route::get('/', function () {
     // $pdf = PDF::loadView('pdf/salary', compact('user'));
-    return view('pdf.salary');
-    PDF::setOptions(['defaultFont' => 'DejaVuSans.ttf']);
+//    return view('pdf.salary');
+//    PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+    Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
 
     $salaryHistory = SalaryCalculatorHistory::firstOrFail();
-    $pdf = PDF::loadView('pdf/salary');
+    $pdf = Pdf::loadView('pdf/salary');
     $name = 'invoice_' . $salaryHistory->created_at;
     return $pdf->download("$name.pdf");
     return $pdf->download('invoice.pdf');

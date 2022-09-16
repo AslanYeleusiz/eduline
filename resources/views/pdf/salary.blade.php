@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>file_1656024190500</title>
     <link href="{{ asset('css/pdf-salary.css') }}" rel="stylesheet" />
 
@@ -15,7 +15,7 @@
       }
       body, body*, tr, td, table, p, H1 { font-family: DejaVuSans !important; }
   </style>
-  <body>
+  <body class="page-break">
     <p
       class="s1"
       style="
