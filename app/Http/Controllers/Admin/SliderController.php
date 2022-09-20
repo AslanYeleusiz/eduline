@@ -138,19 +138,13 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        return 'Временно не работает';
-
-//        if(is_object($slider->image))
-//        foreach ($slider->image as $key => $image) {
-//            if ($key == 'ru') {
-//                FileService::deleteFile($image, Slider::IMAGE_PATH);
-//            } else if ( $key == 'kk') {
-//                FileService::deleteFile($image, Slider::IMAGE_PATH);
-//            }
-//        }
-//        else
-//            FileService::deleteFile($slider->image, Slider::IMAGE_PATH);
-
+        foreach ($slider->image as $key => $image) {
+            if ($key == 'ru') {
+                FileService::deleteFile($image, Slider::IMAGE_PATH);
+            } else if ( $key == 'kk') {
+                FileService::deleteFile($image, Slider::IMAGE_PATH);
+            }
+        }
         $slider->delete();
         return redirect()->back()->withSuccess('Успешно удалено');
     }

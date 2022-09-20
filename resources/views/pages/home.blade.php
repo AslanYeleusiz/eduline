@@ -38,7 +38,7 @@
                     <a href="{{
                            $slide->linkToAdvice ? '/consultation/'.$slide->slug($slide->advice->title).'?id='.$slide->advice->id : $slide->link
                            }}">
-                        <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image)}}')"></div>
+                        <div class="mainSliderImage" style="background-image: url('{{asset('storage/images/sliders/'.$slide->image[app()->getLocale()])}}')"></div>
                     </a>
                 </div>
                 @endforeach
