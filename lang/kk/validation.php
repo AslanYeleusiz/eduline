@@ -132,6 +132,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'басқа хабар',
         ],
+        'role_id' => [
+            'required' => ' :attribute тандалу керек.'
+        ],
     ],
 
     /*
@@ -153,6 +156,7 @@ return [
         'result_text_under_image' => 'Кескін астындағы нәтиже мәтіні',
         'short_text'              => 'Қысқа мәтін',
         'rating'                  => 'Рейтинг',
+        'role_id'                 => 'Рөл',
 
         'name' => 'Атауы',
         'name.en' => 'Ағылшын тіліндегі атауы',

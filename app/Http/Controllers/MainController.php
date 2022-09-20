@@ -51,7 +51,7 @@ class MainController extends Controller
             $phone = $req->input('phone');
             $array = ["+7","-"," ","(", ")"];
             $phone = str_replace($array, "", $phone);
-            $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
+            $msg = "Қосымшаны жүктеу сілтемесі: https://onelink.to/w2ewnj";
             $this->smsService->send($msg, $phone);
 
             return redirect()->route('attestation')->withSuccess(__('site.SMS жіберілді'));
@@ -65,7 +65,7 @@ class MainController extends Controller
             $phone = $req->input('phone');
             $array = ["+","-"," ","(", ")"];
             $phone = str_replace($array, "", $phone);
-            $msg = "Қосымшаны жүктеу сілтемесі: https://clck.ru/hcdEa";
+            $msg = "Қосымшаны жүктеу сілтемесі: https://onelink.to/w2ewnj";
             if($this->smsService->send($msg, $phone))
                 return redirect()->route('calculator')->withSuccess(__('site.SMS жіберілді'));
             else
