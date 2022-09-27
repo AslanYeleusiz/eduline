@@ -235,7 +235,6 @@
                 </p>
             </td>
             <td class="table-td-2-column-val"
-
             >
                 <p
                     class="s2 s2-table-col-val"
