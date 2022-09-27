@@ -80,6 +80,7 @@ return array (
   ),
   'roboto' => array(
     '500' => $fontDir . '/roboto_500_5774d6fb05eba3d096525f821dbe4137',
+    'normal' => $fontDir . '/roboto_normal_7bc701b343c10631f60048716b96e4f7',
   ),
   'arial_uni' => array(
     '200' => $fontDir . '/arial_uni_200_0b129cb65bfe3bc7fe05a7bfb7b2932d',
