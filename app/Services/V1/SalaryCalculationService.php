@@ -3,36 +3,40 @@
 
 namespace App\Services\V1;
 
+use App\Models\SalaryCalculator;
 use App\Models\SalaryCalculatorCoefficient;
 use Illuminate\Support\Str;
 
 class SalaryCalculationService
 {
+
     public static function getCoefficent($education, $category, $experience, $year, $month)
     {
         $education = Str::upper($education);
-        $edications = ['B2', 'B4'];
         $coefficient = 0;
-        if (!in_array($education, $edications)) {
+
+//        dd($education, $category, $experience, $year, $month,
+//            !in_array($education, array_column(SalaryCalculator::EDUICATIONS, 'value') ));
+        if (!in_array($education, array_column(SalaryCalculator::EDUICATIONS, 'value') )) {
             return $coefficient;
         }
         $salaryExperience = SalaryCalculatorCoefficient::where('education', $education)
-        ->where('category', $category)
-        ->where('experience_from', '<=', $experience)
-        ->where('experience_to', '>', $experience)
-        ->when($year && $month, function($query) use ($year, $month) {
-            return $query->where(function($query) use ($year, $month) {
-                return $query->where('year', $year)->where('month', $month);
-            })->orWhere(function($query) use ($year, $month) {
-                return $query->where('year', $year);
-            })->orWhere(function($query) {
-                return $query->whereNotNull('year');
-            });
-        })
-        ->orderBy('year', 'desc')->orderBy('month', 'desc')
-        ->first();
+            ->where('category', $category)
+            ->where('experience_from', '<=', $experience)
+            ->where('experience_to', '>', $experience)
+            ->when($year && $month, function ($query) use ($year, $month) {
+                return $query->where(function ($query) use ($year, $month) {
+                    return $query->where('year', $year)->where('month', $month);
+                })->orWhere(function ($query) use ($year, $month) {
+                    return $query->where('year', $year);
+                })->orWhere(function ($query) {
+                    return $query->whereNotNull('year');
+                });
+            })
+            ->orderBy('year', 'desc')->orderBy('month', 'desc')
+            ->first();
         // dd($salaryExperience);
-        if(!empty($salaryExperience)) {
+        if (!empty($salaryExperience)) {
             return $salaryExperience->coefficient;
         }
         return $coefficient;
@@ -48,9 +52,24 @@ class SalaryCalculationService
         // }
         return $coefficient;
     }
+
+    public static function getCalculatorData($year, $month)
+    {
+        $calculatorData = SalaryCalculator::when('year', fn($query) => $query->where('year', $year))
+            ->when($month, fn($query) => $query->where('month', $month))
+            ->orWhere(function ($query) use ($year) {
+                return $query->where('year', $year);
+            })
+            ->orderBy('year', 'desc')->orderBy('month', 'desc')
+            ->firstOr(function () {
+                return SalaryCalculator::latest()->first();
+            });
+        return $calculatorData;
+    }
+
     public static function getListCategoryWithCoefficents()
     {
-        return  [
+        return [
             'B2' => [
                 0 => [
                     'degree' => 1,
@@ -114,7 +133,7 @@ class SalaryCalculationService
                 ],
                 1 => [
                     'degree' => 2,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
@@ -174,7 +193,7 @@ class SalaryCalculationService
                 ],
                 2 => [
                     'degree' => 3,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
@@ -234,7 +253,7 @@ class SalaryCalculationService
                 ],
                 3 => [
                     'degree' => 4,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
@@ -356,7 +375,7 @@ class SalaryCalculationService
                 ],
                 1 => [
                     'degree' => 2,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
@@ -416,7 +435,7 @@ class SalaryCalculationService
                 ],
                 2 => [
                     'degree' => 3,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
@@ -476,7 +495,7 @@ class SalaryCalculationService
                 ],
                 3 => [
                     'degree' => 4,
-                    'experiences'    => [
+                    'experiences' => [
                         [
                             'from' => 0,
                             'to' => 1,
