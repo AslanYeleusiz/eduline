@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Slider extends Model
 {
-    use HasFactory,HasTranslations;
+    use HasFactory;
     const IMAGE_PATH = 'images/sliders/';
     protected $guarded = [];
 
@@ -17,7 +17,7 @@ class Slider extends Model
     {
         return $this->belongsTo(PersonalAdvice::class, 'linkToAdvice');
     }
-    public $translatable = ['image'];
+
     public $casts = [
         'image' => 'json'
     ];
@@ -25,5 +25,4 @@ class Slider extends Model
     {
         return Str::slug($date, '_');
     }
-
 }

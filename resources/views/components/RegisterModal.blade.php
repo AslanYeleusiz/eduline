@@ -29,7 +29,7 @@
                                 <label class="modal-form-label" for="register-email">@lang('site.Email почтаңыз'):</label>
                                 <input id="register-email" name="email"
                                        class="modal-form-input" type="email"
-                                       placeholder="Email почтаңызды енгізіңіз">
+                                       placeholder="Email почтаңызды енгізіңіз" autocomplete="off">
                                 <span class="invalid" role="alert" id="error-register-email"></span>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                 <label class="modal-form-label" for="register-password">@lang('site.Құпиясөз'):</label>
                                 <input id="register-password" name="password"
                                        class="modal-form-input password-input" type="password"
-                                       placeholder="Құпия сөзді енгізіңіз">
+                                       placeholder="Құпия сөзді енгізіңіз" autocomplete="off">
                                 <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
                                 <span class="invalid" role="alert" id="error-register-password"></span>
                             </div>

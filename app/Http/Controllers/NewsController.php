@@ -8,6 +8,7 @@ use App\Models\NewsComment;
 use App\Models\UserNewsSaved;
 use App\Models\Slider;
 use App\Services\NewsService;
+use Illuminate\Support\Facades\App;
 use Carbon\Carbon;
 
 class NewsController extends Controller
@@ -21,9 +22,11 @@ class NewsController extends Controller
         $slider = Slider::where('in_app', 1)->get();
         $news = News::orderBy('created_at','desc')->with(['newsType', 'comments', 'thisUserSaved'])->paginate(2);
         $now = Carbon::now();
+
         if ($request->ajax()) {
             return $this->newsService->craft($news);
         }
+
         return view('pages.home',[
             'news' => $news,
             'slider' => $slider,

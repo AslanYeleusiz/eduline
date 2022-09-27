@@ -61,6 +61,7 @@ return new class extends Migration
             $table->boolean('exempt_from_paying_individual_income_tax')->default(false);
             $table->tinyInteger('category')->default(4);
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 

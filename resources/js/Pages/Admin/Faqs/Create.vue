@@ -58,28 +58,22 @@
 
                         <div class="form-group">
                             <label for="">Жауап(қазақша)</label>
-                            <textarea
-                                class="form-control"
+                            <ckeditor
+                                :editor="editor"
                                 v-model="faq.answer.kk"
-                                placeholder="Жауап"
-                                name="answer_kk"
-                                cols="30"
-                                rows="5"
+                                :config="editorConfig"
                             >
-                            </textarea>
+                            </ckeditor>
                             <validation-error :field="'answer'" />
                         </div>
                         <div class="form-group">
                             <label for="">Жауап(орысша)</label>
-                            <textarea
-                                class="form-control"
+                            <ckeditor
+                                :editor="editor"
                                 v-model="faq.answer.ru"
-                                placeholder="Жауап"
-                                name="answer_ru"
-                                cols="30"
-                                rows="5"
+                                :config="editorConfig"
                             >
-                            </textarea>
+                            </ckeditor>
                             <validation-error :field="'answer'" />
                         </div>
 
@@ -118,6 +112,10 @@ export default {
     },
     data() {
         return {
+            editor: ClassicEditor,
+            editorConfig: {
+                // The configuration of the editor.
+            },
             faq: {
                 question: {
                     kk: '',

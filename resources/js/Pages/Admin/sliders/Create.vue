@@ -64,19 +64,19 @@
                         </div>
                         <div class="form-group mt-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="setLink" value=0>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="slider.in_app" value=0>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Сілтеме
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="setLink" value=1>
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="slider.in_app" value=1>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Жеке кеңес сілтеме
                                 </label>
                             </div>
                         </div>
-                        <div v-if="setLink==1" class="form-group">
+                        <div v-if="slider.in_app==1" class="form-group">
                             <label for="">Сілтемені таңдаңыз</label>
                             <select class="form-control" v-model="slider.linkToAdvice" name="slider" required>
                                 <option :value="null" hidden>Сілтемені таңдаңыз</option>
@@ -90,15 +90,6 @@
                             <label for="">Сілтемені енгізіңіз</label>
                             <input v-model="slider.link" type="text" class="form-control">
                             <validation-error :field="'link'" />
-                        </div>
-                        <div class="form-group">
-                            <label for="">Платформа</label>
-                            <select class="form-control" v-model="slider.in_app" name="slider" required>
-                                <option :value="null" hidden>Жүктеу платформасын таңдаңыз</option>
-                                <option value="1">Мобильді қосымшада көрінеді</option>
-                                <option value="2">Сайтта көрінеді</option>
-                            </select>
-                            <validation-error :field="'in_app'" />
                         </div>
 
                     </div>
@@ -148,7 +139,7 @@
                         kk: null,
                         ru: null,
                     },
-                    in_app: null,
+                    in_app: 0,
                 },
                 image_ru: {
                     file: "",

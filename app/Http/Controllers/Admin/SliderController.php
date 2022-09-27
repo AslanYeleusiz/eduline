@@ -141,7 +141,7 @@ class SliderController extends Controller
         foreach ($slider->image as $key => $image) {
             if ($key == 'ru') {
                 FileService::deleteFile($image, Slider::IMAGE_PATH);
-            } elseif ( $key == 'kk') {
+            } else if ( $key == 'kk') {
                 FileService::deleteFile($image, Slider::IMAGE_PATH);
             }
         }
