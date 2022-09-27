@@ -14,7 +14,7 @@
     {{--    font-family: 'Roboto-Regular';--}}
     {{--    src: url({{public_path('fonts/Roboto/Roboto-Regular.ttf')}}) format("opentype");--}}
     {{--}--}}
-                /*@font-face {*/
+                 /*@font-face {*/
     /*    src: url("/fonts/DejaVuSans.ttf") format('opentype');*/
     /*    font-family: DejaVuSans sans-serif ;*/
     /*    font-style: normal;*/
@@ -66,8 +66,8 @@
     За
     период: {{ Str::ucfirst(\Carbon\Carbon::create( $data['base']['year'] .'-' .  $data['base']['month'] .'-'. '1')->translatedFormat('F Y'))}}
     <br>
-{{--    Должность: Учитель--}}
-{{--    <br>--}}
+    {{--    Должность: Учитель--}}
+    {{--    <br>--}}
     Образование: {{ Arr::last(\App\Models\SalaryCalculator::EDUICATIONS, function ($value, $key) use ($data) {
     return $value['value'] ==  $data['base']['education'];
 })['name'] ?? null }}
@@ -80,7 +80,7 @@
     месяцев {{ $data['base']['experience_day'] }} дней
 </p>
 <p style="text-align: left;font-size:18px;padding-top: 15pt;">
-   Результат
+    Результат
 </p>
 <p style="text-indent: 0pt; text-align: left"><br/></p>
 <table
@@ -245,29 +245,31 @@
             </td>
         </tr>
     @endif
-    <tr style="height: 18pt">
-        <td class="s2-td-key">
-            <p
-                class="s2 s2-table-col-key">
-                Пед. мастерство
-            </p>
-        </td>
-        <td class="s2-table-col-center">
-            <p class="s2 s2-table-col-center-text-2">
-                {{ Arr::last(\App\Models\SalaryCalculator::PED_SKILLS, function ($value, $key) use ($data) {
-   return $value['number'] ==  $data['base']['ped_skill'];
-})['name'] }}
-            </p>
-        </td>
-        <td class="table-td-2-column-val"
-        >
-            <p
-                class="s2 s2-table-col-val "
+    @if(isset( $data['additional_surcharges']['sum_ped_skill']))
+        <tr style="height: 18pt">
+            <td class="s2-td-key">
+                <p
+                    class="s2 s2-table-col-key">
+                    Пед. мастерство
+                </p>
+            </td>
+            <td class="s2-table-col-center">
+                <p class="s2 s2-table-col-center-text-2">
+                    {{ Arr::last(\App\Models\SalaryCalculator::PED_SKILLS, function ($value, $key) use ($data) {
+       return $value['number'] ==  $data['base']['ped_skill'];
+    })['name'] }}
+                </p>
+            </td>
+            <td class="table-td-2-column-val"
             >
-                {{ $data['additional_surcharges']['sum_ped_skill'] }}
-            </p>
-        </td>
-    </tr>
+                <p
+                    class="s2 s2-table-col-val "
+                >
+                    {{ $data['additional_surcharges']['sum_ped_skill'] }}
+                </p>
+            </td>
+        </tr>
+    @endif
 
     @if(isset($data['additional_surcharges']['sum_work_in_env_disaster_zone']))
         <tr style="height: 31pt">
@@ -698,7 +700,7 @@
             </td>
         </tr>
     @endif
-    @if(isset($data['additional_surcharges']['sum_replace_hours_half_classes']))
+    @if(isset($data['additional_surcharges']['sum_replace_hour_full_classes']))
         <tr style="height: 18pt">
             <td class="s2-td-key">
                 <p
@@ -715,7 +717,7 @@
                 <p
                     class="s2 s2-table-col-val"
                 >
-                    {{ $data['additional_surcharges']['sum_replace_hours_half_classes'] }}
+                    {{ $data['additional_surcharges']['sum_replace_hour_full_classes'] }}
                 </p>
             </td>
         </tr>
@@ -957,7 +959,7 @@
             <p
                 class="s2 s2-table-col-key"
             >
-              ИТОГО НАЧИСЛЕНО:
+                ИТОГО НАЧИСЛЕНО:
             </p>
         </td>
         <td class="table-td-2-column-val"

@@ -367,9 +367,8 @@ Route::get('/', function () {
 
     $calculateService->category = $salaryHistory->category;
     $data = $calculateService->calculateSalary();
-    return view('pdf.salary', compact('data'));
 //    dd(    $salaryHistory = SalaryCalculatorHistory::firstOrFail());
-    Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'dejavu sans bold']);
+    Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'dejavu sans']);
 //    \Carbon\Carbon::setLocale('ru'); // <---
 //    setlocale(LC_ALL, 'ru_RU.utf8');
 

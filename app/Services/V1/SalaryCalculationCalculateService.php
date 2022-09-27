@@ -77,7 +77,7 @@ class SalaryCalculationCalculateService
                 'work_in_radiation_risk_zone' => $this->workInRadiationRiskZone,
                 'teaching_in_english' => $this->teachingInEnglish,
                 'class_guide' => $this->classGuide == 'true',
-                'class_occupancy' => $this->classOccupancy . ($this->classGuideElementaryGrade == 'true' ? 'нач. класс' : ''),
+                'class_occupancy' => $this->classOccupancy . ($this->classGuideElementaryGrade == 'true' ? ' нач. класс' : ''),
             ],
             // дополнительные доплаты
             'additional_surcharges' => []
