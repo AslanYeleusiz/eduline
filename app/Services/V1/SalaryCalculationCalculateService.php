@@ -370,6 +370,7 @@ class SalaryCalculationCalculateService
         $this->floatRound($data['additional_surcharges']);
         $this->floatRound($data['withheld']);
         $this->floatRound($data['base']);
+        $data['additional_surcharges'] = count($data['additional_surcharges']) ? $data['additional_surcharges'] : null;
         return $data;
     }
 
