@@ -191,7 +191,9 @@ class SalaryCalculatorController extends Controller
         $this->calculateService->category = $request->input('category',  last(SalaryCalculator::CATEGORIES)['number']);
         $data = $this->calculateService->calculateSalary();
 
-        $this->storeSalaryCalculatorHistory($request);
+        $salaryHistory = $this->storeSalaryCalculatorHistory($request);
+
+        $data['id'] = $salaryHistory->id;
 
         return response()->json([
             'data' => $data,
@@ -251,6 +253,7 @@ class SalaryCalculatorController extends Controller
         $salaryCalculator->category  = $request->input('category', last(SalaryCalculator::CATEGORIES)['number']);
         $salaryCalculator->user_id  = auth()->guard('api')->user()->id;
         $salaryCalculator->save();
+        return $salaryCalculator;
     }
 
     public function downloadPDF($id)
@@ -427,7 +430,7 @@ class SalaryCalculatorController extends Controller
         $this->calculateService->category = $salaryHistory->category;
         $data = $this->calculateService->calculateSalary();
 
-
+        $data['id'] = $salaryHistory->id;
         Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'dejavu sans bold']);
         $name = 'invoice_' .$salaryHistory->id .'_' . $salaryHistory->created_at . ".pdf";
         $pdf = PDF::loadView('pdf/salary', compact('data','name'));
