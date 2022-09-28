@@ -474,7 +474,7 @@
             </td>
             <td class="table-td-2-column-val">
                 <p class="s2 s2-table-col-val-text">
-                    {{ $data['additional_surcharges']['sum_for_checking_notebooks_half_classes']}}
+                    {{ $data['additional_surcharges']['sum_for_checking_notebooks_full_classes']}}
                 </p>
             </td>
         </tr>
