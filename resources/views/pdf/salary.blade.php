@@ -535,7 +535,7 @@
             </td>
         </tr>
     @endif
-    @if(isset( $data['additional_surcharges']['sum_for_checking_notebooks_half_classes']))
+    @if(isset( $data['additional_surcharges']['sum_shomeschooling']))
         <tr style="height: 18pt">
             <td class="s2-td-key">
                 <p
@@ -552,7 +552,7 @@
                 <p
                     class="s2 s2-table-col-val "
                 >
-                    {{ $data['additional_surcharges']['sum_for_checking_notebooks_half_classes']}}
+                    {{ $data['additional_surcharges']['sum_shomeschooling']}}
                 </p>
             </td>
         </tr>
