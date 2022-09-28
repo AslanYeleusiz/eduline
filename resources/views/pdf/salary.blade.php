@@ -479,62 +479,6 @@
             </td>
         </tr>
     @endif
-    @if(isset($data['additional_surcharges']['sum_working_with_children_with_special_educational_needs']))
-        <tr style="height: 31pt">
-            <td
-                style="
-            width: 276pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-left-style: solid;
-            border-left-width: 2pt;
-            border-bottom-style: solid;
-            border-bottom-width: 2pt;
-            border-right-style: solid;
-            border-right-width: 2pt;
-          "
-            >
-                <p
-                    class="s2 s2-table-col-key">
-                    Доплата за работу с детьми с особыми образовательными потребностями
-                </p>
-            </td>
-            <td
-                style="
-            width: 131pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-left-style: solid;
-            border-left-width: 2pt;
-            border-bottom-style: solid;
-            border-bottom-width: 2pt;
-            border-right-style: solid;
-            border-right-width: 2pt;
-          "
-            >
-                <p class="s2 s2-table-col-center-text">
-                    {{ $data['base']['working_with_children_with_special_educational_needs'] }} часов
-                </p>
-            </td>
-            <td
-                style="
-            width: 102pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-left-style: solid;
-            border-left-width: 2pt;
-            border-bottom-style: solid;
-            border-bottom-width: 2pt;
-            border-right-style: solid;
-            border-right-width: 2pt;
-          "
-            >
-                <p class="s2 s2-table-col-val-text">
-                    {{ $data['additional_surcharges']['sum_working_with_children_with_special_educational_needs'] }}
-                </p>
-            </td>
-        </tr>
-    @endif
     @if(isset( $data['additional_surcharges']['sum_shomeschooling']))
         <tr style="height: 18pt">
             <td class="s2-td-key">
