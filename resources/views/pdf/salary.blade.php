@@ -753,12 +753,12 @@
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_hours_new_program_full_classes'] }} часов
+                    {{ $data['base']['replace_hours_new_program_half_classes'] }} часов
                 </p>
             </td>
             <td class="table-td-2-column-val">
                 <p class="s2 s2-table-col-val-text">
-                    {{ $data['additional_surcharges']['sum_replace_hours_new_program_full_classes'] }}
+                    {{ $data['additional_surcharges']['sum_replace_hours_new_program_half_classes'] }}
                 </p>
             </td>
         </tr>
@@ -813,7 +813,7 @@
             </td>
         </tr>
     @endif
-    @if(isset($data['additional_surcharges']['sum_replace_hours_lyceum_classes_half_classes']))
+    @if(isset($data['additional_surcharges']['sum_replace_hours_lyceum_classes_full_classes']))
         <tr style="height: 31pt">
             <td class="s2-td-key">
                 <p
