@@ -5,23 +5,16 @@
 }
 .s1 {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
   font-size: 16pt;
 }
-h1 {
-  color: black;
-  font-family: "Times New Roman", serif;
-  font-style: normal;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 11pt;
-}
+
 p {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
@@ -30,7 +23,7 @@ p {
 }
 .s2 {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
@@ -146,4 +139,4 @@ tr, td {
     font-style: normal;
     font-weight: normal;
 }
-body, body*, tr, td, table, p, H1 { font-family: DejaVuSans !important; }
+body, body*, tr, td, table, p { font-family: Roboto !important; }
