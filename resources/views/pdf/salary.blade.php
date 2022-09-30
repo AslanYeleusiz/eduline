@@ -2,24 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>asd $name }}</title>
-    <link href="{{ asset('css/pdf-salary.css') }}" rel="stylesheet"/>
+    <title> Калькулятор для расчета заработной платы</title>
+{{--    <link href="{{ asset('css/pdf-salary.css') }}" rel="stylesheet"/>--}}
 
 </head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 </style>
 <style>
-    {{--@font-face {--}}
-    {{--    font-family: 'Roboto-Regular';--}}
-    {{--    src: url({{public_path('fonts/Roboto/Roboto-Regular.ttf')}}) format("opentype");--}}
-    {{--}--}}
-                 /*@font-face {*/
-    /*    src: url("/fonts/DejaVuSans.ttf") format('opentype');*/
-    /*    font-family: DejaVuSans sans-serif ;*/
-    /*    font-style: normal;*/
-    /*    font-weight: normal;*/
-    /*}*/
     body, body *, tr, td, table, p, h1 {
         font-family: 'Roboto', sans-serif !important;
     }
@@ -27,6 +17,145 @@
     h1 {
         font-family: 'Roboto', sans-serif !important;
     }
+</style>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-indent: 0;
+    }
+    .s1 {
+        color: black;
+        font-family: Roboto, serif;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+        font-size: 16pt;
+    }
+
+    p {
+        color: black;
+        font-family: Roboto, serif;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+        font-size: 11pt;
+        margin: 0pt;
+    }
+    .s2 {
+        color: black;
+        font-family: Roboto, serif;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+        font-size: 11pt;
+    }
+    .s3 {
+        color: black;
+        font-family: "Times New Roman", serif;
+        font-style: normal;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 11pt;
+    }
+    table,
+    tbody {
+        vertical-align: top;
+        overflow: visible;
+    }
+    .table-tr-2-column-key {
+        width: 410pt;
+        border-top-style: solid;
+        border-top-width: 2pt;
+        border-left-style: solid;
+        border-left-width: 2pt;
+        border-bottom-style: solid;
+        border-bottom-width: 2pt;
+        border-right-style: solid;
+        border-right-width: 2pt;
+    }
+    .table-td-2-column-val {
+        width: 100pt;
+        border-top-style: solid;
+        border-top-width: 2pt;
+        border-left-style: solid;
+        border-left-width: 2pt;
+        border-bottom-style: solid;
+        border-bottom-width: 2pt;
+        border-right-style: solid;
+        border-right-width: 2pt;
+    }
+    .s2-table-col-key {
+        padding-top: 2pt;
+        padding-left: 3pt;
+        text-indent: 0pt;
+        text-align: left;
+    }
+    .s2-table-col-center {
+        width: 131pt;
+        border-top-style: solid;
+        border-top-width: 2pt;
+        border-left-style: solid;
+        border-left-width: 2pt;
+        border-bottom-style: solid;
+        border-bottom-width: 2pt;
+        border-right-style: solid;
+        border-right-width: 2pt;
+    }
+    .s2-table-col-center-text {
+        padding-top: 8pt;
+        padding-left: 2pt;
+        text-indent: 0pt;
+        text-align: left;
+    }
+    .s2-table-col-center-text-2 {
+
+    }
+    .s2-table-col-val {
+        padding-top: 2pt;
+        padding-right: 1pt;
+        text-indent: 0pt;
+        text-align: right;
+    }
+    .s2-table-col-val-text {
+        padding-top: 8pt;
+        padding-right: 1pt;
+        text-indent: 0pt;
+        text-align: right;
+    }
+    .s2-td-key {
+        width: 276pt;
+        border-top-style: solid;
+        border-top-width: 2pt;
+        border-left-style: solid;
+        border-left-width: 2pt;
+        border-bottom-style: solid;
+        border-bottom-width: 2pt;
+        border-right-style: solid;
+        border-right-width: 2pt;
+    }
+    .s2-td-key-text-2 {
+        padding-top: 8pt;
+        padding-left: 3pt;
+        text-indent: 0pt;
+        text-align: left;
+    }
+    .s2-td-key-text {
+        padding-top: 2pt;
+        padding-left: 3pt;
+        padding-right: 12pt;
+        text-indent: 0pt;
+        text-align: left;
+    }
+
+    tr, td {
+        padding: 5px !important;
+    }
+    .table-td-2-column-text-2 {
+
+    }
+    body, body*, tr, td, table, p { font-family: Roboto !important; }
+
 </style>
 
 @php
