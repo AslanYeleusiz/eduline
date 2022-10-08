@@ -173,7 +173,6 @@
             ValidationError,
             Head,
             Multiselect,
-
         },
         props: ["subjects"],
         data() {

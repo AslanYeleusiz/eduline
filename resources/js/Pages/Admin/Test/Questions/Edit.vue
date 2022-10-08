@@ -260,7 +260,7 @@ import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../../Components/Pagination.vue";
 import ValidationError from "../../../../Components/ValidationError.vue";
 import ClassicEditor from "ckeditor5-build-math";
-//   import Multiselect from 'vue-multiselect'
+//import Multiselect from 'vue-multiselect'
 import Multiselect from "@vueform/multiselect";
 
 export default {
