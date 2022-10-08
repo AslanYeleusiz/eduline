@@ -124,7 +124,7 @@
                                         class="ml-1"
                                         :for="'classItem' + classItem.name"
                                     >
-                                        {{ classItem.name }}
+                                        {{ classItem.name.kk }}
                                     </label>
                                 </li>
                             </ul>

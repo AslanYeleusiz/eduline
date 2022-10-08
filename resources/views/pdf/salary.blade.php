@@ -240,7 +240,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Коэффициент
+                @lang('site.Коэффициент')
             </p>
         </td>
         <td
@@ -259,7 +259,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Должностной оклад (ДО)
+                @lang('site.Должностной оклад (ДО)')
             </p>
         </td>
         <td
@@ -278,7 +278,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Увеличение ДО согласно поправочного коэффициента 75 %
+                @lang('site.Увеличение ДО согласно поправочного коэффициента 75 %')
             </p>
         </td>
         <td
@@ -297,7 +297,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Должностной оклад для расчета
+                @lang('site.Должностной оклад для расчета')
             </p>
         </td>
         <td class="table-td-2-column-val"
@@ -320,7 +320,7 @@
         font-size:18px;
       "
 >
-    Начислено:
+    @lang('site.Начислено'):
 </p>
 <table
     style="border-collapse: collapse; ; width: 100%"
