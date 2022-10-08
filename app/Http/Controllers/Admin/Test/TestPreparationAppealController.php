@@ -26,7 +26,7 @@ class TestPreparationAppealController extends Controller
         // if (!empty($user)) {
         //     $preparationAppeal->user_id = $user->id;
         // }
-        $appeals = TestSubjectPreparationAppeal::with('preparation:id,title',
+        $appeals = TestSubjectPreparationAppeal::with('preparation:id,title,subject_id',
          'user:id,full_name')
             ->when($comment, function($query) use ($comment) {
                 return $query->where('comment', 'like', "%$comment%");
@@ -44,6 +44,7 @@ class TestPreparationAppealController extends Controller
             ->when($type, function($query) use ($type) {
                 return $query->where('type', $type);
             })
+            ->orderByDesc('created_at')
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
 

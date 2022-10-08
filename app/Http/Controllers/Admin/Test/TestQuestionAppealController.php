@@ -38,6 +38,7 @@ class TestQuestionAppealController extends Controller
             ->when($type, function($query) use ($type) {
                 return $query->where('type', $type);
             })
+            ->orderByDesc('created_at')
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
         return Inertia::render('Admin/Test/QuestionAppeals/Index', [

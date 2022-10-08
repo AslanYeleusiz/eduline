@@ -103,7 +103,7 @@
                             </div>
                             <validation-error :field="'is_discount'" />
                         </div>
-                        
+
                         <div class="form-group" v-if="subscription.is_discount">
                             <label for="">Скидка поценті</label>
                             <input
@@ -169,7 +169,10 @@ export default {
     data() {
         return {
             subscription: {
-                name: null,
+                name: {
+                    kk: null,
+                    ru: null,
+                },
                 price: null,
                 duration: null,
                 is_discount: false,

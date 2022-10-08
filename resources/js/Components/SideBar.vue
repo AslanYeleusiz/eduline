@@ -262,6 +262,7 @@
                             "admin.test.classes",
                             "admin.test.questionAppeals",
                             "admin.test.optionQuestionAppeals",
+                            "admin.test.preparationAppeals",
                             "admin.test.preparationPreparations",
                             "admin.test.trainers"
                         ],
