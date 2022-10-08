@@ -331,13 +331,13 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Начислено по тарифу
+                @lang('site.Начислено по тарифу')
 
             </p>
         </td>
         <td class="s2-table-col-center">
             <p class="s2 s2-table-col-center-text-2">
-                {{ $data['base']['training_load_billing_load'] }} часов
+                {{ $data['base']['training_load_billing_load'] }} @lang('site.часов')
             </p>
         </td>
         <td class="table-td-2-column-val"
@@ -354,12 +354,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за особые условия труда (10%)
+                    @lang('site.Доплата за особые условия труда (10%)')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    Да
+                    @lang('site.Да')
                 </p>
             </td>
             <td class="table-td-2-column-val"
@@ -377,7 +377,7 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Пед. мастерство
+                    @lang('site.Пед. мастерство')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -404,7 +404,7 @@
                 <p
                     class="s2 s2-td-key-text-2"
                 >
-                    Доплата за работу в зоне экологического бедствия
+                    @lang('site.Доплата за работу в зоне экологического бедствия')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -426,7 +426,7 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за работу на территориях радиационного риска
+                    @lang('site.Доплата за работу на территориях радиационного риска')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -449,7 +449,7 @@
                 <p
                     class="s2 s2-td-key-text-2"
                 >
-                    Доплата за преподавание на английском языке
+                    @lang('site.Доплата за преподавание на английском языке')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -471,12 +471,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за степень магистра по НПН
+                    @lang('site.Доплата за степень магистра по НПН')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    Да
+                    @lang('site.Да')
                 </p>
             </td>
             <td class="table-td-2-column-val"
@@ -495,12 +495,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за наставничество
+                    @lang('site.Доплата за наставничество')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    Да
+                    @lang('site.Да')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -515,7 +515,7 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Классное руководство
+                    @lang('site.Классное руководство')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -541,7 +541,7 @@
                 <p
                     class="s2 s2-td-key-text-2"
                 >
-                    За заведование кабинетом
+                    @lang('site.За заведование кабинетом')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -571,7 +571,7 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за проверку тетрадей в классах с числом менее 15 учащихся
+                    @lang('site.Доплата за проверку тетрадей в классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -592,7 +592,7 @@
                 <p
                     class="s2 s2-td-key-text-2 "
                 >
-                    Доплата за проверку тетрадей в полных классах
+                    @lang('site.Доплата за проверку тетрадей в полных классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -612,12 +612,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Обучение на дому
+                    @lang('site.Обучение на дому')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ $data['base']['homeschooling'] }} часов
+                    {{ $data['base']['homeschooling'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -634,13 +634,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Часы работы с лицейcкими и гимназическими классами
+                    @lang('site.Часы работы с лицейcкими и гимназическими классами')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['hours_with_lyceum_gymnasium_classes'] }} часов
+                    {{ $data['base']['hours_with_lyceum_gymnasium_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -655,12 +655,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Часы углубленного изучения
+                    @lang('site.Часы углубленного изучения')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ $data['base']['hours_in_depth_study'] }} часов
+                    {{ $data['base']['hours_in_depth_study'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -677,12 +677,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Часы обновленного содержания
+                    @lang('site.Часы обновленного содержания')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ $data['base']['hours_updated_content'] }} часов
+                    {{ $data['base']['hours_updated_content'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -711,7 +711,7 @@
             >
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы по предметам профильного назначения
+                    @lang('site.Доплата за часы по предметам профильного назначения')
                 </p>
             </td>
             <td
@@ -728,7 +728,7 @@
           "
             >
                 <p class="s2 s2-table-col-center-text">
-                    {{ $data['base']['hours_specialized_subjects'] }} часов
+                    {{ $data['base']['hours_specialized_subjects'] }} @lang('site.часов')
                 </p>
             </td>
             <td
@@ -755,13 +755,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы замены в классах с числом менее 15 учащихся
+                    @lang('site.Доплата за часы замены в классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_hours_half_classes'] }} часов
+                    {{ $data['base']['replace_hours_half_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -776,12 +776,12 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы замены в полных классах
+                    @lang('site.Доплата за часы замены в полных классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ $data['base']['replace_hour_full_classes'] }} часов
+                    {{ $data['base']['replace_hour_full_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -798,14 +798,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы замены по обновленной программе в классах с числом
-                    менее 15 учащихся
+                    @lang('site.Доплата за часы замены по обновленной программе в классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_hours_new_program_half_classes'] }} часов
+                    {{ $data['base']['replace_hours_new_program_half_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -819,13 +818,13 @@
         <tr style="height: 31pt">
             <td class="s2-td-key">
                 <p class="s2 s2-td-key-text">
-                    Доплата за часы замены по обновленной программе в полных классах
+                    @lang('site.Доплата за часы замены по обновленной программе в полных классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_hours_new_program_half_classes'] }} часов
+                    {{ $data['base']['replace_hours_new_program_half_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -839,14 +838,13 @@
         <tr style="height: 31pt">
             <td class="s2-td-key">
                 <p class="s2 s2-td-key-text">
-                    Доплата за работу с детьми с особыми
-                    образовательными потребностями
+                    @lang('site.Доплата за работу с детьми с особыми образовательными потребностями')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['working_with_children_with_special_educational_needs'] }} часов
+                    {{ $data['base']['working_with_children_with_special_educational_needs'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -861,8 +859,7 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы замены в лицейских/гимназических классах с числом
-                    менее 15 учащихся
+                    @lang('site.Доплата за часы замены в лицейских/гимназических классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
@@ -871,7 +868,7 @@
                     class="s2"
                     style="padding-left: 2pt; text-indent: 0pt; text-align: left"
                 >
-                    {{ $data['base']['replace_hours_lyceum_classes_half_classes'] }} часов
+                    {{ $data['base']['replace_hours_lyceum_classes_half_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -890,13 +887,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Доплата за часы замены в полных лицейских/гимназических классах
+                    @lang('site.Доплата за часы замены в полных лицейских/гимназических классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_hours_lyceum_classes_full_classes'] }} часов
+                    {{ $data['base']['replace_hours_lyceum_classes_full_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -912,14 +909,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Замена классное руководство с 1 по 4 класс в классах с числом менее
-                    15 учащихся
+                    @lang('site.Замена классное руководство с 1 по 4 класс в классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_classroom_management_elementary_grade_half_classes'] }} дней
+                    {{ $data['base']['replace_classroom_management_elementary_grade_half_classes'] }} @lang('site.дней')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -934,13 +930,12 @@
         <tr style="height: 31pt">
             <td class="s2-td-key">
                 <p class="s2 s2-td-key-text">
-                    Замена классное руководство с 1 по 4 класс в полных классах
+                    @lang('site.Замена классное руководство с 1 по 4 класс в полных классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
-
-                    {{ $data['base']['replace_classroom_management_elementary_grade_full_classes'] }} дней
+                    {{ $data['base']['replace_classroom_management_elementary_grade_full_classes'] }} @lang('site.дней')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -955,14 +950,13 @@
             <td class="s2-td-key">
                 <p
                     class="s2 s2-table-col-key">
-                    Замена классное руководство с 5 по 11 класс в классах с числом менее
-                    15 учащихся
+                    @lang('site.Замена классное руководство с 5 по 11 класс в классах с числом менее 15 учащихся')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
 
-                    {{ $data['base']['replace_classroom_management_senior_grade_half_classes'] }} дней
+                    {{ $data['base']['replace_classroom_management_senior_grade_half_classes'] }} @lang('site.дней')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -976,12 +970,12 @@
         <tr style="height: 31pt">
             <td class="s2-td-key">
                 <p class="s2 s2-td-key-text">
-                    Замена классное руководство с 5 по 11 класс в полных классах
+                    @lang('site.Замена классное руководство с 5 по 11 класс в полных классах')
                 </p>
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text">
-                    {{ $data['base']['replace_classroom_management_senior_grade_full_classes'] }} дней
+                    {{ $data['base']['replace_classroom_management_senior_grade_full_classes'] }} @lang('site.дней')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -1030,7 +1024,7 @@
             <p
                 class="s2 s2-table-col-key"
             >
-                ИТОГО НАЧИСЛЕНО:
+                @lang('site.ИТОГО НАЧИСЛЕНО'):
             </p>
         </td>
         <td class="table-td-2-column-val"
@@ -1051,7 +1045,7 @@
         text-align: left;
         font-size:18px;"
 >
-    Удержание:
+    @lang('site.Удержание'):
 </p>
 <table
     style="border-collapse: collapse; width: 100%"
@@ -1064,7 +1058,7 @@
             <p
                 class="s2 s2-table-col-key"
             >
-                Взнос ОСМС
+                @lang('site.Взнос ОСМС')
             </p>
         </td>
         <td class="table-td-2-column-val">
@@ -1081,7 +1075,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Обязательный пенсионный взнос
+                @lang('site.Обязательный пенсионный взнос')
             </p>
         </td>
         <td class="table-td-2-column-val">
@@ -1099,7 +1093,7 @@
             <p
                 class="s2 s2-table-col-key"
             >
-                Индивидуальный подоходный налог
+                @lang('site.Индивидуальный подоходный налог')
             </p>
         </td>
         <td class="table-td-2-column-val">
@@ -1118,7 +1112,7 @@
                 <p
                     class="s2 s2-table-col-key"
                 >
-                    Профсоюзный взнос
+                    @lang('site.Профсоюзный взнос')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -1138,7 +1132,7 @@
                 <p
                     class="s2 s2-table-col-key"
                 >
-                    Партийный взнос
+                    @lang('site.Партийный взнос')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -1157,7 +1151,7 @@
             <p
                 class="s2 s2-table-col-key"
             >
-                ИТОГО УДЕРЖАНО:
+                @lang('site.ИТОГО УДЕРЖАНО'):
             </p>
         </td>
         <td class="table-td-2-column-val">
@@ -1181,7 +1175,7 @@
             <p
                 class="s2 s2-table-col-key "
             >
-                СУММА НА РУКИ:
+                @lang('site.СУММА НА РУКИ'):
             </p>
         </td>
         <td class="table-td-2-column-val">
