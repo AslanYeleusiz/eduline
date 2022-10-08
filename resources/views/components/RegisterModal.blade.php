@@ -15,14 +15,14 @@
                         <div class="inner-form-left">
                             <div class="form-input-block">
                                 <label class="modal-form-label" for="register-phone">Телефон:</label>
-                                <input id="register-phone" name="phone" class="modal-form-input phone phone_mask" type="tel" placeholder="+7 (___) ___-__-__">
+                                <input id="register-phone" name="phone" class="modal-form-input phone phone_mask" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="off">
                                 <span class="invalid" role="alert" id="error-register-phone"></span>
                             </div>
                             <div class="form-input-block">
                                 <label class="modal-form-label" for="full_name">@lang('site.Есіміңіз'):</label>
                                 <input id="full_name" name="full_name"
                                        class="modal-form-input" type="text"
-                                       placeholder="Есіміңізді енгізіңіз">
+                                       placeholder="Есіміңізді енгізіңіз" autocomplete="off">
                                 <span class="invalid" role="alert" id="error-register-full_name"></span>
                             </div>
                             <div class="form-input-block">
@@ -49,7 +49,7 @@
                                 <label class="modal-form-label" for="register-password_confirmation">@lang('site.Құпия сөзді қайта енгізіңіз'):</label>
                                 <input id="register-password_confirmation" name="password_confirmation"
                                        class="modal-form-input password-input" type="password"
-                                       placeholder="Құпия сөзді қайта енгізіңіз">
+                                       placeholder="Құпия сөзді қайта енгізіңіз" autocomplete="off">
                                 <i class="form-input-icon icon-eye-off" onclick="iconEyeOff(this)"></i>
                                 <span class="invalid" role="alert"
                                       id="error-register-password_confirmation"></span>

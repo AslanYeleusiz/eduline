@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\Test\TestSubjectController;
 use App\Http\Controllers\Admin\Test\TestSubjectOptionController;
 use App\Http\Controllers\Admin\Test\TestSubjectPreparationController;
 use App\Http\Controllers\Admin\Test\TestTrainerController;
+//use App\Http\Controllers\Api\V1\CkeditorController;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [MainController::class, 'index'])->name('index');
+
+//Route::post('/ckeditor/upload-image', [CkeditorController::class, 'uploadImage']);
 
 Route::get('users/{user}/subscriptions', [UserController::class, 'userSubscriptions'])->name('users.subscriptions');
 
