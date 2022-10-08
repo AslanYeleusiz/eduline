@@ -171,7 +171,7 @@
         text-align: center;
       "
 >
-    Калькулятор для расчета заработной платы
+    @lang('site.Калькулятор для расчета заработной платы')
 </p>
 <p style="text-indent: 0pt; text-align: left"><br/></p>
 <p style="
@@ -181,7 +181,7 @@
         text-indent: 0pt;
         text-align: left;"
 >
-    Данные
+    @lang('site.Данные')
 </p>
 <p style="text-indent: 0pt; text-align: left"><br/></p>
 <p style="
@@ -192,8 +192,7 @@
       "
 >
 
-    За
-    период: {{ Str::ucfirst(\Carbon\Carbon::create( $data['base']['year'] .'-' .  $data['base']['month'] .'-'. '1')->translatedFormat('F Y'))}}
+    @lang('site.За период'): {{ Str::ucfirst(\Carbon\Carbon::create( $data['base']['year'] .'-' .  $data['base']['month'] .'-'. '1')->translatedFormat('F Y'))}}
     <br>
     {{--    Должность: Учитель--}}
     {{--    <br>--}}

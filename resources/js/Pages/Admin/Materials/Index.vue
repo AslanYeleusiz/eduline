@@ -163,6 +163,7 @@
                                         <td>{{ material.class.name }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
+<!--
                                                 <Link
                                                     :href="
                                                         route(
@@ -177,6 +178,7 @@
                                                         class="fas fa-comment"
                                                     ></i>
                                                 </Link>
+-->
                                                 <Link
                                                     :href="
                                                         route(
@@ -266,7 +268,7 @@ export default {
                 this.$inertia.delete(route("admin.materials.destroy", id));
                 }
             });
-          
+
         },
         search() {
             const params = this.clearParams(this.filter);
