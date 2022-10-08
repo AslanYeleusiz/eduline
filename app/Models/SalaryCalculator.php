@@ -58,6 +58,17 @@ class SalaryCalculator extends Model
             'name' => 'Без категории'
         ],
     ];
+    const EDUICATIONS = [
+        [
+            "name"  => "Высшее",
+            "value" => "B2",
+        ],
+        [
+            "name"  => "Среднее специальное",
+            "value" => "B4"
+        ]
+    ];
+
     const WORK_IN_ENVIRONMENTAL_DISASTER_ZONES = [
 
         [

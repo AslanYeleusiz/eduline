@@ -505,7 +505,6 @@ class SalaryCalculatorCoefficientsSeeder extends Seeder
             foreach($educationValue as $educationCategory){
                 foreach ($educationCategory['experiences'] as $categoryExperience) {
                     $salaryCoefficient = new SalaryCalculatorCoefficient();
-                    $salaryCoefficient->category = $educationCategory['category'];
                     $salaryCoefficient->year = 2016;
                     $salaryCoefficient->month = 1;
                     $salaryCoefficient->education = $education;

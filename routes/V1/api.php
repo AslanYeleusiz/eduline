@@ -141,8 +141,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('salary-calculator', [SalaryCalculatorController::class, 'index']);
 
     Route::post('salary-calculator', [SalaryCalculatorController::class, 'store']);
-    Route::get('salary-calculator/{id}/downloadPDF', [SalaryCalculatorController::class, 'downloadPDF']);
 });
+Route::get('salary-calculator/{id}/downloadPDF', [SalaryCalculatorController::class, 'downloadPDF']);
 
 Route::prefix('materials')->name('materials.')->group(function () {
     Route::get('/{id}/download', [MaterialController::class, 'download'])->where(['id' => '[0-9]+'])->name('.download');

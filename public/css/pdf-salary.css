@@ -5,23 +5,16 @@
 }
 .s1 {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
   font-size: 16pt;
 }
-h1 {
-  color: black;
-  font-family: "Times New Roman", serif;
-  font-style: normal;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 11pt;
-}
+
 p {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
@@ -30,7 +23,7 @@ p {
 }
 .s2 {
   color: black;
-  font-family: Cambria, serif;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: normal;
   text-decoration: none;
@@ -50,7 +43,7 @@ tbody {
   overflow: visible;
 }
 .table-tr-2-column-key {
-  width: 407pt;
+  width: 410pt;
       border-top-style: solid;
       border-top-width: 2pt;
       border-left-style: solid;
@@ -61,7 +54,7 @@ tbody {
       border-right-width: 2pt;
 }
 .table-td-2-column-val {
-  width: 102pt;
+     width: 100pt;
       border-top-style: solid;
       border-top-width: 2pt;
       border-left-style: solid;
@@ -146,4 +139,4 @@ tr, td {
     font-style: normal;
     font-weight: normal;
 }
-body, body*, tr, td, table, p, H1 { font-family: DejaVuSans !important; }
+body, body*, tr, td, table, p { font-family: Roboto !important; }
