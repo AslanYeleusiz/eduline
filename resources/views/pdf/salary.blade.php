@@ -192,23 +192,23 @@
       "
 >
 
-    @lang('site.За период'): {{ Str::ucfirst(\Carbon\Carbon::create( $data['base']['year'] .'-' .  $data['base']['month'] .'-'. '1')->translatedFormat('F Y'))}}
+    @lang('site.За период:ru') {{ Str::ucfirst(\Carbon\Carbon::create( $data['base']['year'] .'-' .  $data['base']['month'] .'-'. '1')->translatedFormat('F Y'))}} @lang('site.За период:kz')
     <br>
     {{--    Должность: Учитель--}}
     {{--    <br>--}}
-    Образование: {{ Arr::last(\App\Models\SalaryCalculator::EDUICATIONS, function ($value, $key) use ($data) {
+    @lang('site.Образование'): {{ Arr::last(\App\Models\SalaryCalculator::EDUICATIONS, function ($value, $key) use ($data) {
     return $value['value'] ==  $data['base']['education'];
 })['name'] ?? null }}
     <br>
-    Категория: {{ Arr::last(\App\Models\SalaryCalculator::CATEGORIES, function ($category, $key) use ($data) {
+    @lang('site.Категория'): {{ Arr::last(\App\Models\SalaryCalculator::CATEGORIES, function ($category, $key) use ($data) {
     return $category['number'] ==  $data['base']['category'];
 })['name'] ?? null }}
     <br>
-    Стаж: {{ $data['base']['experience_year']  }} лет {{ $data['base']['experience_month'] }}
-    месяцев {{ $data['base']['experience_day'] }} дней
+    @lang('site.Стаж'): {{ $data['base']['experience_year']  }} @lang('site.лет') {{ $data['base']['experience_month'] }}
+    @lang('site.месяцев') {{ $data['base']['experience_day'] }} @lang('site.дней')
 </p>
 <p style="text-align: left;font-size:18px;padding-top: 15pt;">
-    Результат
+    @lang('site.Результат')
 </p>
 <p style="text-indent: 0pt; text-align: left"><br/></p>
 <table
@@ -221,7 +221,7 @@
         >
             <p
                 class="s2 s2-table-col-key">
-                Базовый должностной оклад
+                @lang('site.Базовый должностной оклад')
             </p>
         </td>
         <td

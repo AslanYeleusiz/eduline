@@ -43,7 +43,7 @@ class SalaryCalculator extends Model
     const CATEGORIES = [
         [
             'number' => 1,
-            'name' => 'Высшая категория'
+            'name' => __('site.Высшая категория')
         ],
         [
             'number' => 2,
@@ -55,16 +55,16 @@ class SalaryCalculator extends Model
         ],
         [
             'number' => 4,
-            'name' => 'Без категории'
+            'name' => __('site.Без категории')
         ],
     ];
     const EDUICATIONS = [
         [
-            "name"  => "Высшее",
+            "name"  => __('site.Высшее'),
             "value" => "B2",
         ],
         [
-            "name"  => "Среднее специальное",
+            "name"  => __('site.Среднее специальное'),
             "value" => "B4"
         ]
     ];

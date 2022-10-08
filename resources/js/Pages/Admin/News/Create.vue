@@ -130,8 +130,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <label for="">Бағыты</label>
                             <select
@@ -256,7 +254,7 @@ import AdminLayout from "../../../Layouts/AdminLayout.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../Components/Pagination.vue";
 import ValidationError from "../../../Components/ValidationError.vue";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import ClassicEditor from "ckeditor5-build-math";
 
 export default {
     components: {

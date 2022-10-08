@@ -3,7 +3,7 @@
         <title>Админ панель | Жаңалық пікірлері</title>
     </head>
     <AdminLayout>
-        <template #breadcrumbs> 
+        <template #breadcrumbs>
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">№{{this.news.id}} Жаңалық пікірлері</h1>
@@ -32,11 +32,11 @@
         <template #header>
             <div class="buttons">
                 <!-- <Link class="btn btn-primary mr-2" :href="route('admin.news.create')">
-                    <i class="fa fa-plus"></i> Қосу 
+                    <i class="fa fa-plus"></i> Қосу
                 </Link> -->
-                
+
                 <Link class="btn btn-danger" :href="route('admin.news.comments', this.news.id)">
-                    <i class="fa fa-trash"></i> Фильтрді тазалау 
+                    <i class="fa fa-trash"></i> Фильтрді тазалау
                 </Link>
             </div>
         </template>
@@ -52,7 +52,7 @@
                                     <tr role="row">
                                         <th>№</th>
                                         <th>Қолданушы</th>
-                                        <th>Піңір</th>
+                                        <th>Пікір</th>
                                         <th>Әрекет</th>
                                     </tr>
                                     <tr class="filters">
