@@ -28131,7 +28131,7 @@ var UploadAdapter = /*#__PURE__*/function () {
     key: "_initRequest",
     value: function _initRequest() {
       var xhr = this.xhr = new XMLHttpRequest();
-      xhr.open('POST', "http://127.0.0.1:8000/admin" + '/ckeditor/upload-image', true);
+      xhr.open('POST', "https://eduline.kz/admin" + '/ckeditor/upload-image', true);
       var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
       if (csrfToken) {
