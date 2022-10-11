@@ -146,7 +146,7 @@
                                                     @click="
                                                         changePosition(
                                                             optionQuestion.id,
-                                                            'top'
+                                                            'bot'
                                                         )
                                                     "
                                                     class="btn btn-primary"
@@ -179,7 +179,7 @@
                                     class="btn btn-success"
                                     @click="saveOptionQuestionPositions()"
                                 >
-                                    Ретін сақтау 
+                                    Ретін сақтау
                                 </button>
                             </div>
                         </div>
@@ -586,7 +586,7 @@ export default {
                     subject: this.subject.id,
                     option: this.option.id,
                 }),
-                data,   
+                data,
                 {
                     onError: () => {},
                     onSuccess: () => {},
@@ -594,7 +594,7 @@ export default {
             );
 
         },
-        changePosition(id, position = "top") {
+        changePosition(id, position) {
             const fromIndex = this.option.questions.findIndex(
                 (i) => i.id == id
             );
