@@ -120,6 +120,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     });
 });
 
+
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')
         ->only(['index', 'show', 'store', 'update', 'destroy']);
