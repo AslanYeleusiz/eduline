@@ -163,7 +163,8 @@
     import Pagination from "../../../../Components/Pagination.vue";
     import ValidationError from "../../../../Components/ValidationError.vue";
     import Multiselect from "@vueform/multiselect";
-    import MathCkEditor from "ckeditor5-build-math";
+    import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+    import UploadAdapter from '../../../../Shared/uploadAdapter.vue';
 
     export default {
         components: {
@@ -208,17 +209,22 @@
                     ],
                     is_active: false,
                 },
-                editor: MathCkEditor,
+                editor: ClassicEditor,
                 input_type: "input",
                 correct_answer_number: null,
                 editorConfig: {
-
+                    extraPlugins: [this.uploader],
                 },
                 preparationIds: null,
 
             };
         },
         methods: {
+            uploader(editor) {
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                    return new UploadAdapter(loader);
+                };
+            },
             deleteAnswer(number) {
                 if (this.correct_answer_number == number) {
                     this.correct_answer_number = null;

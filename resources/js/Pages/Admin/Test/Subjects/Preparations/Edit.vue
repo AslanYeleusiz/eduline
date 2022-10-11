@@ -90,14 +90,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Түсініктеме</label>
-                            <textarea
-                                v-model="preparation.description"
-                                class="form-control"
-                                row="20"
-                                placeholder="Түсініктеме"
-                                col="10"
-                            >
-                            </textarea>
+                            <ckeditor :editor="editor" v-model="preparation.description" :config="editorConfig" class="form-control"></ckeditor>
                             <validation-error :field="'description'" />
                         </div>
                         <div class="form-group">
@@ -153,6 +146,8 @@ import AdminLayout from "../../../../../Layouts/AdminLayout.vue";
 import { Link, Head } from "@inertiajs/inertia-vue3";
 import Pagination from "../../../../../Components/Pagination.vue";
 import ValidationError from "../../../../../Components/ValidationError.vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import UploadAdapter from '../../../../../Shared/uploadAdapter.vue';
 
 export default {
     components: {
@@ -167,10 +162,19 @@ export default {
     data() {
         return {
             classIds: [],
-            selectAllClassItems: false
+            selectAllClassItems: false,
+            editor: ClassicEditor,
+            editorConfig: {
+                extraPlugins: [this.uploader],
+            },
         };
     },
     methods: {
+        uploader(editor) {
+            editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                return new UploadAdapter(loader);
+            };
+        },
         submit() {
             this.preparation.class_ids = this.classIds;
             this.$inertia.put(

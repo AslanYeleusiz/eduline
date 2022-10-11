@@ -48,7 +48,7 @@ class ImageService
         $format = $photo->getClientOriginalExtension();
         if (in_array(strtolower($format), $formatImage)) {
             $name = time() . Str::random(5) . '.' . strtolower($format);
-            $photo->storeAs($path, $name);
+            $photo->storeAs($path, $name, 'public');
             if (!empty($width)) {
                 $this->resizeCropImage($path . $name, $width, $height);
             }
