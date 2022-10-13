@@ -18,18 +18,19 @@ class UserProfileResource extends JsonResource
      */
     public function toArray($request)
     {
+        $language = $request->header('Accept-Language');
 
 //        $this->load('subscription.subscription');
-//        $subscription = null;
+        $subscription = null;
 //        if ($this->subscription && Carbon::create($this->subscription->to_date)->format('d.m.Y') >= date('d.m.Y')) {
-//            $subscription = [
-//                'id' => $this->subscription->subscription->id,
-//                'name' => $this->subscription->subscription->name,
-//                'duration' => $this->subscription->subscription->duration,
-//                'from_date' => Carbon::create( $this->subscription->from_date)->format('d.m.Y'),
-//                'to_date' => Carbon::create($this->subscription->to_date)->format('d.m.Y'),
-//                'created_at' => $this->subscription->created_at?->format('d.m.Y H:i'),
-//            ];
+            $subscription = [
+                'id' => $this->subscription->subscription->id,
+                'name' => $this->subscription->subscription->name,
+                'duration' => $this->subscription->subscription->duration,
+                'from_date' => Carbon::create( $this->subscription->from_date)->format('d.m.Y'),
+                'to_date' => Carbon::create($this->subscription->to_date)->format('d.m.Y'),
+                'created_at' => $this->subscription->created_at?->format('d.m.Y H:i'),
+            ];
 //        }
         return [
             'id' => $this->id,
@@ -40,7 +41,7 @@ class UserProfileResource extends JsonResource
             'sex' => $this->sex,
             'birthday' => $this->birthday,
             'avatar' => $this->avatar ? Storage::disk('public')->url(User::IMAGE_PATH . $this->avatar) : null,
-            'subscription' => $this->subscription->subscription,
+            'subscription' => $subscription,
         ];
     }
 
