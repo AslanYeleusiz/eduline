@@ -57,23 +57,39 @@ class FullTestController extends Controller
 
     public function result($testId)
     {
-        $test = FullTest::findWithSubjectsAndUserAnswers($testId);
-        foreach ($test->subjects as $subject) {
-            $subject->topic_know_well = [
-                'Қысқаша көбейту формулалары',
-                'Зат есім',
-                'ЕКОЕ'
-            ];
-            $subject->topic_prepare_for = [
-                'Есімдік',
-                'Анықтауыш',
-                'Септіктер'
-            ];
-            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
-            unset($subject->userAnswers);
-        }
+//        $test = FullTestUserAnswer::where('test_id', $testId)->with(['question'])->get();
 
-        return new FullTestFinishedResource($test);
+//        foreach ($test as $t) {
+//            if()
+//        }
+
+
+
+
+
+
+
+
+
+
+
+
+//        foreach ($test->subjects as $subject) {
+//            $subject->topic_know_well = [
+//                'Қысқаша көбейту формулалары',
+//                'Зат есім',
+//                'ЕКОЕ'
+//            ];
+//            $subject->topic_prepare_for = [
+//                'Есімдік',
+//                'Анықтауыш',
+//                'Септіктер'
+//            ];
+//            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
+//            unset($subject->userAnswers);
+//        }
+
+//        return FullTestFinishedResource::collection($test)->additional(['status' => true]);
     }
 
     public function results(Request $request)

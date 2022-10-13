@@ -65,6 +65,21 @@ Route::get('roles', RolesController::class)->name('roles');
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('send-sms', [SmsController::class, 'store'])->name('sms.send');
 
+
+
+
+
+
+
+
+//Route::get('full/{id}/result', [FullTestController::class, 'result']);
+
+
+
+
+
+
+
 Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () {
     Route::get('languages', [TestLanguageController::class, 'index'])->name('languages.index');
     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
@@ -105,11 +120,13 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
         Route::post('/{subject_id}/{option_id}/create', [TestSubjectOptionTestController::class, 'store'])->name('subjectOptionTest.store');
     });
 
+
     Route::prefix('full-test')->group(function () {
         Route::get('/results', [FullTestController::class, 'results'])->name('full.results');
 
-        Route::get('/{id}', [FullTestController::class, 'show'])->name('full.show');
         Route::get('/{id}/result', [FullTestController::class, 'result'])->name('full.result');
+
+        Route::get('/{id}', [FullTestController::class, 'show'])->name('full.show');
         Route::get('/{id}/{subject_id}', [FullTestController::class, 'showTestSubject'])->name('full.showTestSubject');
 
         // Route::get('full/{id}/result', [FullTestController::class, 'result']);
