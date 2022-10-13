@@ -65,14 +65,9 @@ class FullTestController extends Controller
         foreach ($userAnswers as $userAnswer) {
             $correctAnswer = null;
             foreach ($userAnswer['question']['answers'] as $answer) {
-                if ($answer['is_correct']) {
-                    $correctAnswer = $answer;
-                }
+                if ($answer['is_correct']) $correctAnswer = $answer;
             }
-            if (
-                !empty($userAnswer['answer']) && !empty($correctAnswer)
-                && ($correctAnswer['number'] == $userAnswer['answer'])
-            ) {
+            if (!empty($userAnswer['answer']) && !empty($correctAnswer) &&  ($correctAnswer['number'] == $userAnswer['answer'])) {
                 $preparations = TestSubjectPreparationQuestion::where('question_id', $userAnswer->question_id)->get();
                 foreach ($preparations as $preparation) {
                     $preparationCollect->push($preparation->preparation_id);
@@ -87,7 +82,6 @@ class FullTestController extends Controller
             $prepTitle = TestSubjectPreparation::find($key);
             $preparationsName->push($prepTitle->title);
         }
-
         $test = FullTest::findWithSubjectsAndUserAnswers($testId);
         foreach ($test->subjects as $subject) {
             $subject->topic_know_well = $preparationsName->take(3);
@@ -95,7 +89,6 @@ class FullTestController extends Controller
             $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
             unset($subject->userAnswers);
         }
-
         return new FullTestFinishedResource($test);
     }
 
