@@ -96,13 +96,13 @@ class TestService
                 $topicPrepareFor[] = $userAnswer->question;
             }
         }
-        $knowWellQuestions = self::getQuestionsPreparationsUnique($knowWellQuestions);
-        $topicPrepareFor = self::getQuestionsPreparationsUnique($topicPrepareFor);
+        $knowWellQuestions = self::getQuestionsPreparationsUnique($knowWellQuestions, 'know');
+        $topicPrepareFor = self::getQuestionsPreparationsUnique($topicPrepareFor, 'topic');
 
         return [$knowWellQuestions, $topicPrepareFor];
     }
 
-    private static function getQuestionsPreparationsUnique($questions): array
+    private static function getQuestionsPreparationsUnique($questions, $type): array
     {
         $preparations = [];
         if (!empty($questions)) {
@@ -110,7 +110,10 @@ class TestService
                 $preparations =  array_merge($preparations, $question->preparations->pluck('title')->toArray());
             }
             $groupByArray = array_count_values($preparations);
-            $preparations = array_keys(array_slice($groupByArray, 0,3));
+            if($type == 'know')
+                $preparations = array_keys(array_slice($groupByArray, 0,3));
+            else
+                $preparations = array_keys(array_slice($groupByArray, 3,6));
         }
         return $preparations;
     }
