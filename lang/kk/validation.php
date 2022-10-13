@@ -112,7 +112,7 @@ return [
     'starts_with'          => ' :attribute келесі мәндердің біреуінен басталуы керек: :values',
     'string'               => ' :attribute тармақ болуы керек.',
     'timezone'             => ' :attribute жарамды аймақ болуы керек.',
-    'unique'               => ' :attribute бұрын алынған.',
+    'unique'               => ' :attribute бұрын тіркелген.',
     'uploaded'             => ' :attribute жүктелуі сәтсіз аяқталды.',
     'url'                  => ' :attribute пішімі жарамсыз.',
     'uuid'                 => ' :attribute мәні жарамды UUID болуы керек.',
