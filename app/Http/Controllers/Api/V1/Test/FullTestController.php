@@ -14,6 +14,7 @@ use App\Services\V1\FullTestService;
 use App\Services\V1\TestService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class FullTestController extends Controller
@@ -57,24 +58,16 @@ class FullTestController extends Controller
 
     public function result($testId)
     {
-        $test = FullTest::findWithSubjectsAndUserAnswers($testId);
+        $test = FullTest::findWithSubjectsAndUserAnswers($testId, true);
         foreach ($test->subjects as $subject) {
-            $subject->topic_know_well = [
-                'Қысқаша көбейту формулалары',
-                'Зат есім',
-                'ЕКОЕ'
-            ];
-            $subject->topic_prepare_for = [
-                'Есімдік',
-                'Анықтауыш',
-                'Септіктер'
-            ];
+            [$subject->topic_know_well, $subject->topic_prepare_for] = TestService::getUserAnswersAnalytics($subject->userAnswers);
             $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
             unset($subject->userAnswers);
         }
 
         return new FullTestFinishedResource($test);
     }
+
 
     public function results(Request $request)
     {

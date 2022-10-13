@@ -13,6 +13,7 @@ use App\Models\TestSubjectOption;
 use App\Models\TestSubjectOptionTest;
 use App\Models\TestSubjectOptionTestUserAnswer;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class TestService
@@ -80,5 +81,37 @@ class TestService
             }
         }
         return compact('score', 'correctAnswerCount', 'incorrectAnswerCount');
+    }
+
+    public static function getUserAnswersAnalytics($userAnswers)
+    {
+        $knowWellQuestions = [];
+        $topicPrepareFor = [];
+        foreach ($userAnswers as $userAnswer) {
+            if ($userAnswer->answer != Arr::last(array_filter($userAnswer->question->answers, function ($answer)  {
+                    return $answer['is_correct'];
+                } ))['number']) {
+                $knowWellQuestions[] = $userAnswer->question;
+            } else {
+                $topicPrepareFor[] = $userAnswer->question;
+            }
+        }
+        $knowWellQuestions = self::getQuestionsPreparationsUnique($knowWellQuestions);
+        $topicPrepareFor = self::getQuestionsPreparationsUnique($topicPrepareFor);
+
+        return [$knowWellQuestions, $topicPrepareFor];
+    }
+
+    private static function getQuestionsPreparationsUnique($questions): array
+    {
+        $preparations = [];
+        if (!empty($questions)) {
+            foreach ($questions as $question) {
+                $preparations =  array_merge($preparations, $question->preparations->pluck('title')->toArray());
+            }
+            $groupByArray = array_count_values($preparations);
+            $preparations = array_keys(array_slice($groupByArray, 0,3));
+        }
+        return $preparations;
     }
 }

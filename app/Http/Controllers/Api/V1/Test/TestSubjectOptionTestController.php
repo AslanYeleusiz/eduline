@@ -67,16 +67,7 @@ class TestSubjectOptionTestController extends Controller
     if (!$test->is_finished) {
         return throw new ModelNotFoundException();
     }
-        $test->topic_know_well = [
-            'Қысқаша көбейту формулалары',
-            'Зат есім',
-            'ЕКОЕ'
-        ];
-        $test->topic_prepare_for = [
-            'Есімдік',
-            'Анықтауыш',
-            'Септіктер'
-        ];
+        [$test->topic_know_well, $test->topic_prepare_for] = TestService::getUserAnswersAnalytics($test->userAnswers);
         $test->result = TestService::getScoreAndAnswersCount($test->userAnswers->toArray());
         unset($test->userAnswers);
         return new TestSubjectOptionTestFinishedResource($test);
@@ -91,7 +82,7 @@ class TestSubjectOptionTestController extends Controller
         }
         if ($test->is_started) {
             return new TestSubjectOptionTestStartedResource($test);
-            return new FullTestStartedResource($test);
+//            return new FullTestStartedResource($test);
         }
         $test = $this->testService->start($test);
         return new TestSubjectOptionTestStartedResource($test);
