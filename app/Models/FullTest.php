@@ -36,11 +36,13 @@ class FullTest extends Model
         ])->findOrFail($id);
     }
 
-    public function scopeFindWithSubjectsAndUserAnswers($query, $id)
+    public function scopeFindWithSubjectsAndUserAnswers($query, $id, $isLoadPreparations = false)
     {
         return $query->with(['subjects' => fn($query) => $query->with(
             [
-                'userAnswers' => fn($query) => $query->where('test_id', $id)->with('question')
+                'userAnswers' => fn($query) => $query->where('test_id', $id)
+                    ->when($isLoadPreparations, fn($query) => $query->with('question.preparations:id,title'))
+                    ->when(!$isLoadPreparations, fn($query) => $query->with('question'))
             ])->withCount(['userAnswers as questions_answered_count' => fn($query) => $query->where('test_id', $id)->whereNotNull('answer')])
         ])->findOrFail($id);
     }
