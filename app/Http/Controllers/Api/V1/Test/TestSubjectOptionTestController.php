@@ -63,7 +63,7 @@ class TestSubjectOptionTestController extends Controller
 
     public function result($testId)
     {
-        $test = TestSubjectOptionTest::findWithOptionAndUserAnswers($testId);
+        $test = TestSubjectOptionTest::findWithOptionAndUserAnswers($testId, true);
     if (!$test->is_finished) {
         return throw new ModelNotFoundException();
     }
