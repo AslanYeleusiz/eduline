@@ -92,7 +92,7 @@ class FullTestController extends Controller
         foreach ($test->subjects as $subject) {
             $subject->topic_know_well = $preparationsName->take(3);
             $subject->topic_prepare_for = $preparationsName->splice(3,3);
-            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
+//            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
             unset($subject->userAnswers);
         }
 
