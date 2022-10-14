@@ -142,7 +142,12 @@
                                         </td>
                                         <td>{{ subscription.name.kk }}</td>
                                         <td>{{ subscription.price }} тг.</td>
-                                        <td>{{ subscription.duration }} ай</td>
+                                        <td>{{
+                                                subscription.duration
+                                                    ? subscription.duration + ' ай'
+                                                    : 'Уникалды'
+                                            }}
+                                        </td>
                                         <td>
                                             {{
                                                 subscription.is_discount
@@ -170,7 +175,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div class="btn-group btn-group-sm">
+                                            <div v-if="subscription.id > 1" class="btn-group btn-group-sm">
                                                 <Link
                                                     :href="
                                                         route(
