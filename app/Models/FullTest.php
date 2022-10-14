@@ -47,10 +47,6 @@ class FullTest extends Model
         ])->findOrFail($id);
     }
 
-
-
-
-
     protected $casts = [
         'is_started' => 'boolean',
         'is_finished' => 'boolean',

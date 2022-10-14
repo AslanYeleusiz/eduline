@@ -65,21 +65,6 @@ Route::get('roles', RolesController::class)->name('roles');
 // Route::post('sms', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('send-sms', [SmsController::class, 'store'])->name('sms.send');
 
-
-
-
-
-
-
-
-//Route::get('full/{id}/result', [FullTestController::class, 'result']);
-
-
-
-
-
-
-
 Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () {
     Route::get('languages', [TestLanguageController::class, 'index'])->name('languages.index');
     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
