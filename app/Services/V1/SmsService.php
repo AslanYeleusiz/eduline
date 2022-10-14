@@ -32,7 +32,7 @@ class SmsService
             // Log::channel('sms')->error('$res sms ' . json_encode($res));
         } catch (ErrorException $errorException) {
             Log::channel('sms')->error('sms err ' . json_encode($errorException->getMessage()));
-            throw new ErrorException('Телефон нөмері қате');
+            throw new ErrorException('Ошибка');
         }
     }
 

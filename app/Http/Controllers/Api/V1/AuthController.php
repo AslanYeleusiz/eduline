@@ -61,8 +61,6 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
        $smsVerification = $this->checkCode($request->phone, $request->code);
-        if(!$smsVerification)
-            return new MessageResource(__('errors.the_code_or_number_incorrect'));
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
         $smsVerification->save();
@@ -128,8 +126,6 @@ class AuthController extends Controller
     {
         $phone = $request->phone;
         $smsVerification = $this->checkCode($request->phone, $request->code);
-        if(!$smsVerification)
-            return new MessageResource(__('errors.the_code_or_number_incorrect'));
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
         $smsVerification->save();
@@ -182,8 +178,8 @@ class AuthController extends Controller
             ->where('code', $code)
             ->first();
         if (empty($smsVerification)) {
-            return false;
-//            return new MessageResource(__('errors.the_code_or_number_incorrect'));
+//            return false;
+            throw new ErrorException(__('errors.the_code_or_number_incorrect'));
         }
         return $smsVerification;
     }
