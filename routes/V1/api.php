@@ -50,15 +50,17 @@ Route::apiResource('slider', SliderController::class)->only(['index'])->names('s
 
 Route::post('personal-advices/{id}', [PersonalAdviceController::class, 'store'])->name('personalAdvices.store');
 
+
 Route::middleware('auth:api')->group(function () {
 // Route::get('news/anouncements', [NewsController::class, 'newsAnouncements'])->name('news.anouncements');
     // Route::get('news/saveds', [NewsController::class, 'savedNews'])->name('news.saveds');
 // Route::get('news/populars', [NewsController::class, 'popularNews'])->name('news.populars');
-Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
-    Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
+    Route::post('subscription/promo-code', [SubscriptionController::class, 'promocode'])->name('subscriptions.promocode');
 
-Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
-});
+    Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
+        Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
+        Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
+    });
 
 Route::get('roles', RolesController::class)->name('roles');
 

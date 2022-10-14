@@ -13,9 +13,14 @@ class PromoCode extends Model
     protected $guarded = [];
     // public function usedUsers()
     // {
-    //     // return $this->hasMany(User::);
+    //     // return $this->hasMany(User::class);
     // }
     protected $casts = [
         'is_active' => 'boolean'
     ];
+
+
+    public function scopeIsActive($query){
+        return $query->where('is_active', 1);
+    }
 }
