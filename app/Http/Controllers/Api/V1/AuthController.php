@@ -58,7 +58,7 @@ class AuthController extends Controller
         return new LoggedInResource($this->createTokenService->create($user, config('app.name')));
     }
 
-    public function register(RegisterRequest $request): LoggedInResource
+    public function register(RegisterRequest $request)
     {
        $smsVerification = $this->checkCode($request->phone, $request->code);
         if(!$smsVerification)
