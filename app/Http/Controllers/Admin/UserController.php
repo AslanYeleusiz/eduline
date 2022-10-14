@@ -90,6 +90,7 @@ class UserController extends Controller
         $createdAt = $request->created_at;
         $isActive = $request->is_active;
         $userSubscriptions = UserSubscription::with('subscription')
+            ->where('user_id', $userId)
             ->when($name, function ($query) use ($name) {
                 return $query->whereHas('subscription', fn ($query) => $query->where('name', 'like', "%$name%"));
             })
