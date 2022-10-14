@@ -152,7 +152,7 @@
                                             <template
                                                 v-if="subscription.is_discount"
                                             >
-                                            - 
+                                            -
                                                 {{
                                                     subscription.discount_percentage
                                                 }}%
@@ -170,7 +170,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div class="btn-group btn-group-sm">
+                                            <div v-if="subscription.id > 1" class="btn-group btn-group-sm">
                                                 <Link
                                                     :href="
                                                         route(
