@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class TestDirectionTestSubject extends Model
 {
     use HasFactory;
+
+    public function direction() {
+        return $this->belongsTo(TestDirection::class);
+    }
 }

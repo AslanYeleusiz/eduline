@@ -123,7 +123,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
         Route::post('/{id}/finish', [FullTestController::class, 'finish']);
     });
 });
-
+Route::get('full/{id}/result', [FullTestController::class, 'limitScore']);
 
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')

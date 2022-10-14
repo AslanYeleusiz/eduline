@@ -12,6 +12,7 @@ use App\Models\FullTestUserAnswer;
 use App\Models\TestQuestionAppeal;
 use App\Models\TestSubjectPreparationQuestion;
 use App\Models\TestSubjectPreparation;
+use App\Models\TestDirectionTestSubject;
 use App\Services\V1\FullTestService;
 use App\Services\V1\TestService;
 use Carbon\Carbon;
@@ -69,6 +70,12 @@ class FullTestController extends Controller
         return new FullTestFinishedResource($test);
     }
 
+    public function limitScore($testId)
+    {
+        $test = TestDirectionTestSubject::with('direction')->get();
+
+        return $test;
+    }
 
     public function results(Request $request)
     {
