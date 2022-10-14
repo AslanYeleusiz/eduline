@@ -118,7 +118,7 @@ class AuthController extends Controller
     {
         $user = User::phoneBy($request->phone)->first();
         if(!empty($user)){
-            throw new ErrorException('Хеш қате');
+            return new ErrorException('Хеш қате');
         }
         $this->sendSms($request->phone);
         return new MessageResource(__('message.success.sent'));
