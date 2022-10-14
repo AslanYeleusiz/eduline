@@ -116,10 +116,7 @@ class AuthController extends Controller
 
     public function resetPasswordSendSmsCode(Request $request)
     {
-        $user = User::phoneBy($request->phone)->first();
-        if(!empty($user)){
-            return new ErrorException('Хеш қате');
-        }
+        $user = User::phoneBy($request->phone)->firstOrFail();
         $this->sendSms($request->phone);
         return new MessageResource(__('message.success.sent'));
     }
@@ -127,7 +124,6 @@ class AuthController extends Controller
     public function resetPasswordVerifyCode(ResetPasswordVerifyCodeRequest $request)
     {
         $phone = $request->phone;
-
         $smsVerification = $this->checkCode($request->phone, $request->code);
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
@@ -181,7 +177,7 @@ class AuthController extends Controller
             ->where('code', $code)
             ->first();
         if (empty($smsVerification)) {
-            throw new MessageResource(__('errors.the_code_or_number_incorrect'));
+            return new MessageResource(__('errors.the_code_or_number_incorrect'));
 //            return new MessageResource(__('errors.the_code_or_number_incorrect'));
         }
         return $smsVerification;
