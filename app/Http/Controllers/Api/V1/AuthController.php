@@ -177,7 +177,7 @@ class AuthController extends Controller
             ->where('code', $code)
             ->first();
         if (empty($smsVerification)) {
-            return new MessageResource(__('errors.the_code_or_number_incorrect'));
+            throw new MessageResource(__('errors.the_code_or_number_incorrect'));
 //            return new MessageResource(__('errors.the_code_or_number_incorrect'));
         }
         return $smsVerification;
