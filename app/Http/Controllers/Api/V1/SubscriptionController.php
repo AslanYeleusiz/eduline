@@ -9,6 +9,7 @@ use App\Exceptions\ErrorException;
 use App\Models\Subscription;
 use App\Models\PromoCode;
 use App\Models\UsedPromocodes;
+use App\Models\UserSubscription;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -31,6 +32,12 @@ class SubscriptionController extends Controller
                     UsedPromocodes::create([
                         'user_id' => $user->id,
                         'promo_code_id' => $promocode->id,
+                    ]);
+                    UserSubscription::create([
+                        'user_id' => $user->id,
+                        'subscription_id' => 1,
+                        'from_date' => $now,
+                        'to_date' => $now->addDays($promocode->day),
                     ]);
                     $promocode->increment('used_counts');
                     return new MessageResource(__('message.promo.is_used'));
