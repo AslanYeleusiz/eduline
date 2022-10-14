@@ -116,7 +116,10 @@ class AuthController extends Controller
 
     public function resetPasswordSendSmsCode(Request $request)
     {
-        $user = User::phoneBy($request->phone)->firstOrFail();
+        $user = User::phoneBy($request->phone)->first();
+        if(empty($user)){
+            throw new ErrorException('Хеш қате');
+        }
         $this->sendSms($request->phone);
         return new MessageResource(__('message.success.sent'));
     }
