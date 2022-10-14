@@ -170,7 +170,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div v-if="subscription.id > 1" class="btn-group btn-group-sm">
+                                            <div class="btn-group btn-group-sm">
                                                 <Link
                                                     :href="
                                                         route(
