@@ -111,6 +111,7 @@ class AuthController extends Controller
     public function registerSendSmsCode(RegisterSendSmsCodeRequest $request)
     {
         $phone = $request->phone;
+
         $this->sendSms($phone);
         return new MessageResource(__('message.success.sent'));
     }
@@ -118,6 +119,7 @@ class AuthController extends Controller
     public function resetPasswordSendSmsCode(Request $request)
     {
         $user = User::phoneBy($request->phone)->firstOrFail();
+
         $this->sendSms($request->phone);
         return new MessageResource(__('message.success.sent'));
     }
