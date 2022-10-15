@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     public function changeAllDefaultPNG(){
-        $users = User::where('avatar', '/images/avatar_default.png')->get();
+        $users = User::where('avatar', 'profile-default-image.svg')->get();
         foreach($users as $user){
             $user->update([
                 'avatar' => 'profile-default-image.png'
