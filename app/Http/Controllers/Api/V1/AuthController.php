@@ -121,7 +121,9 @@ class AuthController extends Controller
 
     public function resetPasswordSendSmsCode(ResetPasswordSendSmsCodeRequest $request)
     {
-        $user = User::phoneBy($request->phone)->firstOrFail();
+        $user = User::phoneBy($request->phone)->firstOr(function(){
+            return new MsgStatusFalseResource(__('auth.Phone number not found'));
+        });
 
         $this->sendSms($request->phone);
         return new MessageResource(__('message.success.sent'));
