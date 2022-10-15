@@ -114,7 +114,9 @@ class AuthController extends Controller
     public function registerSendSmsCode(RegisterSendSmsCodeRequest $request)
     {
         $phone = $request->phone;
-
+        if(!$this->checPhone($phone)) {
+            return new MsgStatusFalseResource(__('auth.Phone number is incorrect'));
+        }
         $this->sendSms($phone);
         return new MessageResource(__('message.success.sent'));
     }
@@ -195,5 +197,15 @@ class AuthController extends Controller
         return $smsVerification;
     }
 
-
+    private function checPhone($phone) {
+        if(strlen($phone) == 10) {
+            $countryNumber = substr($phone, 0, 2);
+            $currentCtNumbers = ['70', '74', '75', '76', '77'];
+            $chec = false;
+            foreach($currentCtNumbers as $cn){
+                if($cn == $countryNumber) $chec = true;
+            }
+            return $chec;
+        }return false;
+    }
 }

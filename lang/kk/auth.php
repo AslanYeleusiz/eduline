@@ -18,6 +18,7 @@ return [
     'sms_verification' => config('app.name') . '. Сіздің растау кодыңыз: ',
     'Phone or password is incorrect' => 'Телефон немесе құпия сөз дұрыс емес',
     'Phone number not found' => 'Телефон нөмірі табылмады',
+    'Phone number is incorrect' => 'Телефон нөмірі дұрыс емес',
     'phone_invalid' => 'Бұндай нөмір тіркелмеген',
     'incorrect_code' => 'Код немесе телефон нөмірі қате',
 ];
