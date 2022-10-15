@@ -124,7 +124,3 @@ Route::prefix('materials')->name('materials')->group(function () {
      $exitCode = Artisan::call('config:cache');
      return 'Config cache has been cleared';
  });
-
-
-//Временно
- Route::get('/qwifdwqindqwundwqundwqodnwodwqdnwqdnwonmdoiwcqwowq', [UserController::class, 'changeAllDefaultPNG']);
