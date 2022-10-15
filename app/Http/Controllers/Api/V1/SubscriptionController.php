@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\SubscriptionsResource;
 use App\Http\Resources\V1\MessageResource;
+use App\Http\Resources\V1\Errors\MsgStatusFalseResource;
 use App\Exceptions\ErrorException;
 use App\Models\Subscription;
 use App\Models\PromoCode;
@@ -40,12 +41,12 @@ class SubscriptionController extends Controller
                         'to_date' => $now->addDays($promocode->day),
                     ]);
                     $promocode->increment('used_counts');
-                    return new MessageResource(__('message.promo.is_used'));
+                    return new MessageResource(__('message.promo.success'));
                 }
-                throw new ErrorException(__('message.promo.is_used'));
+                return new MsgStatusFalseResource(__('message.promo.is_used'));
             }
-            throw new ErrorException(__('message.promo.date_leave'));
+            return new MsgStatusFalseResource(__('message.promo.date_leave'));
         }
-        throw new ErrorException(__('message.promo.not_found'));
+        return new MsgStatusFalseResource(__('message.promo.not_found'));
     }
 }

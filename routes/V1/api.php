@@ -128,8 +128,8 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')
         ->only(['index', 'show', 'store', 'update', 'destroy']);
-    Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
+    Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile/password', [UserController::class, 'updatePassword'])->name('profile.updatePassword');
 
