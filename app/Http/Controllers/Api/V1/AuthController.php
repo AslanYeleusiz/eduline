@@ -9,6 +9,7 @@ use App\Http\Requests\Api\V1\Auth\RegisterRequest;
 use App\Http\Requests\Api\V1\Auth\RegisterSendSmsCodeRequest;
 use App\Http\Requests\Api\V1\Auth\ResetPasswordSaveRequest;
 use App\Http\Requests\Api\V1\Auth\ResetPasswordVerifyCodeRequest;
+use App\Http\Requests\Api\V1\Auth\ResetPasswordSendSmsCodeRequest;
 use App\Http\Requests\Api\V1\User\UserAccountDestroyRequest;
 use App\Http\Resources\V1\LoggedInResource;
 use App\Http\Resources\V1\MessageResource;
@@ -118,7 +119,7 @@ class AuthController extends Controller
         return new MessageResource(__('message.success.sent'));
     }
 
-    public function resetPasswordSendSmsCode(Request $request)
+    public function resetPasswordSendSmsCode(ResetPasswordSendSmsCodeRequest $request)
     {
         $user = User::phoneBy($request->phone)->firstOrFail();
 
