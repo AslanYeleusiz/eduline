@@ -64,7 +64,7 @@ class AuthController extends Controller
     {
         $smsVerification = $this->checkCode($request->phone, $request->code);
         if(!$smsVerification){
-            return new MsgStatusFalseResource(__('message.code.fail'));
+            return new MsgStatusFalseResource(__('message.code.phone_or_code_incorrect'));
         }
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
@@ -137,7 +137,7 @@ class AuthController extends Controller
         $phone = $request->phone;
         $smsVerification = $this->checkCode($request->phone, $request->code);
         if(!$smsVerification){
-            return new MsgStatusFalseResource(__('message.code.fail'));
+            return new MsgStatusFalseResource(__('message.code.phone_or_code_incorrect'));
         }
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
