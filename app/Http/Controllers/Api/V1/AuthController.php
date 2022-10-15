@@ -12,6 +12,7 @@ use App\Http\Requests\Api\V1\Auth\ResetPasswordVerifyCodeRequest;
 use App\Http\Requests\Api\V1\User\UserAccountDestroyRequest;
 use App\Http\Resources\V1\LoggedInResource;
 use App\Http\Resources\V1\MessageResource;
+use App\Http\Resources\V1\Errors\MsgStatusFalseResource;
 use App\Models\RemoteUsers;
 use App\Models\Role;
 use App\Models\SmsVerification;
@@ -60,7 +61,10 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-       $smsVerification = $this->checkCode($request->phone, $request->code);
+        $smsVerification = $this->checkCode($request->phone, $request->code);
+        if(!$smsVerification){
+            return new MsgStatusFalseResource(__('message.code.fail'));
+        }
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
         $smsVerification->save();
@@ -126,6 +130,9 @@ class AuthController extends Controller
     {
         $phone = $request->phone;
         $smsVerification = $this->checkCode($request->phone, $request->code);
+        if(!$smsVerification){
+            return new MsgStatusFalseResource(__('message.code.fail'));
+        }
         DB::beginTransaction();
         $smsVerification->status = SmsVerification::STATUS_VERIFIED;
         $smsVerification->save();
@@ -178,8 +185,8 @@ class AuthController extends Controller
             ->where('code', $code)
             ->first();
         if (empty($smsVerification)) {
-//            return false;
-            throw new ErrorException(__('errors.the_code_or_number_incorrect'));
+            return false;
+//            throw new ErrorException(__('errors.the_code_or_number_incorrect'));
         }
         return $smsVerification;
     }
