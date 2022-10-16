@@ -15,7 +15,7 @@ class SalaryCalculator extends Model
     const PED_SKILLS = [
         [
             'number' => 1,
-            'name' => 'Нет',
+            'name' => __('site.Нет'),
             'percent' => 0
         ],
         [
