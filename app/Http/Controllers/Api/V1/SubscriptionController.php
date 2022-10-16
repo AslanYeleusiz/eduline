@@ -39,8 +39,8 @@ class SubscriptionController extends Controller
                     UserSubscription::create([
                         'user_id' => $user->id,
                         'subscription_id' => 1,
-                        'from_date' => $now,
-                        'to_date' => $now->addDays($promocode->day),
+                        'from_date' => $now->format('Y-m-d'),
+                        'to_date' => $now->addDays($promocode->day)->format('Y-m-d'),
                     ]);
                     $promocode->increment('used_counts');
                     return new MessageResource(__('message.promo.success'));

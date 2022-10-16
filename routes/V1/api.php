@@ -130,8 +130,8 @@ Route::get('full/{id}/result', [FullTestController::class, 'sanat']);
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')
         ->only(['index', 'show', 'store', 'update', 'destroy']);
-
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+
     Route::post('profile', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::post('profile/password', [UserController::class, 'updatePassword'])->name('profile.updatePassword');
 

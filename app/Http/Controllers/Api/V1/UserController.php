@@ -31,8 +31,8 @@ class UserController extends Controller
 
     public function profile()
     {
-        $user = auth()->guard('api')->user();
-//        $user = User::find(40);
+//        $user = auth()->guard('api')->user();
+        $user = User::find(40);
         $user->load('subscription.subscription');
         return new UserProfileResource($user);
     }
