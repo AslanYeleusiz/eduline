@@ -111,6 +111,8 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::prefix('full-test')->group(function () {
         Route::get('/results', [FullTestController::class, 'results'])->name('full.results');
 
+        Route::get('/{id}/result/sanat', [FullTestController::class, 'sanat'])->name('full.result.sanat');
+
         Route::get('/{id}/result', [FullTestController::class, 'result'])->name('full.result');
 
         Route::get('/{id}', [FullTestController::class, 'show'])->name('full.show');
@@ -123,7 +125,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
         Route::post('/{id}/finish', [FullTestController::class, 'finish']);
     });
 });
-//Route::get('full/{id}/result', [FullTestController::class, 'limitScore']);
+Route::get('full/{id}/result', [FullTestController::class, 'sanat']);
 
 Route::middleware('auth:api')->group(function () {
     Route::apiResource('my-materials',  MyMaterialController::class)->names('myMaterials.')

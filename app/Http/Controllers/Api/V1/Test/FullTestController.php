@@ -8,11 +8,12 @@ use App\Http\Resources\V1\Test\FullTestFinishedResource;
 use App\Http\Resources\V1\Test\FullTestResource;
 use App\Http\Resources\V1\Test\FullTestStartedResource;
 use App\Models\FullTest;
+use App\Models\FullTestSubject;
 use App\Models\FullTestUserAnswer;
 use App\Models\TestQuestionAppeal;
 use App\Models\TestSubjectPreparationQuestion;
 use App\Models\TestSubjectPreparation;
-use App\Models\TestDirectionTestSubject;
+use App\Models\TestDirection;
 use App\Services\V1\FullTestService;
 use App\Services\V1\TestService;
 use Carbon\Carbon;
@@ -70,11 +71,14 @@ class FullTestController extends Controller
         return new FullTestFinishedResource($test);
     }
 
-    public function limitScore($testId)
-    {
-        $test = TestDirectionTestSubject::with('direction')->get();
 
-        return $test;
+    public function sanat($testId)
+    {
+        $test = FullTest::FindWithSubjectsAndDirection($testId);
+//        $test = TestDirection::all();
+        $result = $this->testService->sanatCalc($test);
+
+        return $result;
     }
 
     public function results(Request $request)

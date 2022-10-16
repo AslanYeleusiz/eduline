@@ -5,7 +5,9 @@ namespace App\Services\V1;
 
 use App\Exceptions\ErrorException;
 use App\Models\FullTest;
+use App\Models\FullTestSubject;
 use App\Models\FullTestUserAnswer;
+use App\Models\TestDirectionTestSubject;
 use App\Models\TestDirection;
 use App\Models\TestQuestion;
 use Exception;
@@ -118,5 +120,35 @@ class FullTestService
 
         DB::commit();
         return $test;
+    }
+
+    public function sanatCalc($test)
+    {
+        $sanattar[] = ['Педагог', 'Педагог-модератор', 'Педагог-сарапшы', 'Педагог-зерттеуші', 'Педагог-шебер'];
+
+        foreach($sanattar as $key => $sanat){
+            foreach($test->subjects as $subject)
+            {
+                switch($subject->direction[0]->id){
+                    case 2: {
+                        $need_ball = $subject->questions_count * (20 + 10)/100;
+                        break;
+                    }
+                    case 3: {
+                        $need_ball = $subject->questions_count * (30 + 10)/100;
+                        break;
+                    }
+                    case 4: {
+                        $need_ball = $subject->questions_count * (40 + 10)/100;
+                        break;
+                    }
+                    case 5: {
+                        $need_ball = $subject->questions_count * (50 + 10)/100;
+                        break;
+                    }
+                }
+            }
+        }
+        return $result;
     }
 }

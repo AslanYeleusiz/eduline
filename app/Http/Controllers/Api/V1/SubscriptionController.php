@@ -11,6 +11,7 @@ use App\Models\Subscription;
 use App\Models\PromoCode;
 use App\Models\UsedPromocodes;
 use App\Models\UserSubscription;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -25,11 +26,12 @@ class SubscriptionController extends Controller
     public function promocode(Request $request) {
         $now = Carbon::now();
         $user = auth()->guard('api')->user();
+//        $user = User::find(40);
         $promocode = PromoCode::isActive()->where('code', $request->code)->first();
         if(!empty($promocode)){
             if($promocode->to_date > $now){
-                $used_promocode = UsedPromocodes::where('user_id', $user->id)->where('promo-code-id', $promocode->id)->first();
-                if(!empty($used_promocode)){
+                $used_promocode = UsedPromocodes::where('user_id', $user->id)->where('promo_code_id', $promocode->id)->first();
+                if(empty($used_promocode)){
                     UsedPromocodes::create([
                         'user_id' => $user->id,
                         'promo_code_id' => $promocode->id,
