@@ -158,9 +158,6 @@
 
 </style>
 
-@php
-    app()->setLocale('ru')
-@endphp
 <body class="page-break" style="padding:20px;">
 <p
     class="s1"
