@@ -20,10 +20,7 @@ class SalaryCalculator extends Model
         ],
         [
             'number' => 2,
-            'name' => [
-                'kk' => 'педагог-модератор',
-                'ru' => 'педагог-модераторы қазақшасы',
-            ],
+            'name' => 'педагог-модератор',
             'percent' => 50
         ],
         [
