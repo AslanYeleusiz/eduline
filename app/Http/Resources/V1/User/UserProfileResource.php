@@ -19,12 +19,16 @@ class UserProfileResource extends JsonResource
     public function toArray($request)
     {
 //        $this->load('subscription.subscription');
+
         $subscription = null;
         if ($this->subscription) {
+            $dur_id = $this->subscription->subscription->id;
+            $duration_days = Carbon::parse($this->subscription->from_date)->diff(Carbon::parse($this->subscription->to_date))->format('%d');
             $subscription = [
-                'id' => $this->subscription->subscription->id,
+                'id' => $dur_id,
                 'name' => $this->subscription->subscription->name,
                 'duration' => $this->subscription->subscription->duration,
+                'duration_days' => $duration_days,
                 'from_date' => Carbon::create( $this->subscription->from_date)->format('d.m.Y'),
                 'to_date' => Carbon::create($this->subscription->to_date)->format('d.m.Y'),
                 'created_at' => $this->subscription->created_at?->format('d.m.Y H:i'),
