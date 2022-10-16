@@ -189,7 +189,7 @@
 </style>
 
 @php
-app()->setLocale('ru')
+app()->setLocale($locale)
 @endphp
 
 <body class="page-break" style="padding:20px;">
@@ -199,7 +199,7 @@ app()->setLocale('ru')
         text-indent: 0pt;
         text-align: center;
       ">
-        @lang('site.Калькулятор для расчета заработной платы') {{$locale}}
+        @lang('site.Калькулятор для расчета заработной платы')
     </p>
     <p style="text-indent: 0pt; text-align: left"><br /></p>
     <p style="

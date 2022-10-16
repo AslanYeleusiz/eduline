@@ -10,7 +10,6 @@ use App\Services\V1\SalaryCalculationCalculateService;
 use App\Services\V1\SalaryCalculationService;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Lang;
 
 class SalaryCalculatorController extends Controller
 {
@@ -257,7 +256,7 @@ class SalaryCalculatorController extends Controller
         return $salaryCalculator;
     }
 
-    public function downloadPDF($id)
+    public function downloadPDF(Request $request, $id)
     {
         // $pdf = PDF::loadView('pdf/salary', compact('user'));
 
@@ -434,7 +433,7 @@ class SalaryCalculatorController extends Controller
         $data['id'] = $salaryHistory->id;
         Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'dejavu sans bold']);
         $name = 'invoice_' .$salaryHistory->id .'_' . $salaryHistory->created_at . ".pdf";
-        $locale = Lang::getLocale();
+        $locale = $request->lang;
         $pdf = PDF::loadView('pdf/salary', compact('data','name','locale'));
 
         return $pdf->download($name);
