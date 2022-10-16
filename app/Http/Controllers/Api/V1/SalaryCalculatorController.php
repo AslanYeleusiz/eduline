@@ -433,7 +433,8 @@ class SalaryCalculatorController extends Controller
         $data['id'] = $salaryHistory->id;
         Pdf::setOptions(['dpi' => 150, 'defaultFont' => 'dejavu sans bold']);
         $name = 'invoice_' .$salaryHistory->id .'_' . $salaryHistory->created_at . ".pdf";
-        $pdf = PDF::loadView('pdf/salary', compact('data','name'));
+        $locale = app()->getLocale();
+        $pdf = PDF::loadView('pdf/salary', compact('data','name','locale'));
 
         return $pdf->download($name);
     }
