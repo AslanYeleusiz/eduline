@@ -15,27 +15,27 @@ class SalaryCalculator extends Model
     const PED_SKILLS = [
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'percent' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.педагог-модератор'),
+            'name' => 'педагог-модератор',
             'percent' => 50
         ],
         [
             'number' => 3,
-            'name' => __('site.педагог-эксперт'),
+            'name' => 'педагог-эксперт',
             'percent' => 40
         ],
         [
             'number' => 4,
-            'name' => __('site.педагог-исследователь'),
+            'name' => 'педагог-исследователь',
             'percent' => 35
         ],
         [
             'number' => 5,
-            'name' => __('site.педагог-мастер'),
+            'name' => 'педагог-мастер',
             'percent' => 30
         ]
     ];
@@ -43,28 +43,28 @@ class SalaryCalculator extends Model
     const CATEGORIES = [
         [
             'number' => 1,
-            'name' => __('site.Высшая категория')
+            'name' => 'Высшая категория'
         ],
         [
             'number' => 2,
-            'name' => '2 '.__('site.категория')
+            'name' => '2 '.'категория'
         ],
         [
             'number' => 3,
-            'name' => '1 '.__('site.категория')
+            'name' => '1 '.'категория'
         ],
         [
             'number' => 4,
-            'name' => __('site.Без категории')
+            'name' => 'Без категории'
         ],
     ];
     const EDUICATIONS = [
         [
-            "name"  => __('site.Высшее'),
+            "name"  => 'Высшее',
             "value" => "B2",
         ],
         [
-            "name"  => __('site.Среднее специальное'),
+            "name"  => 'Среднее специальное',
             "value" => "B4"
         ]
     ];
@@ -73,57 +73,57 @@ class SalaryCalculator extends Model
 
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'percent' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.Зона экологической катастрофы'),
+            'name' => 'Зона экологической катастрофы',
             'percent' => 50
         ],
         [
             'number' => 3,
-            'name' => __('site.Зона экологического кризиса'),
+            'name' => 'Зона экологического кризиса',
             'percent' => 30
         ],
 
         [
             'number' => 4,
-            'name' => __('site.Зона экологического предкризисного состояния'),
+            'name' => 'Зона экологического предкризисного состояния',
             'percent' => 20
         ],
     ];
     const WORK_IN_RADIATION_RISK_ZONES = [
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'mrp' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.Зона черезвычайного радиационнного риска'),
+            'name' => 'Зона черезвычайного радиационнного риска',
             'mrp' => 2
         ],
         [
             'number' => 3,
-            'name' => __('site.Зона максимального радиационнного риска'),
+            'name' => 'Зона максимального радиационнного риска',
             'mrp' => 1.75
         ],
         [
             'number' => 4,
-            'name' => __('site.Зона повышенного радиационнного риска'),
+            'name' => 'Зона повышенного радиационнного риска',
             'mrp' => 1.5
         ],
 
         [
             'number' => 5,
-            'name' => __('site.Зона минимального радиационнного риска'),
+            'name' => 'Зона минимального радиационнного риска',
             'mrp' => 1.25
         ],
 
         [
             'number' => 6,
-            'name' => __('site.Зона с льготным социально-экономическим статусом'),
+            'name' => 'Зона с льготным социально-экономическим статусом',
             'mrp' => 1
         ],
     ];
@@ -132,17 +132,17 @@ class SalaryCalculator extends Model
 
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'bdo' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.Частичное погружение') ,
+            'name' => 'Частичное погружение' ,
             'bdo' => 1
         ],
         [
             'number' => 3,
-            'name' => __('site.Полное погружение'),
+            'name' => 'Полное погружение',
             'bdo' => 2
         ],
     ];
@@ -150,17 +150,17 @@ class SalaryCalculator extends Model
 
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'bdo_percent' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.Половина дня'),
+            'name' => 'Половина дня',
             'bdo_percent' => 10
         ],
         [
             'number' => 3,
-            'name' => __('site.Полный день'),
+            'name' => 'Полный день',
             'bdo_percent' => 20
         ],
     ];
@@ -168,22 +168,22 @@ class SalaryCalculator extends Model
 
         [
             'number' => 1,
-            'name' => __('site.Нет'),
+            'name' => 'Нет',
             'zchbdo_percent' => 0
         ],
         [
             'number' => 2,
-            'name' => __('site.Учитель начальных классов'),
+            'name' => 'Учитель начальных классов',
             'zchbdo_percent' => 50
         ],
         [
             'number' => 3,
-            'name' => __('site.Учитель ЕМН'),
+            'name' => 'Учитель ЕМН',
             'zchbdo_percent' => 50
         ],
         [
             'number' => 4,
-            'name' => __('site.Учитель языка и литературы'),
+            'name' => 'Учитель языка и литературы',
             'zchbdo_percent' => 50
         ],
 
