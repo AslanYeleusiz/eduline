@@ -12,7 +12,7 @@ class SalaryCalculator extends Model
     const STAVKI = [
         0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2,
     ];
-    var PED_SKILLS = [
+    const PED_SKILLS = [
         [
             'number' => 1,
             'name' => __('site.Нет'),
@@ -40,7 +40,7 @@ class SalaryCalculator extends Model
         ]
     ];
 
-    var CATEGORIES = [
+    const CATEGORIES = [
         [
             'number' => 1,
             'name' => __('site.Высшая категория')
@@ -58,7 +58,7 @@ class SalaryCalculator extends Model
             'name' => __('site.Без категории')
         ],
     ];
-    var EDUICATIONS = [
+    const EDUICATIONS = [
         [
             "name"  => __('site.Высшее'),
             "value" => "B2",
@@ -69,7 +69,7 @@ class SalaryCalculator extends Model
         ]
     ];
 
-    var WORK_IN_ENVIRONMENTAL_DISASTER_ZONES = [
+    const WORK_IN_ENVIRONMENTAL_DISASTER_ZONES = [
 
         [
             'number' => 1,
@@ -93,7 +93,7 @@ class SalaryCalculator extends Model
             'percent' => 20
         ],
     ];
-    var WORK_IN_RADIATION_RISK_ZONES = [
+    const WORK_IN_RADIATION_RISK_ZONES = [
         [
             'number' => 1,
             'name' => __('site.Нет'),
@@ -128,7 +128,7 @@ class SalaryCalculator extends Model
         ],
     ];
 
-    var TECHING_IN_ENGLISH_ITEMS = [
+    const TECHING_IN_ENGLISH_ITEMS = [
 
         [
             'number' => 1,
@@ -146,7 +146,7 @@ class SalaryCalculator extends Model
             'bdo' => 2
         ],
     ];
-    var FOR_MANAGING_OFFICE_ITEMS = [
+    const FOR_MANAGING_OFFICE_ITEMS = [
 
         [
             'number' => 1,
@@ -164,7 +164,7 @@ class SalaryCalculator extends Model
             'bdo_percent' => 20
         ],
     ];
-    var FOR_CHECKING_NOTEBOOKS =[
+    const FOR_CHECKING_NOTEBOOKS =[
 
         [
             'number' => 1,
