@@ -20,7 +20,7 @@ class TestDirectionController extends Controller
         }
         $directions = TestDirection::isActive()
         ->with(['subjects' => fn($query)=>$query->where('language_id', $languageId)])
-        ->get();
+        ->orderBy('numeric')->get();
         foreach($directions as $direction){
             $direction->name = $direction->name[$language];
         }
