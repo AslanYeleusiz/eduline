@@ -14,7 +14,7 @@ class ResetPasswordSendSmsCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => 'required|unique:users,phone'
+            'phone' => 'required'
         ];
     }
 }
