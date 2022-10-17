@@ -94,7 +94,7 @@
                                                     : index + 1
                                             }}
                                         </td>
-                                        <td>{{ role.name.kk }}</td>
+                                        <td>{{ role.name }}</td>
                                         <td>
                                             {{ role.is_general ? "Иә" : "Жоқ" }}
                                         </td>
