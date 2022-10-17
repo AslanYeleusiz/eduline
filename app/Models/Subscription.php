@@ -18,6 +18,12 @@ class Subscription extends Model
         return $query->where('is_active', 1);
     }
 
+    public function scopeIsActiveNotFirst($query)
+    {
+        return $query->where('is_active', 1)->where('id', '>', 1);
+    }
+
+
     protected $casts = [
         'name' => 'json',
         'is_discount' => 'boolean',

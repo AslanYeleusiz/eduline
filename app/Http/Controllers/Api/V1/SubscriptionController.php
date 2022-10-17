@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
 {
     public function index()
     {
-        $subscriptions = Subscription::isActive()->get();
+        $subscriptions = Subscription::isActiveNotFirst()->get();
         return SubscriptionsResource::collection($subscriptions)->additional(['status' => true]);
     }
 
