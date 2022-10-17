@@ -45,17 +45,10 @@ class AuthController extends Controller
         $login = $request->input('login');
         $user = User::where('phone', $login)->orWhere('email', $login)->first();
         if (!$user) {
-            throw new ErrorException(
-                __('errors.user.not_found'),
-                Response::HTTP_NOT_FOUND,
-            );
+            return new MsgStatusFalseResource(__('errors.user.not_found'));
         }
         if (!Hash::check($request->input('password'), $user->password)) {
-            throw new ErrorException(
-                __('errors.given_data_invalid'),
-                Response::HTTP_UNPROCESSABLE_ENTITY,
-                ['email_or_password' => [__('errors.user.email_or_password')]]
-            );
+            return new MsgStatusFalseResource(__('errors.user.email_or_password'));
         }
         return new LoggedInResource($this->createTokenService->create($user, config('app.name')));
     }
@@ -158,7 +151,7 @@ class AuthController extends Controller
         $value = Cache::get("password_reset_hash/$phone");
 
         if($value != $request->hash) {
-            throw new ErrorException('Хеш қате');
+            return new MsgStatusFalseResource('Хеш қате');
         }
         $user = User::phoneBy($request->phone)->firstOrFail();
         $user->password = Hash::make($request->password);
