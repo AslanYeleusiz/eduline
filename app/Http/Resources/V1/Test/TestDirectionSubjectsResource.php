@@ -18,9 +18,10 @@ class TestDirectionSubjectsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'is_pedagogy' => $this->is_pedagogy,
+            'is_soon' => $this->is_soon,
         ];
     }
-     
+
     public function with($request)
     {
         return ['status' => true];
