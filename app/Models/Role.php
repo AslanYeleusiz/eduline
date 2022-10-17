@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     const DEFAULT_ROLE = 5;
 
     const ADMIN_ROLE = 1;
     public $guarded = [];
+    public $translatable = ['name'];
 
     public function scopeIsGeneral($query)
     {
