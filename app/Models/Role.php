@@ -8,13 +8,13 @@ use Spatie\Translatable\HasTranslations;
 
 class Role extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory;
 
     const DEFAULT_ROLE = 5;
 
     const ADMIN_ROLE = 1;
     public $guarded = [];
-    public $translatable = ['name'];
+//    public $translatable = ['name'];
 
     public function scopeIsGeneral($query)
     {
