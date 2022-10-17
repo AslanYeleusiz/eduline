@@ -56,6 +56,7 @@ class TestSubject extends Model
 
 
     protected $casts = [
-        'is_pedagogy' => 'boolean'
+        'is_pedagogy' => 'boolean',
+        'is_soon' => 'boolean',
     ];
 }

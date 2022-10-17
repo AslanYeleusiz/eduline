@@ -98,6 +98,22 @@
                             </div>
                             <validation-error :field="'is_pedagogy'" />
                         </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input
+                                    type="checkbox"
+                                    v-model="subject.is_soon"
+                                    class="custom-control-input"
+                                    id="customSwitch2"
+                                />
+                                <label
+                                    class="custom-control-label"
+                                    for="customSwitch2"
+                                    >Уақытша белсенді емес (Жақында)</label
+                                >
+                            </div>
+                            <validation-error :field="'is_soon'" />
+                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary mr-1">

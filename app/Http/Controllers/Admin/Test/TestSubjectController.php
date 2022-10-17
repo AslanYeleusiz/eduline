@@ -19,7 +19,7 @@ class TestSubjectController extends Controller
         $isPedagogy = $request->is_pedagogy;
         $questionsCount = $request->questions_count;
         $languageId = $request->language_id;
-        
+
         $directions = TestDirection::get();
         $languages = TestLanguage::get();
         // directions array
@@ -34,14 +34,14 @@ class TestSubjectController extends Controller
         ->appends($request->except('page'));
         return Inertia::render('Admin/Test/Subjects/Index', compact('directions', 'languages', 'subjects'));
     }
-    
+
     public function edit(TestSubject $subject)
     {
 
         $languages = TestLanguage::get();
         return Inertia::render('Admin/Test/Subjects/Edit',compact('subject', 'languages'));
     }
-    
+
     public function update(TestSubject $subject, TestSubjectSaveRequest $request)
     {
         $subject->name = $request->name;
@@ -49,6 +49,7 @@ class TestSubjectController extends Controller
         $subject->questions_count = $request->questions_count;
         $subject->language_id = $request->language_id;
         $subject->is_pedagogy = $request->is_pedagogy == 'true';
+        $subject->is_soon = $request->is_soon == 'true';
         $subject->save();
         return redirect()->back()->withSuccess('Успешно сохранено');
     }
@@ -67,10 +68,11 @@ class TestSubjectController extends Controller
         $subject->questions_count = $request->questions_count;
         $subject->language_id = $request->language_id;
         $subject->is_pedagogy = $request->is_pedagogy == 'true';
+        $subject->is_soon = $request->is_soon == 'true';
         $subject->save();
         return redirect()->route('admin.test.subjects.index')->withSuccess('Успешно добавлено');
     }
-    
+
     public function destroy(TestSubject $subject)
     {
         $subject->delete();
