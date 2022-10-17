@@ -93,9 +93,9 @@ class TestQuestionController extends Controller
         return redirect()->route('admin.test.questions.index')->withSuccess('Успешно добавлено');
     }
 
-    public function destroy(TestLanguage $language)
+    public function destroy(TestQuestion $question)
     {
-        $language->delete();
+        $question->delete();
         return redirect()->back()->withSuccess('Успешно удалено');
     }
 }

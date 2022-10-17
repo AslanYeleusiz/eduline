@@ -17,13 +17,13 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
 
-        return [
+        return response()->json([
             'full_name' => 'required|min:3',
             'password' => 'required|min:6|same:password_confirmation',
             'password_confirmation' => 'required',
             'email' => 'required|email|min:5|unique:users,email',
             'phone' => 'required|unique:users,phone',
             'code' => 'required'
-        ];
+        ]);
     }
 }

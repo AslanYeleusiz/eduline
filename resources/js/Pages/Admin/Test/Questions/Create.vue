@@ -62,7 +62,7 @@
                                     <td><b>Тақырыпша</b></td>
                                     <td>
                                         <Multiselect v-model="preparationIds" track-by="title" mode="tags" :close-on-select="false" :searchable="true" :create-option="true" label="title" valueProp="id" :options="preparations" />
-                                        <validation-error :field="'preparation_id'" />
+                                        <validation-error :field="'preparation_ids'" />
                                     </td>
                                 </tr>
                                 <tr class="odd even">

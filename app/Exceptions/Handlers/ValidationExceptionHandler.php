@@ -19,6 +19,6 @@ final class ValidationExceptionHandler extends Handler
         return (new ErrorResponse([
             'message' => __('errors.given_data_invalid'),
             'errors'  => $exception->errors(),
-        ]))->response()->setStatusCode(Response::HTTP_UNPROCESSABLE_ENTITY);
+        ]))->response()->setStatusCode(200);
     }
 }

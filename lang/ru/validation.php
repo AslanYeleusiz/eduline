@@ -140,6 +140,7 @@ return [
         'content'               => 'Контент',
         'country'               => 'Страна',
         'current_password'      => 'Текущий пароль',
+        'preparation_ids'       => 'Подзаголовок',
         'date'                  => 'Дата',
         'day'                   => 'День',
         'description'           => 'Описание',

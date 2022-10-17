@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterSendSmsCodeRequest extends FormRequest
 {
-    /**
+    /**array;
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>

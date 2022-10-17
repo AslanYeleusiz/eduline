@@ -262,6 +262,7 @@ return [
         'password' => 'Құпия сөз',
         'password_confirmation' => 'Құпия сөзді растау',
         'new_password_confirmation' => 'Жаңа құпия сөзді растау',
+        'preparation_ids' => 'Тақырыпша',
         'country' => 'Ел',
         'phone' => 'Телефон',
         'mobile' => 'Моб. номер',
