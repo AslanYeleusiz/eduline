@@ -34,16 +34,26 @@
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Аты</label>
+                            <label for="">Аты (қазақша)</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="role.name"
-                                name="name"
+                                v-model="role.name.kk"
                                 placeholder="Аты"
                             />
                             <validation-error :field="'name'" />
                         </div>
+                        <div class="form-group">
+                            <label for="">Аты (орысша)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="role.name.ru"
+                                placeholder="Аты"
+                            />
+                            <validation-error :field="'name'" />
+                        </div>
+
 
                         <div class="form-group">
                             <div class="custom-control custom-switch">

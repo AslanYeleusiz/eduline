@@ -32,15 +32,24 @@
                 <form method="post" @submit.prevent="submit">
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="">Аты</label>
+                            <label for="">Аты (қазақша)</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="role.name"
-                                name="name"
+                                v-model="role.name.kk"
                                 placeholder="Аты"
                             />
-                            <validation-error :field="'name'" />
+                            <validation-error :field="'name.kk'" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Аты (орысша)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="role.name.ru"
+                                placeholder="Аты"
+                            />
+                            <validation-error :field="'name.ru'" />
                         </div>
 
                         <div class="form-group">
@@ -94,7 +103,10 @@ export default {
     data() {
         return {
             role: {
-                name: null,
+                name: {
+                    kk: null,
+                    ru: null,
+                },
                 is_general: false,
             },
         };

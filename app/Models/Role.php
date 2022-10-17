@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
-    
+
     const DEFAULT_ROLE = 5;
-    
+
     const ADMIN_ROLE = 1;
     public $guarded = [];
 
@@ -18,13 +18,14 @@ class Role extends Model
     {
         return $query->where('is_general', 1);
     }
-    
+
     public function scopeIsNotGeneral($query)
     {
         return $query->where('is_general', 0);
     }
 
     public $casts = [
-        'is_general' => 'boolean'
+        'name' => 'json',
+        'is_general' => 'boolean',
     ];
 }

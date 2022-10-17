@@ -24645,7 +24645,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       role: {
-        name: null,
+        name: {
+          kk: null,
+          ru: null
+        },
         is_general: false
       }
     };
@@ -39077,29 +39080,39 @@ var _hoisted_20 = {
 
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": ""
-}, "Аты", -1
+}, "Аты (қазақша)", -1
 /* HOISTED */
 );
 
 var _hoisted_22 = {
   "class": "form-group"
 };
-var _hoisted_23 = {
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": ""
+}, "Аты (орысша)", -1
+/* HOISTED */
+);
+
+var _hoisted_24 = {
+  "class": "form-group"
+};
+var _hoisted_25 = {
   "class": "custom-control custom-switch"
 };
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "custom-control-label",
   "for": "customSwitch1"
 }, "Жалпылама роль", -1
 /* HOISTED */
 );
 
-var _hoisted_25 = {
+var _hoisted_27 = {
   "class": "card-footer"
 };
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
 }, " Сақтау ", -1
@@ -39126,36 +39139,50 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         method: "post",
-        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
         "class": "form-control",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $data.role.name = $event;
+          return $data.role.name.kk = $event;
         }),
-        name: "name",
         placeholder: "Аты"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.role.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
-        field: 'name'
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "checkbox",
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.role.name.kk]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+        field: 'name.kk'
+      }, null, 8
+      /* PROPS */
+      , ["field"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        "class": "form-control",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.role.name.ru = $event;
+        }),
+        placeholder: "Аты"
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.role.name.ru]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+        field: 'name.ru'
+      }, null, 8
+      /* PROPS */
+      , ["field"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "checkbox",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return $data.role.is_general = $event;
         }),
         "class": "custom-control-input",
         id: "customSwitch1"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.role.is_general]]), _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.role.is_general]]), _hoisted_26]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
         field: 'is_general'
-      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         "class": "btn btn-danger",
-        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
       }, " Артқа ")])], 32
@@ -39251,29 +39278,39 @@ var _hoisted_21 = {
 
 var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": ""
-}, "Аты", -1
+}, "Аты (қазақша)", -1
 /* HOISTED */
 );
 
 var _hoisted_23 = {
   "class": "form-group"
 };
-var _hoisted_24 = {
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": ""
+}, "Аты (орысша)", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  "class": "form-group"
+};
+var _hoisted_26 = {
   "class": "custom-control custom-switch"
 };
 
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "custom-control-label",
   "for": "customSwitch1"
 }, "Жалпылама роль", -1
 /* HOISTED */
 );
 
-var _hoisted_26 = {
+var _hoisted_28 = {
   "class": "card-footer"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary mr-1"
 }, " Сақтау ", -1
@@ -39304,36 +39341,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         method: "post",
-        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
         "class": "form-control",
         "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-          return $props.role.name = $event;
+          return $props.role.name.kk = $event;
         }),
-        name: "name",
         placeholder: "Аты"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.role.name]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.role.name.kk]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
         field: 'name'
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "checkbox",
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        "class": "form-control",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $props.role.name.ru = $event;
+        }),
+        placeholder: "Аты"
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.role.name.ru]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+        field: 'name'
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "checkbox",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return $props.role.is_general = $event;
         }),
         "class": "custom-control-input",
         id: "customSwitch1"
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.role.is_general]]), _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $props.role.is_general]]), _hoisted_27]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
         field: 'is_general'
-      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      })])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
         "class": "btn btn-danger",
-        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return _ctx.back();
         }, ["prevent"]))
       }, " Артқа ")])], 32
