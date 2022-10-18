@@ -377,9 +377,9 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ Arr::last(\App\Models\SalaryCalculator::WORK_IN_ENVIRONMENTAL_DISASTER_ZONES, function ($value, $key) use ($data) {
+                    @lang('site.'.Arr::last(\App\Models\SalaryCalculator::WORK_IN_ENVIRONMENTAL_DISASTER_ZONES, function ($value, $key) use ($data) {
       return $value['number'] ==  $data['base']['work_in_env_disaster_zone'];
-    })['name'] }}
+    })['name'])
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -398,9 +398,9 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ Arr::last(\App\Models\SalaryCalculator::WORK_IN_RADIATION_RISK_ZONES, function ($value, $key) use ($data) {
+                    @lang('site.'.Arr::last(\App\Models\SalaryCalculator::WORK_IN_RADIATION_RISK_ZONES, function ($value, $key) use ($data) {
          return $value['number'] ==  $data['base']['work_in_radiation_risk_zone'];
-       })['name'] }}
+       })['name'])
                 </p>
             </td>
             <td class="table-td-2-column-val">
