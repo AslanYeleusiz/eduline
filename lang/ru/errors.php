@@ -26,7 +26,7 @@ return [
         'photo_format' => 'Формат изображения должен быть jpeg или png, svg',
         'password_not_match' => 'Ваши введенные пароли не совпадают',
         'invalid_password' => 'Пароль введен неправильно',
-        'email_or_password' => 'Ошибка почты или пароля',
+        'email_or_password' => 'Неправильный номер или пароль',
         'sms_not_found' => 'Sms не найден',
         'email_code_not_found' => 'код не найден',
     ],

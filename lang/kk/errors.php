@@ -26,7 +26,7 @@ return [
         'photo_format' => 'Суреттің форматы jpeg немесе png, svg болуы керек',
         'password_not_match' => 'Сіз енгізген құпия сөздер сәйкес келмейді',
         'invalid_password' => 'Құпия сөз қате енгізілді',
-        'email_or_password' => 'Номер немесе құпия сөз қатесі',
+        'email_or_password' => 'Номер немесе құпия сөз қате',
         'sms_not_found' => 'Sms табылмады',
         'email_code_not_found' => 'код табылмады',
     ],
