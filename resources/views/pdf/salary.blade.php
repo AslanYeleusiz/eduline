@@ -419,9 +419,9 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ Arr::last(\App\Models\SalaryCalculator::TECHING_IN_ENGLISH_ITEMS, function ($value, $key) use ($data) {
+                    @lang('site.'.Arr::last(\App\Models\SalaryCalculator::TECHING_IN_ENGLISH_ITEMS, function ($value, $key) use ($data) {
              return $value['number'] ==  $data['base']['teaching_in_english'];
-           })['name'] }}
+           })['name'])
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -526,7 +526,7 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    Учитель начальных классов {{ $data['base']['for_checking_notebooks_half_classes'] }} часов
+                    @lang('site.Учитель начальных классов') {{ $data['base']['for_checking_notebooks_half_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
@@ -545,7 +545,7 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    Учитель начальных классов {{ $data['base']['for_checking_notebooks_full_classes'] }} часов
+                    @lang('site.Учитель начальных классов') {{ $data['base']['for_checking_notebooks_full_classes'] }} @lang('site.часов')
                 </p>
             </td>
             <td class="table-td-2-column-val">
