@@ -222,13 +222,13 @@ app()->setLocale($locale)
         <br>
         {{-- Должность: Учитель--}}
         {{-- <br>--}}
-        @lang('site.Образование'): {{ Arr::last(\App\Models\SalaryCalculator::EDUICATIONS, function ($value, $key) use ($data) {
+        @lang('site.Образование'): @lang('site.'.Arr::last(\App\Models\SalaryCalculator::EDUICATIONS, function ($value, $key) use ($data) {
     return $value['value'] ==  $data['base']['education'];
-})['name'] ?? null }}
+})['name'] ?? null)
         <br>
-        @lang('site.Категория'): {{ Arr::last(\App\Models\SalaryCalculator::CATEGORIES, function ($category, $key) use ($data) {
+        @lang('site.Категория'): @lang('site.'.Arr::last(\App\Models\SalaryCalculator::CATEGORIES, function ($category, $key) use ($data) {
     return $category['number'] ==  $data['base']['category'];
-})['name'] ?? null }}
+})['name'] ?? null)
         <br>
         @lang('site.Стаж'): {{ $data['base']['experience_year']  }} @lang('site.лет') {{ $data['base']['experience_month'] }}
         @lang('site.месяцев') {{ $data['base']['experience_day'] }} @lang('site.дней')
