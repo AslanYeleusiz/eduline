@@ -69,15 +69,8 @@ class FullTestController extends Controller
             $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
             unset($subject->userAnswers);
         }
-        return new FullTestFinishedResource($test);
-    }
-
-
-    public function sanat($testId)
-    {
-        $test = FullTest::FindWithSubjectsAndDirection($testId);
         $result = $this->testService->sanatCalc($test);
-        return new FullTestSanatResource($result);
+        return new FullTestFinishedResource($test);
     }
 
     public function results(Request $request)

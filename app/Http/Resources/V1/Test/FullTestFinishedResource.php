@@ -28,7 +28,8 @@ class FullTestFinishedResource extends JsonResource
             'incorrect_answers_count' => $this->incorrect_answers_count,
             'subjects_count' => $this->when(isset($this->subjects_count), $this->subjects_count),
             'subjects' => FullTestFinishedSubjectsResource::collection($this->whenLoaded('subjects')),
-            'subject' => new FullTestFinishedSubjectsResource($this->when(isset($this->subject), $this->subject))
+            'subject' => new FullTestFinishedSubjectsResource($this->when(isset($this->subject), $this->subject)),
+            'sanat' => $this->sanat
         ];
     }
 
