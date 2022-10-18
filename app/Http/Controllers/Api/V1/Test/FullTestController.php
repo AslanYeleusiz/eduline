@@ -7,6 +7,7 @@ use App\Http\Resources\V1\MessageResource;
 use App\Http\Resources\V1\Test\FullTestFinishedResource;
 use App\Http\Resources\V1\Test\FullTestResource;
 use App\Http\Resources\V1\Test\FullTestStartedResource;
+use App\Http\Resources\V1\Test\FullTestSanatResource;
 use App\Models\FullTest;
 use App\Models\FullTestSubject;
 use App\Models\FullTestUserAnswer;
@@ -75,10 +76,8 @@ class FullTestController extends Controller
     public function sanat($testId)
     {
         $test = FullTest::FindWithSubjectsAndDirection($testId);
-//        $test = TestDirection::all();
         $result = $this->testService->sanatCalc($test);
-
-        return $result;
+        return new FullTestSanatResource($result);
     }
 
     public function results(Request $request)

@@ -38,7 +38,7 @@ class FullTest extends Model
 
     public function scopeFindWithSubjectsAndDirection($query, $id)
     {
-        return $query->with(['subjects' => fn($query) => $query->with(['direction'])->withCount(['userAnswers as questions_answered_count' => fn($query) => $query->where('test_id', $id)->whereNotNull('answer')])
+        return $query->with(['subjects' => fn($query) => $query->with(['direction' => fn($query) => $query->first()])->withCount(['userAnswers as questions_answered_count' => fn($query) => $query->where('test_id', $id)->whereNotNull('answer')])
         ])->findOrFail($id);
     }
 

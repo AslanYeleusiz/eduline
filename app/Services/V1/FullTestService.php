@@ -124,31 +124,78 @@ class FullTestService
 
     public function sanatCalc($test)
     {
-        $sanattar[] = ['Педагог', 'Педагог-модератор', 'Педагог-сарапшы', 'Педагог-зерттеуші', 'Педагог-шебер'];
-
-        foreach($sanattar as $key => $sanat){
-            foreach($test->subjects as $subject)
-            {
-                switch($subject->direction[0]->id){
-                    case 2: {
-                        $need_ball = $subject->questions_count * (20 + 10)/100;
-                        break;
-                    }
-                    case 3: {
-                        $need_ball = $subject->questions_count * (30 + 10)/100;
-                        break;
-                    }
-                    case 4: {
-                        $need_ball = $subject->questions_count * (40 + 10)/100;
-                        break;
-                    }
-                    case 5: {
-                        $need_ball = $subject->questions_count * (50 + 10)/100;
-                        break;
-                    }
-                }
+        $sanattar = [
+            [
+                'name' => 'Педагог',
+                'subjects' => null,
+                'pass_score' => null,
+                'is_passing' => false,
+            ],
+            [
+                'name' => 'Педагог-модератор',
+                'subjects' => null,
+                'pass_score' => null,
+                'is_passing' => false,
+            ],
+            [
+                'name' => 'Педагог-сарапшы',
+                'subjects' => null,
+                'pass_score' => null,
+                'is_passing' => false,
+            ],
+            [
+                'name' => 'Педагог-зерттеуші',
+                'subjects' => null,
+                'pass_score' => null,
+                'is_passing' => false,
+            ],
+            [
+                'name' => 'Педагог-шебер',
+                'subjects' => null,
+                'pass_score' => null,
+                'is_passing' => false,
+            ]
+        ];
+        $direction_id = $test->subjects[0]->direction[0]->id;
+        switch($direction_id){
+            case 2:
+            case 3: {
+                $pan = 0.3;
+                $ped = 0.5;
+                break;
+            }
+            case 4:
+            case 5: {
+                $pan = 0.5;
+                $ped = 0.3;
+                break;
             }
         }
-        return $result;
+        foreach ($test->subjects as $subject) {
+            if($subject->is_pedagogy){
+                $ped_question_count = $subject->questions_count;
+                $ped_name = $subject->name;
+            }
+            else {
+                $pan_question_count = $subject->questions_count;
+                $pan_name = $subject->name;
+            }
+        }
+        foreach($sanattar as &$sanat){
+            $sanat['subjects'] = [
+                $pan_name, $ped_name
+            ];
+            $sanat['pass_score'] = [
+                ceil($pan_question_count * $pan),
+                ceil($ped_question_count * $ped),
+            ];
+            if($test->score >= $sanat['pass_score'][0] && $test->score >= $sanat['pass_score'][1]){
+                $sanat['is_passing'] = true;
+            }else $sanat['is_passing'] = false;
+            $pan = $pan + 0.1;
+            $ped = $ped + 0.1;
+        }
+        $test->sanat = $sanattar;
+        return $test;
     }
 }
