@@ -355,9 +355,9 @@ app()->setLocale($locale)
             </td>
             <td class="s2-table-col-center">
                 <p class="s2 s2-table-col-center-text-2">
-                    {{ __('site.Arr::last(\App\Models\SalaryCalculator::PED_SKILLS, function ($value, $key) use ($data) {
+                    @lang('site.'.Arr::last(\App\Models\SalaryCalculator::PED_SKILLS, function ($value, $key) use ($data) {
        return $value['number'] ==  $data['base']['ped_skill'];
-    })['name']') }}
+    })['name'])
                 </p>
             </td>
             <td class="table-td-2-column-val">
