@@ -130,30 +130,35 @@ class FullTestService
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
+                'passing_desc' => null,
             ],
             [
                 'name' => 'Педагог-модератор',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
+                'passing_desc' => null,
             ],
             [
                 'name' => 'Педагог-сарапшы',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
+                'passing_desc' => null,
             ],
             [
                 'name' => 'Педагог-зерттеуші',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
+                'passing_desc' => null,
             ],
             [
                 'name' => 'Педагог-шебер',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
+                'passing_desc' => null,
             ]
         ];
         $direction_id = $test->subjects[0]->direction[0]->id;
@@ -191,7 +196,11 @@ class FullTestService
             ];
             if($test->score >= $sanat['pass_score'][0] && $test->score >= $sanat['pass_score'][1]){
                 $sanat['is_passing'] = true;
-            }else $sanat['is_passing'] = false;
+                $sanat['passing_desc'] = 'Сіздің балыңыз '+$sanat['name']+' санатына жетеді';
+            }else{
+                $sanat['is_passing'] = false;
+                $sanat['passing_desc'] = 'Сіздің балыңыз '+$sanat['name']+' санатына жетпейді';
+            }
             $pan = $pan + 0.1;
             $ped = $ped + 0.1;
         }
