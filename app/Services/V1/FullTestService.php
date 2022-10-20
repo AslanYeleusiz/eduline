@@ -196,10 +196,10 @@ class FullTestService
             ];
             if($test->score >= $sanat['pass_score'][0] && $test->score >= $sanat['pass_score'][1]){
                 $sanat['is_passing'] = true;
-                $sanat['passing_desc'] = 'Сіздің балыңыз '+$sanat['name']+' санатына жетеді';
+                $sanat['passing_desc'] = 'Сіздің балыңыз '.$sanat['name'].' санатына жетеді';
             }else{
                 $sanat['is_passing'] = false;
-                $sanat['passing_desc'] = 'Сіздің балыңыз '+$sanat['name']+' санатына жетпейді';
+                $sanat['passing_desc'] = 'Сіздің балыңыз '.$sanat['name'].' санатына жетпейді';
             }
             $pan = $pan + 0.1;
             $ped = $ped + 0.1;
