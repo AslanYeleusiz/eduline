@@ -126,35 +126,40 @@ class FullTestService
     {
         $sanattar = [
             [
-                'name' => 'Педагог',
+                'name' => __('message.sanat.Педагог'),
+                'name_translate' => 'педагог',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
                 'passing_desc' => null,
             ],
             [
-                'name' => 'Педагог-модератор',
+                'name' => __('message.sanat.Педагог-модератор'),
+                'name_translate' => 'педагог-модератор',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
                 'passing_desc' => null,
             ],
             [
-                'name' => 'Педагог-сарапшы',
+                'name' => __('message.sanat.Педагог-сарапшы'),
+                'name_translate' => 'педагог-сарапшы',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
                 'passing_desc' => null,
             ],
             [
-                'name' => 'Педагог-зерттеуші',
+                'name' => __('message.sanat.Педагог-зерттеуші'),
+                'name_translate' => 'педагог-зерттеуші',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
                 'passing_desc' => null,
             ],
             [
-                'name' => 'Педагог-шебер',
+                'name' => __('message.sanat.Педагог-шебер'),
+                'name_translate' => 'педагог-шебер',
                 'subjects' => null,
                 'pass_score' => null,
                 'is_passing' => false,
@@ -196,10 +201,10 @@ class FullTestService
             ];
             if($test->score >= $sanat['pass_score'][0] && $test->score >= $sanat['pass_score'][1]){
                 $sanat['is_passing'] = true;
-                $sanat['passing_desc'] = __('message.sanat.Сіздің балыңыз жетеді').__('message.sanat.'.$sanat['name']).__('message.sanat. санатына жетеді');
+                $sanat['passing_desc'] = __('message.sanat.Сіздің балыңыз жетеді').__('message.sanat.'.$sanat['name_translate']).__('message.sanat. санатына жетеді');
             }else{
                 $sanat['is_passing'] = false;
-                $sanat['passing_desc'] = __('message.sanat.Сіздің балыңыз жетпейді').__('message.sanat.'.$sanat['name']).__('message.sanat. санатына жетпейді');
+                $sanat['passing_desc'] = __('message.sanat.Сіздің балыңыз жетпейді').__('message.sanat.'.$sanat['name_translate']).__('message.sanat. санатына жетпейді');
             }
             $pan = $pan + 0.1;
             $ped = $ped + 0.1;
