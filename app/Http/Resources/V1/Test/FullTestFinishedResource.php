@@ -16,6 +16,9 @@ class FullTestFinishedResource extends JsonResource
      */
     public function toArray($request)
     {
+        $sanat = null;
+        if(!empty($this->sanat))
+            $sanat = FullTestSanatResource::collection($this->sanat);
         return [
             'id' => $this->id,
             'is_started' => $this->is_started,
@@ -29,7 +32,8 @@ class FullTestFinishedResource extends JsonResource
             'subjects_count' => $this->when(isset($this->subjects_count), $this->subjects_count),
             'subjects' => FullTestFinishedSubjectsResource::collection($this->whenLoaded('subjects')),
             'subject' => new FullTestFinishedSubjectsResource($this->when(isset($this->subject), $this->subject)),
-            'sanat' => FullTestSanatResource::collection($this->sanat)
+            'sanat' => $sanat
+
         ];
     }
 
