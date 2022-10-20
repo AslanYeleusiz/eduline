@@ -116,7 +116,6 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
         Route::get('/{id}', [FullTestController::class, 'show'])->name('full.show');
         Route::get('/{id}/{subject_id}', [FullTestController::class, 'showTestSubject'])->name('full.showTestSubject');
 
-        // Route::get('full/{id}/result', [FullTestController::class, 'result']);
         Route::post('/{direction_id}/{subject_id}/create', [FullTestController::class, 'store'])->name('full.store');
         Route::post('/{id}/answer', [FullTestController::class, 'saveAnswer']);
         Route::post('/{id}/appeal', [FullTestController::class, 'testQuestionAppeal']);
