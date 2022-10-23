@@ -33,7 +33,6 @@ class FullTestFinishedResource extends JsonResource
             'subjects' => FullTestFinishedSubjectsResource::collection($this->whenLoaded('subjects')),
             'subject' => new FullTestFinishedSubjectsResource($this->when(isset($this->subject), $this->subject)),
             'sanat' => $sanat
-
         ];
     }
 

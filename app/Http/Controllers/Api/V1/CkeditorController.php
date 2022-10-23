@@ -23,7 +23,7 @@ class CkeditorController extends Controller
         $path = $this->path . date('m') . '/';
         $image = $this->imageService->save($request->hasFile('upload'), $path, '', '', $request->file('upload'));
         return response()->json(
-                 ['url' => Storage::url($image)],
+                 ['url' => env('APP_URL').Storage::url($image)],
         );
     }
 }
