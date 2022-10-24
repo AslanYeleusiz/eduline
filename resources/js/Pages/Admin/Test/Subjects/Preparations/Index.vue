@@ -127,7 +127,7 @@
                                                                         preparationItem.title
                                                                     }}
                                                                 </td>
-                                                                <td>
+                                                                <td class="columnFour">
                                                                     {{
                                                                         preparationItem.description
                                                                     }}
@@ -234,3 +234,11 @@ export default {
     },
 };
 </script>
+<style>
+    .columnFour{
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
