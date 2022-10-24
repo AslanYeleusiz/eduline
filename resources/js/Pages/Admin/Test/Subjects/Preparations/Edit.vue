@@ -177,7 +177,7 @@ export default {
         },
         submit() {
             if(this.classIds.length === 0)
-                this.preparation.class_ids = null
+                this.preparation.class_ids = ''
             else this.preparation.class_ids = this.classIds
             this.$inertia.put(
                 route("admin.test.subjectPreparations.update", {
