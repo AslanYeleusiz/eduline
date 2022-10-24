@@ -47786,7 +47786,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_41)]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))])])], 64
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+        field: 'class_ids'
+      })])], 64
       /* STABLE_FRAGMENT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",

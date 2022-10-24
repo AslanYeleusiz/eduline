@@ -15,6 +15,7 @@ class TestSubjectPreparationSaveRequest extends FormRequest
     {
         return [
             'title' => 'required|min:3|max:255'
+            'class_ids' => 'required'
         ];
     }
 }

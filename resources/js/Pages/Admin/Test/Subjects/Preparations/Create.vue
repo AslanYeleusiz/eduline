@@ -89,6 +89,7 @@
                                         </label>
                                     </li>
                                 </ul>
+                                <validation-error :field="'class_ids'" />
                             </div>
                         </template>
                     </div>
