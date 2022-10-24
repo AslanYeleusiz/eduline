@@ -26968,7 +26968,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     submit: function submit() {
       if (this.classIds.length == 0) this.preparation.class_ids = null;else this.preparation.class_ids = this.classIds;
-      this.$inertia.put(route("admin.test.subjectPreparations.update", {
+      this.$inertia.post(route("admin.test.subjectPreparations.update", {
         subject: this.subject.id,
         preparation: this.preparation.id
       }), this.preparation, {
