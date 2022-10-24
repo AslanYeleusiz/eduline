@@ -146,7 +146,9 @@
                 };
             },
             submit() {
-                this.preparation.class_ids = this.classIds;
+                if(this.classIds.length === 0)
+                    this.preparation.class_ids = null
+                else this.preparation.class_ids = this.classIds
                 this.$inertia.post(route("admin.test.subjectPreparations.store", this.subject.id),
                     this.preparation, {
                         onError: () => console.log("An error has occurred"),

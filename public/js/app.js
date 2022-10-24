@@ -26889,7 +26889,7 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     submit: function submit() {
-      this.preparation.class_ids = this.classIds;
+      if (this.classIds.length === 0) this.preparation.class_ids = null;else this.preparation.class_ids = this.classIds;
       this.$inertia.post(route("admin.test.subjectPreparations.store", this.subject.id), this.preparation, {
         onError: function onError() {
           return console.log("An error has occurred");
@@ -26967,7 +26967,7 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     submit: function submit() {
-      this.preparation.class_ids = this.classIds;
+      if (this.classIds.length === 0) this.preparation.class_ids = null;else this.preparation.class_ids = this.classIds;
       this.$inertia.put(route("admin.test.subjectPreparations.update", {
         subject: this.subject.id,
         preparation: this.preparation.id

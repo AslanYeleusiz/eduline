@@ -176,7 +176,9 @@ export default {
             };
         },
         submit() {
-            this.preparation.class_ids = this.classIds;
+            if(this.classIds.length === 0)
+                this.preparation.class_ids = null
+            else this.preparation.class_ids = this.classIds
             this.$inertia.put(
                 route("admin.test.subjectPreparations.update", {
                     subject: this.subject.id,
