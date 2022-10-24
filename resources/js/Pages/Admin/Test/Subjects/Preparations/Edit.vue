@@ -189,9 +189,7 @@ export default {
                     onError: () => console.log("An error has occurred"),
                     onSuccess: () =>
                         console.log("The new contact has been saved"),
-                    updateForm: this.$inertia.form({
-                        _method: "put",
-                    }),
+                    _method: "put",
                 }
             );
         },

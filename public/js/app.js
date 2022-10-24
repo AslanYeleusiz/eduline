@@ -26978,9 +26978,7 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           return console.log("The new contact has been saved");
         },
-        updateForm: this.$inertia.form({
-          _method: "put"
-        })
+        _method: "put"
       });
     }
   },
