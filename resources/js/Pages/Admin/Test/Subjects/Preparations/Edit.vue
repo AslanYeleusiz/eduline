@@ -189,7 +189,7 @@ export default {
                     onError: () => console.log("An error has occurred"),
                     onSuccess: () =>
                         console.log("The new contact has been saved"),
-                    _method: "put",
+                    method: 'put',
                 }
             );
         },
