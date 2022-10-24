@@ -26889,7 +26889,7 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     submit: function submit() {
-      if (this.classIds.length === 0) this.preparation.class_ids = '';else this.preparation.class_ids = this.classIds;
+      if (this.classIds.length == 0) this.preparation.class_ids = null;else this.preparation.class_ids = this.classIds;
       this.$inertia.post(route("admin.test.subjectPreparations.store", this.subject.id), this.preparation, {
         onError: function onError() {
           return console.log("An error has occurred");
@@ -26967,7 +26967,7 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     submit: function submit() {
-      if (this.classIds.length === 0) this.preparation.class_ids = '';else this.preparation.class_ids = this.classIds;
+      if (this.classIds.length == 0) this.preparation.class_ids = null;else this.preparation.class_ids = this.classIds;
       this.$inertia.put(route("admin.test.subjectPreparations.update", {
         subject: this.subject.id,
         preparation: this.preparation.id
@@ -48098,7 +48098,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , _hoisted_40)]);
       }), 128
       /* KEYED_FRAGMENT */
-      ))])])], 64
+      ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_validation_error, {
+        field: 'class_ids'
+      })])], 64
       /* STABLE_FRAGMENT */
       )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",

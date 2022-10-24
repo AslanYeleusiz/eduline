@@ -121,6 +121,7 @@
                                     </label>
                                 </li>
                             </ul>
+                            <validation-error :field="'class_ids'" />
                         </div>
                             </template>
                     </div>
@@ -176,8 +177,7 @@ export default {
             };
         },
         submit() {
-            if(this.classIds.length === 0)
-                this.preparation.class_ids = ''
+            if(this.classIds.length == 0) this.preparation.class_ids = null
             else this.preparation.class_ids = this.classIds
             this.$inertia.put(
                 route("admin.test.subjectPreparations.update", {
