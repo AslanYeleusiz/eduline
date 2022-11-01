@@ -83,21 +83,19 @@ class TestQuestionController extends Controller
         $preparationIds = $request->input('preparation_ids', []);
         foreach ($preparationIds as $ids) {
             if(!is_numeric($ids)){
-                return redirect()->back()->withErrors([
-                    'preparation_ids' => "Енгізген тақырыпша табылмады!"
-                ]);
+                return redirect()->back();
             }
         }
 
-//        DB::beginTransaction();
-//        $question = new TestQuestion();
-//        $question->text = $request->text;
-//        $question->answers = $answers;
-//        $question->subject_id = $request->subject_id;
-//        $question->is_active = $request->is_active == 'true';
-//        $question->save();
-//        $question->preparations()->sync($preparationIds);
-//        DB::commit();
+        DB::beginTransaction();
+        $question = new TestQuestion();
+        $question->text = $request->text;
+        $question->answers = $answers;
+        $question->subject_id = $request->subject_id;
+        $question->is_active = $request->is_active == 'true';
+        $question->save();
+        $question->preparations()->sync($preparationIds);
+        DB::commit();
         return redirect()->route('admin.test.questions.index')->withSuccess('Успешно добавлено');
     }
 
