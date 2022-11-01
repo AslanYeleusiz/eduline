@@ -88,6 +88,8 @@ class TestQuestionController extends Controller
                 ]);
             }
         }
+
+        DB::beginTransaction();
         $question = new TestQuestion();
         $question->text = $request->text;
         $question->answers = $answers;
@@ -95,6 +97,7 @@ class TestQuestionController extends Controller
         $question->is_active = $request->is_active == 'true';
         $question->save();
         $question->preparations()->sync($preparationIds);
+        DB::commit();
         return redirect()->route('admin.test.questions.index')->withSuccess('Успешно добавлено');
     }
 
