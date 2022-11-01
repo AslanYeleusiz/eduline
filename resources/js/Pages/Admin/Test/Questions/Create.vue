@@ -268,6 +268,7 @@
             },
             submit() {
                 this.question.correct_answer_number = this.correct_answer_number;
+                this.question.sub_id = this.question.subject_id;
                 if (!this.question.correct_answer_number) {
                     return Swal.fire({
                         title: "Дұрыс жауап белгіленбеді",
