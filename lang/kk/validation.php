@@ -272,6 +272,8 @@ return [
         'mobile' => 'Моб. номер',
         'age' => 'Жасы',
         'sex' => 'Жыныс',
+        'subject_id' => 'Пән',
+        'answers.*.text' => 'Жауап',
         'gender' => 'Жыныс',
         'day' => 'Күн',
         'month' => 'Ай',

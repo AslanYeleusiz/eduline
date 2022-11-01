@@ -25936,21 +25936,18 @@ __webpack_require__.r(__webpack_exports__);
       this.correct_answer_number = null;
     },
     submit: function submit() {
-      if (!this.question.subject_id) {
-        return this.warningMessage("Пән тандалмады");
-      }
-
+      //                if (!this.question.subject_id) {
+      //                    return this.warningMessage("Пән тандалмады");
+      //                }
       this.question.correct_answer_number = this.correct_answer_number;
 
       if (!this.question.correct_answer_number) {
         return this.warningMessage("Дұрыс жауап белгіленбеді");
       }
 
-      if (this.preparationIds.length == 0) this.question.preparation_ids = null;else this.question.preparation_ids = this.preparationIds;
-
-      if (!this.question.preparation_ids) {
-        return this.warningMessage("Тақырыпша тандалмады");
-      }
+      if (this.preparationIds.length == 0) this.question.preparation_ids = null;else this.question.preparation_ids = this.preparationIds; //                if (!this.question.preparation_ids) {
+      //                    return this.warningMessage("Тақырыпша тандалмады");
+      //                }
 
       this.$inertia.post(route("admin.test.questions.store"), this.question, {
         onError: function onError() {
