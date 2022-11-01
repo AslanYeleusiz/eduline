@@ -47,6 +47,9 @@ class TestQuestionController extends Controller
     public function update(TestQuestion $question, TestQuestionSaveRequest $request)
     {
         $preparationIds = $request->input('preparation_ids', []);
+        if(empty($preparationIds))
+        return redirect()->back()->withSuccess('Успешно сохранено');
+
         $answers = array_map(function ($answer) use ($request) {
             return [
                 'number' => $answer['number'],
