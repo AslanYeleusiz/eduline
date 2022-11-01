@@ -71,7 +71,7 @@ class TestQuestionController extends Controller
         return Inertia::render('Admin/Test/Questions/Create', compact('subjects'));
     }
 
-    public function store(Request $request)
+    public function store(TestQuestionSaveRequest $request)
     {
         $answers = array_map(function ($answer) use ($request) {
             return [
