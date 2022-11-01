@@ -47,9 +47,6 @@ class TestQuestionController extends Controller
     public function update(TestQuestion $question, TestQuestionSaveRequest $request)
     {
         $preparationIds = $request->input('preparation_ids', []);
-        if(empty($preparationIds))
-        return redirect()->back()->withSuccess('Успешно сохранено');
-
         $answers = array_map(function ($answer) use ($request) {
             return [
                 'number' => $answer['number'],
@@ -74,7 +71,7 @@ class TestQuestionController extends Controller
         return Inertia::render('Admin/Test/Questions/Create', compact('subjects'));
     }
 
-    public function store(TestQuestionSaveRequest $request)
+    public function store(Request $request)
     {
         $answers = array_map(function ($answer) use ($request) {
             return [
