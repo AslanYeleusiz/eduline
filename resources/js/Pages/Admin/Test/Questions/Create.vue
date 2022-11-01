@@ -215,7 +215,7 @@
                 editorConfig: {
                     extraPlugins: [this.uploader],
                 },
-                preparationIds: null,
+                preparationIds: [],
 
             };
         },

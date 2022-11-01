@@ -25877,7 +25877,7 @@ __webpack_require__.r(__webpack_exports__);
       editorConfig: {
         extraPlugins: [this.uploader]
       },
-      preparationIds: null
+      preparationIds: []
     };
   },
   methods: {
