@@ -83,7 +83,11 @@ class TestQuestionController extends Controller
         $preparationIds = $request->input('preparation_ids', []);
         foreach ($preparationIds as $ids) {
             if(!is_numeric($ids)){
-                return redirect()->back();
+                return redirect()->back()->with([
+                    'errors' => [
+                        'preparation_ids' => "Енгізген тақырыпша табылмады!"
+                    ]
+                ]);
             }
         }
 
