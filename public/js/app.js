@@ -25842,32 +25842,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ["subjects"],
   data: function data() {
-    var _route$params$subject;
-
     return {
       question: {
         text: null,
-        subject_id: (_route$params$subject = route().params.subject_id) !== null && _route$params$subject !== void 0 ? _route$params$subject : null,
+        subject_id: null,
         answers: [{
           number: 1,
-          text: null,
-          is_correct: false
+          text: null
         }, {
           number: 2,
-          text: null,
-          is_correct: false
+          text: null
         }, {
           number: 3,
-          text: null,
-          is_correct: false
+          text: null
         }, {
           number: 4,
-          text: null,
-          is_correct: false
+          text: null
         }, {
           number: 5,
-          text: null,
-          is_correct: false
+          text: null
         }],
         is_active: false
       },

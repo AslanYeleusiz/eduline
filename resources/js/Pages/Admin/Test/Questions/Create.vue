@@ -180,31 +180,26 @@
             return {
                 question: {
                     text: null,
-                    subject_id: route().params.subject_id ?? null,
+                    subject_id: null,
                     answers: [{
                             number: 1,
                             text: null,
-                            is_correct: false,
                         },
                         {
                             number: 2,
                             text: null,
-                            is_correct: false,
                         },
                         {
                             number: 3,
                             text: null,
-                            is_correct: false,
                         },
                         {
                             number: 4,
                             text: null,
-                            is_correct: false,
                         },
                         {
                             number: 5,
                             text: null,
-                            is_correct: false
                         },
                     ],
                     is_active: false,
