@@ -15,6 +15,8 @@ class TestQuestionRequest extends FormRequest
     {
         return [
             'text' => 'required',
+            'subject_id' => 'required',
+            'correct_answer_number' => 'required',
         ];
     }
 }
