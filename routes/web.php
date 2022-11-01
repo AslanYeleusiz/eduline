@@ -126,7 +126,7 @@ Route::prefix('materials')->name('materials')->group(function () {
  });
 
  //Cache config cache:
- Route::get('/config-cache', function() {
+ Route::get('/cache-clear', function() {
      $exitCode = Artisan::call('cache:clear');
      return 'Application cache cleared';
  });
