@@ -73,6 +73,9 @@ class TestQuestionController extends Controller
 
     public function store(TestQuestionSaveRequest $request)
     {
+        return redirect()->back()->withErrors([
+                    'preparation_ids' => "Енгізген тақырыпша табылмады!"
+                ]);
         $answers = array_map(function ($answer) use ($request) {
             return [
                 'number' => $answer['number'],
