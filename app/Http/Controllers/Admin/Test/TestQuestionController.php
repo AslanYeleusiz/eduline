@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Test;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Test\TestLanguageSaveRequest;
 use App\Http\Requests\Admin\Test\TestQuestionSaveRequest;
-use App\Http\Requests\Admin\Test\TestQuestionRequest;
 use App\Models\TestLanguage;
 use App\Models\TestQuestion;
 use App\Models\TestSubject;
@@ -72,7 +71,7 @@ class TestQuestionController extends Controller
         return Inertia::render('Admin/Test/Questions/Create', compact('subjects'));
     }
 
-    public function store(TestQuestionRequest $request)
+    public function store(TestQuestionSaveRequest $request)
     {
         $answers = array_map(function ($answer) use ($request) {
             return [
