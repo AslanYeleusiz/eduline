@@ -17,13 +17,10 @@ class TestQuestionSaveRequest extends FormRequest
         return [
             'text' => 'required',
 //            'subject_id' => 'required',
-            'correct_answer_number' => 'required',
+//            'correct_answer_number' => 'required',
 //            'preparation_ids' => 'required',
-            'answers.0.text' => 'required',
-            'answers.1.text' => 'required',
-            'answers.2.text' => 'required',
-            'answers.3.text' => 'required',
-            'answers.4.text' => 'required',
+//            'answers' => 'required',
+//            'answers.*.text' => 'required',
         ];
     }
 }

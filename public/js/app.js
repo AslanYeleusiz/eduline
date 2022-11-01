@@ -25850,23 +25850,23 @@ __webpack_require__.r(__webpack_exports__);
         subject_id: (_route$params$subject = route().params.subject_id) !== null && _route$params$subject !== void 0 ? _route$params$subject : null,
         answers: [{
           number: 1,
-          text: "",
+          text: null,
           is_correct: false
         }, {
           number: 2,
-          text: "",
+          text: null,
           is_correct: false
         }, {
           number: 3,
-          text: "",
+          text: null,
           is_correct: false
         }, {
           number: 4,
-          text: "",
+          text: null,
           is_correct: false
         }, {
           number: 5,
-          text: "",
+          text: null,
           is_correct: false
         }],
         is_active: false
@@ -25929,7 +25929,7 @@ __webpack_require__.r(__webpack_exports__);
     addAnswer: function addAnswer() {
       var answer = {
         number: this.question.answers.length + 1,
-        text: "",
+        text: null,
         is_correct: false
       };
       this.question.answers.push(answer);

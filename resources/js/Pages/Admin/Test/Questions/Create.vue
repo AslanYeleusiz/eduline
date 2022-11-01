@@ -183,28 +183,28 @@
                     subject_id: route().params.subject_id ?? null,
                     answers: [{
                             number: 1,
-                            text: "",
+                            text: null,
                             is_correct: false,
                         },
                         {
                             number: 2,
-                            text: "",
+                            text: null,
                             is_correct: false,
                         },
                         {
                             number: 3,
-                            text: "",
+                            text: null,
                             is_correct: false,
                         },
                         {
                             number: 4,
-                            text: "",
+                            text: null,
                             is_correct: false,
                         },
                         {
                             number: 5,
-                            text: "",
-                            is_correct: false,
+                            text: null,
+                            is_correct: false
                         },
                     ],
                     is_active: false,
@@ -260,7 +260,7 @@
             addAnswer() {
                 let answer = {
                     number: this.question.answers.length + 1,
-                    text: "",
+                    text: null,
                     is_correct: false,
                 };
                 this.question.answers.push(answer);
