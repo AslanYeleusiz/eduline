@@ -25937,24 +25937,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     submit: function submit() {
       if (!this.question.subject_id) {
-        return Swal.fire({
-          title: "Пән тандалмады!",
-          icon: "warning",
-          showCancelButton: false
-        });
+        return this.warningMessage("Пән тандалмады");
       }
 
       this.question.correct_answer_number = this.correct_answer_number;
 
       if (!this.question.correct_answer_number) {
-        return Swal.fire({
-          title: "Дұрыс жауап белгіленбеді",
-          icon: "warning",
-          showCancelButton: false
-        });
+        return this.warningMessage("Дұрыс жауап белгіленбеді");
       }
 
-      this.question.preparation_ids = this.preparationIds;
+      if (this.preparationIds.length == 0) this.question.preparation_ids = null;else this.question.preparation_ids = this.preparationIds;
+
+      if (!this.question.preparation_ids) {
+        return this.warningMessage("Тақырыпша тандалмады");
+      }
+
       this.$inertia.post(route("admin.test.questions.store"), this.question, {
         onError: function onError() {
           return console.log("An error has occurred");
@@ -25962,6 +25959,13 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           return console.log("The new contact has been saved");
         }
+      });
+    },
+    warningMessage: function warningMessage(text) {
+      return Swal.fire({
+        title: text,
+        icon: "warning",
+        showCancelButton: false
       });
     }
   },
