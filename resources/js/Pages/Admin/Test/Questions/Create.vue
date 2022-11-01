@@ -180,7 +180,7 @@
             return {
                 question: {
                     text: null,
-                    subject_id: null,
+                    subject_id: route().params.subject_id ?? null,
                     answers: [{
                             number: 1,
                             text: "",
@@ -267,6 +267,13 @@
                 this.correct_answer_number = null;
             },
             submit() {
+                if (!this.question.subject_id) {
+                    return Swal.fire({
+                        title: "Пән тандалмады!",
+                        icon: "warning",
+                        showCancelButton: false,
+                    });
+                }
                 this.question.correct_answer_number = this.correct_answer_number;
                 if (!this.question.correct_answer_number) {
                     return Swal.fire({

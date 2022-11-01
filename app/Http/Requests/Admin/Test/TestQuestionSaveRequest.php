@@ -16,7 +16,7 @@ class TestQuestionSaveRequest extends FormRequest
     {
         return [
             'text' => 'required',
-            'subject_id' => 'required',
+//            'subject_id' => 'required',
             'correct_answer_number' => 'required',
             'preparation_ids' => 'required',
             'answers' => 'required',

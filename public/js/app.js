@@ -25842,10 +25842,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ["subjects"],
   data: function data() {
+    var _route$params$subject;
+
     return {
       question: {
         text: null,
-        subject_id: null,
+        subject_id: (_route$params$subject = route().params.subject_id) !== null && _route$params$subject !== void 0 ? _route$params$subject : null,
         answers: [{
           number: 1,
           text: "",
@@ -25934,6 +25936,14 @@ __webpack_require__.r(__webpack_exports__);
       this.correct_answer_number = null;
     },
     submit: function submit() {
+      if (!this.question.subject_id) {
+        return Swal.fire({
+          title: "Пән тандалмады!",
+          icon: "warning",
+          showCancelButton: false
+        });
+      }
+
       this.question.correct_answer_number = this.correct_answer_number;
 
       if (!this.question.correct_answer_number) {
