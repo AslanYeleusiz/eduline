@@ -180,7 +180,7 @@
             return {
                 question: {
                     text: null,
-                    subject_id: route().params.subject_id ?? null,
+                    subject_id: null,
                     answers: [{
                             number: 1,
                             text: "",
@@ -268,7 +268,6 @@
             },
             submit() {
                 this.question.correct_answer_number = this.correct_answer_number;
-                this.question.sub_id = this.question.subject_id;
                 if (!this.question.correct_answer_number) {
                     return Swal.fire({
                         title: "Дұрыс жауап белгіленбеді",
