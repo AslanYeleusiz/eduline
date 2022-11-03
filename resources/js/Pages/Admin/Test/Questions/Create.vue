@@ -38,7 +38,7 @@
                                     <td><b>Пән</b><i class="red">*</i></td>
                                     <td>
                                         <select v-model="question.subject_id" class="form-control">
-                                            <option value="" selected disabled>
+                                            <option value=null selected disabled>
                                                 Пәнді таңдаңыз
                                             </option>
                                             <option v-for="(
@@ -72,7 +72,7 @@
                                             <ckeditor :editor="editor" v-model="question.text" :config="editorConfig" class="form-control"></ckeditor>
                                             <a class="d-block mt-2" href="https://latex.codecogs.com/eqneditor/editor.php" target="_blank">Latex формула</a>
                                         </div>
-                                        <input v-else v-model="question.text" type="text" class="form-control" />
+                                        <input v-else v-model="question.text" type="text" class="form-control" placeholder="Сұрақ енгізіңіз" />
                                         <validation-error :field="'text'" />
                                     </td>
                                 </tr>
@@ -99,7 +99,6 @@
                                                 )
                                             }})
                                         </b>
-                                        <i class="red">*</i>
                                     </td>
                                     <td :id="'answer' + answer.number">
                                         <div class="d-flex align-items-center">
