@@ -59,14 +59,14 @@
                                     </td>
                                 </tr>
                                 <tr class="odd even">
-                                    <td><b>Тақырыпша</b></td>
+                                    <td><b>Тақырыпша</b> <i class="red">*</i></td>
                                     <td>
                                         <Multiselect v-model="preparationIds" track-by="title" mode="tags" :close-on-select="false" :searchable="true" :create-option="true" label="title" valueProp="id" :options="preparations" />
                                         <validation-error :field="'preparation_ids'" />
                                     </td>
                                 </tr>
                                 <tr class="odd even">
-                                    <td><b>Сұрақ</b> <i class="red">*</i></td>
+                                    <td><b>Сұрақ</b></td>
                                     <td id="question">
                                         <div v-if="input_type === 'ckeditor'">
                                             <ckeditor :editor="editor" v-model="question.text" :config="editorConfig" class="form-control"></ckeditor>
