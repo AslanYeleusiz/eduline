@@ -24,14 +24,14 @@ class TestSubjectPreparationController extends Controller
 
         $subject = TestSubject::findOrFail($id);
         $preparations = TestSubjectPreparation::when($name, fn ($query) => $query->where('name', 'like', "%$name%"))
-            ->with('childs')  
+            ->with('childs')
             ->isParent()
-            ->subjectBy($subject->id)  
+            ->subjectBy($subject->id)
             ->get();
         $testClasses = TestClass::with(['preparations' =>  fn($query) => $query->where('test_subject_preparations.subject_id', $subject->id)])
             ->withCount(['preparations' => fn($query) => fn($query) => $query->where('test_subject_preparations.subject_id', $subject->id)])
-            ->get(); 
-          
+            ->get();
+
             return Inertia::render(
             'Admin/Test/Subjects/Preparations/Index',
             compact('preparations', 'subject', 'testClasses')
@@ -47,9 +47,9 @@ class TestSubjectPreparationController extends Controller
         $parentPreparations = TestSubjectPreparation::subjectBy($subject->id)
         ->isParent()
         ->get();
-        $classItems = TestClass::orderBy('name')->get(); 
+        $classItems = TestClass::orderBy('name')->get();
         $class_ids = $preparation->classItems->pluck('id')->toArray();
-        return Inertia::render('Admin/Test/Subjects/Preparations/Edit', compact('subject', 
+        return Inertia::render('Admin/Test/Subjects/Preparations/Edit', compact('subject',
         'preparation', 'parentPreparations', 'classItems', 'class_ids'));
     }
     public function update($subjectId, $preparationId, TestSubjectPreparationSaveRequest $request)
@@ -58,7 +58,7 @@ class TestSubjectPreparationController extends Controller
         $classIds = $request->class_ids;
         $subjectId = [];
         for($i = 0; $i < count($classIds); $i++) {
-            
+
                 array_push($subjectId,[
                     'subject_id' => $subject->id
                 ]);
@@ -85,37 +85,40 @@ class TestSubjectPreparationController extends Controller
         $parentPreparations = TestSubjectPreparation::subjectBy($subject->id)
         ->isParent()
         ->get();
-        $classItems = TestClass::orderBy('name')->get(); 
+        $classItems = TestClass::orderBy('name')->get();
         return Inertia::render('Admin/Test/Subjects/Preparations/Create', compact('subject', 'parentPreparations', 'classItems'));
     }
 
     public function store($subjectId, TestSubjectPreparationSaveRequest $request)
     {
         $subject = TestSubject::findOrFail($subjectId);
-
         $classIds = $request->class_ids;
-        $subjectId = [];
-        for($i = 0; $i < count($classIds); $i++) {
-            
-                array_push($subjectId,[
-                    'subject_id' => $subject->id
-                ]);
+        if($classIds){
+
+            $subjectId = [];
+            for($i = 0; $i < count($classIds); $i++) {
+
+                    array_push($subjectId,[
+                        'subject_id' => $subject->id
+                    ]);
+            }
+            $classIds = array_combine($classIds, $subjectId);
         }
-        $classIds = array_combine($classIds, $subjectId);
+
 
         DB::beginTransaction();
         $preparation = new TestSubjectPreparation();
 
-        
+
         $preparation->title = $request->title;
         $preparation->description = $request->description;
         $preparation->video_link = $request->video_link;
         $preparation->subject_id = $subject->id;
         $preparation->parent_id = $request->parent_id;
         $preparation->save();
-        $preparation->classItems()->sync($classIds);
+        if($classIds) $preparation->classItems()->sync($classIds);
         DB::commit();
-        
+
         return redirect()->route('admin.test.subjectPreparations.index', $subject->id)->withSuccess('Успешно добавлено');
     }
 
