@@ -93,8 +93,8 @@ class TestSubjectPreparationController extends Controller
     {
         $subject = TestSubject::findOrFail($subjectId);
         $classIds = $request->class_ids;
+        $parrentId = $request->parent_id;
         if($classIds){
-
             $subjectId = [];
             for($i = 0; $i < count($classIds); $i++) {
 
@@ -103,6 +103,10 @@ class TestSubjectPreparationController extends Controller
                     ]);
             }
             $classIds = array_combine($classIds, $subjectId);
+        }else if($parrentId){
+            return redirect()->back()->withErrors([
+                'class_ids' => 'Сынып тандалмады'
+            ]);
         }
 
 
