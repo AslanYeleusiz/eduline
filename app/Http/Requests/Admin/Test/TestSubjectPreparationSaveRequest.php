@@ -14,8 +14,7 @@ class TestSubjectPreparationSaveRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3|max:255',
-            'class_ids' => 'required'
+            'title' => 'required|min:3|max:255'
         ];
     }
 }
