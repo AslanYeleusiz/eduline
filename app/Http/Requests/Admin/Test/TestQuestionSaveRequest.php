@@ -20,7 +20,7 @@ class TestQuestionSaveRequest extends FormRequest
 //            'correct_answer_number' => 'required',
 //            'preparation_ids' => 'required',
 //            'answers' => 'required',
-            'answers.*.text' => 'required',
+//            'answers.*.text' => 'required',
         ];
     }
 }
