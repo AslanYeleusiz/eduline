@@ -66,7 +66,7 @@
                                     </td>
                                 </tr>
                                 <tr class="odd even">
-                                    <td><b>Сұрақ</b></td>
+                                    <td><b>Сұрақ</b> <i class="red">*</i></td>
                                     <td id="question">
                                         <div v-if="input_type === 'ckeditor'">
                                             <ckeditor :editor="editor" v-model="question.text" :config="editorConfig" class="form-control"></ckeditor>
