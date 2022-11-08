@@ -166,9 +166,8 @@ class FullTestService
                 'passing_desc' => null,
             ]
         ];
-
-        !empty($test->subjects[0]->direction) ? $direction_id = $test->subjects[0]->direction[0]->id : $direction_id=2;;
-        switch($direction_id){
+        $direction_id = $test->subjects[0]->direction[0]->id ?? 2;
+        switch($direction_id ?? 2){
             case 2:
             case 3: {
                 $pan = 0.3;
