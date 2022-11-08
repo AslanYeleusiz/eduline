@@ -64,13 +64,14 @@ class FullTestController extends Controller
     public function result($testId)
     {
         $test = FullTest::findWithSubjectsAndUserAnswers($testId, true);
-        return response()->json($test);
+
 //        dd($test);
         foreach ($test->subjects as $subject) {
 //            [$subject->topic_know_well, $subject->topic_prepare_for] = TestService::getUserAnswersAnalytics($subject->userAnswers);
 //            $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
 //            unset($subject->userAnswers);
         }
+        return response()->json($test);
         $result = $this->testService->sanatCalc($test);
         return new FullTestFinishedResource($test);
     }
