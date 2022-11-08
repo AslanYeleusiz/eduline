@@ -60,7 +60,8 @@ class TestSubjectPreparationController extends Controller
     public function preparation($subjectId, $preparationId)
     {
         $subject = TestSubject::findOrFail($subjectId);
-        $preparation = TestSubjectPreparation::subjectBy($subject->id)->withCount(['questions' => fn ($query) => $query->isActive()])->findOrFail($preparationId);
+        $preparation = TestSubjectPreparation::subjectBy($subject->id)
+            ->withCount(['questions' => fn ($query) => $query->isActive()])->findOrFail($preparationId);
 //        dd($preparation->questions_count);
 
 //        $preparation = TestSubjectPreparation::subjectBy($subjectId)->findOrFail($preparationId);

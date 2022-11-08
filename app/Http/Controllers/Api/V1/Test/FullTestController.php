@@ -84,6 +84,7 @@ class FullTestController extends Controller
             })
             ->when($fromDate, fn($query) => $query->whereDate('start_date', '>=', Carbon::create($fromDate)))
             ->when($toDate, fn($query) => $query->whereDate('start_date', '<=', Carbon::create($toDate)))
+            ->latest('id')
             ->paginate($request->input('per_page', 20))
             ->appends($request->except('page'));
         return FullTestFinishedResource::collection($tests)->additional(['status' => true]);
