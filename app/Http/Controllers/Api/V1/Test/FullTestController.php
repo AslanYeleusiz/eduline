@@ -65,7 +65,7 @@ class FullTestController extends Controller
     {
         $test = FullTest::findWithSubjectsAndUserAnswers($testId, true);
         foreach ($test->subjects as $subject) {
-            [$subject->topic_know_well, $subject->topic_prepare_for] = TestService::getUserAnswersAnalytics($subject->userAnswers);
+//            [$subject->topic_know_well, $subject->topic_prepare_for] = TestService::getUserAnswersAnalytics($subject->userAnswers);
             $subject->result = TestService::getScoreAndAnswersCount($subject->userAnswers->toArray());
             unset($subject->userAnswers);
         }
