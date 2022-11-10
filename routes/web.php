@@ -54,7 +54,7 @@ Route::view('admin/login', 'auth.login')->name('adminLoginShow');
 Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
 
 
-Route::get('/public_offer_rus.pdf', [MainController::class, 'public_offer_rus'])->name('public_offer_rus');
+//Route::get('/public_offer_rus.pdf', [MainController::class, 'public_offer_rus'])->name('public_offer_rus');
 
 
 Route::middleware('guest')->group(function () {
