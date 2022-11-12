@@ -18,8 +18,8 @@ class RegisterRequest extends FormRequest
     {
 
         return response()->json([
-            'full_name' => 'required|min:3',
-            'password' => 'required|min:6|same:password_confirmation',
+            'full_name' => 'required|min:3|max:60',
+            'password' => 'required|min:6|max:16|same:password_confirmation',
             'password_confirmation' => 'required',
             'email' => 'required|email|min:5|unique:users,email',
             'phone' => 'required|unique:users,phone',
