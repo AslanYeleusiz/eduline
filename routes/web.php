@@ -43,6 +43,8 @@ Route::view('/calculator', 'pages.calculator')->name('calculator');
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator.store');
 
 
+Route::view('/public_offer_rus', 'offer_rus.public_offer_rus')->name('public_offer_rus');
+Route::view('/privacy_policy_of_app', 'offer_rus.privacy_policy_of_app')->name('privacy_policy_of_app');
 
 
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
@@ -52,9 +54,6 @@ Route::get('/set_locale/{locale}', [PageController::class, 'set_locale'])->name(
 Route::get('email/{email}/{token}', [MainController::class, 'emailUpdate'])->name('email.update');
 Route::view('admin/login', 'auth.login')->name('adminLoginShow');
 Route::post('admin/login', [AuthController::class, 'adminLoginForm'])->name('adminLoginForm');
-
-
-//Route::get('/public_offer_rus.pdf', [MainController::class, 'public_offer_rus'])->name('public_offer_rus');
 
 
 Route::middleware('guest')->group(function () {
@@ -94,24 +93,23 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('materials')->name('materials')->group(function () {
-        Route::get('/', [PageController::class, 'ajaxMaterials']);
-        Route::get('/search', [PageController::class, 'search'])->name('.search');
-        Route::get('/{slug}-{id}.html', [PageController::class, 'material'])->name('.material');
-        Route::get('/{id}/download', [MaterialController::class, 'download'])->name('.download');
-        Route::middleware('auth')->group(function (){
-            Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
-            Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
-            Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
-            Route::get('/my-materials/publication', [AjaxUploadController::class, 'index'])->name('.publication');
-            Route::get('/my-materials/change/id-{id}', [PageController::class, 'change'])->name('.myMaterials.change');
-            Route::get('/my-materials/changed', [PageController::class, 'changed'])->name('.myMaterials.changed');
-            Route::post('/my-materials/delete', [PageController::class, 'delete'])->name('.myMaterials.delete');
-            Route::get('/my-materials/send/journal', [PageController::class, 'journal'])->name('.myMaterials.journal');
-            Route::get('/{id}/certificate', [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate')->middleware('auth');
-            Route::get('/{id}/thank-letter', [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThank_letter');
-            Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
-        });
+    Route::get('/', [PageController::class, 'ajaxMaterials']);
+    Route::get('/search', [PageController::class, 'search'])->name('.search');
+    Route::get('/{slug}-{id}.html', [PageController::class, 'material'])->name('.material');
+    Route::get('/{id}/download', [MaterialController::class, 'download'])->name('.download');
+    Route::middleware('auth')->group(function (){
+        Route::get('/my-materials', [PageController::class, 'myMaterials'])->name('.myMaterials');
+        Route::post('/my-materials/publication/action', [AjaxUploadController::class, 'upload'])->name('.ajaxupload.action');
+        Route::post('/my-materials/publication/store', [AjaxUploadController::class, 'store'])->name('.ajaxupload.store');
+        Route::get('/my-materials/publication', [AjaxUploadController::class, 'index'])->name('.publication');
+        Route::get('/my-materials/change/id-{id}', [PageController::class, 'change'])->name('.myMaterials.change');
+        Route::get('/my-materials/changed', [PageController::class, 'changed'])->name('.myMaterials.changed');
+        Route::post('/my-materials/delete', [PageController::class, 'delete'])->name('.myMaterials.delete');
+        Route::get('/my-materials/send/journal', [PageController::class, 'journal'])->name('.myMaterials.journal');
+        Route::get('/{id}/certificate', [MaterialController::class, 'getCertificate'])->where(['id' => '[0-9]+'])->name('.getCertificate')->middleware('auth');
+        Route::get('/{id}/thank-letter', [MaterialController::class, 'getCertificateThankLetter'])->where(['id' => '[0-9]+'])->name('.getCertificateThank_letter');
+        Route::get('/{id}/certificate-honor', [MaterialController::class, 'getCertificateHonor'])->where(['id' => '[0-9]+'])->name('.getCertificateHonor');
     });
-
+});
 
 

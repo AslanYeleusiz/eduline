@@ -109,12 +109,4 @@ class MainController extends Controller
         return redirect()->route('consultation', ['slug' => $lat_name, 'id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
     }
 
-//    public function public_offer_rus() {
-//        $filename = 'public_offer_rus.pdf';
-//        $tempImage = tempnam(sys_get_temp_dir(), $filename);
-//        copy('https://eduline.kz/document/public_offer_rus.pdf', $tempImage);
-//
-//        return response()->download($tempImage, $filename);
-//    }
-
 }
