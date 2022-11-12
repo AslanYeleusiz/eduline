@@ -55,7 +55,6 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        return $request;
         $smsVerification = $this->checkCode($request->phone, $request->code);
         if(!$smsVerification){
             return new MsgStatusFalseResource(__('message.code.phone_or_code_incorrect'));
