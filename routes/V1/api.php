@@ -58,9 +58,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('subscription/promo-code', [SubscriptionController::class, 'promocode'])->name('subscriptions.promocode');
 
     Route::post('news/{news}/save', [NewsController::class, 'saveNews'])->name('news.save');
-        Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
-        Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
-    });
+    Route::post('news/{news}/comment', [NewsController::class, 'newsCommentSave'])->name('news.commentSave');
+    Route::apiResource('news', NewsController::class)->names('news.')->only('index', 'show');
+});
 
 Route::get('roles', RolesController::class)->name('roles');
 
