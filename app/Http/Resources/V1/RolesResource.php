@@ -14,10 +14,10 @@ class RolesResource extends JsonResource
      */
     public function toArray($request)
     {
-//        $language = $request->header('Accept-Language');
+        $language = $request->header('Accept-Language');
         return [
             'id' => $this->id,
-            'name' => $this->name
+            'name' => $this->name[$language]
         ];
     }
 

@@ -72,7 +72,7 @@ Route::prefix('test')->middleware('auth:api')->name('test.')->group(function () 
     Route::get('subjects/{id}/options', [TestSubjectOptionController::class, 'index'])->name('subjects.options.index');
     Route::get('directions', [TestDirectionController::class, 'index'])->name('directions.index');
 
-    Route::apiResource('trainer', TestTrainerController::class)->names('trainer');
+    Route::apiResource('trainer', TestTrainerController::class)->names('trainer')->only(['index', 'show']);
 
     //  Route::post('subjects/{id}/options/{option_id}', [TestSubjectOptionController::class, 'store'])->name('subjects.options.store');
     //  Route::post('subjects/{id}/options/{option_id}/finish', [TestSubjectOptionController::class, 'finish'])->name('subjects.options.finish');
