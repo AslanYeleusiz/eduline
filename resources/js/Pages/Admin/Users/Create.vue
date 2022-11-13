@@ -136,7 +136,7 @@
                                     v-for="role in roles"
                                     :key="'r' + role.id"
                                 >
-                                    {{ role.name }}
+                                    {{ role.name.kk }}
                                 </option>
                             </select>
                             <validation-error :field="'role_id'" />
@@ -189,7 +189,7 @@ export default {
     data() {
         return {
             user: {
-                
+
             }
             //         form: useForm({
             //   full_name: null,

@@ -104,7 +104,7 @@
                                         <td>{{ user.phone }}</td>
                                         <td>{{ user.real_password }}</td>
                                         <td>
-                                            {{ user.role.name }}
+                                            {{ user.role.name.kk }}
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
