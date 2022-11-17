@@ -10,6 +10,7 @@ use App\Models\SmsVerification;
 use App\Models\PersonalAdvice;
 use App\Models\PersonalAdviceOrder;
 use App\Services\V1\SmsService;
+use Response;
 
 class MainController extends Controller
 {
@@ -107,6 +108,26 @@ class MainController extends Controller
         ]);
 
         return redirect()->route('consultation', ['slug' => $lat_name, 'id' => $id])->withSuccess(__('site.Өтінішіңіз жіберілді'));
+    }
+
+    public function public_offer_rus(Request $request) {
+        $filename = 'public_offer_rus.pdf';
+        $path = public_path('offer_rus/'.$filename);
+
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
+    }
+
+    public function privacy_policy_of_app(Request $request) {
+        $filename = 'privacy_policy_of_app.pdf';
+        $path = public_path('offer_rus/'.$filename);
+
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
     }
 
 }
