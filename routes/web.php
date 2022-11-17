@@ -43,8 +43,8 @@ Route::view('/calculator', 'pages.calculator')->name('calculator');
 Route::post('/calculator', [MainController::class, 'calculator'])->name('calculator.store');
 
 
-Route::get('/public_offer_rus', [MainController::class, 'public_offer_rus'])->name('public_offer_rus');
-Route::get('/privacy_policy_of_app', [MainController::class, 'privacy_policy_of_app'])->name('privacy_policy_of_app');
+Route::view('/public_offer_rus', 'offer_rus.public_offer_rus');
+Route::view('/privacy_policy_of_app', 'offer_rus.privacy_policy_of_app');
 
 
 Route::get('/consultations', [MainController::class, 'consultations'])->name('consultations');
