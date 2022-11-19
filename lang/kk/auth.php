@@ -17,6 +17,7 @@ return [
     'password' => 'Көрсетілген пайдаланушы аты немесе пароль дұрыс емес.',
     'sms_verification' => config('app.name') . '. Сіздің растау кодыңыз: ',
     'Phone or password is incorrect' => 'Телефон немесе құпия сөз дұрыс емес',
+    'You are not admin' => 'Бұл бетке тек сайттың әкімшілігі кіре алады.',
     'Phone number not found' => 'Телефон нөмірі табылмады',
     'Phone number is incorrect' => 'Телефон нөмірі дұрыс емес',
     'phone_invalid' => 'Бұндай нөмір тіркелмеген',

@@ -18,6 +18,7 @@ return [
     // 'sms_verification' => 'Ваш код подтверждения: ',
     'sms_verification' => config('app.name') . '. Ваш код для подтверждения: ',
     'Phone or password is incorrect' => 'Телефон или пароль неверны',
+    'You are not admin' => 'Посетить эту страницу может только администрация сайта.',
     'Phone number not found' => 'Номер телефона не найден',
     'Phone number is incorrect' => 'Номер телефона неверный',
     'phone_invalid' => 'Такого номера не существует',

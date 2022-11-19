@@ -36,6 +36,11 @@ class AuthController extends Controller
                 'password' => [__('auth.Phone or password is incorrect')]
             ]);
         }
+        if ($user->role_id !== 1) {
+            throw ValidationException::withMessages([
+                'password' => [__('auth.You are not admin')]
+            ]);
+        }
         Auth::login($user);
         return redirect()->route('admin.users.index');
     }
