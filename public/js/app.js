@@ -25945,6 +25945,11 @@ __webpack_require__.r(__webpack_exports__);
         return this.warningMessage("Тақырыпша тандалмады");
       }
 
+      var question_chec = true;
+      this.question.answers.forEach(function (answer) {
+        if (answer.text == null) return question_chec = false;
+      });
+      if (!question_chec) return this.warningMessage("Жауап енгізілмеді");
       this.$inertia.post(route("admin.test.questions.store"), this.question, {
         onError: function onError() {
           return console.log("An error has occurred");

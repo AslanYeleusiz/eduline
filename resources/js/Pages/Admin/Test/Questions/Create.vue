@@ -274,6 +274,11 @@
                 if (!this.question.preparation_ids) {
                     return this.warningMessage("Тақырыпша тандалмады");
                 }
+                var question_chec = true
+                this.question.answers.forEach((answer)=>{
+                    if(answer.text == null) return question_chec = false
+                })
+                if(!question_chec) return this.warningMessage("Жауап енгізілмеді");
                 this.$inertia.post(
                     route("admin.test.questions.store"),
                     this.question, {
