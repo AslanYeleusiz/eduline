@@ -26103,6 +26103,11 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
+      var question_chec = true;
+      this.question.answers.forEach(function (answer) {
+        if (answer.text == null) return question_chec = false;
+      });
+      if (!question_chec) return this.warningMessage("Жауап енгізілмеді");
       var data = {
         text: this.question.text,
         subject_id: this.question.subject_id,
@@ -26118,6 +26123,13 @@ __webpack_require__.r(__webpack_exports__);
         onSuccess: function onSuccess() {
           return console.log("The new queston has been saved");
         }
+      });
+    },
+    warningMessage: function warningMessage(text) {
+      return Swal.fire({
+        title: text,
+        icon: "warning",
+        showCancelButton: false
       });
     }
   },

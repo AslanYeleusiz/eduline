@@ -244,6 +244,11 @@
                         showCancelButton: false,
                     });
                 }
+                var question_chec = true
+                this.question.answers.forEach((answer)=>{
+                    if(answer.text == null) return question_chec = false
+                })
+                if(!question_chec) return this.warningMessage("Жауап енгізілмеді");
 
                 let data = {
                     text: this.question.text,
@@ -262,6 +267,13 @@
                     }
                 );
             },
+            warningMessage(text){
+                return Swal.fire({
+                    title: text,
+                    icon: "warning",
+                    showCancelButton: false,
+                });
+            }
         },
         mounted() {
             if (!this.correct_answer_number) {
