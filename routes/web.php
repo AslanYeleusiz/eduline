@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/news/comments/likes', [CommentsController::class, 'likes'])->name('index.comments.likes');
 });
 
-
+Route::get('/api/custom/{subject_id}', [MainController::class, 'restartAllQuestions']);
 
 Route::get('/news/{slug}-{id}', [NewsController::class, 'newspage'])->name('news.show');
 Route::get('/news/id={id}/comments', [CommentsController::class, 'show'])->name('.comments.show');

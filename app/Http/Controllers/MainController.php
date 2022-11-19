@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\SmsVerification;
 use App\Models\PersonalAdvice;
 use App\Models\PersonalAdviceOrder;
+use App\Models\TestQuestion;
 use App\Services\V1\SmsService;
 use Response;
 
@@ -128,6 +129,22 @@ class MainController extends Controller
             'Content-Type' => 'application/pdf',
             'Content-Disposition' => 'inline; filename="'.$filename.'"'
         ]);
+    }
+
+    public function restartAllQuestions($id) {
+        $questions = TestQuestion::where('subject_id', $id)
+            ->get();
+        foreach($questions as $question){
+            $q_collect = [];
+            foreach($question->answers as $answer){
+                if($answer["text"] !== null) array_push($q_collect, $answer);
+            }
+            $question->answers = $q_collect;
+            $question->update([
+                'answers' => $q_collect
+            ]);
+        }
+        dd($questions);
     }
 
 }
