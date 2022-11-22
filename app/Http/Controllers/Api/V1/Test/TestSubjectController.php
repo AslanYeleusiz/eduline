@@ -19,7 +19,9 @@ class TestSubjectController extends Controller
     public function index(Request $request)
     {
         $languageId = $request->language_id ?? TestLanguage::first()->id;
-        $subjects = TestSubject::where('language_id', $languageId)->get();
+        $subjects = TestSubject::where('language_id', $languageId)
+//            ->where('id', '!=', 2)
+            ->get();
         return TestSubjectResource::collection($subjects);
     }
 
