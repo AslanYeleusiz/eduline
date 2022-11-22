@@ -19,7 +19,10 @@ class TestDirectionController extends Controller
             return new ErrorException('Язык не выбрано');
         }
         $directions = TestDirection::isActive()
-        ->with(['subjects' => fn($query)=>$query->where('language_id', $languageId)])
+        ->with(['subjects' => function($query){
+            $query->where('language_id', $languageId)
+                ->where('id', '!=', 2)
+        }])
         ->orderBy('numeric')->get();
         foreach($directions as $direction){
             $direction->name = $direction->name[$language];
