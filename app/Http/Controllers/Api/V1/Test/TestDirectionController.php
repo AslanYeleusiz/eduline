@@ -21,7 +21,7 @@ class TestDirectionController extends Controller
         $directions = TestDirection::isActive()
         ->with(['subjects' => function($query) use ($languageId){
             return $query->where('language_id', $languageId)
-                ->where('subject_id', '!=', 2);
+                ->where('subject_id', '!=', [2,55,53]);
         }])
         ->orderBy('numeric')->get();
         foreach($directions as $direction){
