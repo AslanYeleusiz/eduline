@@ -20,7 +20,7 @@ class TestSubjectController extends Controller
     {
         $languageId = $request->language_id ?? TestLanguage::first()->id;
         $subjects = TestSubject::where('language_id', $languageId)
-            ->where('id', '!=', 2)
+//            ->where('id', '!=', 2)
             ->get();
         return TestSubjectResource::collection($subjects);
     }
