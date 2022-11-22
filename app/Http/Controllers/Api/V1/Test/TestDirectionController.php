@@ -27,7 +27,7 @@ class TestDirectionController extends Controller
                 $subject->id == 2 ? $subject->visible = false :
                     ($subject->id == 53 ? $subject->visible = false :
                         ($subject->id == 55 ? $subject->visible = false :
-                            $subject->visible = true;));
+                            $subject->visible = true));
             }
         }
         return TestDirectionsResource::collection($directions)
