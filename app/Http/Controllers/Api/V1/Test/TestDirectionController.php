@@ -25,9 +25,9 @@ class TestDirectionController extends Controller
             $direction->name = $direction->name[$language];
             foreach($direction->subjects as $subject){
                 $subject->id == 2 ? $subject->visible = false :
-                    $subject->id == 53 ? $subject->visible = false :
-                        $subject->id == 55 ? $subject->visible = false :
-                            $subject->visible = true;
+                    ($subject->id == 53 ? $subject->visible = false :
+                        ($subject->id == 55 ? $subject->visible = false :
+                            $subject->visible = true;));
             }
         }
         return TestDirectionsResource::collection($directions)
