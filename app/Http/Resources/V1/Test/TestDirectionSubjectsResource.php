@@ -19,6 +19,7 @@ class TestDirectionSubjectsResource extends JsonResource
             'name' => $this->name,
             'is_pedagogy' => $this->is_pedagogy,
             'is_soon' => $this->is_soon,
+            'visible' => $this->visible,
         ];
     }
 
